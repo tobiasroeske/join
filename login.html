@@ -5,11 +5,47 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Join|Login</title>
     <link rel="icon" type="image/" href="#">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/logIn.css">
     <link rel="stylesheet" href="css/fonts.css">
     <script src="js/main.js"></script>
 </head>
 <body>
-    
+    <header>
+        <div class="logo">
+            <img src="./assets/img/j-icon.svg" alt="icon">
+        </div>
+        <div class="sign_up">
+            <p>Not a Join user?</p>
+            <button class="sign_up_button"><a href="">Sign up</a></button>
+        </div>
+    </header>
+
+    <main>
+        <form class="form">
+        <div class="log_in_field">
+            <div class="log_in_headline_container">
+                <h1 class="log_in_headline">Log in</h1>
+            </div>
+            <div class="input_container">
+                <div>
+                    <input required id="email" class="input-field" type="email" placeholder="Email">
+                    <img class="field_img" src="./assets/img/mail.svg">
+                    <p id="wrong-mail" class="hide">Wrong E-mail Ups! Try again</p>
+                </div>
+                <div>
+                    <input required id="password"
+                        class="input-field" type="password" placeholder="Password">
+                    <img class="field_img" src="./assets/img/lock.svg"
+                        style="cursor: pointer;">
+                    <p id="wrong-password" class="hide">Wrong password Ups! Try again</p>
+                </div>
+            </div>
+        </div>
+    </form>
+    </main>
+    <footer>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Legal notice</a>
+    </footer>
 </body>
 </html>
