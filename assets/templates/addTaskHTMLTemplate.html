@@ -1,0 +1,62 @@
+
+<div class="add-task">
+    <h1 class="page-heading">Add Task</h1>
+    <form action="" class="form">
+        <div class="form-top">
+            <div class="form-side">
+                <div class="input-container">
+                    <label for="title-input">Title</label>
+                    <input type="text" name="title" id="title-input" class="input" required
+                    placeholder="Enter a title">
+                </div>
+                <div class="input-container">
+                    <label for="description-textarea">Description</label>
+                    <textarea name="description" id="description-textarea" cols="30" rows="10"
+                    placeholder="Enter a Description" class="textarea"></textarea>
+                </div>
+                <div class="input-container">
+                    <label for="assigenedSelect">Assigned to</label>
+                    <select name="assignedTo" id="assigenedSelect" class="select category-select">
+                        <option value="contacts" selected disabled hidden>Select contacts to assign</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="seperator"></div>
+
+            <div class="form-side">
+                <div class="input-container">
+                    <label for="date-input">Due date</label>
+                    <input type="date" name="dueDate" id="date-input" placeholder="dd/mm/yyyy" required class="input date-input">
+                </div>
+                <div class="input-container">
+                    <span>Prio</span>
+                    <div class="prio-buttons">
+                        <button class="prio-btn">Urgent</button>
+                        <button class="prio-btn active-btn">Medium</button>
+                        <button class="prio-btn">Low</button>
+                    </div>
+                </div>
+                <div class="input-container">
+                    <label for="categorySelect">Category</label>
+                    <select name="category" id="categorySelect" class="select category-select">
+                        <option value="selectCategory" selected disabled hidden>Select task category</option>
+                        <option value="technicalTask">Technical Task</option>
+                        <option value="userStory">User Story</option>
+                    </select>
+                </div>
+                <div class="input-container">
+                    <label for="subtaskInput">Subtasks</label>
+                    <input type="text" class="input subtask-input" name="subtasks" id="subtaskInput">
+                </div>
+            </div>
+        </div>
+        <div>
+            <span>This field is requiered</span>
+            <div>
+                <button>Clear</button>
+                <button>Create Task</button>
+            </div>
+        </div>
+    </form>
+</div>

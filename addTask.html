@@ -22,53 +22,8 @@
 
         <!-- Rightside of the main container-->
 
-        <div class="rightside">
-            
-            <div class="add-task">
-                <h1>Add Task</h1>
-                <form action="">
-                    <div class="form-top">
-                        <div class="form-side">
-                            <label for="titel">Title</label>
-                            <input type="text" name="title" id="title-input" class="input" required
-                                placeholder="Enter a title">
-                            <label for="description">Description</label>
-                            <textarea name="description" id="description-textarea" cols="30" rows="10"
-                                placeholder="Enter a Description"></textarea>
-                            <label for="assignedTo">Assigned to</label>
-                            <select name="assignedTo" id="assigenedSelect">
-                                <option value="contacts" selected disabled hidden>Select contacts to assign</option>
-                            </select>
-                        </div>
-                        <div class="seperator"></div>
-                        <div class="form-side">
-                            <label for="dueDate">Due date</label>
-                            <input type="date" name="dueDate" id="date-input" placeholder="dd/mm/yyyy" required>
-                            <span>Prio</span>
-                            <div class="prio-buttons">
-                                <button class="prio-btn">Urgent</button>
-                                <button class="prio-btn active-btn">Medium</button>
-                                <button class="prio-btn">Low</button>
-                            </div>
-                            <label for="category">Category</label>
-                            <select name="category" id="categorySelect">
-                                <option value="selectCategory" selected disabled hidden>Select task category</option>
-                                <option value="technicalTask">Technical Task</option>
-                                <option value="userStory">User Story</option>
-                            </select>
-                            <label for="subtasks">Subtasks</label>
-                            <input type="text" class="input subtask-input" name="subtasks" id="subtaskInput">
-                        </div>
-                    </div>
-                    <div>
-                        <span>This field is requiered</span>
-                        <div>
-                            <button>Clear</button>
-                            <button>Create Task</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
+        <div class="rightside" w3-include-html="assets/templates/addTaskHTMLTemplate.html">
+            <!-- Add Task Template - you can use it for different pages-->
         </div>
     </main>
 </body>
