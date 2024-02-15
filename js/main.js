@@ -10,4 +10,16 @@ async function includeHTML() {
             element.innerHTML = 'Page not found';
         }
     }
+    changeClassToActive();
+}
+
+function changeClassToActive() {
+    let activePage = window.location.pathname;
+    let navLinks = document.querySelectorAll('nav a');
+    navLinks.forEach(link => {
+        if (link.href.includes(`${activePage}`)) {
+            link.classList.add('active-nav');
+            link.querySelector('img').classList.add('active-img')
+        }
+    })
 }

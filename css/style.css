@@ -56,8 +56,11 @@ a {
 }
 
 .nav-link:hover {
-    background-color: #091931;
     color: white;
+}
+
+.nav-link img:hover {
+    filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(7500%) hue-rotate(123deg) brightness(101%) contrast(104%);
 }
 
 .sidebar-icon {
@@ -75,6 +78,11 @@ a {
 .help-link {
     color:#A8A8A8;
     padding: 8px;
+}
+
+.help-link:hover {
+    color: white;
+    filter: drop-shadow(1px 1px 8px rgba(0, 0, 0, 0.6));
 }
 
 .header {
@@ -120,8 +128,21 @@ a {
     height: auto;
 }
 
+.question-mark-icon:hover {
+    filter: brightness(0) saturate(100%) invert(16%) sepia(16%) saturate(1380%) hue-rotate(175deg) brightness(91%) contrast(84%);
+}
+
 .main {
     padding-left: 232px;
     background-color: #F5F5F5;
     height: 100vh;
+}
+
+.active-nav {
+    background-color: #091931;
+    color: white;
+}
+
+.active-img {
+    filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(7500%) hue-rotate(123deg) brightness(101%) contrast(104%);
 }
