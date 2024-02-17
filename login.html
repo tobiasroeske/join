@@ -22,30 +22,46 @@
 
     <main>
         <form class="form">
-        <div class="log_in_field">
-            <div class="log_in_headline_container">
-                <h1 class="log_in_headline">Log in</h1>
-            </div>
-            <div class="input_container">
-                <div>
-                    <input required id="email" class="input-field" type="email" placeholder="Email">
-                    <img class="field_img" src="./assets/img/mail.svg">
-                    <p id="wrong-mail" class="hide">Wrong E-mail Ups! Try again</p>
+            <div class="log_in_field">
+                <div class="log_in_headline_container">
+                    <h1 class="log_in_headline">Log in</h1>
                 </div>
-                <div>
-                    <input required id="password"
-                        class="input-field" type="password" placeholder="Password">
-                    <img class="field_img" src="./assets/img/lock.svg"
-                        style="cursor: pointer;">
-                    <p id="wrong-password" class="hide">Wrong password Ups! Try again</p>
+                <div class="input_container">
+                    <div class="input-box">
+                        <input required id="email" class="input-field" type="email" placeholder="Email">
+                        <img class="field_img" src="./assets/img/mail.svg" style="cursor: pointer;">
+                        <p id="wrong-mail" class="hide">Wrong E-mail Ups! Try again</p>
+                    </div>
+                    <div class="input-box">
+                        <input required id="password" class="input-field" type="password" placeholder="Password">
+                        <img class="field_img" src="./assets/img/lock.svg" style="cursor: pointer;">
+                            
+                        <p id="wrong-password" class="hide">Wrong password Ups! Try again</p>
+                    </div>
+                </div>
+                <div class="remember">
+                    <label><input type="checkbox">Remember me</label>
+                </div>
+                <div class="buttons">
+                    <div class="log-in-button">
+                        <button><a href="#">Log in</a></button>
+                    </div>
+                    <div class="guest-button">
+                        <button><a href="#">Guest Log in</a></button>
+                    </div>
                 </div>
             </div>
-        </div>
-    </form>
+        </form>
     </main>
     <footer>
-        <a href="#">Privacy Policy</a>
-        <a href="#">Legal notice</a>
+        <div class="privacy-legal">
+            <div>
+                <a href="#">Privacy Policy</a>
+            </div>
+            <div>
+                <a href="#">Legal notice</a>
+            </div>
+    </div>
     </footer>
 </body>
 </html>
