@@ -69,6 +69,7 @@ form {
     box-shadow: 1px 1px 14px lightgray;
     display: flex;
     flex-direction: column;
+    position: relative;
 }
 
 .log_in_headline_container {
@@ -180,7 +181,7 @@ form {
 
 .arrow-headline {
     display: flex;
-    
+    justify-content: center;
 }
 
 
@@ -212,6 +213,12 @@ footer {
 
 .privacy-legal a:hover {
     color: #29ABE2;
+}
+
+.arrow-svg {
+    position: absolute;
+    top: 40px;
+    left: 64px;
 }
 
 

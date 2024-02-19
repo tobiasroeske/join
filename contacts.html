@@ -10,9 +10,11 @@
     <link rel="stylesheet" href="css/fonts.css">
     <link rel="stylesheet" href="css/contacts.css">
     <script src="js/main.js"></script>
+    <script src="js/storage.js"></script>
+    <script src="js/contacts.js"></script>
 </head>
 
-<body onload="includeHTML()">
+<body onload="includeHTML(); renderContacts()">
 
     <!-- Header Section -->
     <header w3-include-html="assets/templates/header.html"></header>
@@ -25,32 +27,58 @@
 
         <div class="rightside">
             <!-- Page content goes here -->
+
             <div class="contacts-container">
+
                 <div class="contact-leftside">
                     <div class="contact-list">
                         <button class="add-contact-btn">Add new contact <img src="assets/img/contacts_person_add.svg"
                                 alt="add contact icon"></button>
-                    </div>
+                        <div class="contacts" id="contacts">
+                            <div class="contact-box">
 
+                            </div>
+                        </div>
+                    </div>
                 </div>
+
                 <div class="contact-content">
                     <div class="heading-container">
                         <h1 class="page-heading">Contacts</h1>
                         <div class="seperator-heading"></div>
                         <span class="subheading">Better with a team</span>
                     </div>
-                    <div class="contact-heading">
-                        <div class="name-initials" id="nameInitials">
-                            VN
-                        </div>
-                        <div class="contact-heading-content">
-                            <span class="cotact-name" id="contactName">Vorname Nachname</span>
-                            <div class="edit-contact">
-                                <div><img src="assets/img/contacts_edit.svg" alt="edit icon"> Edit</div>
-                                <div><img src="assets/img/contacts_delete.svg" alt="delete icon"> Delete</div>
+
+                    <div class="contact-card">
+                        <div class="contact-heading">
+                            <div class="name-initials" id="nameInitials">
+                                VN
                             </div>
-                        </div>      
+                            <div class="contact-heading-content">
+                                <span class="cotact-name" id="contactName">Vorname Nachname</span>
+                                <div class="edit-contact">
+                                    <div id="editContact"><img src="assets/img/contacts_edit.svg" alt="edit icon"> Edit</div>
+                                    <div id="deleteContact"><img src="assets/img/contacts_delete.svg" alt="delete icon"> Delete</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <span class="contact-information"> Contact Information</span>
+
+                        <div class="contact-info-box">
+                            <div class="info-box">
+                                <span class="bold">Email</span>
+                                <span class="contact-email" id="contactEmail">nachname.vorname@gmail.com</span>
+                            </div>
+
+                            <div class="info-box">
+                                <span class="bold">Phone</span>
+                                <span>+49 165 8875 225</span>
+                            </div>
+                        </div>
+
                     </div>
+
                 </div>
             </div>
         </div>

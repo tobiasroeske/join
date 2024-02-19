@@ -1,3 +1,35 @@
+.orange {
+  background-color: #ff7a00;
+}
+
+.purple {
+  background-color: #6E52FF;
+}
+
+.pink {
+  background-color: #FC71FF;
+}
+
+.yellow {
+  background-color: #FFBB2B;
+}
+
+.green {
+  background-color: #1FD7C1;
+}
+
+.darkblue {
+  background-color: #462F8A;
+}
+
+.violet {
+  background-color: #9327FF;
+}
+
+.red {
+  background-color: #FF4646;
+}
+
 .contacts-container {
   display: flex;
   width: 100%;
@@ -7,7 +39,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 33%;
+  width: 456px;
   background-color: white;
   box-shadow: 4px 0px 6px 0px #00000014;
   overflow: auto;
@@ -27,7 +59,8 @@
   flex-direction: column;
   align-items: flex-start;
   flex: 1;
-  padding: 80px 64px;
+  padding: 120px 64px;
+  gap: 32px;
 }
 
 .heading-container {
@@ -68,6 +101,14 @@
 
 .contact-heading {
   display: flex;
+  gap: 54px;
+  align-items: center;
+}
+
+.contact-card {
+  display: flex;
+  flex-direction: column;
+  gap: 21px
 }
 
 .name-initials {
@@ -81,21 +122,98 @@
   font-weight: 500;
   color: white;
   background-color: #ff7a00;
-  width: 120px;
-  height: 120px;
+  min-width: 120px;
+  aspect-ratio: 1 / 1;
 }
 
 .contact-heading-content {
   display: flex;
   flex-direction: column;
+  gap: 8px;
+}
+
+.cotact-name {
+  font-size: 47px;
 }
 
 .edit-contact {
   display: flex;
   align-items: center;
+  gap: 24px;
+  font-size: 16px;
 }
 
 .edit-contact div {
+  cursor: pointer;
   display: flex;
   align-items: center;
+  gap: 13px;
 }
+
+.edit-contact div:hover {
+  color: #29abe2;
+}
+
+.edit-contact div:hover img {
+  filter: invert(44%) sepia(76%) saturate(4964%) hue-rotate(192deg) brightness(94%) contrast(105%);
+}
+
+.contact-information {
+  font-size: 20px;
+  padding: 27px 0;
+}
+
+.contact-info-box {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.info-box {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.contact-email {
+  color: #007CEE;
+}
+
+.contact-box {
+  display: flex;
+  gap: 35px;
+  border-radius: 10px;
+  padding: 15px 24px;
+  background-color: white;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.contact-box:hover {
+  background-color: #f7f7f7;
+}
+
+.initials {
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 42px;
+  height: 42px;
+  aspect-ratio: 1/ 1;
+  border-radius: 49px;
+  font-size: 12px;
+}
+
+.contact-info-name {
+  font-size: 20px;
+}
+
+.contact-info-in-list {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+
+

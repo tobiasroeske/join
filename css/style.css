@@ -17,15 +17,19 @@ button {
 }
 
 .flex {
-  display: flex;
+  display: flex !important;
 }
 
 .flex-column {
-  flex-direction: column;
+  flex-direction: column !important;
 }
 
 .gap-8 {
   gap: 8px !important;
+}
+
+.bold {
+  font-weight: 700 !important;
 }
 
 .sidebar {
