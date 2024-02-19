@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Join|Board</title>
+    <title>Join | Board</title>
     <link rel="icon" type="image/" href="#">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/fonts.css">
+    <link rel="stylesheet" href="css/board.css">
     <script src="js/main.js"></script>
 </head>
 <body onload="includeHTML()">
@@ -22,7 +23,48 @@
 
         <div class="rightside">
             <!-- Page content goes here -->
+            <div class="main-board">
+                <div class="board">
+                    <h1 class="page-heading">Board</h1>
+                    <div class="search-area">
+                    <input type="search" placeholder="Find Task" class="input-board"> <button class="button-board" type="submit"><img src="./assets/img/board2search.png" alt="search" class="img-search-board"></button> <!--onclick funktion zum öffnen-->
+                    <button class="addTaskButton">Add Task <img src="./assets/img/board-addtask.png" alt="iconadd" class="addTaskIcon"></button>
+                </div>
+            </div>
+          
+        
+        <div class="board-mainpage">
+        
+        <div class="board-content">
+            <h2>To do</h2>
         </div>
+        
+        
+        <div class="board-content">
+            <h2>In Progress</h2>
+        </div>
+        
+        
+        <div class="board-content">
+        <h2>Await Feedback</h2>
+        </div>
+        
+        
+        <div class="board-content">
+            <h2>Done</h2>
+        </div>
+        
+        </div>
+            </div>
+            
+
+
+</div>
+
+
+
+
+      
     </main>
 </body>
 </html>

@@ -1,0 +1,79 @@
+.main-board {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.board {
+    display: flex;
+    padding-top: 88px;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.input-board{
+height: 40px;
+width: 280px;
+border-radius: 10px;
+border: 1px solid grey;
+padding-left: 15px;
+}
+
+.search-area {
+   max-height: 50px;
+   display: inline;
+   
+}
+
+
+.img-search-board{
+    height: 20px;
+   
+}
+
+
+.img-search-board:hover {
+    cursor: pointer;
+}
+
+.button-board {
+    background-color: rgba(255, 255, 255, 0);
+    border: none;
+   
+}
+
+.addTaskIcon{
+    height: 15px;
+    filter: invert();
+}
+
+.addTaskButton {
+background-color: #2A3647;
+color: white;
+width: 160px;
+height: 40px;
+border-radius: 10px;
+border: 1px solid grey;
+font-family: inherit;
+font-size: 18px;
+
+}
+
+.addTaskButton:hover {
+    background-color: #29ABE2;
+    color: white;
+    cursor: pointer;
+    }
+
+
+    h2 {
+        color: #2A3647;
+    }
+
+  .board-mainpage{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap: 50px;
+    
+  }
