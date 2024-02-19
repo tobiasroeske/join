@@ -8,6 +8,9 @@
 a {
     text-decoration: none;
     color: #FFFFFF;
+    font-weight: 700px;
+    font-size: 21px;
+    line-height: 25.2px;
 }
 
 header {
@@ -45,6 +48,10 @@ button {
     color: #FFFFFF;
 }
 
+.sign_up button:hover {
+    background-color: #29ABE2;;
+}
+
 .sign_up p {
     font-weight: 400px;
     font-size: 20px;
@@ -63,8 +70,7 @@ form {
     
 }
 
-.log_in_field,
-.sign-up_field {
+.log_in_field{
     width: 652px;
     height: 493px;
     border: 1px solid lightgray;
@@ -73,7 +79,7 @@ form {
     box-shadow: 1px 1px 14px lightgray;
     display: flex;
     flex-direction: column;
-    position: relative;
+    
 }
 
 .log_in_headline_container {
@@ -143,7 +149,7 @@ form {
 
 .remember {
     margin-top: 45px;
-    margin-left: 150px;
+    margin-left: 167px;
     display: flex;
     justify-content: flex-start;
 }
@@ -155,21 +161,27 @@ form {
     gap: 45px;
 }
 
-.log-in-button button {
-    width: 91px;
+.log-in-button button,
+.sign-up-button button {
+    
     height: 49px;
     border-radius: 8px;
-    padding: 15px 16px 15px 16px;
-    gap: 10px;
+    padding: 0px 16px 0px 16px;
     background-color: #2A3647;
-    color: #FFFFFF;
+}
+
+.log-in-button button:hover{
+background-color: #29ABE2;
+}
+
+.sign-up-button button:hover {
+    background-color: #29ABE2;
 }
 
 .guest-button button {
-    width: 91px;
     height: 49px;
     border-radius: 8px;
-    padding: 15px, 16px, 15px, 16px;
+    padding: 0px 16px 0px 16px;
     gap: 10px;
     background-color: #FFFFFF;
     border: 3px solid #2A3647;
@@ -179,9 +191,23 @@ form {
     color: #2A3647;
 }
 
+.guest-button button:hover {
+    border: 3px solid #29ABE2;
+}
+
+.guest-button a:hover {
+    color: #29ABE2;
+}
+
 .accept-checkbox {
     color: #29ABE2;
 }
+
+.hide {
+    display: none;
+}
+
+
 
 
 
@@ -195,11 +221,26 @@ form {
     box-shadow: 1px 1px 14px lightgray;
     display: flex;
     flex-direction: column;
+    position: relative;
 }
 
 .arrow-headline {
     display: flex;
     justify-content: center;
+}
+
+.accept {
+    margin-top: 45px;
+}
+
+.accept a {
+    font-size: 16px;
+    font-family: 400px;
+    line-height: 19.2px;
+}
+
+.sign-up-button {
+    margin-top: 20px;
 }
 
 
