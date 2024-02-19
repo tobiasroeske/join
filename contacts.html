@@ -14,7 +14,7 @@
     <script src="js/contacts.js"></script>
 </head>
 
-<body onload="includeHTML(); renderContacts()">
+<body onload="includeHTML(); init()">
 
     <!-- Header Section -->
     <header w3-include-html="assets/templates/header.html"></header>
@@ -27,13 +27,43 @@
 
         <div class="rightside">
             <!-- Page content goes here -->
-
+            <div class="popup d-none" id="popup">
+                <div class="new-contact-container" id="newContact">
+                    <div class="add-contact-left">
+                        <div class="contact-join-logo"> <img src="assets/img/contact_logo.svg" alt="join logo"></div>
+                        <h1 class="page-heading">Add contact</h1>
+                        <span class="special-subheading">Tasks are better with a team!</span>
+                    </div>
+                    <div class="add-contact-right">
+                        <img src="assets/img/contacts_close.svg" alt="close icon" class="icon close-icon" onclick="togglePopup()">
+                        <img src="assets/img/contact_contact_img.svg" alt="">
+                        <form onsubmit="addContact(); return false;" class="contact-form">
+                            <div class="input-field">
+                                <input type="text" name="" id="nameInput" placeholder="Name" class="special-input">
+                                <img src="assets/img/contacts_person.svg" alt="">
+                            </div>
+                            <div class="input-field">
+                                <input type="email" name="" id="emailInput" placeholder="Email" class="special-input">
+                                <img src="assets/img/contacts_call.svg" alt="">
+                            </div>
+                            <div class="input-field">
+                                <input type="tel" name="" id="phoneInput" placeholder="Phone" class="special-input">
+                                <img src="assets/img/contacts_call.svg" alt="">
+                            </div>
+                            <div class="contact-submit-field">
+                                <div class="submit-btn clear-btn" onclick="togglePopup()">Cancel<img src="assets/img/contacts_close.svg" alt=""></div>
+                                <button class="submit-btn add-btn">Create contact <img src="assets/img/check_icon.svg" alt=""></button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
             <div class="contacts-container">
 
                 <div class="contact-leftside">
                     <div class="contact-list">
-                        <button class="add-contact-btn">Add new contact <img src="assets/img/contacts_person_add.svg"
-                                alt="add contact icon"></button>
+                        <button class="add-contact-btn" onclick="togglePopup()">Add new contact <img src="assets/img/contacts_person_add.svg"
+                                alt="add contact icon" ></button>
                         <div class="contacts" id="contacts">
                             <div class="contact-box">
 
@@ -49,33 +79,7 @@
                         <span class="subheading">Better with a team</span>
                     </div>
 
-                    <div class="contact-card">
-                        <div class="contact-heading">
-                            <div class="name-initials" id="nameInitials">
-                                VN
-                            </div>
-                            <div class="contact-heading-content">
-                                <span class="cotact-name" id="contactName">Vorname Nachname</span>
-                                <div class="edit-contact">
-                                    <div id="editContact"><img src="assets/img/contacts_edit.svg" alt="edit icon"> Edit</div>
-                                    <div id="deleteContact"><img src="assets/img/contacts_delete.svg" alt="delete icon"> Delete</div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <span class="contact-information"> Contact Information</span>
-
-                        <div class="contact-info-box">
-                            <div class="info-box">
-                                <span class="bold">Email</span>
-                                <span class="contact-email" id="contactEmail">nachname.vorname@gmail.com</span>
-                            </div>
-
-                            <div class="info-box">
-                                <span class="bold">Phone</span>
-                                <span>+49 165 8875 225</span>
-                            </div>
-                        </div>
+                    <div class="contact-card" id="contactCard">
 
                     </div>
 

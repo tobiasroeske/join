@@ -1,33 +1,34 @@
+
 .orange {
   background-color: #ff7a00;
 }
 
 .purple {
-  background-color: #6E52FF;
+  background-color: #6e52ff;
 }
 
 .pink {
-  background-color: #FC71FF;
+  background-color: #fc71ff;
 }
 
 .yellow {
-  background-color: #FFBB2B;
+  background-color: #ffbb2b;
 }
 
 .green {
-  background-color: #1FD7C1;
+  background-color: #1fd7c1;
 }
 
 .darkblue {
-  background-color: #462F8A;
+  background-color: #462f8a;
 }
 
 .violet {
-  background-color: #9327FF;
+  background-color: #9327ff;
 }
 
 .red {
-  background-color: #FF4646;
+  background-color: #ff4646;
 }
 
 .contacts-container {
@@ -81,6 +82,7 @@
 }
 
 .add-contact-btn {
+  cursor: pointer;
   display: flex;
   background-color: #2a3647;
   border-radius: 10px;
@@ -108,7 +110,7 @@
 .contact-card {
   display: flex;
   flex-direction: column;
-  gap: 21px
+  gap: 21px;
 }
 
 .name-initials {
@@ -121,7 +123,6 @@
   font-size: 47px;
   font-weight: 500;
   color: white;
-  background-color: #ff7a00;
   min-width: 120px;
   aspect-ratio: 1 / 1;
 }
@@ -155,7 +156,8 @@
 }
 
 .edit-contact div:hover img {
-  filter: invert(44%) sepia(76%) saturate(4964%) hue-rotate(192deg) brightness(94%) contrast(105%);
+  filter: invert(44%) sepia(76%) saturate(4964%) hue-rotate(192deg)
+    brightness(94%) contrast(105%);
 }
 
 .contact-information {
@@ -176,10 +178,11 @@
 }
 
 .contact-email {
-  color: #007CEE;
+  color: #007cee;
 }
 
 .contact-box {
+  cursor: pointer;
   display: flex;
   gap: 35px;
   border-radius: 10px;
@@ -203,6 +206,7 @@
   aspect-ratio: 1/ 1;
   border-radius: 49px;
   font-size: 12px;
+  border: 2px solid white;
 }
 
 .contact-info-name {
@@ -215,5 +219,93 @@
   gap: 5px;
 }
 
+.first-letter-field {
+  display: flex;
+  font-size: 20px;
+  padding: 17px 36px;
+  border-bottom: 1px solid #d1d1d1;
+}
 
+.active-contact {
+  background-color: #2a3647;
+  color: white;
+}
 
+.active-contact:hover {
+  background-color: #2a3647;
+  color: white;
+}
+
+.popup {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.15);
+  z-index: 99;
+}
+
+.new-contact-container {
+  display: flex;
+  background-color: white;
+  align-items: center;
+  width: 85%;
+  border-radius: 30px;
+  height: 70vh;
+  justify-content: space-between;
+}
+
+.add-contact-left {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: #2a3647;
+  color: white;
+  padding: 32px;
+  border-top-left-radius: 30px;
+  border-bottom-left-radius: 30px;
+  height: 100%;
+}
+
+.add-contact-right {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+  width: 70%;
+  padding: 64px;
+  gap: 64px;
+}
+
+.close-icon {
+  width: 24px;
+  height: 24px;
+  position: absolute;
+  top: 32px;
+  right: 32px;
+}
+
+.clear-btn {
+  background-color: white;
+}
+
+.contact-submit-field {
+  display: flex;
+  gap: 24px;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  flex: 1;
+}
+
+.d-none {
+  display: none;
+}
