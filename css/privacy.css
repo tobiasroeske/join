@@ -4,8 +4,8 @@
   margin-left: 75px;
   font-size: 16px;
   padding-top: 88px;
-  overflow: auto;
   max-height: calc(100vh - 88px);
+  width: 85%;
 }
 
 .LegalNoticeSetup {
@@ -14,8 +14,8 @@
   margin-left: 75px;
   line-height: 180%;
   padding-top: 88px;
-  overflow: auto;
   max-height: calc(100vh - 88px);
+  width: 85%;
 }
 
 .helpSite{
@@ -24,8 +24,8 @@
   margin-left: 75px;
   line-height: 150%;
   padding-top: 88px;
- overflow: auto;
  max-height: calc(100vh - 88px);
+ width: 85%;
 }
 h1, h2 {
     margin-bottom: 10px;
@@ -43,6 +43,7 @@ p, li  {
 
 ::-webkit-scrollbar {
     width: 10px;
+    position: absolute;
 }
 ::-webkit-scrollbar-thumb {
     background-color: #2A3647;

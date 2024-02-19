@@ -148,6 +148,7 @@ a {
   flex: 1;
   padding-top: 88px;
   justify-content: center;
+  overflow: auto;
 }
 
 .active-nav {
