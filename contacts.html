@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,8 +8,10 @@
     <link rel="icon" type="image/" href="#">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/fonts.css">
+    <link rel="stylesheet" href="css/contacts.css">
     <script src="js/main.js"></script>
 </head>
+
 <body onload="includeHTML()">
 
     <!-- Header Section -->
@@ -22,7 +25,36 @@
 
         <div class="rightside">
             <!-- Page content goes here -->
+            <div class="contacts-container">
+                <div class="contact-leftside">
+                    <div class="contact-list">
+                        <button class="add-contact-btn">Add new contact <img src="assets/img/contacts_person_add.svg"
+                                alt="add contact icon"></button>
+                    </div>
+
+                </div>
+                <div class="contact-content">
+                    <div class="heading-container">
+                        <h1 class="page-heading">Contacts</h1>
+                        <div class="seperator-heading"></div>
+                        <span class="subheading">Better with a team</span>
+                    </div>
+                    <div class="contact-heading">
+                        <div class="name-initials" id="nameInitials">
+                            VN
+                        </div>
+                        <div class="contact-heading-content">
+                            <span class="cotact-name" id="contactName">Vorname Nachname</span>
+                            <div class="edit-contact">
+                                <div><img src="assets/img/contacts_edit.svg" alt="edit icon"> Edit</div>
+                                <div><img src="assets/img/contacts_delete.svg" alt="delete icon"> Delete</div>
+                            </div>
+                        </div>      
+                    </div>
+                </div>
+            </div>
         </div>
     </main>
 </body>
+
 </html>

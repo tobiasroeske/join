@@ -1,0 +1,101 @@
+.contacts-container {
+  display: flex;
+  width: 100%;
+}
+
+.contact-leftside {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 33%;
+  background-color: white;
+  box-shadow: 4px 0px 6px 0px #00000014;
+  overflow: auto;
+  position: relative;
+  z-index: 15;
+}
+
+.contact-list {
+  display: flex;
+  padding: 32px 24px;
+  flex-direction: column;
+  width: 90%;
+}
+
+.contact-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  flex: 1;
+  padding: 80px 64px;
+}
+
+.heading-container {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.seperator-heading {
+  width: 3px;
+  background-color: #29abe2;
+  height: 59px;
+}
+
+.subheading {
+  font-size: 27px;
+  color: #2a3647;
+}
+
+.add-contact-btn {
+  display: flex;
+  background-color: #2a3647;
+  border-radius: 10px;
+  border: 1px;
+  padding: 12px 0;
+  gap: 16px;
+  color: white;
+  align-items: center;
+  justify-content: center;
+  font-size: 21px;
+  font-weight: 700;
+}
+
+.add-contact-btn:hover {
+  background-color: #29abe2;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.15);
+}
+
+.contact-heading {
+  display: flex;
+}
+
+.name-initials {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 70px;
+  border: 3px solid white;
+  box-shadow: 0px 0px 4px 0px #0000001a;
+  font-size: 47px;
+  font-weight: 500;
+  color: white;
+  background-color: #ff7a00;
+  width: 120px;
+  height: 120px;
+}
+
+.contact-heading-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.edit-contact {
+  display: flex;
+  align-items: center;
+}
+
+.edit-contact div {
+  display: flex;
+  align-items: center;
+}

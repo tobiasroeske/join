@@ -10,6 +10,12 @@ a {
   color: black;
 }
 
+button {
+  border: unset;
+  background-color: white;
+  offset: none;
+}
+
 .flex {
   display: flex;
 }
