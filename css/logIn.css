@@ -2,6 +2,7 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+    font-family: 'Inter';
 }
 
 a {
@@ -58,7 +59,8 @@ form {
     
 }
 
-.log_in_field {
+.log_in_field,
+.sign-up_field {
     width: 652px;
     height: 493px;
     border: 1px solid lightgray;
@@ -79,7 +81,8 @@ form {
     line-height: 73.2px;
 }
 
-.input_container {
+.input_container, 
+.sign-up-container {
     
     display: flex;
     flex-direction: column;
@@ -156,6 +159,34 @@ form {
 .guest-button a {
     color: #2A3647;
 }
+
+.accept-checkbox {
+    color: #29ABE2;
+}
+
+
+
+/*=============****sign up****========================*/
+.sign-up-field {
+    width: 598px;
+    height: 630px;
+    border: 1px solid lightgray;
+    border-radius: 40px;
+    background-color: #FFFFFF;
+    box-shadow: 1px 1px 14px lightgray;
+    display: flex;
+    flex-direction: column;
+}
+
+.arrow-headline {
+    display: flex;
+    
+}
+
+
+
+
+/*=============footer for log in and sign up========================*/
 
 footer {
     width: 100%;
