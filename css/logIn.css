@@ -15,6 +15,10 @@ header {
     justify-content: space-between;
 }
 
+button {
+    border: unset;
+}
+
 .logo {
     padding-top: 80px;
     padding-left: 77px;
@@ -77,9 +81,23 @@ form {
 }
 
 .log_in_headline {
-    font-weight: 700px;
+    font-weight: 700;
     font-size: 61px;
     line-height: 73.2px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.log_in_headline::after {
+    content: "";
+    width: 150px;
+    background-color: #29ABE2;
+    display: block;
+    position: relative;
+    height: 3px;
 }
 
 .input_container, 
@@ -141,7 +159,7 @@ form {
     width: 91px;
     height: 49px;
     border-radius: 8px;
-    padding: 15px, 16px, 15px, 16px;
+    padding: 15px 16px 15px 16px;
     gap: 10px;
     background-color: #2A3647;
     color: #FFFFFF;
