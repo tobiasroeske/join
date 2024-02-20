@@ -152,6 +152,7 @@ form {
     margin-left: 167px;
     display: flex;
     justify-content: flex-start;
+    gap: 5px;
 }
 
 .buttons {
@@ -231,6 +232,7 @@ background-color: #29ABE2;
 
 .accept {
     margin-top: 45px;
+    gap: 5px;
 }
 
 .accept a {
