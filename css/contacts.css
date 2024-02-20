@@ -31,6 +31,10 @@
   background-color: #ff4646;
 }
 
+.rightside {
+  height: 100vh;
+}
+
 .contacts-container {
   display: flex;
   width: 100%;
@@ -60,7 +64,7 @@
   flex-direction: column;
   align-items: flex-start;
   flex: 1;
-  padding: 120px 64px;
+  padding: 120px 64px 80px 64px;
   gap: 32px;
 }
 
@@ -179,6 +183,10 @@
 
 .contact-email {
   color: #007cee;
+}
+
+.contacts {
+  overflow: auto;
 }
 
 .contact-box {
@@ -306,6 +314,38 @@
   flex: 1;
 }
 
+.contact-created {
+  display: flex;
+  border-radius: 10px;
+  background-color: #2a3647;
+  color: white;
+  font-size: 20px;
+  padding: 12px 21px;
+  gap: 16px;
+  animation: change-display 1s normal ,slide-in 1s ease 1 normal forwards;
+}
+
+@keyframes change-display {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
 .d-none {
   display: none;
 }
+
+@keyframes slide-in {
+	0% {
+		transform: translateX(1440px);
+	}
+
+	100% {
+		transform: translateX(0px);
+	}
+}
+

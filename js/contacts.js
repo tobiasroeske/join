@@ -4,7 +4,6 @@ let contacts = [
         email: 'max.mustermann@gmail.com',
         phone: '+49 157789562',
         color: 'red',
-        id: 0
     },
     {
         name: 'Tobias Roeske',
@@ -18,29 +17,36 @@ let contacts = [
         email: 'fajrer@gmx.de',
         phone: '+49 1577895562',
         color: 'darkblue',
-        id: 2
     },
     {   name: 'Benedikt Wittmann',
         email: 'witti.b@web.de',
         phone: '+49163587654',
         color: 'yellow',
-        id: 3
     },
     {
         name: 'Erekle Toedten',
         email: 'erekleantidze@gmail.com',
         phone: '+49 157789562',
         color: 'purple',
-        id: 4
     },
 ];
 
 let colors = ['orange', 'purple', 'pink', 'yellow', 'green', 'darkblue', 'violet', 'red'];
 let firstLetters = [];
 
-function init() {
+async function init() {
+    await loadContacts()
     getFirstLetters();
     renderContactList();
+}
+
+async function loadContacts() {
+    try {
+        contacts = JSON.parse(await getItem('contacts'));
+    } catch (error) {
+        console.error('Loading error:', error);
+    }
+    
 }
 
 function renderContactList() {
@@ -57,6 +63,22 @@ function renderContactList() {
     }
 }
 
+async function addNewContact() {
+    let nameInput = document.getElementById('nameInput');
+    let emailInput = document.getElementById('emailInput');
+    let phoneInput = document.getElementById('phoneInput');
+    contacts.push({
+        name: nameInput.value,
+        email: emailInput.value,
+        phone: phoneInput.value,
+        color: getRandomColor()
+    });
+    await setItem('contacts', JSON.stringify(contacts));
+    init();
+    togglePopup('popup');
+}
+
+
 function renderContactBoxes(firstLetter) {
     let html = '';
     for (let i = 0; i < contacts.length; i++) {
@@ -71,7 +93,7 @@ function renderContactBoxes(firstLetter) {
 
 function generateContactBoxHTML(contact, index) {
     return /*html*/`
-        <div class=contact-box id="contactBox${index}" onclick="showContact(${index}); changeContactToActive('contactBox${index}')">
+        <div class=contact-box id="contactBox${index}" onclick="renderContact(${index}); changeContactToActive('contactBox${index}')">
                 <div class="initials ${contact['color']}">
                     <span>${getInitials(contact['name'])}</span>
                 </div>
@@ -83,21 +105,138 @@ function generateContactBoxHTML(contact, index) {
     `;
 }
 
-function showContact(index) {
+function renderContact(index) {
     let contactCard = document.getElementById('contactCard');
     let contact = contacts[index];
-    contactCard.innerHTML = generateContactCardHTML(contact);
+    contactCard.innerHTML = generateContactCardHTML(contact, index);
 }
 
-function generateContactCardHTML(contact) {
+async function deleteContact(index) {
+    contacts.splice(index, 1);
+    await setItem('contacts', JSON.stringify(contacts));
+    document.getElementById('contactCard').innerHTML = '';
+    init();
+}
+
+function renderContactEditor(index) {
+    let popup = document.getElementById('popup');
+    let contact = contacts[index];
+    popup.innerHTML = generateContactEditorHTML(contact, index);
+    togglePopup('popup');
+}
+
+function renderAddNewContactEditor() {
+    let popup = document.getElementById('popup');
+    popup.innerHTML = generateNewContactEditorHTML();
+    togglePopup('popup');
+}
+
+
+async function editContact(index) {
+    let name = document.getElementById('nameInput');
+    let email = document.getElementById('emailInput');
+    let phone = document.getElementById('phoneInput');
+    contacts[index]['name'] = name.value;
+    contacts[index]['email'] = email.value;
+    contacts[index]['phone'] = phone.value;
+    togglePopup('popup');
+    updateContacts(index, 'contacts', JSON.stringify(contacts))
+}
+
+async function updateContacts(index, key, value) {
+    renderContact(index);
+    await setItem(key, value);
+    init();
+}
+
+function generateNewContactEditorHTML() {
+    return /*html*/`
+        <div class="new-contact-container" id="newContact">
+            <div class="add-contact-left">
+                <div class="contact-join-logo"> <img src="assets/img/contact_logo.svg" alt="join logo"></div>
+                <h1 class="page-heading">Add contact</h1>
+                <span class="special-subheading">Tasks are better with a team!</span>
+            </div>
+            <div class="add-contact-right">
+                <img src="assets/img/contacts_close.svg" alt="close icon" class="icon close-icon"
+                    onclick="togglePopup()">
+                <img src="assets/img/contact_contact_img.svg" alt="">
+                <form onsubmit="addNewContact(); return false;" class="contact-form">
+                    <div class="input-container">
+                        <div class="input-field">
+                            <input type="text" name="" id="nameInput" placeholder="Name" class="special-input">
+                            <img src="assets/img/contacts_person.svg" alt="">
+                        </div>
+                    </div>
+
+                    <div class="input-field">
+                        <input type="email" name="" id="emailInput" placeholder="Email" class="special-input">
+                        <img src="assets/img/contacts_call.svg" alt="">
+                    </div>
+                    <div class="input-field">
+                        <input type="tel" name="" id="phoneInput" placeholder="Phone" class="special-input">
+                        <img src="assets/img/contacts_call.svg" alt="">
+                    </div>
+                    <div class="contact-submit-field">
+                        <div class="submit-btn clear-btn" onclick="togglePopup()">Cancel<img
+                                src="assets/img/contacts_close.svg" alt=""></div>
+                        <button class="submit-btn add-btn" >Create contact <img src="assets/img/check_icon.svg"
+                                alt=""></button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    `;
+}
+
+function generateContactEditorHTML(contact, index) {
+    return /*html*/`
+        <div class="new-contact-container" id="editContact">
+            <div class="add-contact-left">
+                <div class="contact-join-logo"> <img src="assets/img/contact_logo.svg" alt="join logo"></div>
+                <h1 class="page-heading">Edit Contact</h1>
+            </div>
+            <div class="add-contact-right">
+                <img src="assets/img/contacts_close.svg" alt="close icon" class="icon close-icon"
+                    onclick="togglePopup()">
+                <img src="assets/img/contact_contact_img.svg" alt="">
+                <form onsubmit="editContact(${index}); return false;" class="contact-form">
+                    <div class="input-container">
+                        <div class="input-field">
+                            <input type="text" name="" id="nameInput" placeholder="Name" class="special-input" value="${contact['name']}">
+                            <img src="assets/img/contacts_person.svg" alt="">
+                        </div>
+                    </div>
+
+                    <div class="input-field">
+                        <input type="email" name="" id="emailInput" placeholder="Email" class="special-input" value="${contact['email']}">
+                        <img src="assets/img/contacts_call.svg" alt="">
+                    </div>
+                    <div class="input-field">
+                        <input type="tel" name="" id="phoneInput" placeholder="Phone" class="special-input" value="${contact['phone']}">
+                        <img src="assets/img/contacts_call.svg" alt="">
+                    </div>
+                    <div class="contact-submit-field">
+                        <div class="submit-btn clear-btn" onclick="deleteContact(${index})">Delete<img
+                                src="assets/img/contacts_close.svg" alt=""></div>
+                        <button class="submit-btn add-btn">Save <img src="assets/img/check_icon.svg"
+                                alt=""></button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    `;
+}
+
+function generateContactCardHTML(contact, index) {
     return /*html*/`
         <div class="contact-heading">
             <div class="name-initials ${contact['color']}" id="nameInitials">${getInitials(contact['name'])}</div>
             <div class="contact-heading-content">
                 <span class="cotact-name" id="contactName">${capitalizeFirstLetter(contact['name'])}</span>
                     <div class="edit-contact">
-                        <div id="editContact"><img src="assets/img/contacts_edit.svg" alt="edit icon"> Edit</div>
-                        <div id="deleteContact"><img src="assets/img/contacts_delete.svg" alt="delete icon"> Delete</div>
+                        <div id="editContact" onclick="renderContactEditor(${index})"><img src="assets/img/contacts_edit.svg" alt="edit icon"> Edit</div>
+                        <div id="deleteContact" onclick="deleteContact(${index})"><img src="assets/img/contacts_delete.svg" alt="delete icon"> Delete</div>
                     </div>
             </div>
         </div>
