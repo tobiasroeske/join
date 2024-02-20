@@ -2,26 +2,40 @@
     display: flex;
     flex-direction: column;
     width: 100%;
+    align-items: center;
 }
 .board {
     display: flex;
     padding-top: 88px;
     justify-content: space-between;
     width: 100%;
+    align-items: center;
 }
 
 .input-board{
 height: 40px;
-width: 280px;
-border-radius: 10px;
-border: 1px solid grey;
+
+background-color: transparent;
+border: none;
 padding-left: 15px;
 }
 
+.design-search{
+    width: 280px;
+    border: 2px solid #d1d1d1;
+   background-color: white;
+    border-radius: 50px;
+    display: flex;
+    justify-content: space-between;
+    padding-right: 20px;
+    
+}
 .search-area {
-   max-height: 50px;
-   display: inline;
-   
+  
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    margin-right: 100px;
 }
 
 
@@ -33,6 +47,8 @@ padding-left: 15px;
 
 .img-search-board:hover {
     cursor: pointer;
+    filter: invert(52%) sepia(72%) saturate(2702%) hue-rotate(159deg) brightness(92%) contrast(101%);
+    transform: scale(1.1);
 }
 
 .button-board {
@@ -49,12 +65,13 @@ padding-left: 15px;
 .addTaskButton {
 background-color: #2A3647;
 color: white;
-width: 160px;
-height: 40px;
-border-radius: 10px;
-border: 1px solid grey;
+width: 140px;
+height: 45px;
+border-radius: 15px;
+border: 1px solid #d1d1d1;
 font-family: inherit;
 font-size: 18px;
+font-weight: bold;
 
 }
 
@@ -77,3 +94,89 @@ font-size: 18px;
     gap: 50px;
     
   }
+
+  .page-heading2 {
+    padding: 0px 0px 40px 0px;
+    margin-left: 5vw;
+    font-size: 75px;
+  }
+
+  .board-mainpage{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    flex-direction: row;
+    width: 80%;
+  }
+  
+
+  .headlines-board{
+    display: flex;
+    justify-content: space-between;
+    
+    
+    
+  }
+
+.board-plus:hover{
+    cursor: pointer;
+    transform: scale(1.03);
+}
+
+.board-content {
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.board-noTasks{
+    display: flex;
+    background-color: rgba(216, 213, 213, 0.349);
+    border: 2px dotted #aaaaaa;
+    border-radius: 10px;
+    width: max-content;
+    font-weight: bold;
+    font-size: 15px;
+    padding: 15px;
+    margin-top:20px;
+}
+
+.popup {
+    position: fixed;
+    top: 50%;
+    right: -100%; 
+    transform: translate(0%, -50%);
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 20px;
+    z-index: 1000; 
+    transition: right 0.8s ease; 
+    border: 2px solid #d1d1d1;
+    margin-top: 15px;
+    
+}
+
+.popup-show {
+    right: 25%; 
+    border-radius: 20px;
+    
+}
+
+
+.popup-close {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    cursor: pointer;
+}
+
+.close-popup-img{
+    height: 40px;
+    background-color: transparent;
+}
+
+.close-popup-img:hover{
+    cursor: pointer;
+    transform: scale(1.1);
+}
