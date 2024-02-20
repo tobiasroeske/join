@@ -44,7 +44,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 456px;
+  max-width: 456px;
+  width: 40%;
   background-color: white;
   box-shadow: 4px 0px 6px 0px #00000014;
   overflow: auto;
@@ -54,9 +55,9 @@
 
 .contact-list {
   display: flex;
-  padding: 32px 24px;
+  padding: 32px 32px;
   flex-direction: column;
-  width: 90%;
+  
 }
 
 .contact-content {
@@ -66,6 +67,8 @@
   flex: 1;
   padding: 120px 64px 80px 64px;
   gap: 32px;
+  position: relative;
+  overflow: hidden;
 }
 
 .heading-container {
@@ -115,6 +118,16 @@
   display: flex;
   flex-direction: column;
   gap: 21px;
+  position: absolute;
+  top: 256px;
+  left: 100%;
+  transition: all 0.125s ease;
+  width: 100%;
+  padding-right: 64px;
+}
+
+.contact-card-animation {
+  left: 64px;
 }
 
 .name-initials {
@@ -137,8 +150,9 @@
   gap: 8px;
 }
 
-.cotact-name {
+.contact-name {
   font-size: 47px;
+  width: 100%;
 }
 
 .edit-contact {
@@ -185,10 +199,6 @@
   color: #007cee;
 }
 
-.contacts {
-  overflow: auto;
-}
-
 .contact-box {
   cursor: pointer;
   display: flex;
@@ -198,6 +208,7 @@
   background-color: white;
   align-items: center;
   justify-content: flex-start;
+  overflow-wrap: anywhere;
 }
 
 .contact-box:hover {
@@ -277,6 +288,19 @@
   border-top-left-radius: 30px;
   border-bottom-left-radius: 30px;
   height: 100%;
+  gap: 15px;
+}
+
+.add-contact-left::after {
+  content: "";
+  width: 90px;
+  height: 3px;
+  display: flex;
+  background-color: #29abe2;
+}
+
+.special-subheading {
+  font-size: 27px;
 }
 
 .add-contact-right {
@@ -316,36 +340,88 @@
 
 .contact-created {
   display: flex;
+  position: absolute;
+  bottom: 80px;
+  left: 100%;
+  width: 360px;
   border-radius: 10px;
   background-color: #2a3647;
   color: white;
   font-size: 20px;
   padding: 12px 21px;
   gap: 16px;
-  animation: change-display 1s normal ,slide-in 1s ease 1 normal forwards;
+  transition: all 0.8s ease;
 }
 
-@keyframes change-display {
-  0% {
-    opacity: 0;
-  }
-
-  100% {
-    opacity: 1;
-  }
+.contact-created-animation {
+  left: 64px;
+  display: flex;
 }
 
 .d-none {
   display: none;
 }
 
-@keyframes slide-in {
-	0% {
-		transform: translateX(1440px);
-	}
+@media (max-width: 930px) {
+  .contact-content {
+    padding: 120px 48px 80px;
+  }
 
-	100% {
-		transform: translateX(0px);
-	}
+  .header {
+    padding: 20px 40px;
+  }
+}
+
+@media (max-width: 850px) {
+  .contact-content {
+    display: none;
+  }
+
+  .contact-leftside {
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .contact-list {
+    width: 82%;
+  }
+
+  .add-contact-btn {
+    display: none;
+  }
+}
+
+@media (max-width: 715px) {
+  .join-logo-mobile {
+    display: flex;
+    width: 48px;
+  }
+}
+
+@media (max-width: 620px) {
+  .join-logo-mobile {
+    width: 40px;
+  }
+}
+
+@media (max-width: 568px) {
+  .join-logo-mobile {
+    width: 32px;
+  }
+
+  .header {
+    padding: 20px 18px;
+  }
+
+  .contact-leftside {
+    margin-top: -8px;
+  }
+}
+
+@media (max-width: 490px) {
+  .contact-list {
+    width: 100%;
+    padding: 24px;
+  }
 }
 
