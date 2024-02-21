@@ -455,6 +455,17 @@ textarea {
   background-color: #091931;
   color: white;
 }
+::-webkit-scrollbar {
+  width: 10px;
+  position: absolute;
+}
+::-webkit-scrollbar-thumb {
+  background-color: #2A3647;
+  border-radius: 10px;
+}
+::-webkit-scrollbar-track {
+  background-color: #485e7c;
+}
 
 @media (max-width: 1120px) {
   .seperator {
