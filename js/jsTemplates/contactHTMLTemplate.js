@@ -8,7 +8,7 @@ function generateNewContactEditorHTML() {
             </div>
             <div class="add-contact-right">
                 <img src="assets/img/contacts_close.svg" alt="close icon" class="icon close-icon"
-                    onclick="togglePopup()">
+                    onclick="startSlideInAnimation('newContact', 'new-contact-animation');togglePopup()">
                 <img src="assets/img/contact_contact_img.svg" alt="">
                 <form onsubmit="addNewContact(); return false;" class="contact-form">
                     <div class="input-container">

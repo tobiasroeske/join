@@ -77,10 +77,10 @@ async function addNewContact() {
     await setItem('contacts', JSON.stringify(contacts));
     init();
     togglePopup('popup');
-    startAnimation();
+    startContactCreatedAnimation();
 }
 
-function startAnimation() {
+function startContactCreatedAnimation() {
     let animationObejct = document.getElementById('contactCreated');
     animationObejct.classList.add('contact-created-animation');
     setTimeout(() => {
@@ -114,6 +114,13 @@ function resetContactContainer() {
     contactCard.classList.remove('contact-card-animation');
 }
 
+function startSlideInAnimation(id, className) {
+    let element = document.getElementById(id);
+
+   // setTimeout(() => {element.classList.add(className)}, 125)
+    element.classList.add(className);
+}
+
 async function deleteContact(index) {
     contacts.splice(index, 1);
     await setItem('contacts', JSON.stringify(contacts));
@@ -132,6 +139,7 @@ function renderAddNewContactEditor() {
     let popup = document.getElementById('popup');
     popup.innerHTML = generateNewContactEditorHTML();
     togglePopup('popup');
+    startSlideInAnimation('newContact', 'new-contact-animation');
 }
 
 async function editContact(index) {
