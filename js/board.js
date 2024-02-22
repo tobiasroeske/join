@@ -3,7 +3,7 @@
  */
 function toggleAddTask() {
   document.getElementById('popup').classList.toggle('d-none');
-  startAnimation('addTaskPopup', 'popup-show');
+  setTimeout(() => startAnimation('addTaskPopup', 'popup-show'), 125);
   document.getElementById('popupClose').classList.toggle('d-none');
 }
 
@@ -11,8 +11,8 @@ function toggleAddTask() {
  * closes the addTaskPopup 
  */
 function closePopup () {
-  document.getElementById('popupClose').classList.toggle('d-none');
-  document.getElementById('addTaskPopup').classList.toggle('show-popup');
+  setTimeout(() => document.getElementById('popup').classList.toggle('d-none'), 125);
+  startAnimation('addTaskPopup', 'popup-show')
 }
 
 /**
@@ -23,24 +23,7 @@ function closePopup () {
  */
 function startAnimation (id, className) {
   let element = document.getElementById(id);
-  setTimeout(() => element.classList.toggle(className), 125)
+  element.classList.toggle(className);
 }
 
-
-// function toggleAddTask() {
-//   document.getElementById('popup').classList.toggle('d-none');
-
-//   let addTaskPopup = document.getElementById('addTaskPopup');
-//   if (addTaskPopup.classList.contains('popup-show')) {
-//     addTaskPopup.classList.remove('popup-show');
-//   } else {
-//     startAnimation('addTaskPopup', 'popup-show');
-//   }
-//   document.getElementById('popupClose').classList.toggle('d-none');
-// }
-
-// function closePopup() {
-//   startAnimation('addTaskPopup', 'popup-show');
-//   //document.getElementById('popup').style.display = 'none';
-// }
 
