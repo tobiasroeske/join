@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="css/fonts.css">
     <script src="js/main.js"></script>
 </head>
-<body>
+<body onload="init()">
     <header>
         <div class="logo">
             <img src="./assets/img/j-icon.svg" alt="icon">
@@ -17,7 +17,7 @@
     </header>
 
     <main>
-        <form class="form">
+        <form onsubmit="register(); return false;" class="form">
             
             <div class="sign-up-field"> 
                 <div class="arrow-headline">
@@ -31,7 +31,7 @@
                 
                 <div class="sign-up-container">
                     <div class="input-box">
-                        <input required id="name" class="input-field" type="text" placeholder="Name">
+                        <input required id="userName" class="input-field" type="text" placeholder="Name">
                         <img class="field_img" src="./assets/img/person.svg" style="cursor: pointer;">
                     </div>
                     <div class="input-box">
@@ -39,7 +39,7 @@
                         <img class="field_img" src="./assets/img/mail.svg" style="cursor: pointer;">
                     </div>
                     <div class="input-box">
-                        <input required id="password" class="input-field" type="password" placeholder="Password">
+                        <input required id="confirmPassword" class="input-field" type="password" placeholder="Password">
                         <img class="field_img" src="./assets/img/lock.svg" style="cursor: pointer;">
                     </div>
                     <div class="input-box">
@@ -52,7 +52,7 @@
                 <label>I accept the <a class="accept-checkbox" href="privacyPolicy.html">Privacy Policy</a></label>
             </div>
             <div class="sign-up-button">
-                <button><a href="#">Sign up</a></button>
+                <button>Sign up</button>
             </div>
         </form>
     </main>
@@ -66,5 +66,7 @@
             </div>
     </div>
     </footer>
+    <script src="./js/storage.js"></script>
+    <script src="./js/signUp.js"></script>
 </body>
 </html>
