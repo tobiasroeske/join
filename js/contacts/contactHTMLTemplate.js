@@ -104,7 +104,9 @@ function generateContactCardHTML(contact, index) {
             </div>
         </div>
         <div class="menu-contact-options">
-            <img src="assets/img/contac_menu_contact_options.svg" alt="" onclick="openContactOptionPopup(); stopOtherActions(event)">
+            <div class="mobile-icon" onclick="openContactOptionPopup(); stopOtherActions(event)">
+                <img src="assets/img/contact_more_icon.svg" alt="" >
+            </div>
             <div class="contact-options-popup" id="contactOptionsPopup">
                 <div id="editContact" onclick="renderContactEditor(${index})" class="contact-options"><img src="assets/img/contacts_edit.svg" alt="edit icon"> Edit</div>
                 <div id="deleteContact" onclick="deleteContact(${index})" class="contact-options"><img src="assets/img/contacts_delete.svg" alt="delete icon"> Delete</div>

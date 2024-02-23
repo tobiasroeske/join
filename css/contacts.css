@@ -154,6 +154,7 @@
   font-size: 47px;
   width: 100%;
   font-weight: 700;
+  padding-right: 80px;
 }
 
 .edit-contact {
@@ -421,6 +422,32 @@
     brightness(94%) contrast(105%);
 }
 
+.mobile-icon {
+  cursor: pointer;
+  width: 56px;
+  height: 56px;
+  padding: 12px;
+  border: 1px;
+  border-radius: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #2a3647;
+  box-shadow: 0px 4px 4px 0px #00000040;
+}
+
+.mobile-icon:hover {
+  background-color: #29abe2;
+}
+
+.mobile-add-contact {
+  display: none;
+  position: absolute;
+  bottom: 32px;
+  right: 32px;
+  z-index: 50;
+}
+
 /* Track */
 .contact-leftside::-webkit-scrollbar-track {
   background: #FAFAFA; 
@@ -572,6 +599,12 @@
     bottom: 32px;
     right: 32px;
   }
+
+  .mobile-add-contact {
+    display: flex;
+    bottom: 48px;
+    right: 48px;
+  }
   
   .d-flex {
     display: flex;
@@ -590,7 +623,7 @@
   }
 
   .contact-created-animation {
-    bottom: 80px;
+    bottom: 120px;
   }
 }
 
@@ -688,6 +721,11 @@
 
   .new-contact-container {
     width: 95%;
+  }
+
+  .mobile-add-contact {
+    bottom: 32px;
+    right: 32px;
   }
 }
 

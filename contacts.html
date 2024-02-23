@@ -11,8 +11,8 @@
     <link rel="stylesheet" href="css/contacts.css">
     <script src="js/main.js"></script>
     <script src="js/storage.js"></script>
-    <script src="js/jsTemplates/contactHTMLTemplate.js"></script>
-    <script src="js/contacts.js"></script>
+    <script src="js/contacts/contactHTMLTemplate.js"></script>
+    <script src="js/contacts/contacts.js"></script>
 </head>
 
 <body onload="includeHTML(); init()">
@@ -37,6 +37,9 @@
             <div class="contacts-container">
 
                 <div class="contact-leftside" id="contactLeftside">
+                    <div class="mobile-icon mobile-add-contact" onclick="renderAddNewContactEditor()">
+                        <img src="assets/img/contact_person_add.svg" alt="">
+                    </div>
                     <div class="contact-list">
                         <button class="add-contact-btn" onclick="renderAddNewContactEditor()">Add new contact <img
                                 src="assets/img/contacts_person_add.svg" alt="add contact icon"></button>
