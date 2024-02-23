@@ -102,6 +102,7 @@ function renderContactBoxes(firstLetter) {
 
 async function renderContact(index) {
     resetContactContainer();
+    checkScreenSize();
     let contactCard = document.getElementById('contactCard');
     let contact = contacts[index];
     contactCard.innerHTML = generateContactCardHTML(contact, index);
@@ -116,9 +117,7 @@ function resetContactContainer() {
 
 function startSlideInAnimation(id, className) {
     let element = document.getElementById(id);
-
-   // setTimeout(() => {element.classList.add(className)}, 125)
-    element.classList.add(className);
+    element.classList.toggle(className);
 }
 
 async function deleteContact(index) {
@@ -133,13 +132,14 @@ function renderContactEditor(index) {
     let contact = contacts[index];
     popup.innerHTML = generateContactEditorHTML(contact, index);
     togglePopup('popup');
+    setTimeout(() => startSlideInAnimation('editContact', 'new-contact-animation'), 125);
 }
 
 function renderAddNewContactEditor() {
     let popup = document.getElementById('popup');
     popup.innerHTML = generateNewContactEditorHTML();
     togglePopup('popup');
-    startSlideInAnimation('newContact', 'new-contact-animation');
+    setTimeout(() => startSlideInAnimation('newContact', 'new-contact-animation'), 125);
 }
 
 async function editContact(index) {
@@ -213,6 +213,40 @@ function changeContactToActive(id) {
     activeContact.classList.add('active-contact');
 }
 
-function togglePopup() {
-    document.getElementById('popup').classList.toggle('d-none');
+function togglePopup(id) {
+    document.getElementById(id).classList.toggle('d-none');
+}
+
+function closePopup(animationId, popupId) {
+    startSlideInAnimation(animationId, 'new-contact-animation');
+    setTimeout(() => document.getElementById(popupId).classList.add('d-none'), 125);
+}
+
+function stopOtherActions(event) {
+    event.stopPropagation();
+}
+
+function openContactOptionPopup() {
+    setTimeout(() => startSlideInAnimation('contactOptionsPopup', 'contact-options-popup-animation'), 125);
+}
+
+function closeContactOptionsPopup() {
+    document.getElementById('contactOptionsPopup').classList.remove('contact-options-popup-animation')
+}
+
+function closeContact() {
+    document.getElementById('contactContent').classList.toggle('d-flex');
+    document.getElementById('contactLeftside').classList.toggle('d-none');
+}
+
+function checkScreenSize() {
+    if (window.innerWidth <= 850) {
+        document.getElementById('contactContent').classList.toggle('d-flex');
+        document.getElementById('contactLeftside').classList.toggle('d-none');
+    }
+    window.addEventListener('resize', () => {
+        if (window.innerWidth > 850) {
+            document.getElementById('contactLeftside').classList.remove('d-none');
+        }
+    })
 }

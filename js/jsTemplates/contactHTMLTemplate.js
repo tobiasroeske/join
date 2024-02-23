@@ -8,7 +8,7 @@ function generateNewContactEditorHTML() {
             </div>
             <div class="add-contact-right">
                 <img src="assets/img/contacts_close.svg" alt="close icon" class="icon close-icon"
-                    onclick="startSlideInAnimation('newContact', 'new-contact-animation');togglePopup()">
+                    onclick="closePopup('newContact', 'popup')">
                 <img src="assets/img/contact_contact_img.svg" alt="">
                 <form onsubmit="addNewContact(); return false;" class="contact-form">
                     <div class="input-container">
@@ -47,7 +47,7 @@ function generateContactEditorHTML(contact, index) {
             </div>
             <div class="add-contact-right">
                 <img src="assets/img/contacts_close.svg" alt="close icon" class="icon close-icon"
-                    onclick="togglePopup('popup')">
+                    onclick="closePopup('editContact', 'popup')">
                 <div class="name-initials ${contact['color']}">${getInitials(contact['name'])}</div>
                 <form onsubmit="editContact(${index}); return false;" class="contact-form">
                     <div class="input-container">
@@ -103,6 +103,14 @@ function generateContactCardHTML(contact, index) {
                 <span>${contact['phone']}</span>
             </div>
         </div>
+        <div class="menu-contact-options">
+            <img src="assets/img/contac_menu_contact_options.svg" alt="" onclick="openContactOptionPopup(); stopOtherActions(event)">
+            <div class="contact-options-popup" id="contactOptionsPopup">
+                <div id="editContact" onclick="renderContactEditor(${index})" class="contact-options"><img src="assets/img/contacts_edit.svg" alt="edit icon"> Edit</div>
+                <div id="deleteContact" onclick="deleteContact(${index})" class="contact-options"><img src="assets/img/contacts_delete.svg" alt="delete icon"> Delete</div>
+            </div>
+        </div>
+        
     `
 }
 
