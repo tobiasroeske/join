@@ -36,7 +36,7 @@
             
             <div class="contacts-container">
 
-                <div class="contact-leftside">
+                <div class="contact-leftside" id="contactLeftside">
                     <div class="contact-list">
                         <button class="add-contact-btn" onclick="renderAddNewContactEditor()">Add new contact <img
                                 src="assets/img/contacts_person_add.svg" alt="add contact icon"></button>
@@ -48,12 +48,13 @@
                     </div>
                 </div>
 
-                <div class="contact-content">
+                <div class="contact-content" id="contactContent" onclick="closeContactOptionsPopup()">
                     <div class="heading-container">
                         <h1 class="page-heading">Contacts</h1>
                         <div class="seperator-heading"></div>
                         <span class="subheading">Better with a team</span>
                     </div>
+                    <button class="back-btn" id="backBtn" onclick="closeContact()"><img src="assets/img/contact_back_arrow.svg" alt="" class="back-arrow"></button>
 
                     <div class="contact-card" id="contactCard">
 
@@ -61,7 +62,6 @@
                     <div class="contact-created" id="contactCreated">
                         Contact created successfully<img src="assets/img/check_icon.svg" alt="">
                     </div>
-
                 </div>
             </div>
         </div>

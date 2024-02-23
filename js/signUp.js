@@ -26,7 +26,7 @@ async function register () {
         });
     }
     
-    await setItem('users', JSON.stringify(users));
+    await setItem('users', JSON.stringify(users)); // key = 'users', value
     resetForm();
 }
 
