@@ -151,11 +151,13 @@ font-weight: bold;
 
 
 .task-design {
+    display: flex;
+    flex-direction: column;
     margin-top: 100px; 
     width: 252px;
     padding: 10px;
     border-radius: 10px;
-    border: 1px solid #aaaaaa;
+    border: 1px solid #e2e2e2;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1), 0px 0px 6px rgba(0, 0, 0, 0.1);
 }
 
