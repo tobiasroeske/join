@@ -39,8 +39,15 @@
 
                 <div class="board-mainpage">
 
-                    <div id="popup" class="popup">
-                        <button class="popup-close" onclick="toggleAddTask()"><img class="close-popup-img" src="./assets/img/close-board.png" alt=""></button>
+                <div class="popup d-none" id="popup">
+                    <div class="add-task-popup" w3-include-html="assets/templates/addTaskHTMLTemplate.html" id="addTaskPopup">
+                        
+                    </div>
+                    
+                </div>
+
+                    <!-- <div id="popup" class="popup">
+                        
                         <div class="add-task">
                             <h1 class="page-heading">Add Task</h1>
                             <form onsubmit="return false;" class="form">
@@ -114,7 +121,7 @@
                                 </div>
                             </form>
                         </div>
-                    </div>
+                    </div> -->
 
                     <div class="board-content">
                         <div class="headlines-board">

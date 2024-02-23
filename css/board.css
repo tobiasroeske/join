@@ -177,7 +177,7 @@ font-weight: bold;
 
 
 
-.popup {
+/* .popup {
     position: fixed;
     top: 50%;
     right: -200%; 
@@ -190,21 +190,44 @@ font-weight: bold;
     border: 2px solid #d1d1d1;
     margin-top: 15px;
     
+} */
+
+.popup {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 500;
+}
+
+.add-task-popup {
+    position: absolute;
+    left: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 80%;
+    background-color: white;
+    border-radius: 30px;
+    box-shadow: 0px 0px 4px 0px #0000001A;
+    transition: all 0.125s ease;
 }
 
 .popup-show {
-    right: 25%; 
-    border-radius: 20px;
+    left: 0;
     display: flex;
-justify-content: center;
-align-items: center;
 }
-
 
 .popup-close {
     position: absolute;
-    top: 5px;
-    right: 10px;
+    top: 64px;
+    right: 32px;
     cursor: pointer;
 }
 
@@ -223,9 +246,13 @@ align-items: center;
 
 
 
+.rightside {
+    height: 100vh;
+}
 
-
-
+.d-none {
+    display: none;
+}
 
 @media only screen and (max-width: 1100px) {
     .board-mainpage {
@@ -252,7 +279,7 @@ align-items: center;
         flex-direction: column;
         display: flex;
         justify-content: center;
-        
+        width: 90%;
     }
    
 

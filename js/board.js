@@ -1,12 +1,29 @@
+/**
+ * Toggles the addTaskPopup and starts the slide in animation
+ */
 function toggleAddTask() {
-  var popup = document.getElementById('popup');
-  if (popup.classList.contains('popup-show')) {
-      popup.classList.remove('popup-show');
-  } else {
-      popup.classList.add('popup-show');
-  }
+  document.getElementById('popup').classList.toggle('d-none');
+  setTimeout(() => startAnimation('addTaskPopup', 'popup-show'), 125);
+  document.getElementById('popupClose').classList.toggle('d-none');
 }
 
-  function closePopup() {
-    document.getElementById('popup').style.display = 'none';
-  }
+/**
+ * closes the addTaskPopup 
+ */
+function closePopup () {
+  setTimeout(() => document.getElementById('popup').classList.toggle('d-none'), 125);
+  startAnimation('addTaskPopup', 'popup-show')
+}
+
+/**
+ * starts the slide in animation from the right side to the left side
+ * 
+ * @param {string} id id of the DOM element on which the animation should start
+ * @param {string} className the name of the class, which contains the animation
+ */
+function startAnimation (id, className) {
+  let element = document.getElementById(id);
+  element.classList.toggle(className);
+}
+
+
