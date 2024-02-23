@@ -244,7 +244,9 @@ font-weight: bold;
 
 
 
-
+.rightside {
+    height: 100vh;
+}
 
 .d-none {
     display: none;
