@@ -9,7 +9,7 @@ function generateNewContactEditorHTML() {
             <div class="add-contact-right">
                 <img src="assets/img/contacts_close.svg" alt="close icon" class="icon close-icon"
                     onclick="closePopup('newContact', 'popup')">
-                <img src="assets/img/contact_contact_img.svg" alt="">
+                <img src="assets/img/contact_contact_img.svg" alt="" class="contact-img">
                 <form onsubmit="addNewContact(); return false;" class="contact-form">
                     <div class="input-container">
                         <div class="input-field">

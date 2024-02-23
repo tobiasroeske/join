@@ -34,6 +34,7 @@ let contacts = [
 
 let colors = ['orange', 'purple', 'pink', 'yellow', 'green', 'darkblue', 'violet', 'red'];
 let firstLetters = [];
+let currentContact;
 
 async function init() {
     await loadContacts()
@@ -75,6 +76,8 @@ async function addNewContact() {
         color: getRandomColor()
     });
     await setItem('contacts', JSON.stringify(contacts));
+    let index = contacts.length - 1;
+    renderContact(index);
     init();
     togglePopup('popup');
     startContactCreatedAnimation();

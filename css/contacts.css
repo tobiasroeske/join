@@ -468,13 +468,14 @@
   .new-contact-container {
     flex-direction: column;
     width: 70%;
-    height: 90vh;
+    height: 81vh;
   }
 
   .add-contact-left {
     border-top-right-radius: 30px;
     border-bottom-left-radius: 0;
     width: 100%;
+    height: 60%;
   }
 
   .add-contact-right {
@@ -508,6 +509,11 @@
 
   .contact-join-logo {
     display: none;
+  }
+
+  .contact-img {
+    width: 120px;
+    height: 120px;
   }
 
 }
@@ -574,6 +580,18 @@
   .d-none {
     display: none;
   }
+
+  .contact-created {
+    align-items: center;
+    justify-content: center;
+    align-self: center;
+    bottom: -100%;
+    left: auto;
+  }
+
+  .contact-created-animation {
+    bottom: 80px;
+  }
 }
 
 @media (max-width: 715px) {
@@ -611,6 +629,15 @@
   .contact-information {
     padding: 0;
   }
+
+  .add-btn {
+    align-self: center;
+    width: 65%;
+  }
+
+  .new-contact-container {
+    width: 80%;
+  }
 }
 
 @media (max-width: 620px) {
@@ -618,7 +645,13 @@
     width: 40px;
   }
 
-  
+  .new-contact-container {
+    width: 90%;
+  }
+
+  .add-contact-right {
+    padding: 24px 24px;
+  }
 }
 
 @media (max-width: 568px) {
@@ -637,6 +670,10 @@
   .contact-content {
     padding: 80px 40px;
   }
+
+  .add-contact-left::after {
+    width: 60px;
+  }
 }
 
 @media (max-width: 490px) {
@@ -647,6 +684,10 @@
 
   .contact-content {
     padding: 80px 24px;
+  }
+
+  .new-contact-container {
+    width: 95%;
   }
 }
 
