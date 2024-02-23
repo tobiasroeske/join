@@ -15,13 +15,14 @@ async function loadUsers(){
 async function register () {
     let userName = document.getElementById('userName');
     let password = document.getElementById('password');
+    let email = document.getElementById('email');
     let confirmPassword = document.getElementById('confirmPassword');
 
     if(matchPass()) {
         users.push({
             name: userName.value,
             password: password.value,
-            confirmPassword: confirmPassword.value
+            email: email.value,
         });
     }
     
@@ -44,6 +45,8 @@ function matchPass(){
         return true;  
         }  
         else{  
+        confirmPassword.classList.remove('input-box-');
+        confirmPassword.classList.add('password-box-red--focused');
         alert("password must be same!");  
         return false;  
         }  
