@@ -148,9 +148,11 @@ button {
   cursor: pointer;
   width: 20px;
   height: auto;
+  transition: transform 0.125s ease;
 }
 
 .question-mark-icon:hover {
+  transform: scale(1.2);
   filter: brightness(0) saturate(100%) invert(16%) sepia(16%) saturate(1380%)
     hue-rotate(175deg) brightness(91%) contrast(84%);
 }
@@ -390,8 +392,8 @@ textarea {
 }
 
 .category-input {
-    position: relative;
-    z-index: 10;
+  position: relative;
+  z-index: 10;
 }
 
 .category-popup {
@@ -414,20 +416,18 @@ textarea {
 }
 
 .styled-list li {
-    cursor: pointer;
-    padding: 8px 16px;
-    width: 100%;
+  cursor: pointer;
+  padding: 8px 16px;
+  width: 100%;
 }
 
 .styled-list li:hover {
-    background-color: #EEEEEE;
-    border-radius: 10px;
+  background-color: #eeeeee;
+  border-radius: 10px;
 }
 
-
-
 .d-none {
-    display: none;
+  display: none;
 }
 
 .mobile-menu {
@@ -435,7 +435,7 @@ textarea {
   justify-content: space-between;
   background-color: #2a3647;
   padding: 0 24px;
-  box-shadow: 0px 0px 4px 0px #0000001A;
+  box-shadow: 0px 0px 4px 0px #0000001a;
   position: fixed;
   bottom: 0;
   left: 0;
@@ -467,7 +467,7 @@ textarea {
   position: absolute;
 }
 ::-webkit-scrollbar-thumb {
-  background-color: #2A3647;
+  background-color: #2a3647;
   border-radius: 10px;
 }
 ::-webkit-scrollbar-track {
@@ -484,7 +484,7 @@ textarea {
   }
 }
 
-@media (max-width:1050px) {
+@media (max-width: 1050px) {
   .mobile-menu {
     display: flex;
   }
@@ -496,7 +496,7 @@ textarea {
   .sidebar {
     display: none;
   }
-  
+
   .rightside {
     padding-bottom: 80px;
   }
@@ -508,8 +508,6 @@ textarea {
 }
 
 @media (max-width: 900px) {
-
-
   .form-top {
     flex-direction: column;
   }
@@ -537,7 +535,7 @@ textarea {
     align-items: center;
     width: 100%;
   }
-  
+
   .submit-container {
     width: 50%;
   }
@@ -596,7 +594,7 @@ textarea {
   .join-logo-mobile {
     width: 32px;
   }
-  
+
   .header {
     padding: 20px 18px;
   }
@@ -615,7 +613,11 @@ textarea {
     font-size: 47px;
   }
 
-  .form, ::placeholder, .input, .input-container,.special-input {
+  .form,
+  ::placeholder,
+  .input,
+  .input-container,
+  .special-input {
     font-size: 16px;
   }
 

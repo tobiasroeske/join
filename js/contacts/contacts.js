@@ -10,6 +10,7 @@ async function init() {
     getFirstLetters();
     renderContactList();
 }
+
 /**
  * loads the contacts from the remote storage and saves them to the contacts array
  */
@@ -20,6 +21,7 @@ async function loadContacts() {
         console.error('Loading error:', error);
     }
 }
+
 /**
  * gets different data from the contacts array and renders the contact list
  */
@@ -36,6 +38,7 @@ function renderContactList() {
         `;
     }
 }
+
 /**
  * gets the information from the input fields and adds a new contact to the contacts array
  * then it reloads the contact list and updateds the contact container
@@ -55,6 +58,7 @@ async function addNewContact() {
     init();
     upadteContactContainer(contact);
 }
+
 /**
  * updates the contact container and starts the contact created animation
  * 
@@ -66,6 +70,7 @@ function upadteContactContainer(contact) {
     togglePopup('popup');
     setTimeout(() => startContactCreatedAnimation(), 125);
 }
+
 /**
  * gets the index of the current contact which is needed to render the contact
  * 
@@ -83,6 +88,7 @@ function getIndexOfContact(contact) {
     }
     return index;
 }
+
 /**
  * starts the contact created animation, after 2s it restarts to make the button disapear
  */
@@ -93,6 +99,7 @@ function startContactCreatedAnimation() {
         animationObejct.classList.remove('contact-created-animation')
     }, 2000)
 }
+
 /**
  * checks and sorts the contacts depending on their first letter and renders the contact boxes of the contact list
  * 
@@ -110,6 +117,7 @@ function renderContactBoxes(firstLetter) {
     }
     return html;
 }
+
 /**
  * resets the contact container and checks the size of the current window and depending on the result 
  * renders the contact container with the contact information and starts the contact animation
@@ -124,6 +132,7 @@ async function renderContact(index) {
     contactCard.innerHTML = generateContactCardHTML(contact, index);
     setTimeout(() => contactCard.classList.add('contact-card-animation'), 125);
 }
+
 /**
  * empties the contact container and restarts the contact animation
  */
@@ -132,6 +141,7 @@ function resetContactContainer() {
     contactCard.innerHTML = '';
     contactCard.classList.remove('contact-card-animation');
 }
+
 /**
  * starts the slide in animation for the buttons
  * 
@@ -142,6 +152,7 @@ function startSlideInAnimation(id, className) {
     let element = document.getElementById(id);
     element.classList.toggle(className);
 }
+
 /**
  * deletes the contact from the contacts array sends the new array to the remote storage and empties the 
  * contact container. After that reloads the contact list
@@ -154,6 +165,7 @@ async function deleteContact(index) {
     document.getElementById('contactCard').innerHTML = '';
     init();
 }
+
 /**
  * opens the popup for the editor and renders the html of the editor
  * starts a slide animation for the editor
@@ -167,6 +179,7 @@ function renderContactEditor(index) {
     togglePopup('popup');
     setTimeout(() => startSlideInAnimation('editContact', 'new-contact-animation'), 125);
 }
+
 /**
  * opens the popup for the editor and renders the add new contact editor
  * starts a slide animation for the editor
@@ -177,6 +190,7 @@ function renderAddNewContactEditor() {
     togglePopup('popup');
     setTimeout(() => startSlideInAnimation('newContact', 'new-contact-animation'), 125);
 }
+
 /**
  * takes the new values of the input fields and saves them to the current contact object
  * then updates the contact container as well as the contact list
@@ -194,6 +208,7 @@ async function editContact(index) {
     updateContacts(index, 'contacts', JSON.stringify(contacts))
     renderContact(index);
 }
+
 /**
  * renders the contact container, updates the remotely saved contacts array
  * and reloads the contact list
@@ -207,6 +222,7 @@ async function updateContacts(index, key, value) {
     await setItem(key, value);
     init();
 }
+
 /**
  * sorts the array by name and pushes the first letter of each name to the firstLetters array
  * (only if it is not already in the array)
@@ -221,6 +237,7 @@ function getFirstLetters() {
         }
     })
 }
+
 /**
  * gets the first letter of the name and the surname and puts them together
  * 
@@ -233,6 +250,7 @@ function getInitials(name) {
     initials = initials.toUpperCase()
     return initials;
 }
+
 /**
  * takes a string and creates an array with each word as elements
  * takes from each word the first letter and capitalizes it, deletes the small first letter and rebuilds the word
@@ -246,6 +264,7 @@ function capitalizeFirstLetter(string) {
     let capitalizedString = words.map(word => word.charAt(0).toUpperCase() + word.slice(1)).toString().replace(',', ' ');
     return capitalizedString;
 }
+
 /**
  * creates a random index, which is used to get a random color from the colors array
  * 
@@ -256,6 +275,7 @@ function getRandomColor() {
     let randomColor = colors[randomIndex];
     return randomColor;
 }
+
 /**
  * sorts the contacts array by name 
  * does not override the original contacts array
@@ -275,6 +295,7 @@ function sortContactsByName() {
         return 0;
     })
 }
+
 /**
  * removes all existing active classes after that gives the selected element the active class
  * 
@@ -289,6 +310,7 @@ function changeContactToActive(id) {
     }
     activeContact.classList.add('active-contact');
 }
+
 /**
  * toggles an elements 'd-none' class
  * 
@@ -297,6 +319,7 @@ function changeContactToActive(id) {
 function togglePopup(id) {
     document.getElementById(id).classList.toggle('d-none');
 }
+
 /**
  * starts the slide in animation and after 125ms gives the popup the class 'd-none'
  * 
@@ -307,6 +330,7 @@ function closePopup(animationId, popupId) {
     startSlideInAnimation(animationId, 'new-contact-animation');
     setTimeout(() => document.getElementById(popupId).classList.add('d-none'), 125);
 }
+
 /**
  * used to stop other functions to execute
  * 
@@ -322,6 +346,7 @@ function stopOtherActions(event) {
 function openContactOptionPopup() {
     setTimeout(() => startSlideInAnimation('contactOptionsPopup', 'contact-options-popup-animation'), 125);
 }
+
 /**
  * checks if the is already created, if so it closes the popup starting again with the slide animation
  */
@@ -331,6 +356,7 @@ function closeContactOptionsPopup() {
     }
 
 }
+
 /**
  * closes the current contact container in the mobile view
  */
@@ -338,6 +364,7 @@ function closeContact() {
     document.getElementById('contactContent').classList.toggle('d-flex');
     document.getElementById('contactLeftside').classList.toggle('d-none');
 }
+
 /**
  * checks the screen size and changes the visability of the contact container and the 
  * contact list, only used for mobile version 
@@ -350,6 +377,7 @@ function checkScreenSize() {
     }
     recheckScreenSize();
 }
+
 /**
  * double checks the screen size on every resize event and depending on the width it changes the visability of the 
  * contact container and the contact list

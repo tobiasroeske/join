@@ -1,7 +1,6 @@
 .PrivacySetup {
   display: flex;
   flex-direction: column;
-  margin-left: 75px;
   font-size: 16px;
   padding-top: 88px;
   max-height: calc(100vh - 88px);
@@ -11,44 +10,61 @@
 .LegalNoticeSetup {
   display: flex;
   flex-direction: column;
-  margin-left: 75px;
   line-height: 180%;
   padding-top: 88px;
   max-height: calc(100vh - 88px);
   width: 85%;
 }
 
-.helpSite{
+.helpSite {
   display: flex;
   flex-direction: column;
-  margin-left: 75px;
   line-height: 150%;
   padding-top: 88px;
- max-height: calc(100vh - 88px);
- width: 85%;
+  max-height: calc(100vh - 88px);
+  width: 85%;
+  position: relative;
 }
-h1, h2 {
-    margin-bottom: 10px;
-  }
 
-  h1 {
+.back-arrow-icon {
+  cursor: pointer;
+  width: 32px;
+  height: 32px;
+  position: fixed;
+  right: 64px;
+  top: 172px;
+  transition: transform 0.125s ease;
+}
+
+.back-arrow-icon:hover {
+  background-color: #eeeeee;
+  transform: scale(1.2);
+}
+
+h1,
+h2 {
+  margin-bottom: 10px;
+}
+
+h1 {
   font-size: 40px;
-  }
-p, li  {
-    margin-bottom: 10px;
-  }
- b  {
+}
+p,
+li {
+  margin-bottom: 10px;
+}
+b {
   color: rgb(115, 227, 235);
- }
+}
 
 ::-webkit-scrollbar {
-    width: 10px;
-    position: absolute;
+  width: 10px;
+  position: absolute;
 }
 ::-webkit-scrollbar-thumb {
-    background-color: #2A3647;
-    border-radius: 10px;
+  background-color: #2a3647;
+  border-radius: 10px;
 }
 ::-webkit-scrollbar-track {
-    background-color: #485e7c;
+  background-color: #485e7c;
 }
