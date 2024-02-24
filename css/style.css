@@ -230,6 +230,7 @@ textarea {
 }
 
 .input-field {
+  position: ″;
   background-color: white;
   display: flex;
 }
@@ -282,6 +283,13 @@ textarea {
   gap: 8px;
   margin-bottom: 8px;
   position: relative;
+}
+
+.contacts-popup {
+  position: absolute;
+  width: 100%;
+  height: 80px;
+  background-color: white;
 }
 
 .prio-buttons {
