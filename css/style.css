@@ -168,6 +168,7 @@ button {
   padding-top: 88px;
   justify-content: center;
   overflow: auto;
+  height: 100vh;
 }
 
 .active-nav {
@@ -194,6 +195,21 @@ button {
   padding: 80px 0;
 }
 
+.task-added {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  bottom: 50%;
+  position: absolute;
+  border-radius: 10px;
+  background-color: #2a3647;
+  color: white;
+  font-size: 20px;
+  padding: 12px 21px;
+  gap: 32px;
+  z-index: 50;
+}
+
 .form {
   display: flex;
   flex-direction: column;
@@ -212,7 +228,7 @@ button {
 .form-side {
   display: flex;
   flex-direction: column;
-  width: 100%;
+  width: 50%;
   gap: 8px;
 }
 

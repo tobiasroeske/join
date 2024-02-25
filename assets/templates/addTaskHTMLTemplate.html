@@ -1,4 +1,5 @@
-<div class="add-task">
+<div class="add-task" onclick="closePopup('contactsPopup'); closePopup('categoryPopup')">
+    <div class="task-added">Task added to board <img src="assets/img/sidebar_icon_board.svg" alt=""></div>
     <button class="popup-close d-none" onclick="closePopup()" id="popupClose"><img src="./assets/img/close-board.png"
             alt="" class="close-popup-img"></button>
 
@@ -15,9 +16,9 @@
                     <textarea name="description" id="descriptionTextarea" cols="30" rows="10"
                         placeholder="Enter a Description" class="textarea"></textarea>
                 </div>
-                <div class="input-container">
+                <div class="input-container" onclick="togglePopup('contactsPopup'); stopCurrentAction(event)">
                     <label for="assignedContacts">Assigned to</label>
-                    <div class="input-field" onclick="togglePopup('contactsPopup')">
+                    <div class="input-field">
                         <input type="text" id="assignedContacts" placeholder="Select Contacts to assign"
                             class="special-input">
                         <img src="assets/img/drop_down_array_icon.svg" alt="" class="icon">
@@ -35,29 +36,29 @@
             <div class="form-side">
                 <div class="input-container">
                     <label for="dateInput">Due date</label>
-                    <input type="date" name="dueDate" id="dateInput" placeholder="dd/mm/yyyy" required
+                    <input type="date" name="dueDate" id="dateInput" placeholder="dd/mm/yyyy"
                         class="input date-input">
                 </div>
                 <div class="input-container">
                     <span>Prio</span>
                     <div class="prio-buttons">
-                        <div class="prio-btn" id="urgentBtn" onclick="selectPriority('urgentBtn', 'urgent-btn')">Urgent
+                        <div class="prio-btn" id="urgentBtn" onclick="selectPriority('urgentBtn', 'urgent-btn'); addPriorityToTask('urgent')">Urgent
                             <img src="assets/img/prio_high_icon.svg" alt="high priority icon" class="prio-icon">
                         </div>
                         <div class="prio-btn medium-btn" id="mediumBtn"
-                            onclick="selectPriority('mediumBtn', 'medium-btn')">Medium
+                            onclick="selectPriority('mediumBtn', 'medium-btn'); addPriorityToTask('medium')">Medium
                             <img src="assets/img/prio_medium_icon.svg" alt="medium priority icon" class="medium-icon"
                                 class="prio-icon">
                         </div>
-                        <div class="prio-btn" id="lowBtn" onclick="selectPriority('lowBtn', 'low-btn')">Low <img
+                        <div class="prio-btn" id="lowBtn" onclick="selectPriority('lowBtn', 'low-btn'); addPriorityToTask('low')">Low <img
                                 src="assets/img/prio_low_icon.svg" alt="low priority icon" class="prio-icon"></div>
                     </div>
                 </div>
                 <div class="input-container">
                     <label for="categoryInput">Category<span class="red">*</span></label>
-                    <div class="input-field category-input">
+                    <div class="input-field category-input" onclick="togglePopup('categoryPopup'); stopCurrentAction(event)">
                         <input type="text" id="categoryInput" placeholder="Select task category" class="special-input">
-                        <img src="assets/img/drop_down_array_icon.svg" alt="" class="icon" onclick="togglePopup('categoryPopup')">
+                        <img src="assets/img/drop_down_array_icon.svg" alt="" class="icon">
                     </div>
                     <div class="category-popup d-none" id="categoryPopup">
                         <ul class="styled-list">

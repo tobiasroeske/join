@@ -48,7 +48,7 @@ async function addNewContact() {
     let emailInput = document.getElementById('emailInput');
     let phoneInput = document.getElementById('phoneInput');
     let contact = {
-        name: nameInput.value,
+        name: capitalizeFirstLetter(nameInput.value), 
         email: emailInput.value,
         phone: phoneInput.value,
         color: getRandomColor()

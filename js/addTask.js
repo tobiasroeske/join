@@ -2,18 +2,27 @@ let contacts = [];
 
 let tasks = [];
 let currentTask;
+let currentPriority = 'medium';
+let assignedContact;
 
 async function init() {
-    includeHTML();
-    await loadContacts();
+    await includeHTML();
+    await generateLoadingScreen();
     renderContacts();
 }
 
-async function loadContacts() {
+async function generateLoadingScreen() {
+    let contactList = document.getElementById('contactList');
+    contactList.innerHTML = generateSpinnerHTML();
+    await load();
+}
+
+async function load() {
     try {
         contacts = JSON.parse(await getItem('contacts'));
+        tasks = JSON.parse(await getItem('tasks'));
     } catch (error) {
-        console.error('Loading error:', error);
+        console.error('Loading error:' + error);
     }
 }
 
@@ -39,6 +48,14 @@ function renderContacts() {
     }
 }
 
+function generateSpinnerHTML() {
+    return /*html*/`
+        <div class="spinner-border text-secondary" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+    `
+}
+
 async function createNewTask() {
     let titleInput = document.getElementById('titleInput');
     let descriptionInput = document.getElementById('descriptionTextarea');
@@ -50,20 +67,41 @@ async function createNewTask() {
         description: descriptionInput.value,
         assignedContact: contactInput.value,
         dueDate: dateInput.value,
-        category: categoryInput.value
+        category: categoryInput.value,
+        color: contactInput.value != '' ? assignedContact['color'] : '',
+        priority: currentPriority
     };
     tasks.push(currentTask);
-    await setItem('tasks', JSON.stringify('tasks'));
+    await setItem('tasks', JSON.stringify(tasks));
+    resetAddTask();
+}
+
+function addPriorityToTask(prio) {
+    currentPriority = prio;
+}
+
+function resetAddTask() {
+    document.getElementById('titleInput').value = ''
+    document.getElementById('descriptionTextarea').value = ''
+    document.getElementById('assignedContacts').value = ''
+    document.getElementById('dateInput').value = ''
+    document.getElementById('categoryInput').value = ''
+    currentTask = '';
 }
 
 function addContactToList(index) {
     let contactInputField = document.getElementById('assignedContacts')
     contactInputField.value = contacts[index]['name'];
+    assignedContact = contacts[index];
     togglePopup('contactsPopup')
 }
 
 function togglePopup(id) {
     document.getElementById(id).classList.toggle('d-none');
+}
+
+function closePopup(id) {
+    document.getElementById(id).classList.add('d-none');
 }
 
 function addCategory(id) {

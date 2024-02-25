@@ -23,3 +23,7 @@ function changeClassToActive() {
         }
     })
 }
+
+function stopCurrentAction(event) {
+    event.stopPropagation();
+}
