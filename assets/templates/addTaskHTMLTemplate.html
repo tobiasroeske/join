@@ -1,10 +1,11 @@
 <div class="add-task" onclick="closePopup('contactsPopup'); closePopup('categoryPopup')">
-    <div class="task-added">Task added to board <img src="assets/img/sidebar_icon_board.svg" alt=""></div>
+    
     <button class="popup-close d-none" onclick="closePopup()" id="popupClose"><img src="./assets/img/close-board.png"
             alt="" class="close-popup-img"></button>
 
     <h1 class="page-heading">Add Task</h1>
     <form onsubmit="createNewTask() ;return false;" class="form">
+        <div class="task-added" id="taskAdded">Task added to board <img src="assets/img/sidebar_icon_board.svg" alt=""></div>
         <div class="form-top">
             <div class="form-side">
                 <div class="input-container">
@@ -80,7 +81,7 @@
             <span><span class="red">*</span>This field is requiered</span>
             <div class="submit-container">
                 <div class="submit-btn clear-btn">Clear <img src="assets/img/clear_icon.svg" alt=""></div>
-                <button class="submit-btn add-btn">Create Task <img src="assets/img/check_icon.svg" alt=""></button>
+                <button class="submit-btn add-btn" id="createTaskBtn">Create Task <img src="assets/img/check_icon.svg" alt=""></button>
             </div>
         </div>
     </form>

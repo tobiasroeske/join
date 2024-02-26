@@ -74,6 +74,7 @@ async function createNewTask() {
     tasks.push(currentTask);
     await setItem('tasks', JSON.stringify(tasks));
     resetAddTask();
+    pipeToBoard();
 }
 
 function addPriorityToTask(prio) {
@@ -109,5 +110,17 @@ function addCategory(id) {
     let listItem = document.getElementById(id);
     inputField.value = listItem.innerHTML;
     togglePopup('categoryPopup');
+}
+
+function startAnimation() {
+    let taskAdded = document.getElementById('taskAdded');
+    taskAdded.classList.add('task-added-animation');
+}
+
+function pipeToBoard() {
+    document.getElementById('createTaskBtn').disabled = true;
+    document.getElementById('taskAdded').classList.remove('d-none');
+    setTimeout(() => startAnimation(), 125);
+    setTimeout(() => window.open('board.html', '_self'),1500);
 }
 
