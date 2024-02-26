@@ -1,10 +1,14 @@
+async function init() {
+  await includeHTML();
+}
+
 /**
  * Toggles the addTaskPopup and starts the slide in animation
  */
 function toggleAddTask() {
   document.getElementById('popup').classList.toggle('d-none');
   setTimeout(() => startAnimation('addTaskPopup', 'popup-show'), 125);
-  document.getElementById('popupClose').classList.toggle('d-none');
+  document.getElementById('popupClose').classList.remove('d-none');
 }
 
 /**
