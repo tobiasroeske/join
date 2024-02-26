@@ -89,6 +89,8 @@ font-weight: bold;
     background-color: #29ABE2;
     color: white;
     cursor: pointer;
+   box-shadow: 
+   3px 5px 3px 0px  lightgrey;
     }
 
 
@@ -223,7 +225,7 @@ justify-content: space-between;
 
 
 .task-worker{
-
+border-radius: 50px;
 }
 
 
