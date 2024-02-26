@@ -16,13 +16,12 @@ async function register () {
     let userName = document.getElementById('userName');
     let password = document.getElementById('password');
     let email = document.getElementById('email');
-    let confirmPassword = document.getElementById('confirmPassword');
 
     if(matchPass()) {
         users.push({
-            name: userName.value,
-            password: password.value,
             email: email.value,
+            password: password.value,
+            name: userName.value,
         });
     }
     
@@ -44,9 +43,7 @@ function matchPass(){
     if(password.value == confirmPassword.value){  
         return true;  
         }  
-        else{  
-        confirmPassword.classList.remove('input-box-');
-        confirmPassword.classList.add('password-box-red--focused');
+        else{
         alert("password must be same!");  
         return false;  
         }  
