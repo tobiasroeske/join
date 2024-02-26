@@ -69,7 +69,8 @@ async function createNewTask() {
         dueDate: dateInput.value,
         category: categoryInput.value,
         color: contactInput.value != '' ? assignedContact['color'] : '',
-        priority: currentPriority
+        priority: currentPriority,
+        column: 'toDo'
     };
     tasks.push(currentTask);
     await setItem('tasks', JSON.stringify(tasks));

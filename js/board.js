@@ -1,5 +1,16 @@
+let tasks = [];
+
 async function init() {
   await includeHTML();
+  await loadTasks()
+}
+
+async function loadTasks() {
+  try {
+      tasks = JSON.parse(await getItem('tasks'));
+  } catch (error) {
+      console.error('Loading error:' + error);
+  }
 }
 
 /**
