@@ -4,7 +4,8 @@
             alt="" class="close-popup-img"></button>
 
     <h1 class="page-heading">Add Task</h1>
-    <form onsubmit="createNewTask() ;return false;" class="form">
+    <form onsubmit="newTask() ;return false;" class="form">
+        <div></div>
         <div class="task-added" id="taskAdded">Task added to board <img src="assets/img/sidebar_icon_board.svg" alt=""></div>
         <div class="form-top">
             <div class="form-side">
@@ -19,7 +20,7 @@
                 </div>
                 <div class="input-container" onclick="togglePopup('contactsPopup'); stopCurrentAction(event)">
                     <label for="assignedContacts">Assigned to</label>
-                    <div class="input-field">
+                    <div class="input-field category-input">
                         <input type="text" id="assignedContacts" placeholder="Select Contacts to assign"
                             class="special-input">
                         <img src="assets/img/drop_down_array_icon.svg" alt="" class="icon">
@@ -36,9 +37,9 @@
 
             <div class="form-side">
                 <div class="input-container">
-                    <label for="dateInput">Due date</label>
+                    <label for="dateInput">Due date<span class="red">*</span></label>
                     <input type="date" name="dueDate" id="dateInput" placeholder="dd/mm/yyyy"
-                        class="input date-input">
+                        class="input date-input" required>
                 </div>
                 <div class="input-container">
                     <span>Prio</span>
@@ -80,7 +81,7 @@
         <div class="form-bottom">
             <span><span class="red">*</span>This field is requiered</span>
             <div class="submit-container">
-                <div class="submit-btn clear-btn">Clear <img src="assets/img/clear_icon.svg" alt=""></div>
+                <div class="submit-btn clear-btn" onclick="resetAddTask()">Clear <img src="assets/img/clear_icon.svg" alt=""></div>
                 <button class="submit-btn add-btn" id="createTaskBtn">Create Task <img src="assets/img/check_icon.svg" alt=""></button>
             </div>
         </div>

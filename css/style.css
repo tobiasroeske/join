@@ -254,7 +254,7 @@ textarea {
 }
 
 .input-field {
-  position: ″;
+  position: relative;
   background-color: white;
   display: flex;
 }
@@ -438,6 +438,7 @@ textarea {
   position: absolute;
   top: 76px;
   z-index: 9;
+  overflow: auto;
 }
 
 .styled-list {
@@ -445,6 +446,8 @@ textarea {
   font-size: 20px;
   display: flex;
   flex-direction: column;
+  padding-top: 16px;
+  max-height: 128px;
 }
 
 .styled-list li {

@@ -1,25 +1,49 @@
-let tasks = [];
+
+let currentColumn = 'toDo';
 
 async function init() {
   await includeHTML();
-  await loadTasks()
+  await initAddTask();
 }
 
-async function loadTasks() {
-  try {
-      tasks = JSON.parse(await getItem('tasks'));
-  } catch (error) {
-      console.error('Loading error:' + error);
-  }
+async function newTask() {
+  let titleInput = document.getElementById('titleInput');
+  let descriptionInput = document.getElementById('descriptionTextarea');
+  let contactInput = document.getElementById('assignedContacts');
+  let dateInput = document.getElementById('dateInput');
+  let categoryInput = document.getElementById('categoryInput');
+  currentTask = {
+      title: titleInput.value,
+      description: descriptionInput.value,
+      assignedContact: contactInput.value,
+      dueDate: dateInput.value,
+      category: categoryInput.value,
+      color: contactInput.value != '' ? assignedContact['color'] : '',
+      priority: currentPriority,
+      column: currentColumn
+  };
+  tasks.push(currentTask);
+  await setItem('tasks', JSON.stringify(tasks));
+  resetPopup();
+}
+
+function resetPopup() {
+  resetAddTask()
+  startAnimation('taskAdded', 'task-added-animation')
+  setTimeout(() => {
+    closePopup();
+    startAnimation('taskAdded', 'task-added-animation');
+  },1500);
 }
 
 /**
  * Toggles the addTaskPopup and starts the slide in animation
  */
-function toggleAddTask() {
+function openAddTaskPopup(column) {
   document.getElementById('popup').classList.toggle('d-none');
   setTimeout(() => startAnimation('addTaskPopup', 'popup-show'), 125);
   document.getElementById('popupClose').classList.remove('d-none');
+  currentColumn = column;
 }
 
 /**
@@ -36,7 +60,7 @@ function closePopup () {
  * @param {string} id id of the DOM element on which the animation should start
  * @param {string} className the name of the class, which contains the animation
  */
-function startAnimation (id, className) {
-  let element = document.getElementById(id);
-  element.classList.toggle(className);
-}
+// function startAnimation (id, className) {
+//   let element = document.getElementById(id);
+//   element.classList.toggle(className);
+// }

@@ -12,6 +12,7 @@
     <script src="js/main.js"></script>
     <script src="js/storage.js"></script>
     <script src="js/addTask.js"></script>
+    <script src="js/board.js"></script>
     
 </head>
 <body onload="init()">
@@ -36,7 +37,7 @@
                             <button class="button-board" type="submit"><img src="./assets/img/board2search.png" alt="search" class="img-search-board"></button>
                         </div>
                         <!--onclick funktion zum öffnen-->
-                        <button class="addTaskButton">Add Task <img src="./assets/img/board-addtask.png" alt="iconadd" class="addTaskIcon" onclick="toggleAddTask()"></button>
+                        <button class="addTaskButton" onclick="openAddTaskPopup('toDo')">Add Task <img src="./assets/img/board-addtask.png" alt="iconadd" class="addTaskIcon"></button>
                     </div>
                 </div>
 
@@ -51,7 +52,7 @@
 
                     <div class="board-content">
                         <div class="headlines-board">
-                            <h2>To do</h2><img src="./assets/img/board-plus-button.png" alt="" class="board-plus" onclick="toggleAddTask()">
+                            <h2>To do</h2><img src="./assets/img/board-plus-button.png" alt="" class="board-plus" onclick="openAddTaskPopup('toDo')">
                             <!--onclick funktion zum kreieren  addTask ()-->
                         </div>
                         <div class="board-noTasks">No Tasks To Do</div>
@@ -75,7 +76,7 @@
 
                     <div class="board-content">
                         <div class="headlines-board">
-                            <h2>In Progress</h2><img src="./assets/img/board-plus-button.png" alt="" class="board-plus" onclick="toggleAddTask()">
+                            <h2>In Progress</h2><img src="./assets/img/board-plus-button.png" alt="" class="board-plus" onclick="openAddTaskPopup('inProgress')">
                         </div>
                         <div class="board-noTasks">No Tasks To Do</div>
                         <div class="task-design">
@@ -95,7 +96,7 @@
 
                     <div class="board-content">
                         <div class="headlines-board">
-                            <h2>Await Feedback</h2><img src="./assets/img/board-plus-button.png" alt="" class="board-plus" onclick="toggleAddTask()">
+                            <h2>Await Feedback</h2><img src="./assets/img/board-plus-button.png" alt="" class="board-plus" onclick="openAddTaskPopup('awaitFeedback')">
                         </div>
                         <div class="board-noTasks">No Tasks To Do</div>
                         <div class="task-design">hier stehen die tasks</div>

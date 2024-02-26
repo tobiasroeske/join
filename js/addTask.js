@@ -1,11 +1,11 @@
 let contacts = [];
 
 let tasks = [];
-let currentTask;
+let currentTask = {}
 let currentPriority = 'medium';
 let assignedContact;
 
-async function init() {
+async function initAddTask() {
     await includeHTML();
     await generateLoadingScreen();
     renderContacts();
@@ -43,7 +43,7 @@ function renderContacts() {
     for (let i = 0; i < contacts.length; i++) {
         const contact = contacts[i];
         contactList.innerHTML += /*html*/`
-            <li id="contact${i}" onclick="addContactToList(${i})">${contact['name']}</li>
+            <li id="contact${i}" onclick="addContactToList(${i}); stopCurrentAction(event)">${contact['name']}</li>
         `;
     }
 }
@@ -75,7 +75,7 @@ async function createNewTask() {
     tasks.push(currentTask);
     await setItem('tasks', JSON.stringify(tasks));
     resetAddTask();
-    pipeToBoard();
+    pipeToBoard()
 }
 
 function addPriorityToTask(prio) {
@@ -95,7 +95,7 @@ function addContactToList(index) {
     let contactInputField = document.getElementById('assignedContacts')
     contactInputField.value = contacts[index]['name'];
     assignedContact = contacts[index];
-    togglePopup('contactsPopup')
+    togglePopup('contactsPopup');
 }
 
 function togglePopup(id) {
@@ -113,15 +113,20 @@ function addCategory(id) {
     togglePopup('categoryPopup');
 }
 
-function startAnimation() {
-    let taskAdded = document.getElementById('taskAdded');
-    taskAdded.classList.add('task-added-animation');
-}
+function startAnimation (id, className) {
+    let element = document.getElementById(id);
+    element.classList.toggle(className);
+  }
+
+// function startAnimation() {
+//     let taskAdded = document.getElementById('taskAdded');
+//     taskAdded.classList.add('task-added-animation');
+// }
 
 function pipeToBoard() {
     document.getElementById('createTaskBtn').disabled = true;
     document.getElementById('taskAdded').classList.remove('d-none');
-    setTimeout(() => startAnimation(), 125);
+    setTimeout(() => startAnimation('taskAdded', 'task-added-animation'), 125);
     setTimeout(() => window.open('board.html', '_self'),1500);
 }
 
