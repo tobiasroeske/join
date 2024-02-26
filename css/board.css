@@ -347,3 +347,29 @@ border-radius: 50px;
     align-items: center;
     }
   }
+
+  @media (max-width: 900px) {
+    .popup {
+        align-items: flex-start;
+        overflow: auto;
+    }
+
+    .popup-close {
+        top: 64px;
+        right: 0;
+    }
+  }
+
+  @media (max-width: 620px) {
+    .add-task-popup {
+      width: 85%;
+    }
+}
+
+@media (max-width: 568px) {
+    .add-task-popup {
+      width: 100%;
+      padding-left: 16px;
+      padding-right: 16px;
+    }
+}

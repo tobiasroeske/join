@@ -1,11 +1,19 @@
 
 let currentColumn = 'toDo';
-
+/**
+ * loads the html template for the addTask popup 
+ * then loads the contacts and the tasks from the remote storage
+ */
 async function init() {
   await includeHTML();
   await initAddTask();
 }
 
+/**
+ * creates a new Task and saves it in the currentTask variable
+ * then sends the tasks array to the remote storage
+ * in the end resets the popup
+ */
 async function newTask() {
   let titleInput = document.getElementById('titleInput');
   let descriptionInput = document.getElementById('descriptionTextarea');
@@ -27,6 +35,9 @@ async function newTask() {
   resetPopup();
 }
 
+/**
+ * resets the form starts the slide animation and closes after a delay the popup
+ */
 function resetPopup() {
   resetAddTask()
   startAnimation('taskAdded', 'task-added-animation')

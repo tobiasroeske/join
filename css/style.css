@@ -558,6 +558,7 @@ textarea {
 
   .form {
     gap: 16px;
+    width: 100%;
   }
 
   .form-top {
