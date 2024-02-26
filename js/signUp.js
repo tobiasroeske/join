@@ -2,7 +2,7 @@ let users = [];
 
 async function init(){
     loadUsers();
-    acceptPolicy();
+    //acceptPolicy();
 }
 
 async function loadUsers(){
@@ -27,7 +27,13 @@ async function register () {
     }
     
     await setItem('users', JSON.stringify(users)); // key = 'users', value
+    pipeToLogin();
+}
+
+function pipeToLogin() {
+    startSignupAnimation();
     resetForm();
+    setTimeout(() => window.open('login.html', '_self'), 800);
 }
 
 function resetForm(){
@@ -53,13 +59,10 @@ function matchPass(){
 
 function acceptPolicy() {
     let acceptCheckbox = document.getElementById('checkbox');
-    let signUpButton = document.querySelector('.sign-up-button button');
+    let signUpButton = document.getElementById('sign-up-btn');
+    acceptCheckbox = true ? signUpButton.disabled = false : signUpButton.disabled = true;
+}
 
-    acceptCheckbox.addEventListener('change', function(event) {
-        if (event.target.checked) {
-            signUpButton.disabled = false; // Aktiviert den "Sign up" Button
-        } else {
-            signUpButton.disabled = true; // Deaktiviert den "Sign up" Button
-        }
-    });
+function startSignupAnimation() {
+    document.getElementById('signupSuccessful').classList.add('signup-succesful-animation');
 }

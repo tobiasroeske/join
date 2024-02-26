@@ -164,6 +164,7 @@ form {
 
 .log-in-button button,
 .sign-up-button button {
+    cursor: pointer;
     width: 126px;
     height: 55px;
     border-radius: 8px;
@@ -182,6 +183,11 @@ background-color: #29ABE2;
 
 .sign-up-button button:hover {
     background-color: #29ABE2;
+}
+
+.sign-up-button button:disabled {
+    cursor:default;
+    background-color: #2A3647;
 }
 
 .guest-button button {
@@ -211,12 +217,10 @@ background-color: #29ABE2;
 
 .wrong-text {
     color: red;
-    margin-top: 4px;
+    margin-top: 8px;
 }
 
-.hide {
-    display: none;
-}
+
 
 
 
@@ -224,6 +228,26 @@ background-color: #29ABE2;
 
 
 /*=============****sign up****========================*/
+.signup-successful {
+    border-radius: 10px;
+    background-color: #2A3647;
+    color: white;
+    padding: 16px 21px;
+    width: 280px;
+    position: absolute;
+    top: 150%;
+    left: 25%;
+    z-index: 50;
+    transition: all 0.125s ease;
+    
+}
+
+.signup-succesful-animation {
+    top: 44%;
+    top: 80px;
+    left: 80px;
+}
+
 .sign-up-field {
     width: 598px;
     height: 630px;
@@ -234,6 +258,7 @@ background-color: #29ABE2;
     display: flex;
     flex-direction: column;
     position: relative;
+    overflow: hidden;
 }
 
 .arrow-headline {
@@ -244,6 +269,10 @@ background-color: #29ABE2;
 .accept {
     margin-top: 45px;
     gap: 5px;
+}
+
+#checkbox {
+    cursor: pointer;
 }
 
 .accept a {
@@ -290,6 +319,10 @@ footer {
     position: absolute;
     top: 40px;
     left: 64px;
+}
+
+.hide {
+    display: none;
 }
 
 

@@ -37,13 +37,18 @@ async function login() {
             window.location.href = 'summary.html';
         } else {
             // Fehlermeldung bei falscher E-Mail-Adresse oder Passwort
-            alert('Incorrect email or password');
+            showWrongPassword();
+            //alert('Incorrect email or password');
         }
     } catch (error) {
         console.error('Error:', error);
         // Fehlermeldung bei einem Fehler beim Laden der Benutzerdaten
         alert('An error occurred. Please try again later.');
     }
+}
+
+function showWrongPassword() {
+    document.getElementById('wrong-password').classList.remove('hide');
 }
 
 
