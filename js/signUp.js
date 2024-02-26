@@ -2,6 +2,7 @@ let users = [];
 
 async function init(){
     loadUsers();
+    acceptPolicy();
 }
 
 async function loadUsers(){
@@ -34,6 +35,7 @@ function resetForm(){
     email.value = '';
     confirmPassword.value = '';
     password.value = '';
+    
 }
 
 function matchPass(){
@@ -46,5 +48,18 @@ function matchPass(){
         else{
         alert("password must be same!");  
         return false;  
-        }  
+    }  
+}
+
+function acceptPolicy() {
+    let acceptCheckbox = document.getElementById('checkbox');
+    let signUpButton = document.querySelector('.sign-up-button button');
+
+    acceptCheckbox.addEventListener('change', function(event) {
+        if (event.target.checked) {
+            signUpButton.disabled = false; // Aktiviert den "Sign up" Button
+        } else {
+            signUpButton.disabled = true; // Deaktiviert den "Sign up" Button
+        }
+    });
 }
