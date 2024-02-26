@@ -1,4 +1,7 @@
 // Initialisierungsfunktion, die beim Laden der Seite aufgerufen wird
+let currentUser;
+
+
 async function init() {
     try {
         // Laden der Benutzerdaten aus dem Speicher
@@ -22,14 +25,14 @@ async function login() {
     try {
         // Laden der Benutzerdaten aus dem lokalen Speicher
         let users = JSON.parse(await getItem('users'));
-
         // Suchen nach einem Benutzer mit der angegebenen E-Mail-Adresse
         let user = users.find(u => u.email === email);
-
+        currentUser = user;
         // Überprüfen, ob der Benutzer gefunden wurde und das Passwort übereinstimmt
         if (user && user.password === password) {
             // Erfolgreiche Anmeldung
             alert('Login successful');
+            await setItem('currentUser', JSON.stringify(currentUser));
             // Weiterleitung zur Startseite oder einer anderen gewünschten Seite
             window.location.href = 'summary.html';
         } else {
@@ -42,5 +45,6 @@ async function login() {
         alert('An error occurred. Please try again later.');
     }
 }
+
 
 
