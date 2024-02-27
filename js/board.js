@@ -71,7 +71,29 @@ function closePopup () {
  * @param {string} id id of the DOM element on which the animation should start
  * @param {string} className the name of the class, which contains the animation
  */
-// function startAnimation (id, className) {
-//   let element = document.getElementById(id);
-//   element.classList.toggle(className);
-// }
+
+function startAnimation (id, className) {
+  let element = document.getElementById(id);
+  element.classList.toggle(className);
+}
+
+
+
+function openSecondPopup() {
+  let popup = document.getElementById('secondPopup');
+  let taskDesignContent = document.querySelector('.task-design').innerHTML;
+  let popupContent = popup.querySelector('.popup2-content');
+  popupContent.innerHTML = taskDesignContent;
+  popup.classList.remove('d-none');
+  setTimeout(() => startAnimation('secondPopup', 'popup2-show'), 0);
+}
+
+function closeSecondPopup() {
+  let popup = document.getElementById('secondPopup');
+  popup.classList.add('popup2-hide');
+  setTimeout(() => {
+    popup.classList.add('d-none');
+    popup.classList.remove('popup2-hide');
+  }, 300);
+}
+

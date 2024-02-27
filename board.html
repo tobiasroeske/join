@@ -52,10 +52,16 @@
 
                     <div class="board-content">
                         <div class="headlines-board">
+
                             <h2>To do</h2><img src="./assets/img/board-plus-button.png" alt="" class="board-plus" onclick="openAddTaskPopup('toDo')">
-                            <!--onclick funktion zum kreieren  addTask ()-->
+                           
+
+                            
+                            
+
                         </div>
                         <div class="board-noTasks">No Tasks To Do</div>
+                          
                         <div class="task-design" onclick="openSecondPopup()">
 
                             
@@ -79,7 +85,7 @@
                             <h2>In Progress</h2><img src="./assets/img/board-plus-button.png" alt="" class="board-plus" onclick="openAddTaskPopup('inProgress')">
                         </div>
                         <div class="board-noTasks">No Tasks To Do</div>
-                        <div class="task-design">
+                        <div class="task-design" onclick="openSecondPopup()">
 
                             <div class="task-technicalTask">Technical Task</div>
                             <div class="task-title">HTML Base Creation Templates
@@ -99,7 +105,7 @@
                             <h2>Await Feedback</h2><img src="./assets/img/board-plus-button.png" alt="" class="board-plus" onclick="openAddTaskPopup('awaitFeedback')">
                         </div>
                         <div class="board-noTasks">No Tasks To Do</div>
-                        <div class="task-design">hier stehen die tasks</div>
+                        <div class="task-design" onclick="openSecondPopup()">hier stehen die tasks</div>
                     </div>
 
 
@@ -108,11 +114,20 @@
                             <h2>Done</h2>
                         </div>
                         <div class="board-noTasks">No Task Available</div>
-                        <div class="task-design">hier stehen die tasks</div>
+                        <div class="task-design" onclick="openSecondPopup()">hier stehen die tasks</div>
                     </div>
                 </div>
             </div>
         </div>
+
+
+        <div id="secondPopup" class="popup2 d-none">
+            <div class="popup2-content">
+              
+            </div>
+            <span class="popup2-close" onclick="closeSecondPopup()"> <img src="./assets/img/close-board.png" class="close-popup-img2" alt=""></span>
+          </div>
+          
     </main>
 </body>
 </html>
