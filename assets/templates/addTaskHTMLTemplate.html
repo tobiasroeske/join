@@ -1,6 +1,6 @@
 <div class="add-task" onclick="closePopup('contactsPopup'); closePopup('categoryPopup')">
     
-    <button class="popup-close d-none" onclick="closePopup()" id="popupClose"><img src="./assets/img/close-board.png"
+    <button class="popup-close" onclick="closePopup()" id="popupClose"><img src="./assets/img/close-board.png"
             alt="" class="close-popup-img"></button>
 
     <h1 class="page-heading">Add Task</h1>
@@ -69,12 +69,22 @@
                         </ul>
                     </div>
                 </div>
-                <div class="input-container">
+                <div class="input-container" id="subtaskInputField">
                     <label for="subtaskInput">Subtasks</label>
-                    <div class="input-field">
-                        <input type="text" class="special-input subtask-input" name="subtasks" id="subtaskInput">
-                        <img src="assets/img/plus_icon.svg" alt="" class="icon">
+                    <div class="input-field" onclick="openSubtaskInput()" >
+                        <input type="text" class="special-input subtask-input" name="subtasks"
+                            id="subtaskInput" placeholder="Add new subtask">
+                        <img src="assets/img/addTask_add.svg" alt="" class="icon" id="addSubtaskIcon">
+                        <div class="flex gap-8 d-none" id="editSubtaskIcons">
+                            <img src="assets/img/addTask_close.svg" alt=""class="icon" onclick="clearInput('subtaskInput'); stopCurrentAction(event)">
+                            <img src="assets/img/addTask_check.svg" alt=""class="icon" onclick="addSubtask(); stopCurrentAction(event)">
+                        </div>
                     </div>
+                </div>
+                <div>
+                    <ul id="subtasks" class="subtasks d-none">
+                    
+                    </ul>
                 </div>
             </div>
         </div>
