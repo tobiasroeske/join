@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,13 +9,15 @@
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/fonts.css">
+    <link rel="stylesheet" href="css/addTask.css">
     <link rel="stylesheet" href="css/board.css">
     <script src="js/main.js"></script>
     <script src="js/storage.js"></script>
     <script src="js/addTask.js"></script>
     <script src="js/board.js"></script>
-    
+
 </head>
+
 <body onload="init()">
 
     <!-- Header Section -->
@@ -34,123 +37,90 @@
                     <div class="search-area">
                         <div class="design-search">
                             <input type="search" placeholder="Find Task" class="input-board">
-                            <button class="button-board" type="submit"><img src="./assets/img/board2search.png" alt="search" class="img-search-board"></button>
+                            <button class="button-board" type="submit"><img src="./assets/img/board2search.png"
+                                    alt="search" class="img-search-board"></button>
                         </div>
                         <!--onclick funktion zum öffnen-->
-                        <button class="addTaskButton" onclick="openAddTaskPopup('toDo')">Add Task <img src="./assets/img/board-addtask.png" alt="iconadd" class="addTaskIcon"></button>
+                        <button class="addTaskButton" onclick="openAddTaskPopup('toDo')">Add Task <img
+                                src="./assets/img/board-addtask.png" alt="iconadd" class="addTaskIcon"></button>
                     </div>
                 </div>
 
                 <div class="board-mainpage">
+                    <div class="popup d-none" id="popup">
+                        <div class="add-task-popup" w3-include-html="assets/templates/addTaskHTMLTemplate.html"
+                            id="addTaskPopup">
 
-                <div class="popup d-none" id="popup">
-                    <div class="add-task-popup" w3-include-html="assets/templates/addTaskHTMLTemplate.html" id="addTaskPopup">
+                        </div>
+                    </div>
+
+                    <div class="board-content">
+                        <div class="headlines-board">
+                            <h2>To do</h2>
+                            <img src="./assets/img/board-plus-button.png" alt="" class="board-plus"
+                                onclick="openAddTaskPopup('toDo')">
+                        </div>
+                        <div class="board-noTasks" id="toDo">No Tasks To Do</div>
+                        <div class="tasks-container" id="tasks-toDo">
+                            
+                        </div>
+                    </div>
+
+
+                    <div class="board-content">
+                        <div class="headlines-board">
+                            <h2>In Progress</h2>
+                            <img src="./assets/img/board-plus-button.png" alt="" class="board-plus"
+                                onclick="openAddTaskPopup('inProgress')">
+                        </div>
+                        <div class="board-noTasks" id="inProgress">No Tasks in Progress</div>
+                        <div class="tasks-container" id="tasks-inProgress">
+
+                        </div>
+                    </div>
+
+
+                    <div class="board-content">
+                        <div class="headlines-board">
+                            <h2>Await Feedback </h2>
+                            <img src="./assets/img/board-plus-button.png" alt=""
+                                class="board-plus" onclick="openAddTaskPopup('awaitFeedback')">
+                        </div>
+                        <div class="board-noTasks" id="awaitFeedback">No Tasks in Await Feedback</div>
+                        <div class="tasks-container" id="tasks-awaitFeedback">
+                            
+                        </div>
                         
                     </div>
-                    
-                </div>
-
-                    <div class="board-content">
-                        <div class="headlines-board">
-
-                            <h2>To do</h2><img src="./assets/img/board-plus-button.png" alt="" class="board-plus" onclick="openAddTaskPopup('toDo')">
-
-                        </div>
-                        <div class="board-noTasks">No Tasks To Do</div>
-
-                        <div class="task-design" id="card" draggable="true">
-                        <div id="drop-zone">
-                        <div  onclick="openSecondPopup()">
-                            <div id="taskUserStory" class="task-userStory">UserStory</div>
-                            <div id="taskTitle" class="task-title"></div>
-                            <div id="taskDescription" class="task-description"></div>
-                            <div id="dueDate" class="due-date"></div>
-                            <div id="taskPriority" class="task-priority"></div>
-                            <div id="assignedTo" class="assigned-to"></div>
-                            <div class="w3-light-grey w3-round-xlarge progressbar"><div class="w3-container w3-blue w3-round-xlarge progressbar" style="width:50%" id="taskProgress"></div></div>
-                            <div id="taskSubtasks" class="Subtasks"></div>
-                            <div id="taskWorker" class="task-worker"></div>
-                           </div>
-                        </div>
-                        </div>
-                    </div>
 
 
                     <div class="board-content">
                         <div class="headlines-board">
-                            <h2>In Progress</h2><img src="./assets/img/board-plus-button.png" alt="" class="board-plus" onclick="openAddTaskPopup('inProgress')">
+                            <h2>Done</h2>
+                            <img src="./assets/img/board-plus-button.png" alt="" class="board-plus"
+                                onclick="openAddTaskPopup('inProgress')">
                         </div>
-                        <div class="board-noTasks">No Tasks To Do</div>
-                        <div class="task-design" id="card" draggable="true">
-                            <div id="drop-zone">
-                            <div  onclick="openSecondPopup()">
-                                <div id="taskUserStory" class="task-userStory">UserStory</div>
-                                <div id="taskTitle" class="task-title"></div>
-                                <div id="taskDescription" class="task-description"></div>
-                                <div id="dueDate" class="due-date"></div>
-                                <div id="taskPriority" class="task-priority"></div>
-                                <div id="assignedTo" class="assigned-to"></div>
-                                <div class="w3-light-grey w3-round-xlarge progressbar"><div class="w3-container w3-blue w3-round-xlarge progressbar" style="width:50%" id="taskProgress"></div></div>
-                                <div id="taskSubtasks" class="Subtasks"></div>
-                                <div id="taskWorker" class="task-worker"></div>
-                               </div>
-                            </div>
-                            </div>
-                    </div>
-
-
-                    <div class="board-content">
-                        <div class="headlines-board">
-                            <h2>Await Feedback </h2><img src="./assets/img/board-plus-button.png" alt="" class="board-plus" onclick="openAddTaskPopup('inProgress')">
-                        </div>
-                        <div class="board-noTasks">No Tasks To Do</div>
-                        <div class="task-design" onclick="openSecondPopup()">
-
-                            <div class="task-technicalTask">Technical Task</div>
-                            <div class="task-title ">HTML Base Creation Templates
-                                <div class="task-description">was musss alles gemacht werden(Kürzen)
-                                </div>
-                            </div>
-                            <div class="task-loading">Loading bar // Subtasks</div>
-                            <div class="task-worker">img + Wichtigkeit</div>
-
-
+                        <div class="board-noTasks" id="done">No Tasks in Done</div>
+                        <div class="tasks-container" id="tasks-done">
+                            
                         </div>
                     </div>
 
 
-                    <div class="board-content">
-                        <div class="headlines-board">
-                            <h2>Done</h2><img src="./assets/img/board-plus-button.png" alt="" class="board-plus" onclick="openAddTaskPopup('inProgress')">
-                        </div>
-                        <div class="board-noTasks">No Tasks To Do</div>
-                        <div class="task-design" onclick="openSecondPopup()">
-
-                            <div class="task-technicalTask">Technical Task</div>
-                            <div class="task-title ">HTML Base Creation Templates
-                                <div class="task-description">was musss alles gemacht werden(Kürzen)
-                                </div>
-                            </div>
-                            <div class="task-loading">Loading bar // Subtasks</div>
-                            <div class="task-worker">img + Wichtigkeit</div>
-
-
-                        </div>
-                    </div>
-
-                   
                 </div>
             </div>
         </div>
 
 
         <div id="secondPopup" class="popup2 d-none">
-            <div class="popup2-content">
-              
+            <div class="popup2-content" id="popupContent">
+                <span class="popup2-close" onclick="closeSecondPopup()"> <img src="./assets/img/close-board.png"
+                    class="close-popup-img2" alt=""></span>
             </div>
-            <span class="popup2-close" onclick="closeSecondPopup()"> <img src="./assets/img/close-board.png" class="close-popup-img2" alt=""></span>
-          </div>
-          
+            
+        </div>
+
     </main>
 </body>
+
 </html>
