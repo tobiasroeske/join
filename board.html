@@ -57,8 +57,11 @@
 
                         </div>
                         <div class="board-noTasks">No Tasks To Do</div>
-                        <div class="task-design" onclick="openSecondPopup()">
-                            <div id="taskUserStory" class="task-userStory"></div>
+
+                        <div class="task-design" id="card" draggable="true">
+                        <div id="drop-zone">
+                        <div  onclick="openSecondPopup()">
+                            <div id="taskUserStory" class="task-userStory">UserStory</div>
                             <div id="taskTitle" class="task-title"></div>
                             <div id="taskDescription" class="task-description"></div>
                             <div id="dueDate" class="due-date"></div>
@@ -67,9 +70,9 @@
                             <div class="w3-light-grey w3-round-xlarge progressbar"><div class="w3-container w3-blue w3-round-xlarge progressbar" style="width:50%" id="taskProgress"></div></div>
                             <div id="taskSubtasks" class="Subtasks"></div>
                             <div id="taskWorker" class="task-worker"></div>
+                           </div>
                         </div>
-                        
-                      
+                        </div>
                     </div>
 
 
@@ -78,18 +81,21 @@
                             <h2>In Progress</h2><img src="./assets/img/board-plus-button.png" alt="" class="board-plus" onclick="openAddTaskPopup('inProgress')">
                         </div>
                         <div class="board-noTasks">No Tasks To Do</div>
-                        <div class="task-design" onclick="openSecondPopup()">
-
-                            <div class="task-technicalTask">Technical Task</div>
-                            <div class="task-title ">HTML Base Creation Templates
-                                <div class="task-description">was musss alles gemacht werden(Kürzen)
-                                </div>
+                        <div class="task-design" id="card" draggable="true">
+                            <div id="drop-zone">
+                            <div  onclick="openSecondPopup()">
+                                <div id="taskUserStory" class="task-userStory">UserStory</div>
+                                <div id="taskTitle" class="task-title"></div>
+                                <div id="taskDescription" class="task-description"></div>
+                                <div id="dueDate" class="due-date"></div>
+                                <div id="taskPriority" class="task-priority"></div>
+                                <div id="assignedTo" class="assigned-to"></div>
+                                <div class="w3-light-grey w3-round-xlarge progressbar"><div class="w3-container w3-blue w3-round-xlarge progressbar" style="width:50%" id="taskProgress"></div></div>
+                                <div id="taskSubtasks" class="Subtasks"></div>
+                                <div id="taskWorker" class="task-worker"></div>
+                               </div>
                             </div>
-                            <div class="task-loading">Loading bar // Subtasks</div>
-                            <div class="task-worker">img + Wichtigkeit</div>
-
-
-                        </div>
+                            </div>
                     </div>
 
 

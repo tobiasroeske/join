@@ -80,14 +80,11 @@ function startAnimation (id, className) {
 
 
 function openSecondPopup() {
-
-  
   let popup = document.getElementById('secondPopup');
   let taskDesignContent = document.querySelector('.task-design').innerHTML;
   let popupContent = popup.querySelector('.popup2-content');
-  let taskTitle = popupContent.querySelector('.task-title'); // Element innerhalb des Popups suchen
+  let taskTitle = popupContent.querySelector('.task-title'); 
   
-
   if (taskTitle) {
     taskTitle.style.fontSize = '50px';
   }
@@ -109,4 +106,18 @@ function closeSecondPopup() {
   }, 300);
 }
 
+const card = document.getElementById('dragging');
+const dropZone = document.getElementById('drop-zone');
 
+card.addEventListener('dragstart', function(event) {
+  console.log(event)
+})
+
+
+dropZone.addEventListener('dragover', function(event) {
+event.preventDefault()
+})
+dropZone.addEventListener('drop', function (event)
+{
+  dropZone.prepend(dragging)
+})

@@ -373,6 +373,13 @@ border-radius: 50px;
     display: none;
 }
 
+#drop-zone {
+  width: 200px;
+ 
+ 
+}
+
+
 @media only screen and (max-width: 1100px) {
     .board-mainpage {
       display: flex;
