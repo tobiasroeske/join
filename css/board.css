@@ -145,7 +145,7 @@ font-weight: bold;
 }
 
 .board-noTasks{
-    display: flex;
+    display: flex;              /* display nonen beim adden */
     background-color: rgba(216, 213, 213, 0.349);
     border: 2px dotted #aaaaaa;
     color: #757575;
@@ -154,13 +154,15 @@ font-weight: bold;
     font-size: 15px;
     padding: 15px;
     margin-top:20px;
+
+  
 }
 
 
 .task-design {
+visibility:visible;
     display: flex;
     flex-direction: column;
-    margin-top: 100px; 
     width: 252px;
     padding: 20px;
     border-radius: 25px;
@@ -291,6 +293,8 @@ border-radius: 50px;
 }
 
 .close-popup-img2 {
+
+  
     height: 40px;
     background-color: transparent;
 }
@@ -315,9 +319,9 @@ border-radius: 50px;
   }
   
   .popup2-content {
-    
+    font-size: 20px;
     display: flex;
-    gap: 20%;
+    gap: 10%;
     flex-direction: column;
     background-color: white;
     border-radius: 30px;
@@ -326,13 +330,23 @@ border-radius: 50px;
     width: 400px; 
     height: 80%; 
     overflow: auto; 
+    position: relative;
   }
   
+  .popup-headline{
+    font-size: 40px;
+    
+  }
+
+  .hidden {
+    display: none;
+  }
+
   .popup2-close {
-   position: absolute;
+    position: absolute;
+  top: 110px;
+  
     cursor: pointer;
-    color: #888;
-    z-index: 1;
   }
   
  

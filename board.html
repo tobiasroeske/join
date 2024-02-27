@@ -54,29 +54,22 @@
                         <div class="headlines-board">
 
                             <h2>To do</h2><img src="./assets/img/board-plus-button.png" alt="" class="board-plus" onclick="openAddTaskPopup('toDo')">
-                           
-
-                            
-                            
 
                         </div>
                         <div class="board-noTasks">No Tasks To Do</div>
-                          
                         <div class="task-design" onclick="openSecondPopup()">
-
-                            
-                            <div class="task-userStory">User Story</div>
-                            <div class="task-title">HTML Base Creation Templates
-                                <div class="task-description">was musss alles gemacht werden(Kürzen)
-                                </div>
-                            </div>
-                            <div class="task-loading"> <div class="w3-light-grey w3-round-xlarge progressbar">
-                                <div class="w3-container w3-blue w3-round-xlarge progressbar" style="width:50%"></div>
-                              </div><div class="Subtasks">Subtasks</div></div>
-                            <div class="task-worker">img + Wichtigkeit</div>
-
-
+                            <div id="taskUserStory" class="task-userStory"></div>
+                            <div id="taskTitle" class="task-title"></div>
+                            <div id="taskDescription" class="task-description"></div>
+                            <div id="dueDate" class="due-date"></div>
+                            <div id="taskPriority" class="task-priority"></div>
+                            <div id="assignedTo" class="assigned-to"></div>
+                            <div class="w3-light-grey w3-round-xlarge progressbar"><div class="w3-container w3-blue w3-round-xlarge progressbar" style="width:50%" id="taskProgress"></div></div>
+                            <div id="taskSubtasks" class="Subtasks"></div>
+                            <div id="taskWorker" class="task-worker"></div>
                         </div>
+                        
+                      
                     </div>
 
 
@@ -88,7 +81,7 @@
                         <div class="task-design" onclick="openSecondPopup()">
 
                             <div class="task-technicalTask">Technical Task</div>
-                            <div class="task-title">HTML Base Creation Templates
+                            <div class="task-title ">HTML Base Creation Templates
                                 <div class="task-description">was musss alles gemacht werden(Kürzen)
                                 </div>
                             </div>
@@ -102,20 +95,44 @@
 
                     <div class="board-content">
                         <div class="headlines-board">
-                            <h2>Await Feedback</h2><img src="./assets/img/board-plus-button.png" alt="" class="board-plus" onclick="openAddTaskPopup('awaitFeedback')">
+                            <h2>Await Feedback </h2><img src="./assets/img/board-plus-button.png" alt="" class="board-plus" onclick="openAddTaskPopup('inProgress')">
                         </div>
                         <div class="board-noTasks">No Tasks To Do</div>
-                        <div class="task-design" onclick="openSecondPopup()">hier stehen die tasks</div>
+                        <div class="task-design" onclick="openSecondPopup()">
+
+                            <div class="task-technicalTask">Technical Task</div>
+                            <div class="task-title ">HTML Base Creation Templates
+                                <div class="task-description">was musss alles gemacht werden(Kürzen)
+                                </div>
+                            </div>
+                            <div class="task-loading">Loading bar // Subtasks</div>
+                            <div class="task-worker">img + Wichtigkeit</div>
+
+
+                        </div>
                     </div>
 
 
                     <div class="board-content">
                         <div class="headlines-board">
-                            <h2>Done</h2>
+                            <h2>Done</h2><img src="./assets/img/board-plus-button.png" alt="" class="board-plus" onclick="openAddTaskPopup('inProgress')">
                         </div>
-                        <div class="board-noTasks">No Task Available</div>
-                        <div class="task-design" onclick="openSecondPopup()">hier stehen die tasks</div>
+                        <div class="board-noTasks">No Tasks To Do</div>
+                        <div class="task-design" onclick="openSecondPopup()">
+
+                            <div class="task-technicalTask">Technical Task</div>
+                            <div class="task-title ">HTML Base Creation Templates
+                                <div class="task-description">was musss alles gemacht werden(Kürzen)
+                                </div>
+                            </div>
+                            <div class="task-loading">Loading bar // Subtasks</div>
+                            <div class="task-worker">img + Wichtigkeit</div>
+
+
+                        </div>
                     </div>
+
+                   
                 </div>
             </div>
         </div>

@@ -80,13 +80,25 @@ function startAnimation (id, className) {
 
 
 function openSecondPopup() {
+
+  
   let popup = document.getElementById('secondPopup');
   let taskDesignContent = document.querySelector('.task-design').innerHTML;
   let popupContent = popup.querySelector('.popup2-content');
-  popupContent.innerHTML = taskDesignContent;
-  popup.classList.remove('d-none');
-  setTimeout(() => startAnimation('secondPopup', 'popup2-show'), 0);
+  let taskTitle = popupContent.querySelector('.task-title'); // Element innerhalb des Popups suchen
+  
+
+  if (taskTitle) {
+    taskTitle.style.fontSize = '50px';
+  }
+  
+  setTimeout(() => {
+    popupContent.innerHTML = taskDesignContent;
+    popup.classList.remove('d-none');
+    startAnimation('secondPopup', 'popup2-show');
+  }, 0);
 }
+
 
 function closeSecondPopup() {
   let popup = document.getElementById('secondPopup');
@@ -96,4 +108,5 @@ function closeSecondPopup() {
     popup.classList.remove('popup2-hide');
   }, 300);
 }
+
 
