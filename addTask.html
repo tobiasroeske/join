@@ -38,7 +38,7 @@
                     <div class="form-top">
                         <div class="form-side">
                             <div class="input-container">
-                                <label for="titleInput">Title<span class="red">*</span></label>
+                                <label for="titleInput">Title<span class="red-required">*</span></label>
                                 <input type="text" name="title" id="titleInput" class="input" required
                                     placeholder="Enter a title">
                             </div>
@@ -53,12 +53,15 @@
                                 <div class="input-field category-input">
                                     <input type="text" id="assignedContacts" placeholder="Select Contacts to assign"
                                         class="special-input">
-                                    <img src="assets/img/drop_down_array_icon.svg" alt="" class="icon">
+                                    <img src="assets/img/drop_down_array_icon.svg" alt="" class="icon input-icon">
                                 </div>
                                 <div class="category-popup d-none" id="contactsPopup">
                                     <ul class="styled-list" id="contactList">
 
                                     </ul>
+                                </div>
+                                <div class="flex gap-8" id="selectedContacts">
+                                    
                                 </div>
                             </div>
                         </div>
@@ -67,7 +70,7 @@
 
                         <div class="form-side">
                             <div class="input-container">
-                                <label for="dateInput">Due date<span class="red">*</span></label>
+                                <label for="dateInput">Due date<span class="red-required">*</span></label>
                                 <input type="date" name="dueDate" id="dateInput" placeholder="dd/mm/yyyy"
                                     class="input date-input" required>
                             </div>
@@ -75,37 +78,35 @@
                                 <span>Prio</span>
                                 <div class="prio-buttons">
                                     <div class="prio-btn" id="urgentBtn"
-                                        onclick="selectPriority('urgentBtn', 'urgent-btn'); addPriorityToTask('urgent')">
+                                        onclick="selectPriority('urgentBtn', 'urgent-btn'); addPriorityToTask('urgent', 'urgentBtn')">
                                         Urgent
                                         <img src="assets/img/prio_high_icon.svg" alt="high priority icon"
                                             class="prio-icon">
                                     </div>
                                     <div class="prio-btn medium-btn" id="mediumBtn"
-                                        onclick="selectPriority('mediumBtn', 'medium-btn'); addPriorityToTask('medium')">
+                                        onclick="selectPriority('mediumBtn', 'medium-btn'); addPriorityToTask('medium', 'mediumBtn')">
                                         Medium
-                                        <img src="assets/img/prio_medium_icon.svg" alt="medium priority icon"
+                                        <img src="assets/img/addTask_medium_orange.svg" alt="medium priority icon"
                                             class="medium-icon" class="prio-icon">
                                     </div>
                                     <div class="prio-btn" id="lowBtn"
-                                        onclick="selectPriority('lowBtn', 'low-btn'); addPriorityToTask('low')">Low <img
+                                        onclick="selectPriority('lowBtn', 'low-btn'); addPriorityToTask('low', 'lowBtn')">Low <img
                                             src="assets/img/prio_low_icon.svg" alt="low priority icon"
                                             class="prio-icon"></div>
                                 </div>
                             </div>
                             <div class="input-container">
-                                <label for="categoryInput">Category<span class="red">*</span></label>
+                                <label for="categoryInput">Category<span class="red-required">*</span></label>
                                 <div class="input-field category-input"
                                     onclick="togglePopup('categoryPopup'); stopCurrentAction(event)">
                                     <input type="text" id="categoryInput" placeholder="Select task category"
                                         class="special-input">
-                                    <img src="assets/img/drop_down_array_icon.svg" alt="" class="icon">
+                                    <img src="assets/img/drop_down_array_icon.svg" alt="" class="icon input-icon">
                                 </div>
                                 <div class="category-popup d-none" id="categoryPopup">
                                     <ul class="styled-list">
-                                        <li id="categoryTechnical" onclick="addCategory('categoryTechnical')">Technical
-                                            Task</li>
-                                        <li id="categoryUserStory" onclick="addCategory('categoryUserStory')">User Story
-                                        </li>
+                                        <li class="category-list-item" id="categoryTechnical" onclick="addCategory('categoryTechnical')">Technical Task</li>
+                                        <li class="category-list-item" id="categoryUserStory" onclick="addCategory('categoryUserStory')">User Story</li>
                                     </ul>
                                 </div>
                             </div>
@@ -114,10 +115,10 @@
                                 <div class="input-field" onclick="openSubtaskInput()" >
                                     <input type="text" class="special-input subtask-input" name="subtasks"
                                         id="subtaskInput" placeholder="Add new subtask">
-                                    <img src="assets/img/addTask_add.svg" alt="" class="icon" id="addSubtaskIcon">
-                                    <div class="flex gap-8 d-none" id="editSubtaskIcons">
-                                        <img src="assets/img/addTask_close.svg" alt=""class="icon" onclick="clearInput('subtaskInput'); stopCurrentAction(event)">
-                                        <img src="assets/img/addTask_check.svg" alt=""class="icon" onclick="addSubtask(); stopCurrentAction(event)">
+                                    <img src="assets/img/addTask_add.svg" alt="" class="icon special-input-icon" id="addSubtaskIcon">
+                                    <div class="input-icon-box d-none" id="editSubtaskIcons">
+                                        <img src="assets/img/addTask_close.svg" alt=""class="edit-icon" onclick="clearInput('subtaskInput'); stopCurrentAction(event)">
+                                        <img src="assets/img/addTask_check.svg" alt=""class="edit-icon" onclick="addSubtask(); stopCurrentAction(event)">
                                     </div>
                                 </div>
                             </div>
@@ -129,7 +130,7 @@
                         </div>
                     </div>
                     <div class="form-bottom">
-                        <span><span class="red">*</span>This field is requiered</span>
+                        <span><span class="red-required">*</span>This field is requiered</span>
                         <div class="submit-container">
                             <div class="submit-btn clear-btn" onclick="resetAddTask()">Clear <img src="assets/img/clear_icon.svg" alt=""></div>
                             <button class="submit-btn add-btn" id="createTaskBtn">Create Task <img

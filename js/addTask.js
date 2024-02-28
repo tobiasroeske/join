@@ -2,8 +2,9 @@ let contacts = [];
 
 let tasks = [];
 let currentTask = {}
-let currentPriority = 'medium';
+let currentPriority = ['medium', 'assets/img/addTask_medium_orange.svg'];
 let assignedContact;
+let selectedContacts = [];
 let subtasks = [];
 let currentColumn = 'toDo';
 
@@ -45,8 +46,49 @@ function renderContacts() {
     for (let i = 0; i < contacts.length; i++) {
         const contact = contacts[i];
         contactList.innerHTML += /*html*/`
-            <li id="contact${i}" onclick="addContactToList(${i}); stopCurrentAction(event)">${contact['name']}</li>
+            <li class="list-item" id="contact${i}" onclick="stopCurrentAction(event); selectContact('contact${i}', ${i})">
+                <div class="flex gap-8 align-items-center">
+                    <div class="initials ${contact['color']}">${contact['initials']}</div>
+                    <span>${contact['name']}</span>
+                </div>
+                <input type="checkbox" id="contact${i}">
+            </li>
         `;
+    }
+}
+
+function selectContact(id, index) {
+    let selectedContact = document.getElementById(id);
+    if (!selectedContact.classList.contains('active-contact')) {
+        selectedContact.classList.add('active-contact');
+        document.getElementById(id).querySelector('input').checked = true;
+        addContactToList(index)
+    } else {
+        selectedContact.classList.remove('active-contact')
+        document.getElementById(id).querySelector('input').checked = false;
+        removeContactFromList(index);
+    }
+    
+}
+
+function addContactToList(index) {
+    selectedContacts.push(contacts[index]);
+    renderSelectedContacts()
+}
+
+function removeContactFromList(index) {
+    selectedContacts.splice(index, 1);
+    renderSelectedContacts();
+}
+
+function renderSelectedContacts() {
+    let selecetedContactsContainer = document.getElementById('selectedContacts');
+    selecetedContactsContainer.innerHTML = '';
+    for (let i = 0; i < selectedContacts.length; i++) {
+        const contact = selectedContacts[i];
+        selecetedContactsContainer.innerHTML += /*html*/`
+            <div class="initials ${contact['color']}">${contact['initials']}</div>
+        `
     }
 }
 
@@ -69,16 +111,15 @@ async function createNewTask() {
 function getTaskData() {
     let titleInput = document.getElementById('titleInput');
     let descriptionInput = document.getElementById('descriptionTextarea');
-    let contactInput = document.getElementById('assignedContacts');
+    let selectedContactContainer = document.getElementById('selectedContacts');
     let dateInput = document.getElementById('dateInput');
     let categoryInput = document.getElementById('categoryInput');
     currentTask = {
         title: titleInput.value,
         description: descriptionInput.value,
-        assignedContact: contactInput.value,
+        assignedContact: selectedContacts,
         dueDate: dateInput.value,
         category: categoryInput.value,
-        color: contactInput.value != '' ? assignedContact['color'] : '',
         priority: currentPriority,
         column: currentColumn,
         subtasks: subtasks
@@ -86,8 +127,11 @@ function getTaskData() {
   }
   
 
-function addPriorityToTask(prio) {
-    currentPriority = prio;
+function addPriorityToTask(prio, id) {
+    let imageSource = document.getElementById(id).querySelector('img').src
+    currentPriority = [];
+    currentPriority.push(prio);
+    currentPriority.push(imageSource);
 }
 
 function resetAddTask() {
@@ -98,13 +142,6 @@ function resetAddTask() {
     document.getElementById('categoryInput').value = ''
     currentTask = '';
     currentPriority = 'medium'
-}
-
-function addContactToList(index) {
-    let contactInputField = document.getElementById('assignedContacts')
-    contactInputField.value = contacts[index]['name'];
-    assignedContact = contacts[index];
-    togglePopup('contactsPopup');
 }
 
 function togglePopup(id) {
@@ -125,12 +162,7 @@ function addCategory(id) {
 function startAnimation (id, className) {
     let element = document.getElementById(id);
     element.classList.toggle(className);
-  }
-
-// function startAnimation() {
-//     let taskAdded = document.getElementById('taskAdded');
-//     taskAdded.classList.add('task-added-animation');
-// }
+}
 
 function pipeToBoard() {
     document.getElementById('createTaskBtn').disabled = true;

@@ -51,7 +51,8 @@ async function addNewContact() {
         name: capitalizeFirstLetter(nameInput.value), 
         email: emailInput.value,
         phone: phoneInput.value,
-        color: getRandomColor()
+        color: getRandomColor(),
+        initials: getInitials(nameInput.value)
     }
     contacts.push(contact);
     await setItem('contacts', JSON.stringify(contacts));

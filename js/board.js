@@ -70,8 +70,8 @@ function generateTasksHTML(task, index) {
         <div id="taskTitle" class="task-title">${task['title']}</div>
         <div id="taskDescription" class="task-description">${task['description']}</div>
         <div id="dueDate" class="due-date">${task['dueDate']}</div>
-        <div id="taskPriority" class="task-priority">${task['priority']}</div>
-        <div id="assignedTo" class="assigned-to">${task['assignedContact']}</div>
+        <div id="taskPriority" class="task-priority"><img src="${task['priority'][1]}" alt=""></div>
+        <div id="assignedTo" class="assigned-to">${renderContactsInTask(task)}</div>
         <div class="w3-light-grey w3-round-xlarge progressbar">
             <div class="w3-container w3-blue w3-round-xlarge progressbar" style="width:50%"
                 id="taskProgress"></div>
@@ -81,6 +81,17 @@ function generateTasksHTML(task, index) {
     </div>
 </div>
 `;
+}
+
+function renderContactsInTask(task) {
+  let html = '';
+  for (let i = 0; i < task['assignedContact'].length; i++) {
+    const contact = task['assignedContact'][i];
+    html += /*html*/`
+      <div class="initials ${contact['color']}">${contact['initials']}</div>
+    `
+  }
+  return html;
 }
 
 /**
@@ -106,6 +117,10 @@ function renderTaskPopup(index) {
   popupContent.innerHTML = generateTaskPopupHTML(task, index);
 }
 
+function capitalizeFirstLetter(string) {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
 /**
  * generates the html code for the tasks popup
  * taking the current task object and its index in the array as parameters
@@ -128,13 +143,11 @@ function generateTaskPopupHTML(task, index) {
   </div>
   <div>
     <span>Priority: </span>
-    <span>${task['priority']}</span>
+    <span>${capitalizeFirstLetter(task['priority'][0])} <img src="${task['priority'][1]}" alt=""></span>
   </div>
   <div>
     Assigned To:
-    <ul>
-      <li>${task['assignedContact']}</li>
-    </ul>
+    ${renderContactsInTask(task)}
   </div>
   <div>
     Subtasks:
@@ -143,6 +156,8 @@ function generateTaskPopupHTML(task, index) {
 
 `;
 }
+
+
 
 /**
  * Checks depending on the current task how many subtasks exist and creates
@@ -209,6 +224,10 @@ async function openAddTaskPopup(column) {
 function closePopup() {
   setTimeout(() => document.getElementById('popup').classList.toggle('d-none'), 125);
   startAnimation('addTaskPopup', 'popup-show')
+}
+
+function closePopupInTaskEditor(id) {
+  document.getElementById(id).classList.add('d-none');
 }
 
 /**

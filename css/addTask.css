@@ -21,6 +21,37 @@ button {
   background-color: white;
   offset: none;
 }
+.orange {
+  background-color: #ff7a00;
+}
+
+.purple {
+  background-color: #6e52ff;
+}
+
+.pink {
+  background-color: #fc71ff;
+}
+
+.yellow {
+  background-color: #ffbb2b;
+}
+
+.green {
+  background-color: #1fd7c1;
+}
+
+.darkblue {
+  background-color: #462f8a;
+}
+
+.violet {
+  background-color: #9327ff;
+}
+
+.red {
+  background-color: #ff4646;
+}
 
 .flex {
   display: flex !important;
@@ -112,8 +143,8 @@ textarea {
 
 .input-field {
   position: relative;
-  background-color: white;
   display: flex;
+  align-items: center;
 }
 
 .icon {
@@ -122,13 +153,35 @@ textarea {
   padding: 4px;
 }
 
+.input-icon {
+  position: absolute;
+  right: 21px;
+}
+
+.input-icon-box {
+  position: absolute;
+  right: 21px;
+  display: flex;
+  align-items: center;
+}
+
+.special-input-icon {
+  position: absolute;
+  right: 21px;
+  padding: 8px;
+}
+
+.edit-icon {
+  padding: 8px;
+  border-radius: 18px;
+}
+
 .icon:hover {
   background-color: #eeeeee;
 }
 
 .input,
-.select,
-.input-field {
+.select {
   width: 100%;
   border: 1px solid #d1d1d1;
   padding: 12px 21px;
@@ -138,13 +191,17 @@ textarea {
 
 .input:focus,
 .select:focus,
-.textarea:focus {
+.textarea:focus,
+.special-input:focus {
   border: 1px solid #5ec0e9;
 }
 
 .special-input {
   width: 100%;
   font-size: 20px;
+  padding: 12px 21px;
+  border: 1px solid #d1d1d1;
+  border-radius: 10px;
 }
 
 .textarea {
@@ -277,7 +334,7 @@ textarea {
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.15);
 }
 
-.red {
+.red-required {
   color: #ff8190;
 }
 
@@ -306,17 +363,42 @@ textarea {
   flex-direction: column;
   padding-top: 16px;
   max-height: 128px;
+  gap: 4px;
 }
 
-.styled-list li {
+.list-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   cursor: pointer;
   padding: 8px 16px;
   width: 100%;
+  border-radius: 10px;
 }
 
-.styled-list li:hover {
+.initials {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  height: 42px;
+  width: 42px;
+  border-radius: 50%;
+  border: 2px solid white;
+  color: white;
+}
+
+.list-item:hover {
   background-color: #eeeeee;
-  border-radius: 10px;
+}
+
+.active-contact {
+  background-color: #2a3647;
+  color: white;
+}
+
+.active-contact:hover {
+  background-color: #091931 !important;
 }
 
 .subtasks {
@@ -325,17 +407,17 @@ textarea {
 }
 
 /* Track */
-.subtasks::-webkit-scrollbar-track {
+.subtasks::-webkit-scrollbar-track, .category-popup::-webkit-scrollbar-track {
   background: #fafafa;
 }
 
 /* Handle */
-.subtasks::-webkit-scrollbar-thumb {
+.subtasks::-webkit-scrollbar-thumb, .category-popup::-webkit-scrollbar-thumb {
   background: #c1c1c1;
 }
 
 /* Handle on hover */
-.subtasks::-webkit-scrollbar-thumb:hover {
+.subtasks::-webkit-scrollbar-thumb:hover, .category-popup::-webkit-scrollbar-thumb:hover {
   background: #7d7d7d;
 }
 
