@@ -75,12 +75,13 @@ function generateTasksHTML(task, index) {
         <div class="w3-container w3-blue w3-round-xlarge progressbar" 
             id="taskProgress"></div> 
     </div>
-       <div class="assigned-and-prio"><div id="assignedTo" class="assigned-to">${renderContactsInTask(task)}</div> <div id="taskPriority" class="task-priority"><img src="${task['priority'][1]}" alt=""></div>
+       <div class="assigned-and-prio"><div id="assignedTo" class="assigned-to">${renderContactInitials(task)}</div> <div id="taskPriority" class="task-priority"><img src="${task['priority'][1]}" alt=""></div>
         </div>
     </div>
 </div>
 `;
 }
+
 
 
 /* Drag and drop funktionen*/
@@ -103,7 +104,10 @@ function moveTo(category) {
 
 
 
-function renderContactsInTask(task) {
+
+
+function renderContactInitials(task) {
+
   let html = '';
   for (let i = 0; i < task['assignedContact'].length; i++) {
     const contact = task['assignedContact'][i];
@@ -147,7 +151,7 @@ function capitalizeFirstLetter(string) {
  * 
  * @param {object} task one task from the tasks array
  * @param {number} index the index of the current task 
- * @returns 
+ * @returns the html code
  */
 function generateTaskPopupHTML(task, index) {
   return /*html*/`
@@ -167,7 +171,7 @@ function generateTaskPopupHTML(task, index) {
   </div>
   <div class="popup-assignedto">
     Assigned To:
-   <div class="popup-assignedto2"> ${renderContactsInTask(task)}</div>
+   <div class="popup-assignedto2">${renderContactsTaskPopup(task)}</div>
   </div>
   <div class="popup-subtasks">
     Subtasks:
@@ -179,6 +183,20 @@ function generateTaskPopupHTML(task, index) {
 
        <div class="popup-edit"><img src="assets/img/edit.png" alt="" class="editicon">Edit</div></div>
 `;
+}
+
+function renderContactsTaskPopup(task) {
+  let html ='';
+  for (let i = 0; i < task['assignedContact'].length; i++) {
+    const contact = task['assignedContact'][i];
+    html += /*html*/`
+    <div class="contacts-in-popup">
+      <div class="initials ${contact['color']}">${contact['initials']}</div>
+      <div>${contact['name']}</div>
+    </div>
+    `;
+  }
+  return html;
 }
 
 /**

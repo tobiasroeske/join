@@ -68,7 +68,6 @@ function selectContact(id, index) {
         document.getElementById(id).querySelector('input').checked = false;
         removeContactFromList(index);
     }
-    
 }
 
 function addContactToList(index) {
