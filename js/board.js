@@ -85,10 +85,10 @@ function generateTasksHTML(task, index) {
 
 /* Drag and drop funktionen*/
 
-function startDragging(index){
-        let task = tasks[index];
-        currentDraggedElement = task;
-         console.log(currentDraggedElement);
+function startDragging(index) {
+  let task = tasks[index];
+  currentDraggedElement = task;
+  console.log(currentDraggedElement);
 }
 
 function allowDrop(ev) {
@@ -128,8 +128,8 @@ function renderContactInitials(task) {
  */
 function openTaskPopup(index) {
   renderTaskPopup(index);
-  togglePopup('secondPopup') 
-  setTimeout(() => startAnimation('popupContent', 'popup-show'),125);
+  togglePopup('secondPopup')
+  setTimeout(() => startAnimation('popupContent', 'popup-show'), 125);
 }
 
 /**
@@ -158,7 +158,7 @@ function capitalizeFirstLetter(string) {
 function generateTaskPopupHTML(task, index) {
   return /*html*/`
   <div class="popup-category">
-   <div> <span class="task-${task['category'].replace(' ', '')}">${task['category']}</span>  </div>
+    <div> <span class="task-${task['category'].replace(' ', '')}">${task['category']}</span>  </div>
     <div><img src="assets/img/contacts_close.svg" alt="" class="icon" onclick="closeSecondPopup()"></div>
   </div>
   <h1 class="page-heading3">${task['title']}</h1>
@@ -179,16 +179,121 @@ function generateTaskPopupHTML(task, index) {
     Subtasks:
    <div class="popup-subtasks2"> ${renderSubtasksForPopup(index)}</div>
   </div>
-    <div class="edit-and-delete">   <div class="popup-delete" onclick="deleteTask(${index})">
-    <img src="assets/img/delete.png" alt="" class="deleteicon">Delete
-</div>
-
-       <div class="popup-edit"><img src="assets/img/edit.png" alt="" class="editicon">Edit</div></div>
+  <div class="edit-and-delete">   
+    <div class="popup-delete" onclick="deleteTask(${index})">
+      <img src="assets/img/delete.png" alt="" class="deleteicon">Delete
+    </div>
+    <div class="popup-edit" onclick="openTaskEditor(${index})">
+      <img src="assets/img/edit.png" alt="" class="editicon">Edit
+    </div>
+  </div>
 `;
 }
 
+function deleteTask(index) {
+  let task = tasks[index];
+  tasks.splice(index, 1);
+  closeSecondPopup();
+  renderAllTasks();
+}
+
+function openTaskEditor(index) {
+  let popupContainer = document.getElementById('popupContent');
+  document.getElementById('addTaskPopup').innerHTML = '';
+  let task = tasks[index];
+  popupContainer.innerHTML = generateTaskEditorHTML(task, index);
+  renderContacts();
+  renderSubtasksInEditor(index)
+}
+
+function generateTaskEditorHTML(task, index) {
+  return /*html*/`
+  <div class="edit-container">
+    <div class="flex-end">
+      <img src="assets/img/contacts_close.svg" alt="" class="icon" onclick="closeSecondPopup()">
+    </div>
+    <form onsubmit="editTask(${task}; return false)">
+      <div class="input-container">
+        <label for="titleInput">Title</label>
+        <input value="${task['title']}" type="text" name="title" id="titleInput" class="input" required placeholder="Enter a title">
+      </div>
+      <div class="input-container">
+        <label for="descriptionTextarea">Description</label>
+        <textarea name="description" id="descriptionTextarea" cols="30" rows="10"
+        placeholder="Enter a Description" class="textarea">${task['description']}</textarea>
+      </div>
+      <div class="input-container">
+        <label for="dateInput">Due date </label>
+        <input value="${task['dueDate']}"type="date" name="dueDate" id="dateInput" placeholder="dd/mm/yyyy"
+            class="input date-input" required>
+      </div>
+      <div class="prio-buttons">
+        <div class="prio-btn" id="urgentBtn" onclick="selectPriority('urgentBtn', 'urgent-btn'); addPriorityToTask('urgent', 'urgentBtn')">Urgent
+          <img src="assets/img/prio_high_icon.svg" alt="high priority icon" class="prio-icon">
+        </div>
+        <div class="prio-btn medium-btn" id="mediumBtn"
+              onclick="selectPriority('mediumBtn', 'medium-btn'); addPriorityToTask('medium', 'mediumBtn')">Medium
+          <img src="assets/img/addTask_medium_orange.svg" alt="medium priority icon" class="medium-icon"
+                  class="prio-icon">
+        </div>
+        <div class="prio-btn" id="lowBtn" onclick="selectPriority('lowBtn', 'low-btn'); addPriorityToTask('low', 'lowBtn')">Low 
+          <img src="assets/img/prio_low_icon.svg" alt="low priority icon" class="prio-icon"></div>
+        </div>
+        <div class="input-container" onclick="togglePopup('contactsPopup'); stopCurrentAction(event)">
+          <label for="assignedContacts">Assigned to</label>
+          <div class="input-field category-input">
+            <input type="text" id="assignedContacts" placeholder="Select Contacts to assign"
+                class="special-input">
+            <img src="assets/img/drop_down_array_icon.svg" alt="" class="icon input-icon">
+          </div>
+          <div class="category-popup d-none" id="contactsPopup">
+            <ul class="styled-list" id="contactList">
+            
+            </ul>
+          </div>
+            <div class="flex gap-8" id="selectedContacts">
+            ${renderContactInitials(task)}                        
+          </div>
+        </div>
+        <div class="input-container" id="subtaskInputField">
+          <label for="subtaskInput">Subtasks</label>
+          <div class="input-field" onclick="toggleSubtaskInput(); stopCurrentAction(event)" >
+            <input type="text" class="special-input subtask-input" name="subtasks"
+                id="subtaskInput" placeholder="Add new subtask" onkeypress="callOnEnterPress(event, 'addSubtaskBtn')">
+            <img src="assets/img/addTask_add.svg" alt="" class="icon special-input-icon" id="addSubtaskIcon">
+            <div class="input-icon-box d-none" id="editSubtaskIcons">
+              <img src="assets/img/addTask_close.svg" alt=""class="edit-icon" onclick="clearInput('subtaskInput'); stopCurrentAction(event)">
+              <img src="assets/img/addTask_check.svg" alt=""class="edit-icon" onclick="addSubtask(); stopCurrentAction(event)" id="addSubtaskBtn">
+            </div>
+          </div>
+        </div>
+        <div>
+          <ul id="subtasksInEditor" class="subtasks d-none">
+            
+          </ul>
+        </div>
+        <div class="flex-end">
+          <button class="submit-btn add-btn">Ok <img src="assets/img/check_icon.svg" alt=""></button>
+        </div>
+    </form>
+  </div>
+  `
+}
+
+function renderSubtasksInEditor(index) {
+  let task = tasks[index];
+  let subtaskContainer = document.getElementById('subtasksInEditor');
+  task['subtasks'].length == 0 ? subtaskContainer.classList.add('d-none') : subtaskContainer.classList.remove('d-none');
+  subtaskContainer.innerHTML = '';
+  for (let i = 0; i < task['subtasks'].length; i++) {
+    const subtask = task['subtasks'][i];
+    subtaskContainer.innerHTML += generateSubtaskHTML(subtask, i);
+  }
+}
+
+
 function renderContactsTaskPopup(task) {
-  let html ='';
+  let html = '';
   for (let i = 0; i < task['assignedContact'].length; i++) {
     const contact = task['assignedContact'][i];
     html += /*html*/`
@@ -221,7 +326,7 @@ function renderSubtasksForPopup(index) {
   `;
   }
   return html;
-} 
+}
 
 /**
  * creates a new Task and saves it in the currentTask variable

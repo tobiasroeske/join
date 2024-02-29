@@ -488,7 +488,59 @@ font-size: 16px;
   font-weight: 500;
   filter: invert(65%) sepia(42%) saturate(3270%) hue-rotate(165deg) brightness(93%) contrast(90%);
  }
+
+ .edit-task {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  background-color: white;
+ }
+
+ /* Track */
+.popup2-content::-webkit-scrollbar-track {
+  background: #fafafa;
+  all:unset
+}
+
+/* Handle */
+.popup2-content::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  all: unset;
+}
+
+/* Handle on hover */
+.popup2-content::-webkit-scrollbar-thumb:hover {
+  background: #7d7d7d;
+  all: unset;
+}
+
+ .edit-task .form-top {
+  flex-direction: column;
+ }
+
+ .edit-task-btn {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: unset;
+  background-color: #2a3647;
+  color: white;
+  padding: 12px 21px;
+  border-radius: 10px;
+
+ }
+
+ .edit-task-btn:hover {
+  box-shadow: 3px 5px 3px 0px lightgrey;
+  background-color: #29abe2;
+ }
  
+ .flex-end {
+  display: flex;
+  justify-content: flex-end;
+ }
 
 
 

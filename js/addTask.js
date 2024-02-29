@@ -227,16 +227,20 @@ function openSubtaskEditor(index) {
     let input = document.getElementById(`subtask${index}`);
     input.classList.remove('subtask-list-item');
     input.classList.add('subtask-item-edit');
-    input.innerHTML = /*html*/`
-        <div class="subtask-input-field">
-            <input type="text" value="${subtasks[index]}" class="edit-subtask-input" id="subtaskInput${index}" onkeypress="callOnEnterPress(event, 'editSubtaskBtn')">
-            <div class="edit-icons">
-                <img src="assets/img/addTask_delete.svg" alt="" onclick="deleteSubtask(${index})" >
-                <div class="icon-seperator"></div>
-                <img src="assets/img/addTask_check.svg" alt="" onclick="editSubtask(${index})" id="editSubtaskBtn">
-            </div>
+    input.innerHTML = generateSubTaskEditorHTML(index);
+}
+
+function generateSubTaskEditorHTML(index) {
+    return /*html*/`
+    <div class="subtask-input-field">
+        <input type="text" value="${subtasks[index]}" class="edit-subtask-input" id="subtaskInput${index}" onkeypress="callOnEnterPress(event, 'editSubtaskBtn')">
+        <div class="edit-icons">
+            <img src="assets/img/addTask_delete.svg" alt="" onclick="deleteSubtask(${index})" >
+            <div class="icon-seperator"></div>
+            <img src="assets/img/addTask_check.svg" alt="" onclick="editSubtask(${index})" id="editSubtaskBtn">
         </div>
-    `;
+    </div>
+`;
 }
 
 function editSubtask(index) {
