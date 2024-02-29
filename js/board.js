@@ -69,19 +69,18 @@ function generateTasksHTML(task, index) {
         <div id="taskUserStory" class="task-${task['category'].replace(' ', '')}">${task['category']}</div>
         <div id="taskTitle" class="task-title">${task['title']}</div>
         <div id="taskDescription" class="task-description">${task['description']}</div>
-        <div id="dueDate" class="due-date">${task['dueDate']}</div>
-        <div id="taskPriority" class="task-priority"><img src="${task['priority'][1]}" alt=""></div>
-        <div id="assignedTo" class="assigned-to">${renderContactsInTask(task)}</div>
+
         <div class="w3-light-grey w3-round-xlarge progressbar">
-            <div class="w3-container w3-blue w3-round-xlarge progressbar" style="width:50%"
-                id="taskProgress"></div>
+        <div class="w3-container w3-blue w3-round-xlarge progressbar" 
+            id="taskProgress"></div> 
+    </div>
+       <div class="assigned-and-prio"><div id="assignedTo" class="assigned-to">${renderContactsInTask(task)}</div> <div id="taskPriority" class="task-priority"><img src="${task['priority'][1]}" alt=""></div>
         </div>
-        <div id="taskSubtasks" class="Subtasks"></div>
-        <div id="taskWorker" class="task-worker"></div>
     </div>
 </div>
 `;
 }
+
 
 function renderContactsInTask(task) {
   let html = '';
@@ -131,33 +130,35 @@ function capitalizeFirstLetter(string) {
  */
 function generateTaskPopupHTML(task, index) {
   return /*html*/`
-  <div>
-    <span class="task-${task['category'].replace(' ', '')}">${task['category']}</span>
-    <img src="assets/img/contacts_close.svg" alt="" class="icon" onclick="closeSecondPopup()">
+  <div class="popup-category">
+   <div> <span class="task-${task['category'].replace(' ', '')}">${task['category']}</span>  </div>
+    <div><img src="assets/img/contacts_close.svg" alt="" class="icon" onclick="closeSecondPopup()"></div>
   </div>
-  <h1 class="page-heading">${task['title']}</h1>
-  <span>${task['description']}</span>
-  <div>
+  <h1 class="page-heading3">${task['title']}</h1>
+  <div class="description-popup"><span>${task['description']}</span></div>
+  <div class="popup-date">
     <span>Due Date: </span>
-    <span>${task['dueDate']}</span>
+    <div class="popup-date2">   <span>${task['dueDate']}</span> </div>
   </div>
-  <div>
+  <div class="priority-popup">
     <span>Priority: </span>
-    <span>${capitalizeFirstLetter(task['priority'][0])} <img src="${task['priority'][1]}" alt=""></span>
+    <div class="priority-popup2"> <span>${capitalizeFirstLetter(task['priority'][0])} <img src="${task['priority'][1]}" alt=""></span> </div>
   </div>
-  <div>
+  <div class="popup-assignedto">
     Assigned To:
-    ${renderContactsInTask(task)}
+   <div class="popup-assignedto2"> ${renderContactsInTask(task)}</div>
   </div>
-  <div>
+  <div class="popup-subtasks">
     Subtasks:
-    ${renderSubtasksForPopup(index)}
+   <div class="popup-subtasks2"> ${renderSubtasksForPopup(index)}</div>
   </div>
+    <div class="edit-and-delete">   <div class="popup-delete" onclick="deleteTask(${index})">
+    <img src="assets/img/delete.png" alt="" class="deleteicon">Delete
+</div>
 
+       <div class="popup-edit"><img src="assets/img/edit.png" alt="" class="editicon">Edit</div></div>
 `;
 }
-
-
 
 /**
  * Checks depending on the current task how many subtasks exist and creates
@@ -249,24 +250,5 @@ function closeSecondPopup() {
   setTimeout(() => document.getElementById('secondPopup').classList.toggle('d-none'), 125);
   startAnimation('popupContent', 'popup-show')
 }
-
-// I commented this function out, because I wrote a new one
-
-// function openSecondPopup() {
-//   let popup = document.getElementById('secondPopup');
-//   let taskDesignContent = document.querySelector('.task-design').innerHTML;
-//   let popupContent = popup.querySelector('.popup2-content');
-//   let taskTitle = popupContent.querySelector('.task-title');
-
-//   if (taskTitle) {
-//     taskTitle.style.fontSize = '50px';
-//   }
-
-//   setTimeout(() => {
-//     popupContent.innerHTML = taskDesignContent;
-//     popup.classList.remove('d-none');
-//     startAnimation('secondPopup', 'popup2-show');
-//   }, 0);
-// }
 
 
