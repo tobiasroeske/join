@@ -1,329 +1,304 @@
 * {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-    font-family: 'Inter';
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Inter";
 }
 
 a {
-    text-decoration: none;
-    color: #FFFFFF;
-    font-weight: 700px;
-    font-size: 21px;
-    line-height: 25.2px;
+  text-decoration: none;
+  color: #ffffff;
+  font-weight: 700px;
+  font-size: 21px;
+  line-height: 25.2px;
 }
 
 header {
-    display: flex;
-    justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 80px 77px 0 77px;
 }
 
 button {
-    border: unset;
+  border: unset;
 }
 
-.logo {
-    padding-top: 80px;
-    padding-left: 77px;
+.signup-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-
 
 .sign_up {
-    display: flex;
-    align-items: center;
-    width: 400px;
-    justify-content: space-evenly;
-    position: absolute;
-    top: 60px;
-    right: 20px;
+  display: flex;
+  align-items: center;
+  width: 400px;
+  justify-content: flex-end;
+  gap: 35px;
 }
 
 .sign_up button {
-    width: 91px;
-    height: 49px;
-    border-radius: 8px;
-    padding: 15px, 16px, 15px, 16px;
-    gap: 10px;
-    background-color: #2A3647;
-    color: #FFFFFF;
+  width: 91px;
+  height: 49px;
+  border-radius: 8px;
+  padding: 15px, 16px, 15px, 16px;
+  gap: 10px;
+  background-color: #2a3647;
+  color: #ffffff;
 }
 
 .sign_up button:hover {
-    background-color: #29ABE2;;
+  background-color: #29abe2;
 }
 
 .sign_up p {
-    font-weight: 400px;
-    font-size: 20px;
-    line-height: 24px;
+  font-weight: 400px;
+  font-size: 20px;
+  line-height: 24px;
 }
 
 form {
-    margin-top: 70px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    height: 50vh;
-    
-    
-    
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  gap: 16px;
 }
 
-.log_in_field{
-    width: 652px;
-    height: 493px;
-    border: 1px solid lightgray;
-    border-radius: 40px;
-    background-color: #FFFFFF;
-    box-shadow: 1px 1px 14px lightgray;
-    display: flex;
-    flex-direction: column;
-    
+.login-form {
+    gap: 32px;
 }
 
-.log_in_headline_container {
-    margin-top: 30px;
+.log_in_field {
+  width: 652px;
+  height: 493px;
+  border: 1px solid lightgray;
+  border-radius: 40px;
+  background-color: #ffffff;
+  box-shadow: 1px 1px 14px lightgray;
+  display: flex;
+  flex-direction: column;
 }
 
 .log_in_headline {
-    font-weight: 700;
-    font-size: 61px;
-    line-height: 73.2px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
+  font-weight: 700;
+  font-size: 61px;
+  line-height: 73.2px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
 }
 
 .log_in_headline::after {
-    content: "";
-    width: 150px;
-    background-color: #29ABE2;
-    display: block;
-    position: relative;
-    height: 3px;
+  content: "";
+  width: 150px;
+  background-color: #29abe2;
+  display: block;
+  position: relative;
+  height: 3px;
 }
 
-.input_container, 
+.input_container,
 .sign-up-container {
-    
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .input-box {
-    position: relative;
-    width: 70%;
-    height: 50px;
-    margin-top: 30px;
+  position: relative;
+  width: 100%;
 }
 
 .input-box input {
-    width: 100%;
-    height: 100%;
-    border-radius: 10px;
-    border: none;
-    outline: none;
-    box-shadow: 1px 1px 14px lightgray;
-    font-size: 20px;
-    font-weight: 400px;
-    line-height: 24px;
-    padding: 10px;
-    
-    
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  box-shadow: 1px 1px 14px lightgray;
+  font-size: 20px;
+  font-weight: 400px;
+  line-height: 24px;
+  padding: 10px;
 }
 
 .input-box input:focus {
-    border: 1px solid #5EC0E9;
+  border: 1px solid #5ec0e9;
 }
 
 .input-box img {
-    position: absolute;
-    right: 15px;
-    top: 25%;
-    transform: translate(-25%);
+  position: absolute;
+  right: 15px;
+  top: 25%;
+  transform: translate(-25%);
 }
 
 .remember {
-    margin-top: 45px;
-    margin-left: 167px;
     display: flex;
     justify-content: flex-start;
     gap: 5px;
+    align-self: flex-start;
+    padding: 20px 0 0 40px;
 }
 
 .buttons {
-    margin-top: 20px;
-    display: flex;
-    justify-content: center;
-    gap: 45px;
+  
+  display: flex;
+  justify-content: center;
+  gap: 45px;
 }
 
 .log-in-button button,
 .sign-up-button button {
-    cursor: pointer;
-    width: 126px;
-    height: 55px;
-    border-radius: 8px;
-    padding: 15px, 16px, 15px, 16px;
-    gap: 10px;
-    background-color: #2A3647;
-    color: #FFFFFF;
-    font-weight: 700px;
-    font-size: 21px;
-    line-height: 25.2px;
+  cursor: pointer;
+  width: 126px;
+  height: 55px;
+  border-radius: 8px;
+  padding: 15px, 16px, 15px, 16px;
+  gap: 10px;
+  background-color: #2a3647;
+  color: #ffffff;
+  font-weight: 700px;
+  font-size: 21px;
+  line-height: 25.2px;
 }
 
-.log-in-button button:hover{
-background-color: #29ABE2;
+.log-in-button button:hover {
+  background-color: #29abe2;
 }
 
 .sign-up-button button:hover {
-    background-color: #29ABE2;
+  background-color: #29abe2;
 }
 
 .sign-up-button button:disabled {
-    cursor:default;
-    background-color: #2A3647;
+  cursor: default;
+  background-color: #2a3647;
 }
 
 .guest-button button {
-    height: 55px;
-    border-radius: 8px;
-    padding: 0px 16px 0px 16px;
-    gap: 10px;
-    background-color: #FFFFFF;
-    border: 3px solid #2A3647;
+  height: 55px;
+  border-radius: 8px;
+  padding: 0px 16px 0px 16px;
+  gap: 10px;
+  background-color: #ffffff;
+  border: 1px solid #2a3647;
 }
 
 .guest-button a {
-    color: #2A3647;
+  color: #2a3647;
 }
 
 .guest-button button:hover {
-    border: 3px solid #29ABE2;
+  border: 3px solid #29abe2;
 }
 
 .guest-button a:hover {
-    color: #29ABE2;
+  color: #29abe2;
 }
 
 .accept-checkbox {
-    color: #29ABE2;
+  color: #29abe2;
 }
 
 .wrong-text {
-    color: red;
-    margin-top: 8px;
+  color: red;
+  margin-top: 8px;
 }
-
-
-
-
-
-
-
 
 /*=============****sign up****========================*/
 .signup-successful {
-    border-radius: 10px;
-    background-color: #2A3647;
-    color: white;
-    padding: 16px 21px;
-    width: 280px;
-    position: absolute;
-    top: 150%;
-    left: 25%;
-    z-index: 50;
-    transition: all 0.125s ease;
-    
+  border-radius: 10px;
+  background-color: #2a3647;
+  color: white;
+  padding: 16px 21px;
+  width: 280px;
+  position: absolute;
+  top: 150%;
+  left: 25%;
+  z-index: 50;
+  transition: all 0.125s ease;
 }
 
 .signup-succesful-animation {
-    top: 44%;
-    top: 80px;
-    left: 80px;
+  top: 44%;
+  top: 80px;
+  left: 80px;
 }
 
 .sign-up-field {
-    width: 598px;
-    height: 630px;
-    border: 1px solid lightgray;
-    border-radius: 40px;
-    background-color: #FFFFFF;
-    box-shadow: 1px 1px 14px lightgray;
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    overflow: hidden;
+  width: 45%;
+  padding: 48px 88px;
+  /* height: 630px; */
+  border: 1px solid lightgray;
+  border-radius: 40px;
+  background-color: #ffffff;
+  box-shadow: 1px 1px 14px lightgray;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  position: relative;
+  overflow: hidden;
 }
 
 .arrow-headline {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 
 .accept {
-    margin-top: 45px;
-    gap: 5px;
+  padding: 16px;
 }
 
 #checkbox {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .accept a {
-    font-size: 16px;
-    font-family: 400px;
-    line-height: 19.2px;
+  font-size: 16px;
+  font-family: 400px;
+  line-height: 19.2px;
 }
-
-.sign-up-button {
-    margin-top: 20px;
-}
-
-
 
 /*=============footer for log in and sign up========================*/
 
 footer {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    margin-top: 150px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin: 80px 0;
 }
- 
+
 .privacy-legal {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
 }
 
 .privacy-legal a {
-    color: #A8A8A8;
-    cursor: pointer;
-    size: 16px;
-    line-height: 19.2px;
-    font-weight: 400px;
-    
+  color: #a8a8a8;
+  cursor: pointer;
+  size: 16px;
+  line-height: 19.2px;
+  font-weight: 400px;
 }
 
 .privacy-legal a:hover {
-    color: #29ABE2;
+  color: #29abe2;
 }
 
 .arrow-svg {
-    position: absolute;
-    top: 40px;
-    left: 64px;
+  position: absolute;
+  top: 40px;
+  left: 64px;
 }
 
 .hide {
-    display: none;
+  display: none;
 }
-
-
-

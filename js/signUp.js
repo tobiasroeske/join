@@ -1,33 +1,34 @@
 let users = [];
 
-async function init(){
+async function init() {
     loadUsers();
     //acceptPolicy();
 }
 
-async function loadUsers(){
+async function loadUsers() {
     try {
         users = JSON.parse(await getItem('users'));
-    } catch(e) {
+    } catch (e) {
         console.error('Loading error:', e);
     }
 }
 
-async function register () {
+async function register() {
     let userName = document.getElementById('userName');
     let password = document.getElementById('password');
     let email = document.getElementById('email');
 
-    if(matchPass()) {
+    if (matchPass()) {
         users.push({
             email: email.value,
             password: password.value,
             name: userName.value,
         });
+        await setItem('users', JSON.stringify(users)); // key = 'users', value
+        pipeToLogin();
     }
-    
-    await setItem('users', JSON.stringify(users)); // key = 'users', value
-    pipeToLogin();
+
+
 }
 
 function pipeToLogin() {
@@ -36,25 +37,25 @@ function pipeToLogin() {
     setTimeout(() => window.open('login.html', '_self'), 800);
 }
 
-function resetForm(){
+function resetForm() {
     userName.value = '';
     email.value = '';
     confirmPassword.value = '';
     password.value = '';
-    
+
 }
 
-function matchPass(){
+function matchPass() {
     let password = document.getElementById('password');
     let confirmPassword = document.getElementById('confirmPassword');
 
-    if(password.value == confirmPassword.value){  
-        return true;  
-        }  
-        else{
+    if (password.value == confirmPassword.value) {
+        return true;
+    }
+    else {
         wrongPasswordText();
-        return false;  
-    }  
+        return false;
+    }
 }
 
 function acceptPolicy() {
@@ -67,6 +68,6 @@ function startSignupAnimation() {
     document.getElementById('signupSuccessful').classList.add('signup-succesful-animation');
 }
 
-function wrongPasswordText () {
+function wrongPasswordText() {
     document.getElementById('wrongPasswordText').classList.remove('hide');
 }

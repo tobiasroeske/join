@@ -106,7 +106,7 @@ async function createNewTask() {
     tasks.push(currentTask);
     await setItem('tasks', JSON.stringify(tasks));
     resetAddTask();
-    pipeToBoard()
+    pipeToBoard();
 }
 
 function getTaskData() {

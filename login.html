@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,6 +10,7 @@
     <link rel="stylesheet" href="css/fonts.css">
     <script src="js/main.js"></script>
 </head>
+
 <body onload="init()">
     <header>
         <div class="logo logo-container" id="logoContainer">
@@ -21,37 +23,46 @@
     </header>
 
     <main>
-        <form onsubmit="login(); return false;" class="form">
-            <div class="log_in_field">
+        <div class="signup-content">
+            <div class="sign-up-field">
                 <div class="log_in_headline_container">
                     <h1 class="log_in_headline">Log in</h1>
                 </div>
-                <div class="input_container">
-                    <div class="input-box">
-                        <input required id="email" class="input-field" type="email" placeholder="Email">
-                        <img class="field_img" src="./assets/img/mail.svg" style="cursor: pointer;">
+                <div class="sign-up-container">
+                    <form onsubmit="login(); return false;" class="login-form">
                         
-                    </div>
-                    <div class="input-box">
-                        <input required id="password" class="input-field" type="password" placeholder="Password">
-                        <img class="field_img" id="lock" src="./assets/img/lock.svg" style="cursor: pointer;">    
-                        <p id="wrong-password" class="wrong-text hide">Email or password wrong, ups! Try again</p>
-                    </div>
+                            <div class="input-box">
+                                <input required id="email" class="input-field" type="email" placeholder="Email">
+                                <img class="field_img" src="./assets/img/mail.svg" style="cursor: pointer;">
+                            </div>
+                            <div class="input-box">
+                                <input required id="password" class="input-field" type="password"
+                                    placeholder="Password">
+                                <img class="field_img" id="lock" src="./assets/img/lock.svg" style="cursor: pointer;">
+                                <p id="wrong-password" class="wrong-text hide">Email or password wrong, ups! Try again
+                                </p>
+                            </div>
+                            <div class="remember">
+                                <input type="checkbox">
+                                <label>Remember me</label>
+                            </div>
+                            <div class="buttons">
+                                <div class="log-in-button">
+                                    <button type="submit">Log in</button>
+                                </div>
+                                <div class="guest-button">
+                                    <button><a href="#">Guest Log in</a></button>
+                                </div>
+                            </div>
+                        
+
+                    </form>
                 </div>
-                <div class="remember">
-                    <input type="checkbox">
-                    <label>Remember me</label>
-                </div>
-                <div class="buttons">
-                    <div class="log-in-button">
-                        <button type="submit">Log in</button>
-                    </div>
-                    <div class="guest-button">
-                        <button><a href="#">Guest Log in</a></button>
-                    </div>
-                </div>
+
             </div>
-        </form>
+            </form>
+        </div>
+
     </main>
     <footer>
         <div class="privacy-legal">
@@ -61,10 +72,11 @@
             <div>
                 <a href="legalNotice.html">Legal notice</a>
             </div>
-    </div>
+        </div>
     </footer>
     <script src="./js/storage.js"></script>
     <script src="./js/signUp.js"></script>
     <script src="./js/logIn.js"></script>
 </body>
+
 </html>
