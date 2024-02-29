@@ -1,4 +1,5 @@
 
+let currentDraggedElement = id;
 /**
  * loads the html template for the addTask popup 
  * then loads the contacts and the tasks from the remote storage
@@ -63,8 +64,8 @@ function renderAllTasks() {
  */
 function generateTasksHTML(task, index) {
   return /*html*/`
-  <div class="task-design" id="card-${index}" draggable="true">
-    <div id="drop-zone">
+  <div class="task-design" id="card-${index}" draggable="true" ondragstart="startDragging(${task['drop-zone']})">
+    <div class="drop-zone" id="drop-zone">
       <div onclick="openTaskPopup(${index})">
         <div id="taskUserStory" class="task-${task['category'].replace(' ', '')}">${task['category']}</div>
         <div id="taskTitle" class="task-title">${task['title']}</div>
@@ -80,6 +81,26 @@ function generateTasksHTML(task, index) {
 </div>
 `;
 }
+
+
+/* Drag and drop funktionen*/
+
+function startDragging(id){
+        currentDraggedElement = id;
+}
+
+function allowDrop(ev) {
+  ev.preventDefault();
+}
+
+function moveTo(category) {
+  todos[currentDraggedElement]['category'] = category;
+  generateTasksHTML();
+}
+
+
+
+
 
 
 function renderContactsInTask(task) {
