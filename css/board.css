@@ -229,7 +229,7 @@ h2 {
   margin-top: 15px;
   display: flex;
   justify-content: space-between;
- 
+  
 }
 
 .assigned-to{
@@ -342,7 +342,7 @@ h2 {
   flex-direction: column;
   position: relative;
   width: 500px;
-  
+  overflow: auto;
   height: 90vh;
   padding: 48px 40px;
   overflow: auto;
@@ -448,12 +448,14 @@ color: #3e4e64;
 .edit-and-delete{
   display: flex;
   flex-direction: row;
-  justify-content: end;
+  position: absolute;
+  bottom: 50px;
+  right: 50px;
   gap: 8px;
   font-weight: 400;
 color: #3e4e64;
 font-size: 16px;
-margin-top: 90px;
+
 
 }
 
