@@ -70,7 +70,6 @@ function generateTasksHTML(task, index) {
         <div id="taskUserStory" class="task-${task['category'].replace(' ', '')}">${task['category']}</div>
         <div id="taskTitle" class="task-title">${task['title']}</div>
         <div id="taskDescription" class="task-description">${task['description']}</div>
-
         <div class="w3-light-grey w3-round-xlarge progressbar">
         <div class="w3-container w3-blue w3-round-xlarge progressbar" 
             id="taskProgress"></div> 
