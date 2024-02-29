@@ -52,7 +52,7 @@ function matchPass(){
         return true;  
         }  
         else{
-        alert("password must be same!");  
+        wrongPasswordText();
         return false;  
     }  
 }
@@ -65,4 +65,8 @@ function acceptPolicy() {
 
 function startSignupAnimation() {
     document.getElementById('signupSuccessful').classList.add('signup-succesful-animation');
+}
+
+function wrongPasswordText () {
+    document.getElementById('wrongPasswordText').classList.remove('hide');
 }
