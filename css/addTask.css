@@ -376,6 +376,15 @@ textarea {
   border-radius: 10px;
 }
 
+.category-list-item {
+  padding: 12px 21px;
+  border-radius: 10px;
+}
+
+.category-list-item:hover {
+  background-color: #eeeeee;
+}
+
 .initials {
   display: flex;
   align-items: center;

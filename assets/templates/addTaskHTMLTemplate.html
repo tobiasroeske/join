@@ -1,4 +1,4 @@
-<div class="add-task" onclick="closePopupInTaskEditor('contactsPopup'); closePopupInTaskEditor('categoryPopup')">
+<div class="add-task" onclick="closeAllPopupsInAddTask()">
     
     <button class="popup-close" onclick="closePopup()" id="popupClose"><img src="./assets/img/close-board.png"
             alt="" class="close-popup-img"></button>
@@ -74,13 +74,13 @@
                 </div>
                 <div class="input-container" id="subtaskInputField">
                     <label for="subtaskInput">Subtasks</label>
-                    <div class="input-field" onclick="openSubtaskInput()" >
+                    <div class="input-field" onclick="toggleSubtaskInput(); stopCurrentAction(event)" >
                         <input type="text" class="special-input subtask-input" name="subtasks"
-                            id="subtaskInput" placeholder="Add new subtask">
+                            id="subtaskInput" placeholder="Add new subtask" onkeypress="callOnEnterPress(event, 'addSubtaskBtn')">
                         <img src="assets/img/addTask_add.svg" alt="" class="icon special-input-icon" id="addSubtaskIcon">
                         <div class="input-icon-box d-none" id="editSubtaskIcons">
                             <img src="assets/img/addTask_close.svg" alt=""class="edit-icon" onclick="clearInput('subtaskInput'); stopCurrentAction(event)">
-                            <img src="assets/img/addTask_check.svg" alt=""class="edit-icon" onclick="addSubtask(); stopCurrentAction(event)">
+                            <img src="assets/img/addTask_check.svg" alt=""class="edit-icon" onclick="addSubtask(); stopCurrentAction(event)" id="addSubtaskBtn">
                         </div>
                     </div>
                 </div>

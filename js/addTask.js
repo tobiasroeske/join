@@ -76,7 +76,9 @@ function addContactToList(index) {
 }
 
 function removeContactFromList(index) {
-    selectedContacts.splice(index, 1);
+    let contact = contacts[index];
+    let newIndex = selectedContacts.indexOf(contact);
+    selectedContacts.splice(newIndex, 1);
     renderSelectedContacts();
 }
 
@@ -170,9 +172,9 @@ function pipeToBoard() {
     setTimeout(() => window.open('board.html', '_self'),1500);
 }
 
-function openSubtaskInput() {
-    document.getElementById('addSubtaskIcon').classList.add('d-none');
-    document.getElementById('editSubtaskIcons').classList.remove('d-none');
+function toggleSubtaskInput() {
+    document.getElementById('addSubtaskIcon').classList.toggle('d-none');
+    document.getElementById('editSubtaskIcons').classList.toggle('d-none');
 }
 
 function addSubtask() {
@@ -184,6 +186,20 @@ function addSubtask() {
     };
     togglePopup('addSubtaskIcon');
     togglePopup('editSubtaskIcons');
+}
+
+function closeAllPopupsInAddTask() {
+    document.getElementById('contactsPopup').classList.add('d-none');
+    document.getElementById('categoryPopup').classList.add('d-none');
+    document.getElementById('editSubtaskIcons').classList.add('d-none');
+    document.getElementById('addSubtaskIcon').classList.remove('d-none');
+}
+
+function callOnEnterPress(event, id) {
+    if (event.key === 'Enter') {
+        event.preventDefault();
+        document.getElementById(id).click();
+    }
 }
 
 function clearInput(id) {
@@ -213,11 +229,11 @@ function openSubtaskEditor(index) {
     input.classList.add('subtask-item-edit');
     input.innerHTML = /*html*/`
         <div class="subtask-input-field">
-            <input type="text" value="${subtasks[index]}" class="edit-subtask-input" id="subtaskInput${index}">
+            <input type="text" value="${subtasks[index]}" class="edit-subtask-input" id="subtaskInput${index}" onkeypress="callOnEnterPress(event, 'editSubtaskBtn')">
             <div class="edit-icons">
-                <img src="assets/img/addTask_delete.svg" alt="" onclick="deleteSubtask(${index})" class="edit-icon">
+                <img src="assets/img/addTask_delete.svg" alt="" onclick="deleteSubtask(${index})" >
                 <div class="icon-seperator"></div>
-                <img src="assets/img/addTask_check.svg" alt="" onclick="editSubtask(${index})" class="edit-icon">
+                <img src="assets/img/addTask_check.svg" alt="" onclick="editSubtask(${index})" id="editSubtaskBtn">
             </div>
         </div>
     `;
