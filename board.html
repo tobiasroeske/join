@@ -81,14 +81,14 @@
                     </div>
 
 
-                    <div class="board-content">
+                    <div class="board-content" ondragover="allowDrop(event)" ondrop="moveToContainer('awaitFeedback')">
                         <div class="headlines-board">
                             <h2>Await Feedback </h2>
                             <img src="./assets/img/board-plus-button.png" alt=""
                                 class="board-plus" onclick="openAddTaskPopup('awaitFeedback')">
                         </div>
                         <div class="board-noTasks" id="awaitFeedback">No Tasks in Await Feedback</div>
-                        <div class="tasks-container" id="tasks-awaitFeedback">
+                        <div class="tasks-container" id="tasks-awaitFeedback" >
                             
                             
                         </div>

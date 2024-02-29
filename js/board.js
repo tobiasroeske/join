@@ -88,15 +88,16 @@ function generateTasksHTML(task, index) {
 function startDragging(index){
         let task = tasks[index];
         currentDraggedElement = task;
-        // console.log(currentDraggedElement);
+         console.log(currentDraggedElement);
 }
 
 function allowDrop(ev) {
   ev.preventDefault();
 }
 
-function moveTo(category) {
-  todos[currentDraggedElement]['category'] = category;
+function moveToContainer(category) {
+  currentDraggedElement['column'] = category;
+  console.log(currentDraggedElement['category']);
   renderAllTasks()
 }
 
