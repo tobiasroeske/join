@@ -52,13 +52,27 @@ function showPasswordVisibility() {
 
 }
 
+function showPassword() {
+    let img = document.getElementById('lock');
+    img.src = './assets/img/visibility_off.png';
+}
+
+function resetPasswordVisibility() {
+    let img = document.getElementById('lock');
+    let passwordInput = document.getElementById('password');
+
+    if (passwordInput.value === '') {
+        img.src = './assets/img/lock.svg';
+    }
+}
+
 function togglePasswordVisibility() {
     let img = document.getElementById('lock');
     let passwordInput = document.getElementById('password');
 
     if (passwordInput.type === 'password') {
-        passwordInput .type = 'text';
-        img.scr = './assets/img/visibility.png';
+        passwordInput.type = 'text';
+        img.src = './assets/img/visibility.png';
     } else {
         passwordInput.type = 'password';
         img.src = './assets/img/visibility_off.png';
