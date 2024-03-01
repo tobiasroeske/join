@@ -13,8 +13,9 @@
     <link rel="stylesheet" href="css/board.css">
     <script src="js/main.js"></script>
     <script src="js/storage.js"></script>
-    <script src="js/addTask.js"></script>
-    <script src="js/board.js"></script>
+    <script src="js/addTask/addTask.js"></script>
+    <script src="js/board/boardHTMLTemplates.js"></script>
+    <script src="js/board/board.js"></script>
 
 </head>
 
@@ -48,9 +49,18 @@
 
                 <div class="board-mainpage">
                     <div class="popup d-none" id="popup">
-                        <div class="add-task-popup" w3-include-html="assets/templates/addTaskHTMLTemplate.html"
-                            id="addTaskPopup">
+                        <div class="add-task-popup" id="addTaskPopup">
+                            <div class="add-task" onclick="closeAllPopupsInAddTask()">
 
+                                <button class="popup-close" onclick="slideOutPopup()" id="popupClose"><img
+                                        src="./assets/img/close-board.png" alt="" class="close-popup-img"></button>
+
+                                <h1 class="page-heading">Add Task</h1>
+                                <form onsubmit="newTask(); return false;" class="form"
+                                    w3-include-html="assets/templates/addTaskHTMLTemplate.html">
+
+                                </form>
+                            </div>
                         </div>
                     </div>
 
@@ -60,10 +70,10 @@
                             <img src="./assets/img/board-plus-button.png" alt="" class="board-plus"
                                 onclick="openAddTaskPopup('toDo')">
                         </div>
-                        
+
                         <div class="board-noTasks" id="toDo">No Tasks To Do</div>
                         <div class="tasks-container" id="tasks-toDo">
-                            
+
                         </div>
                     </div>
 
@@ -84,15 +94,15 @@
                     <div class="board-content" ondragover="allowDrop(event)" ondrop="moveToContainer('awaitFeedback')">
                         <div class="headlines-board">
                             <h2>Await Feedback </h2>
-                            <img src="./assets/img/board-plus-button.png" alt=""
-                                class="board-plus" onclick="openAddTaskPopup('awaitFeedback')">
+                            <img src="./assets/img/board-plus-button.png" alt="" class="board-plus"
+                                onclick="openAddTaskPopup('awaitFeedback')">
                         </div>
                         <div class="board-noTasks" id="awaitFeedback">No Tasks in Await Feedback</div>
-                        <div class="tasks-container" id="tasks-awaitFeedback" >
-                            
-                            
+                        <div class="tasks-container" id="tasks-awaitFeedback">
+
+
                         </div>
-                        
+
                     </div>
 
 
@@ -104,7 +114,7 @@
                         </div>
                         <div class="board-noTasks" id="done">No Tasks in Done</div>
                         <div class="tasks-container" id="tasks-done">
-                            
+
                         </div>
                     </div>
 
@@ -117,9 +127,9 @@
         <div id="secondPopup" class="popup2 d-none">
             <div class="popup2-content" id="popupContent">
                 <span class="popup2-close" onclick="closeSecondPopup()"> <img src="./assets/img/close-board.png"
-                    class="close-popup-img2" alt=""></span>
+                        class="close-popup-img2" alt=""></span>
             </div>
-            
+
         </div>
 
     </main>

@@ -230,6 +230,11 @@ button {
   background-color: #091931;
   color: white;
 }
+
+.join-logo-mobile {
+  display: none;
+}
+
 ::-webkit-scrollbar {
   width: 10px;
   position: absolute;
@@ -267,7 +272,7 @@ button {
 
 @media (max-width: 715px) {
   .special-h2 {
-    display: none;
+    display: none !important;
   }
 
   .join-logo-mobile {
