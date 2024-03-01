@@ -6,8 +6,8 @@ let currentDraggedElement = {};
  */
 async function init() {
   await includeHTML();
-  await initAddTask();
-  // await loadTasks();
+  await load();
+  renderContacts();
   renderAllTasks();
 }
 
@@ -22,12 +22,14 @@ function renderTaskColumn(column) {
   let tasksContainer = document.getElementById(`tasks-${column}`);
   tasksContainer.innerHTML = '';
   for (let i = 0; i < tasks.length; i++) {
-    const task = tasks[i];
-    if (task['column'] == column) {
-      tasksContainer.innerHTML += generateTasksHTML(task, i);
+    currentTask = tasks[i];
+    if (currentTask['currentColumn'] == column) {
+      tasksContainer.innerHTML += generateTasksHTML(currentTask, i);
+      renderSelectedContacts(`assignedTo${i}`);
     }
   }
   checkIfTasksExist(column);
+  resetCurrentTask();
 }
 
 /**
@@ -67,8 +69,7 @@ function allowDrop(ev) {
 }
 
 function moveToContainer(category) {
-  currentDraggedElement['column'] = category;
-  console.log(currentDraggedElement['category']);
+  currentDraggedElement['currentColumn'] = category;
   renderAllTasks()
 }
 
@@ -76,19 +77,13 @@ function moveToContainer(category) {
 
 
 
-
-
-
-function renderContactInitials(task) {
-
-  let html = '';
-  for (let i = 0; i < task['assignedContact'].length; i++) {
-    const contact = task['assignedContact'][i];
-    html += /*html*/`
-      <div class="initials ${contact['color']}">${contact['initials']}</div>
-    `
+function renderFullContacts(id) {
+  let container = document.getElementById(id);
+  container.innerHTML = '';
+  for (let i = 0; i < currentTask['assignedContacts'].length; i++) {
+    const contact = currentTask['assignedContacts'][i];
+    container.innerHTML += generatePopupContactsHTML(contact);
   }
-  return html;
 }
 
 /**
@@ -99,6 +94,7 @@ function renderContactInitials(task) {
  */
 function openTaskPopup(index) {
   renderTaskPopup(index);
+  renderFullContacts('assignedContactsInPopup');
   togglePopup('secondPopup')
   setTimeout(() => startAnimation('popupContent', 'popup-show'), 125);
 }
@@ -109,9 +105,10 @@ function openTaskPopup(index) {
  * @param {number} index the index of the current task 
  */
 function renderTaskPopup(index) {
+  currentTask = tasks[index];
   let popupContent = document.getElementById('popupContent');
-  let task = tasks[index];
-  popupContent.innerHTML = generateTaskPopupHTML(task, index);
+  popupContent.innerHTML = generateTaskPopupHTML(currentTask, index);
+  renderSelectedContacts('assignedContactsInPopup');
 }
 
 function capitalizeFirstLetter(string) {
@@ -121,35 +118,63 @@ function capitalizeFirstLetter(string) {
 function deleteTask(index) {
   let task = tasks[index];
   tasks.splice(index, 1);
-  closeSecondPopup();
+  closeTaskPopup();
   renderAllTasks();
 }
 
 function openTaskEditor(index) {
   let popupContainer = document.getElementById('popupContent');
-  document.getElementById('addTaskPopup').innerHTML = '';
-  let task = tasks[index];
-  popupContainer.innerHTML = generateTaskEditorHTML(task, index);
+  document.getElementById('addTaskForm').innerHTML = '';
+  popupContainer.innerHTML = generateTaskEditorHTML(currentTask, index);
+  renderTaskData();
+}
+
+function renderTaskData() {
   renderContacts();
-  renderSubtasksInEditor(index)
+  highlightSelectedContacts();
+  renderSelectedContacts('selectedContacts');
+  renderSubtasks();
+  getPriority();
 }
 
-function renderSubtasksInEditor(index) {
-  let task = tasks[index];
-  let subtaskContainer = document.getElementById('subtasksInEditor');
-  task['subtasks'].length == 0 ? subtaskContainer.classList.add('d-none') : subtaskContainer.classList.remove('d-none');
-  subtaskContainer.innerHTML = '';
-  for (let i = 0; i < task['subtasks'].length; i++) {
-    const subtask = task['subtasks'][i];
-    subtaskContainer.innerHTML += generateSubtaskHTML(subtask, i);
-  }
+function getPriority() {
+  let prioBtns = document.querySelectorAll('.prio-btn');
+  let priority = currentTask['currentPriority'][0];
+  prioBtns.forEach(btn => {
+    btn.classList.remove('urgent-btn', 'medium-btn', 'low-btn')
+    let text = btn.innerText.replace(' ', '').toLowerCase();
+    if (text == priority) {
+      btn.classList.add(`${text}-btn`);
+    }
+  });
+};
+
+function highlightSelectedContacts() {
+  const contactList = document.getElementById('contactList');
+  const allContacts = contactList.querySelectorAll('li');
+  allContacts.forEach(contact => {
+    contact.classList.remove('active-contact');
+    const index = Array.from(contactList.children).indexOf(contact);
+    const assigned = currentTask['assignedContacts'].find(assignedContact => JSON.stringify(assignedContact) === JSON.stringify(contacts[index]));
+    if (assigned) {
+      contact.classList.add('active-contact');
+      contact.querySelector('input').checked = true;
+    }
+  });
 }
 
+function editTask(index) {
+  getTaskData();
+  tasks.splice(index, 1, currentTask);
+  resetCurrentTask();
+  closeTaskPopup();
+  renderAllTasks();
+}
 
 function renderContactsTaskPopup(task) {
   let html = '';
-  for (let i = 0; i < task['assignedContact'].length; i++) {
-    const contact = task['assignedContact'][i];
+  for (let i = 0; i < task['assignedContacts'].length; i++) {
+    const contact = task['assignedContacts'][i];
     html += generatePopupContactsHTML(contact);
   }
   return html;
@@ -162,7 +187,7 @@ function renderContactsTaskPopup(task) {
  * @param {number} index the index of the current task 
  * @returns the html code
  */
-function renderSubtasksForPopup(index) {
+function getSubtasks(index) {
   let html = '';
   let task = tasks[index];
   for (let i = 0; i < task['subtasks'].length; i++) {
@@ -193,7 +218,7 @@ function resetPopup() {
   document.getElementById('taskAdded').classList.add('flex');
   startAnimation('taskAdded', 'task-added-animation')
   setTimeout(() => {
-    closePopup();
+    slideOutPopup();
     startAnimation('taskAdded', 'task-added-animation');
   }, 1500);
 }
@@ -206,7 +231,7 @@ async function openAddTaskPopup(column) {
   renderContacts();
   document.getElementById('popup').classList.toggle('d-none');
   setTimeout(() => startAnimation('addTaskPopup', 'popup-show'), 125);
-  currentColumn = column;
+  currentTask['currentColumn'] = column;
 }
 
 /**
@@ -236,7 +261,7 @@ function startAnimation(id, className) {
  * closes the popup for the detailed vied of the task and after a short delay it
  * starts the slide animation to hide the popup container
  */
-function closeSecondPopup() {
+function closeTaskPopup() {
   setTimeout(() => document.getElementById('secondPopup').classList.toggle('d-none'), 125);
   startAnimation('popupContent', 'popup-show')
 }

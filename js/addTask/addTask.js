@@ -2,13 +2,14 @@ let contacts = [];
 let tasks = [];
 let currentTask = {
     currentPriority: ['medium', 'assets/img/addTask_medium_orange.svg'],
-
-}
-let currentPriority = ['medium', 'assets/img/addTask_medium_orange.svg'];
-let assignedContact;
-let selectedContacts = [];
-let subtasks = [];
-let currentColumn = 'toDo';
+    assignedContacts: [],
+    currentColumn: 'toDo',
+    category: '',
+    subtasks: [],
+    title: '',
+    description: '',
+    dueDate: ''
+};
 
 async function initAddTask() {
     await includeHTML();
@@ -45,19 +46,10 @@ async function addTask() {
 function getTaskData() {
     let titleInput = document.getElementById('titleInput');
     let descriptionInput = document.getElementById('descriptionTextarea');
-    let selectedContactContainer = document.getElementById('selectedContacts');
     let dateInput = document.getElementById('dateInput');
-    let categoryInput = document.getElementById('categoryInput');
-    currentTask = {
-        title: titleInput.value,
-        description: descriptionInput.value,
-        assignedContact: selectedContacts,
-        dueDate: dateInput.value,
-        category: categoryInput.value,
-        priority: currentPriority,
-        column: currentColumn,
-        subtasks: subtasks
-    };
+    currentTask['title'] = titleInput.value;
+    currentTask['description'] = descriptionInput.value;
+    currentTask['dueDate'] = dateInput.value;
 }
 
 function resetAddTask() {
@@ -66,18 +58,30 @@ function resetAddTask() {
     document.getElementById('assignedContacts').value = ''
     document.getElementById('dateInput').value = ''
     document.getElementById('categoryInput').value = ''
-    currentTask = '';
-    currentPriority = 'medium'
+    resetCurrentTask();
+}
+
+function resetCurrentTask() {
+    currentTask = {
+        currentPriority: ['medium', 'assets/img/addTask_medium_orange.svg'],
+        assignedContacts: [],
+        currentColumn: 'toDo',
+        category: '',
+        subtasks: [],
+        title: '',
+        description: '',
+        dueDate: ''
+    };
 }
 
 function pipeToBoard() {
     document.getElementById('createTaskBtn').disabled = true;
     document.getElementById('taskAdded').classList.remove('d-none');
     setTimeout(() => startAnimation('taskAdded', 'task-added-animation'), 125);
-    setTimeout(() => window.open('board.html', '_self'),1500);
+    setTimeout(() => window.open('board.html', '_self'), 1500);
 }
 
-function startAnimation (id, className) {
+function startAnimation(id, className) {
     let element = document.getElementById(id);
     element.classList.toggle(className);
 }
@@ -95,15 +99,16 @@ function selectPriority(btnId, btnClass) {
 
 function addPriorityToTask(prio, id) {
     let imageSource = document.getElementById(id).querySelector('img').src
-    currentPriority = [];
-    currentPriority.push(prio);
-    currentPriority.push(imageSource);
+    currentTask['currentPriority'] = [];
+    currentTask['currentPriority'].push(prio);
+    currentTask['currentPriority'].push(imageSource);
 }
 
 function addCategory(id) {
     let inputField = document.getElementById('categoryInput');
     let listItem = document.getElementById(id);
-    inputField.value = listItem.innerHTML;
+    inputField.value = listItem.innerText;
+    currentTask['category'] = listItem.innerText;
     togglePopup('categoryPopup');
 }
 
@@ -121,22 +126,22 @@ function selectContact(id, index) {
 }
 
 function addContactToList(index) {
-    selectedContacts.push(contacts[index]);
-    renderSelectedContacts()
+    currentTask['assignedContacts'].push(contacts[index]);
+    renderSelectedContacts('selectedContacts')
 }
 
 function removeContactFromList(index) {
     let contact = contacts[index];
-    let newIndex = selectedContacts.indexOf(contact);
-    selectedContacts.splice(newIndex, 1);
-    renderSelectedContacts();
+    let newIndex = currentTask['assignedContacts'].indexOf(contact);
+    currentTask['assignedContacts'].splice(newIndex, 1);
+    renderSelectedContacts('selectedContacts');
 }
 
-function renderSelectedContacts() {
-    let selecetedContactsContainer = document.getElementById('selectedContacts');
+function renderSelectedContacts(id) {
+    let selecetedContactsContainer = document.getElementById(id);
     selecetedContactsContainer.innerHTML = '';
-    for (let i = 0; i < selectedContacts.length; i++) {
-        const contact = selectedContacts[i];
+    for (let i = 0; i < currentTask['assignedContacts'].length; i++) {
+        const contact = currentTask['assignedContacts'][i];
         selecetedContactsContainer.innerHTML += /*html*/`
             <div class="initials ${contact['color']}">${contact['initials']}</div>
         `
@@ -144,10 +149,10 @@ function renderSelectedContacts() {
 }
 function renderSubtasks() {
     let subtaskContainer = document.getElementById('subtasks');
-    subtasks.length == 0 ? subtaskContainer.classList.add('d-none') : subtaskContainer.classList.remove('d-none');
+    currentTask['subtasks'].length == 0 ? subtaskContainer.classList.add('d-none') : subtaskContainer.classList.remove('d-none');
     subtaskContainer.innerHTML = '';
-    for (let i = 0; i < subtasks.length; i++) {
-        const subtask = subtasks[i];
+    for (let i = 0; i < currentTask['subtasks'].length; i++) {
+        const subtask = currentTask['subtasks'][i];
         subtaskContainer.innerHTML += generateSubtaskHTML(subtask, i);
     }
 }
@@ -155,12 +160,11 @@ function renderSubtasks() {
 function addSubtask() {
     let subtaskInput = document.getElementById('subtaskInput');
     if (subtaskInput.value != '') {
-    subtasks.push(subtaskInput.value)
-    renderSubtasks();
-    subtaskInput.value = '';
+        currentTask['subtasks'].push(subtaskInput.value)
+        renderSubtasks();
+        subtaskInput.value = '';
     };
-    togglePopup('addSubtaskIcon');
-    togglePopup('editSubtaskIcons');
+    toggleSubtaskInput();
 }
 
 function openSubtaskEditor(index) {
@@ -171,13 +175,13 @@ function openSubtaskEditor(index) {
 }
 
 function deleteSubtask(index) {
-    subtasks.splice(index, 1);
+    currentTask['subtasks'].splice(index, 1);
     renderSubtasks();
 }
 
 function editSubtask(index) {
     let edit = document.getElementById(`subtaskInput${index}`);
-    subtasks.splice(index, 1, edit.value);
+    currentTask['subtasks'].splice(index, 1, edit.value);
     renderSubtasks();
 }
 
@@ -185,7 +189,7 @@ function toggleSubtaskInput() {
     togglePopup('addSubtaskIcon');
     togglePopup('editSubtaskIcons');
 }
-  
+
 function togglePopup(id) {
     document.getElementById(id).classList.toggle('d-none');
 }
@@ -229,7 +233,7 @@ function generateContactListHTML(contact, i) {
 function generateSubTaskEditorHTML(index) {
     return /*html*/`
     <div class="subtask-input-field">
-        <input type="text" value="${subtasks[index]}" class="edit-subtask-input" id="subtaskInput${index}" onkeypress="callOnEnterPress(event, 'editSubtaskBtn')">
+        <input type="text" value="${currentTask['subtasks'][index]}" class="edit-subtask-input" id="subtaskInput${index}" onkeypress="callOnEnterPress(event, 'editSubtaskBtn')">
         <div class="edit-icons">
             <img src="assets/img/addTask_delete.svg" alt="" onclick="deleteSubtask(${index})" >
             <div class="icon-seperator"></div>

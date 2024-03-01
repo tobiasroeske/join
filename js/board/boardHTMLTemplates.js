@@ -10,7 +10,7 @@ function generateTasksHTML(task, index) {
           <div class="w3-container w3-blue w3-round-xlarge progressbar" 
               id="taskProgress"></div> 
       </div>
-         <div class="assigned-and-prio"><div id="assignedTo" class="assigned-to">${renderContactInitials(task)}</div> <div id="taskPriority" class="task-priority"><img src="${task['priority'][1]}" alt=""></div>
+         <div class="assigned-and-prio"><div id="assignedTo${index}" class="assigned-to"> </div> <div id="taskPriority" class="task-priority"><img src="${task['currentPriority'][1]}" alt=""></div>
           </div>
       </div>
   </div>
@@ -21,9 +21,9 @@ function generateTaskEditorHTML(task, index) {
     return /*html*/`
     <div class="edit-container">
       <div class="flex-end">
-        <img src="assets/img/contacts_close.svg" alt="" class="icon" onclick="closeSecondPopup()">
+        <img src="assets/img/contacts_close.svg" alt="" class="icon" onclick="closeTaskPopup()">
       </div>
-      <form onsubmit="editTask(${task}; return false)">
+      <form onsubmit="editTask(${index}); return false;">
         <div class="input-container">
           <label for="titleInput">Title</label>
           <input value="${task['title']}" type="text" name="title" id="titleInput" class="input" required placeholder="Enter a title">
@@ -63,7 +63,7 @@ function generateTaskEditorHTML(task, index) {
               </ul>
             </div>
               <div class="flex gap-8" id="selectedContacts">
-              ${renderContactInitials(task)}                        
+                                     
             </div>
           </div>
           <div class="input-container" id="subtaskInputField">
@@ -79,7 +79,7 @@ function generateTaskEditorHTML(task, index) {
             </div>
           </div>
           <div>
-            <ul id="subtasksInEditor" class="subtasks d-none">
+            <ul id="subtasks" class="subtasks d-none">
               
             </ul>
           </div>
@@ -95,7 +95,7 @@ function generateTaskPopupHTML(task, index) {
     return /*html*/`
     <div class="popup-category">
       <div> <span class="task-${task['category'].replace(' ', '')}">${task['category']}</span>  </div>
-      <div><img src="assets/img/contacts_close.svg" alt="" class="icon" onclick="closeSecondPopup()"></div>
+      <div><img src="assets/img/contacts_close.svg" alt="" class="icon" onclick="closeTaskPopup()"></div>
     </div>
     <h1 class="page-heading3">${task['title']}</h1>
     <div class="description-popup"><span>${task['description']}</span></div>
@@ -105,15 +105,15 @@ function generateTaskPopupHTML(task, index) {
     </div>
     <div class="priority-popup">
       <span>Priority: </span>
-      <div class="priority-popup2"> <span>${capitalizeFirstLetter(task['priority'][0])} <img src="${task['priority'][1]}" alt=""></span> </div>
+      <div class="priority-popup2"> <span>${capitalizeFirstLetter(task['currentPriority'][0])} <img src="${task['currentPriority'][1]}" alt=""></span> </div>
     </div>
     <div class="popup-assignedto">
       Assigned To:
-     <div class="popup-assignedto2">${renderContactsTaskPopup(task)}</div>
+     <div class="popup-assignedto2" id="assignedContactsInPopup"></div>
     </div>
     <div class="popup-subtasks">
       Subtasks:
-     <div class="popup-subtasks2"> ${renderSubtasksForPopup(index)}</div>
+     <div class="popup-subtasks2"> ${getSubtasks(index)}</div>
     </div>
     <div class="edit-and-delete">   
       <div class="popup-delete" onclick="deleteTask(${index})">
