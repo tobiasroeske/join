@@ -5,6 +5,23 @@
   font-family: "Inter";
 }
 
+body {
+  max-width: 1920px;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100vh;
+}
+
+main {
+  display: flex;
+  justify-content: center;
+  flex: 1;
+  align-items: flex-start;
+}
+
 a {
   text-decoration: none;
   color: #ffffff;
@@ -233,7 +250,7 @@ form {
 }
 
 .sign-up-field {
-  width: 45%;
+  width: 600px;
   padding: 48px 88px;
   /* height: 630px; */
   border: 1px solid lightgray;
@@ -272,7 +289,7 @@ footer {
   width: 100%;
   display: flex;
   justify-content: center;
-  margin: 80px 0;
+  margin-bottom: 32px;
 }
 
 .privacy-legal {
