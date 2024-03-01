@@ -1,0 +1,207 @@
+.summary {
+    width: 100%;
+    padding: 80px 64px;
+    display: flex;
+    flex-direction: column;
+    gap:32px;
+}
+
+.summary-headline {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.summary-seperator {
+    width: 3px;
+    height: 59px;
+    background-color: #29ABE2;
+}
+
+.special-subheading {
+    font-size: 27px;
+    font-weight: 400;
+    columns: #2A3647;
+}
+
+.summary-content {
+    display: flex;
+}
+
+.content-left {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    width: 560px;
+}
+
+.row {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    height: 168px;
+}
+
+.todo, .done {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 264px;
+    height: 168px;
+    gap: 18px;
+    padding: 38px 19px;
+    box-shadow: 0px 0px 4px 0px #0000001A;
+    background-color: white;
+    border-radius: 30px;
+    transition: all .125s ease;
+}
+
+.todo:hover, .done:hover {
+    background-color: #2A3647;
+    color: white;
+    transform: scale(1.05);
+}
+
+.todo:hover .summary-symbol, .done:hover .summary-symbol{
+    background-color: white;
+}
+
+.todo:hover .summary-icon, .done:hover .summary-icon {
+    filter: brightness(0) saturate(100%) invert(18%) sepia(44%) saturate(408%) hue-rotate(175deg) brightness(92%) contrast(91%);
+}
+
+.todo:hover .number, .done:hover .number, .todo:hover .summary-text, .done:hover .summary-text {
+    color: white;
+}
+
+.number {
+    font-size: 64px;
+    font-weight: 600;
+}
+
+.summary-text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    color: #2A3647;
+}
+
+.summary-symbol {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #2A3647;
+    border-radius: 50%;
+    width: 69px;
+    height: 69px;
+}
+
+.summary-icon {
+    width: 32px;
+    height: 32px;
+}
+
+.full-row {
+    display: flex;
+    width: 560px;
+    height: 168px;
+    border-radius: 30px;
+    padding: 28px 48px;
+    gap: 61px;
+    background-color: white;
+    box-shadow: 0px 0px 4px 0px #0000001A;
+    transition: all 0.125s ease;
+}
+
+.full-row:hover {
+    background-color: #2A3647;
+    color: white;
+    transform: scale(1.05);
+}
+
+.full-row:hover .number, .full-row:hover .summary-text, .full-row:hover .deadline-date {
+    color: white;
+}
+
+.summary-urgent {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+}
+
+.summary-priority {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #FF3D00;
+    border-radius: 50%;
+    width: 69px;
+    height: 69px;
+}
+
+.row-seperator {
+    width: 2px;
+    background-color: #d1d1d1;
+    height: 102px;
+}
+
+.deadline {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.deadline-date {
+    font-size: 21px;
+    color: #2A3647;
+    font-weight: 700;
+}
+
+.task-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 168px;
+    height: 168px;
+    border-radius: 30px;
+    gap: 13px;
+    padding: 25px 0;
+    background-color: white;
+    box-shadow: 0px 0px 4px 0px #0000001A;
+    transition: all .125s ease;
+}
+
+.task-box:hover {
+    background-color: #2A3647;
+    color: white;
+    transform: scale(1.05);
+}
+
+.task-box:hover .number, .task-box:hover .summary-text{
+    color: white;
+}
+
+.content-right {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+}
+
+.greeting {
+    font-size: 47px;
+    font-weight: 500px;
+    color: #2A3647;
+}
+
+.user-name {
+    font-size: 64px;
+    font-weight: 700;
+    color: #29ABE2;
+}
