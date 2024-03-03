@@ -235,6 +235,37 @@ button {
   display: none;
 }
 
+.profile-options-container {
+  position: absolute;
+  top: 80px; 
+  right: 40px;
+  display: flex;
+border-radius: 20px;
+  color: lightgrey;
+  background-color: #2a3647;
+ font-size: 14px;
+  padding: 10px;
+  box-shadow: 2px 2px 2px 2px;
+ filter: drop-shadow(10px 1px 10px 10px);
+}
+
+.profile-option {
+  padding: 7px 10px 7px 10px;
+}
+
+.profile-option2{
+  padding: 7px 10px 7px 10px;
+}
+.profile-option:hover{
+  cursor: pointer;
+  background-color: #3e4f66;
+  border-radius: 10px;
+}
+.profile-option2:hover{
+  cursor: pointer;
+  background-color: #3e4f66;
+  border-radius: 10px;
+}
 ::-webkit-scrollbar {
   width: 10px;
   position: absolute;

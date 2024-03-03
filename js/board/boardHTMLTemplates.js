@@ -94,7 +94,7 @@ function generateTaskEditorHTML(task, index) {
 function generateTaskPopupHTML(task, index) {
     return /*html*/`
     <div class="popup-category">
-      <div> <span class="task-${task['category'].replace(' ', '')}">${task['category']}</span>  </div>
+      <div class="task-${task['category'].replace(' ', '')}">${task['category']}</span>  </div>
       <div><img src="assets/img/contacts_close.svg" alt="" class="icon" onclick="closeTaskPopup()"></div>
     </div>
     <h1 class="page-heading3">${task['title']}</h1>

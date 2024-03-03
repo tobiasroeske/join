@@ -425,6 +425,8 @@ font-size: 18px;
 
 
 
+ 
+
 
 .popup-assignedto {
   display: flex;
@@ -453,7 +455,57 @@ color: #3e4e64;
   font-size: 16px;
   color: black;
   margin-left: 25px;
+  padding: 4px 0px 4px 12px ;
+  border-radius: 20px;
+  align-items: center;
 }
+
+.popup-subtasks2:hover{
+ background-color: rgb(250, 249, 249);
+}
+
+.popup-subtasks2 input[type="checkbox"] {
+  display: none; 
+}
+
+.popup-subtasks2 label {
+  position: relative;
+  padding-left: 40px; 
+  cursor: pointer;
+}
+
+.popup-subtasks2 label::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 2px; 
+  width: 20px;
+  height: 20px;
+  border: 1px solid  #3e4e64; 
+  background-color: #fff; 
+  border-radius: 5px;
+}
+
+.popup-subtasks2 input[type="checkbox"]:checked + label::before {
+  background-color: #fdfdfd; 
+}
+
+.popup-subtasks2 label::after {
+  content: '\2713'; 
+  position: absolute;
+top: -15px;
+  
+  font-size: 32px; 
+  font-weight: bold;
+  color: #3e4e64; 
+  display: none; 
+  
+}
+
+.popup-subtasks2 input[type="checkbox"]:checked + label::after {
+  display: block; 
+}
+
 
 
 .edit-and-delete{

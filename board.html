@@ -64,7 +64,7 @@
                         </div>
                     </div>
 
-                    <div class="board-content">
+                    <div class="board-content" ondragover="allowDrop(event)" ondrop="moveToContainer('toDo'); event.preventDefault();">
                         <div class="headlines-board">
                             <h2>To do</h2>
                             <img src="./assets/img/board-plus-button.png" alt="" class="board-plus"
@@ -78,7 +78,7 @@
                     </div>
 
 
-                    <div class="board-content">
+                    <div class="board-content" ondragover="allowDrop(event)" ondrop="moveToContainer('inProgress'); event.preventDefault();">
                         <div class="headlines-board">
                             <h2>In Progress</h2>
                             <img src="./assets/img/board-plus-button.png" alt="" class="board-plus"
@@ -106,7 +106,7 @@
                     </div>
 
 
-                    <div class="board-content">
+                    <div class="board-content" ondragover="allowDrop(event)" ondrop="moveToContainer('done'); event.preventDefault();">
                         <div class="headlines-board">
                             <h2>Done</h2>
                             <img src="./assets/img/board-plus-button.png" alt="" class="board-plus"
