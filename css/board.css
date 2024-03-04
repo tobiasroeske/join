@@ -247,7 +247,7 @@ h2 {
 .page-heading3{
   font-size: 61px;
   font-weight: 700;
-  word-break: break-all;
+  word-break: break-word;
  
 
 }
@@ -343,7 +343,6 @@ h2 {
   position: relative;
   width: 500px;
   overflow: auto;
-  height: 90vh;
   padding: 48px 40px;
   overflow: auto;
   background-color: white;
@@ -374,9 +373,26 @@ h2 {
 }
 
 .drop-zone {
-  width: 200px;
+  position: fixed;
+display: flex;
+  width: 258px;
+  height: 400px;
+  background-color: rgba(156, 156, 158, 0.3);
+  border: 3px dashed transparent; 
+  border-radius: 20px;
+  visibility: hidden;
+  transition: transform 0.2s ease-in-out;
 }
 
+
+.drop-zone.expanded {
+  border-width: 2px;
+  display: block; 
+  background-color: rgba(180, 178, 178, 0.3); 
+  border-color: #939394;
+  transform: scale(1.1); 
+  visibility: visible;
+}
 
 .popup-category{
   display: flex;
@@ -458,10 +474,11 @@ color: #3e4e64;
   padding: 4px 0px 4px 12px ;
   border-radius: 20px;
   align-items: center;
+
 }
 
-.popup-subtasks2:hover{
- background-color: rgb(250, 249, 249);
+.popup-subtasks2:hover {
+ background-color: rgb(224, 224, 224);
 }
 
 .popup-subtasks2 input[type="checkbox"] {
@@ -511,7 +528,7 @@ top: -15px;
 .edit-and-delete{
   display: flex;
   flex-direction: row;
-  position: absolute;
+  justify-content: end;
   bottom: 50px;
   right: 50px;
   gap: 8px;
@@ -608,6 +625,7 @@ font-size: 16px;
     align-items: center;
   }
 
+
   .page-heading2 {
     text-align: center;
     margin-top: 20px;
@@ -688,3 +706,22 @@ font-size: 16px;
     padding-right: 16px;
   }
 }
+
+@media (max-width:570px) {
+  
+  .rightside{
+    scrollbar-width: none;
+  }
+
+  }
+
+
+  .board-content{
+    margin-bottom: 150px;
+  }
+
+
+  @media (max-width:500px){
+  .main-board{
+    margin-left: 30px;
+  }}

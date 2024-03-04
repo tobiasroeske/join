@@ -64,60 +64,65 @@
                         </div>
                     </div>
 
-                    <div class="board-content" ondragover="allowDrop(event)" ondrop="moveToContainer('toDo'); event.preventDefault();">
+                    
+                    <div class="board-content" ondragover="allowDrop(event)" ondrop="moveToContainer('toDo'); event.preventDefault();" ondragenter="showDropzone(event)" ondragleave="hideDropzone(event)">
                         <div class="headlines-board">
                             <h2>To do</h2>
-                            <img src="./assets/img/board-plus-button.png" alt="" class="board-plus"
-                                onclick="openAddTaskPopup('toDo')">
+                            <img src="./assets/img/board-plus-button.png" alt="" class="board-plus" onclick="openAddTaskPopup('toDo')">
                         </div>
-
                         <div class="board-noTasks" id="toDo">No Tasks To Do</div>
                         <div class="tasks-container" id="tasks-toDo">
-
+                            
+                        </div>
+                        <div class="drop-zone" id="drop-zone-toDo">
+                            
                         </div>
                     </div>
-
-
-                    <div class="board-content" ondragover="allowDrop(event)" ondrop="moveToContainer('inProgress'); event.preventDefault();">
+                    
+                    <div class="board-content" ondragover="allowDrop(event)" ondrop="moveToContainer('inProgress'); event.preventDefault();" ondragenter="showDropzone(event)" ondragleave="hideDropzone(event)">
                         <div class="headlines-board">
                             <h2>In Progress</h2>
-                            <img src="./assets/img/board-plus-button.png" alt="" class="board-plus"
-                                onclick="openAddTaskPopup('inProgress')">
+                            <img src="./assets/img/board-plus-button.png" alt="" class="board-plus" onclick="openAddTaskPopup('inProgress')">
                         </div>
                         <div class="board-noTasks" id="inProgress">No Tasks in Progress</div>
                         <div class="tasks-container" id="tasks-inProgress">
-
+                            
+                        </div>
+                        <div class="drop-zone" id="drop-zone-inProgress">
+                           
                         </div>
                     </div>
-
-
-                    <div class="board-content" ondragover="allowDrop(event)" ondrop="moveToContainer('awaitFeedback')">
+                    
+                    <div class="board-content" ondragover="allowDrop(event)" ondrop="moveToContainer('awaitFeedback'); event.preventDefault();" ondragenter="showDropzone(event)" ondragleave="hideDropzone(event)">
                         <div class="headlines-board">
-                            <h2>Await Feedback </h2>
-                            <img src="./assets/img/board-plus-button.png" alt="" class="board-plus"
-                                onclick="openAddTaskPopup('awaitFeedback')">
+                            <h2>Await Feedback</h2>
+                            <img src="./assets/img/board-plus-button.png" alt="" class="board-plus" onclick="openAddTaskPopup('awaitFeedback')">
                         </div>
                         <div class="board-noTasks" id="awaitFeedback">No Tasks in Await Feedback</div>
                         <div class="tasks-container" id="tasks-awaitFeedback">
-
-
+                            
                         </div>
-
+                        <div class="drop-zone" id="drop-zone-awaitFeedback">
+                            
+                        </div>
                     </div>
-
-
-                    <div class="board-content" ondragover="allowDrop(event)" ondrop="moveToContainer('done'); event.preventDefault();">
+                    
+                    <div class="board-content" ondragover="allowDrop(event)" ondrop="moveToContainer('done'); event.preventDefault();" ondragenter="showDropzone(event)" ondragleave="hideDropzone(event)">
                         <div class="headlines-board">
                             <h2>Done</h2>
-                            <img src="./assets/img/board-plus-button.png" alt="" class="board-plus"
-                                onclick="openAddTaskPopup('inProgress')">
+                            <img src="./assets/img/board-plus-button.png" alt="" class="board-plus" onclick="openAddTaskPopup('done')">
                         </div>
                         <div class="board-noTasks" id="done">No Tasks in Done</div>
                         <div class="tasks-container" id="tasks-done">
-
+                            
+                        </div>
+                        <div class="drop-zone" id="drop-zone-done">
+                            
                         </div>
                     </div>
-
+                    
+                    
+                    
 
                 </div>
             </div>

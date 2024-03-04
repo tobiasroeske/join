@@ -1,19 +1,21 @@
 function generateTasksHTML(task, index) {
-    return /*html*/`
-    <div class="task-design" id="card-${index}" draggable="true" ondragstart="startDragging(${index})">
-      <div class="drop-zone" id="drop-zone">
-        <div onclick="openTaskPopup(${index})">
-          <div id="taskUserStory" class="task-${task['category'].replace(' ', '')}">${task['category']}</div>
-          <div id="taskTitle" class="task-title">${task['title']}</div>
-          <div id="taskDescription" class="task-description">${task['description']}</div>
-          <div class="w3-light-grey w3-round-xlarge progressbar">
-          <div class="w3-container w3-blue w3-round-xlarge progressbar" 
-              id="taskProgress"></div> 
-      </div>
-         <div class="assigned-and-prio"><div id="assignedTo${index}" class="assigned-to"> </div> <div id="taskPriority" class="task-priority"><img src="${task['currentPriority'][1]}" alt=""></div>
+  return /*html*/`
+      <div class="task-design" id="card-${index}" draggable="true" ondragstart="startDragging(${index})">
+          <div onclick="openTaskPopup(${index})">
+              <div id="taskUserStory" class="task-${task['category'].replace(' ', '')}">${task['category']}</div>
+              <div id="taskTitle" class="task-title">${task['title']}</div>
+              <div id="taskDescription" class="task-description">${task['description']}</div>
+              <div class="w3-light-grey w3-round-xlarge progressbar">
+                  <div class="w3-container w3-blue w3-round-xlarge progressbar" id="taskProgress"></div> 
+              </div>
+              <div class="assigned-and-prio">
+                  <div id="assignedTo${index}" class="assigned-to"> </div>
+                  <div id="taskPriority" class="task-priority">
+                      <img src="${task['currentPriority'][1]}" alt="">
+                  </div>
+              </div>
           </div>
       </div>
-  </div>
   `;
 }
 
@@ -23,7 +25,7 @@ function generateTaskEditorHTML(task, index) {
       <div class="flex-end">
         <img src="assets/img/contacts_close.svg" alt="" class="icon" onclick="closeTaskPopup()">
       </div>
-      <form onsubmit="editTask(${index}); return false;">
+      <form onsubmit="editTask(${index}); return false;"> 
         <div class="input-container">
           <label for="titleInput">Title</label>
           <input value="${task['title']}" type="text" name="title" id="titleInput" class="input" required placeholder="Enter a title">
@@ -113,7 +115,7 @@ function generateTaskPopupHTML(task, index) {
     </div>
     <div class="popup-subtasks">
       Subtasks:
-     <div class="popup-subtasks2"> ${getSubtasks(index)}</div>
+     <div class="popup-subtasks2" id="subtask${index}">${getSubtasks(index)}</div>
     </div>
     <div class="edit-and-delete">   
       <div class="popup-delete" onclick="deleteTask(${index})">
@@ -124,7 +126,7 @@ function generateTaskPopupHTML(task, index) {
       </div>
     </div>
   `;
-  }
+}
 
 function generatePopupContactsHTML(contact) {
     return /*html*/`
@@ -143,3 +145,5 @@ function generataeSubtaskPopupHTML(subtask, index) {
     </div>
   `;
 }
+
+

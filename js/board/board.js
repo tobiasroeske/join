@@ -58,7 +58,6 @@ function renderAllTasks() {
 }
 
 /* Drag and drop funktionen*/
-
 function startDragging(index) {
   let task = tasks[index];
   currentDraggedElement = task;
@@ -71,12 +70,37 @@ function allowDrop(ev) {
 
 function moveToContainer(category) {
   currentDraggedElement['currentColumn'] = category;
-  renderAllTasks()
+  renderAllTasks();
+}
+function resetDropzone(event) {
+  let dropzone = event.currentTarget.querySelector('.drop-zone');
+  dropzone.classList.remove('expanded');
+}
+
+function expandDropzone(event) {
+  event.preventDefault();
+  event.target.classList.add('expanded');
+}
+
+function showDropzone(event) {
+  let dropzone = event.currentTarget.querySelector('.drop-zone');
+  dropzone.classList.add('expanded');
+}
+
+function hideDropzone(event) {
+  let dropzone = event.currentTarget.querySelector('.drop-zone');
+  let relatedTarget = event.relatedTarget;
+
+  if (relatedTarget && !dropzone.contains(relatedTarget) && event.type !== 'drop') {
+    dropzone.classList.remove('expanded');
+  }
 }
 
 
 
 
+
+/* full contact name*/
 
 function renderFullContacts(id) {
   let container = document.getElementById(id);
