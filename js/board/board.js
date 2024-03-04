@@ -68,10 +68,12 @@ function allowDrop(ev) {
   ev.preventDefault();
 }
 
-function moveToContainer(category) {
+async function moveToContainer(category) {
   currentDraggedElement['currentColumn'] = category;
+  await setItem('tasks', JSON.stringify(tasks));
   renderAllTasks();
 }
+
 function showDropzone(event) {
   let dropzone = event.currentTarget.querySelector('.drop-zone');
   dropzone.classList.add('expanded');
@@ -87,8 +89,6 @@ function expandDropzone(event) {
   event.target.classList.add('expanded');
 }
 
-
-
 function hideDropzone(event) {
   let dropzone = event.currentTarget.querySelector('.drop-zone');
   let relatedTarget = event.relatedTarget;
@@ -97,10 +97,6 @@ function hideDropzone(event) {
     dropzone.classList.remove('expanded');
   }
 }
-
-
-
-
 
 /* full contact name*/
 

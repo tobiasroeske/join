@@ -10,6 +10,8 @@ async function init() {
     await loadCurrentUser();
     sortTasks();
     displayTasks();
+    displayDueDate();
+    getGreetingMessage();
 }
 
 async function loadCurrentUser() {
@@ -27,7 +29,7 @@ function sortTasks() {
             todos.push(task);
         } else if (task['currentColumn'] == 'inProgress') {
             inProgress.push(task);
-        } else if (task['currentColumn'] == 'awaitingFeedback') {
+        } else if (task['currentColumn'] == 'awaitFeedback') {
             awaitingFeedback.push(task);
         } else if (task['currentColumn'] == 'done') {
             done.push(task);
@@ -45,4 +47,46 @@ function displayTasks() {
     document.getElementById('allTasks').innerHTML = tasks.length;
     document.getElementById('tasksInProgress').innerHTML = inProgress.length;
     document.getElementById('tasksAwaitingFeedback').innerHTML = awaitingFeedback.length;
+    document.getElementById('userName').innerHTML = currentUser['name'];
 }
+
+function displayDueDate() {
+    sortDueDates();
+    let nearestDueDate = new Date(tasks[0]['dueDate']);
+    let formatedDate = changeDateFormat(nearestDueDate);
+    document.getElementById('dueDate').innerHTML = formatedDate;
+}
+
+function changeDateFormat(date) {
+    let month = date.toLocaleString('en-GB', {month: 'long'});
+    let day = date.getDay();
+    let year = date.getFullYear();
+    let formatedDate = `${month} ${day}, ${year}`;
+    return formatedDate;
+}
+
+function sortDueDates() {
+    tasks.sort((a, b) => new Date(a['dueDate']) - new Date(b['dueDate']));
+}
+
+function checkHour() {
+    let currentDate = new Date();
+    let currentHour = currentDate.getHours();
+    return currentHour;
+}
+
+function getGreetingMessage() {
+    let currentHour = checkHour();
+    let greeting = document.getElementById('greeting');
+    if (currentHour >= 0 && currentHour <= 11) {
+        greeting.innerHTML = 'Good Morning,';
+    } else if (currentHour > 11 && currentHour < 14) {
+        greeting.innerHTML = 'Good Day,'
+    } else if (currentHour >= 14 && currentHour < 18) {
+        greeting.innerHTML = 'Good afternoon,'
+    } else {
+        greeting.innerHTML = 'Good Evening,';
+    }
+}
+
+
