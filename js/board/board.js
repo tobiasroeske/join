@@ -54,6 +54,7 @@ function renderAllTasks() {
   renderTaskColumn('toDo')
   renderTaskColumn('inProgress')
   renderTaskColumn('awaitFeedback');
+  renderTaskColumn('done');
 }
 
 /* Drag and drop funktionen*/
