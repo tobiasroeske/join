@@ -97,7 +97,7 @@ function generateTaskPopupHTML(task, index) {
     return /*html*/`
     <div class="popup-category">
       <div class="task-${task['category'].replace(' ', '')}">${task['category']}</span>  </div>
-      <div><img src="assets/img/contacts_close.svg" alt="" class="icon" onclick="closeTaskPopup()"></div>
+      <div><img src="assets/img/contacts_close.svg" alt="" class="icon" onclick="closeTaskPopup(); updateTasks(${index})"></div>
     </div>
     <h1 class="page-heading3">${task['title']}</h1>
     <div class="description-popup"><span>${task['description']}</span></div>
@@ -140,8 +140,8 @@ function generatePopupContactsHTML(contact) {
 function generataeSubtaskPopupHTML(subtask, index) {
     return /*html*/`
     <div>
-      <input type="checkbox" id="subtask${index}">
-      <label for="subtask${index}">${subtask}</label>
+      <input type="checkbox" id="subtaskList${index}" onclick="markSubtaskAsDone(${index})">
+      <label for="subtask${index}" id="subtaskLabel${index}">${subtask['subtaskName']}</label>
     </div>
   `;
 }

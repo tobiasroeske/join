@@ -23,6 +23,8 @@ async function register() {
             email: email.value,
             password: password.value,
             name: userName.value,
+            color: 'black',
+            loggedIn : false
         });
         await setItem('users', JSON.stringify(users)); // key = 'users', value
         pipeToLogin();

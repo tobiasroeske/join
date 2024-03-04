@@ -7,14 +7,15 @@ let done = [];
 let urgent = [];
 async function init() {
     await includeHTML()
-    await loadCurrentUser();
+    await load();
     sortTasks();
     displayTasks();
     displayDueDate();
     getGreetingMessage();
+    displayGreetingScreen();
 }
 
-async function loadCurrentUser() {
+async function load() {
     try {
         currentUser = JSON.parse(await getItem('currentUser'));
         tasks = JSON.parse(await getItem('tasks'));
@@ -89,4 +90,21 @@ function getGreetingMessage() {
     }
 }
 
+function displayGreetingScreen() {
+    if (window.innerWidth < 1050) {
+        toggleClass('contentLeft', 'd-none');
+        toggleClass('contentRight', 'd-flex');
+        toggleClass('headline', 'd-none');
+        toggleClass('summary', 'centered');
+        setTimeout(() => {
+            toggleClass('contentLeft', 'd-none');
+            toggleClass('contentRight', 'd-flex');
+            toggleClass('headline', 'd-none');
+            toggleClass('summary', 'centered');
+        },1800)
+    }
+}
 
+function toggleClass(id, className) {
+    document.getElementById(id).classList.toggle(className);
+}

@@ -1,12 +1,13 @@
 let contacts = [];
 let colors = ['orange', 'purple', 'pink', 'yellow', 'green', 'darkblue', 'violet', 'red'];
 let firstLetters = [];
+let currentUser;
 
 /**
  * initiates onload and renders the contact list
  */
 async function init() {
-    await loadContacts()
+    await load()
     getFirstLetters();
     renderContactList();
 }
@@ -14,11 +15,19 @@ async function init() {
 /**
  * loads the contacts from the remote storage and saves them to the contacts array
  */
-async function loadContacts() {
+async function load() {
     try {
         contacts = JSON.parse(await getItem('contacts'));
+        currentUser = JSON.parse(await getItem('currentUser'));
     } catch (error) {
         console.error('Loading error:', error);
+    }
+}
+
+async function saveProfileContact() {
+    if (contacts.indexOf(currentUser) == -1) {
+        contacts.push(currentUser);
+        await setItem('contacts', JSON.stringify(contacts));
     }
 }
 
@@ -355,7 +364,6 @@ function closeContactOptionsPopup() {
     if (document.getElementById('contactOptionsPopup') != null) {
         document.getElementById('contactOptionsPopup').classList.remove('contact-options-popup-animation')
     }
-
 }
 
 /**

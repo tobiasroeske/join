@@ -119,7 +119,10 @@ function openTaskPopup(index) {
   renderTaskPopup(index);
   renderFullContacts('assignedContactsInPopup');
   togglePopup('secondPopup')
-  setTimeout(() => startAnimation('popupContent', 'popup-show'), 125);
+  setTimeout(() => {
+    startAnimation('popupContent', 'popup-show')
+  }, 125);
+  checkIfDone();
 }
 
 /**
@@ -132,6 +135,7 @@ function renderTaskPopup(index) {
   let popupContent = document.getElementById('popupContent');
   popupContent.innerHTML = generateTaskPopupHTML(currentTask, index);
   renderSelectedContacts('assignedContactsInPopup');
+  
 }
 
 function capitalizeFirstLetter(string) {
@@ -217,7 +221,38 @@ function getSubtasks(index) {
     const subtask = task['subtasks'][i];
     html += generataeSubtaskPopupHTML(subtask, i)
   }
+  
   return html;
+}
+
+function checkIfDone() {
+  for (let i = 0; i < currentTask['subtasks'].length; i++) {
+    const subtask = currentTask['subtasks'][i];
+    if (subtask['done']) {
+      document.getElementById(`subtaskList${i}`).checked = true;
+      document.getElementById(`subtaskLabel${i}`).classList.add('line-through');
+    } else {
+      document.getElementById(`subtaskLabel${i}`).classList.remove('line-through');
+    }
+  }
+}
+
+
+function markSubtaskAsDone(index) {
+  subtasks = currentTask['subtasks'];
+  if (!subtasks[index]['done']) {
+    subtasks[index]['done'] = true;
+    document.getElementById(`subtaskLabel${index}`).classList.add('line-through');
+  } else {
+    subtasks[index]['done'] = false;
+    document.getElementById(`subtaskLabel${index}`).classList.remove('line-through');
+  }
+}
+
+async function updateTasks(index) {
+  tasks.splice(index, 1, currentTask);
+  await setItem('tasks', JSON.stringify(tasks));
+  renderAllTasks();
 }
 
 /**

@@ -30,6 +30,7 @@ async function login() {
         /*Check if the user was found and if the password matches*/
         if (user && user.password === password) {
             /*saccessful login*/
+            currentUser['loggedIn'] = true;
             await setItem('currentUser', JSON.stringify(currentUser));
             /*redirect to homepage*/
             window.location.href = 'summary.html';

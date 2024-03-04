@@ -481,7 +481,11 @@ color: #3e4e64;
  background-color: rgb(224, 224, 224);
 }
 
-.popup-subtasks2 input[type="checkbox"] {
+.line-through {
+  text-decoration: line-through !important;
+}
+
+/* .popup-subtasks2 input[type="checkbox"] {
   display: none; 
 }
 
@@ -521,7 +525,7 @@ top: -15px;
 
 .popup-subtasks2 input[type="checkbox"]:checked + label::after {
   display: block; 
-}
+} */
 
 
 

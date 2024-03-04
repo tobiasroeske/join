@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,6 +13,7 @@
     <script src="js/storage.js"></script>
     <script src="js/summary.js"></script>
 </head>
+
 <body onload="init()">
 
     <!-- Header Section -->
@@ -25,14 +27,15 @@
 
         <div class="rightside">
             <!-- Page content goes here -->
-            <div class="summary">
-                <div class="summary-headline">
+            <div class="summary" id="summary">
+
+                <div class="summary-headline" id="headline">
                     <h1 class="page-heading">Join 360</h1>
                     <div class="summary-seperator"></div>
                     <h2 class="special-subheading">Key Metrics at a Glance</h2>
                 </div>
                 <div class="summary-content">
-                    <div class="content-left">
+                    <div class="content-left" id="contentLeft">
                         <div class="row">
                             <a href="board.html" class="todo">
                                 <div class="summary-symbol">
@@ -72,7 +75,7 @@
                                 <span class="deadline-text">Upcoming Deadline</span>
                             </a>
                         </div>
-                        
+
                         <div class="row">
                             <a href="board.html" class="task-box">
                                 <div class="summary-text">
@@ -96,7 +99,7 @@
                         </div>
                     </div>
 
-                    <div class="content-right">
+                    <div class="content-right" id="contentRight">
                         <span class="greeting" id="greeting"></span>
                         <span class="user-name" id="userName"></span>
                     </div>
@@ -105,4 +108,5 @@
         </div>
     </main>
 </body>
+
 </html>

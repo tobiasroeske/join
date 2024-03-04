@@ -6,6 +6,11 @@
     gap:32px;
 }
 
+.centered {
+    align-items: center !important;
+    justify-content: center !important;
+}
+
 .summary-headline {
     display: flex;
     align-items: center;
@@ -212,6 +217,14 @@
     font-weight: 700;
     color: #29ABE2;
     text-align: center;
+}
+
+.d-none {
+    display: none !important;
+}
+
+.d-flex {
+    display: flex !important;
 }
 
 @media (max-width: 1275px) {

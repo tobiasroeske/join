@@ -152,7 +152,7 @@ function renderSubtasks() {
     currentTask['subtasks'].length == 0 ? subtaskContainer.classList.add('d-none') : subtaskContainer.classList.remove('d-none');
     subtaskContainer.innerHTML = '';
     for (let i = 0; i < currentTask['subtasks'].length; i++) {
-        const subtask = currentTask['subtasks'][i];
+        const subtask = currentTask['subtasks'][i]['subtaskName'];
         subtaskContainer.innerHTML += generateSubtaskHTML(subtask, i);
     }
 }
@@ -160,7 +160,7 @@ function renderSubtasks() {
 function addSubtask() {
     let subtaskInput = document.getElementById('subtaskInput');
     if (subtaskInput.value != '') {
-        currentTask['subtasks'].push(subtaskInput.value)
+        currentTask['subtasks'].push({subtaskName: subtaskInput.value, 'done': false})
         renderSubtasks();
         subtaskInput.value = '';
     };
@@ -181,7 +181,7 @@ function deleteSubtask(index) {
 
 function editSubtask(index) {
     let edit = document.getElementById(`subtaskInput${index}`);
-    currentTask['subtasks'].splice(index, 1, edit.value);
+    currentTask['subtasks'][index]['subtaskName'] = edit.value;
     renderSubtasks();
 }
 
@@ -233,7 +233,7 @@ function generateContactListHTML(contact, i) {
 function generateSubTaskEditorHTML(index) {
     return /*html*/`
     <div class="subtask-input-field">
-        <input type="text" value="${currentTask['subtasks'][index]}" class="edit-subtask-input" id="subtaskInput${index}" onkeypress="callOnEnterPress(event, 'editSubtaskBtn')">
+        <input type="text" value="${currentTask['subtasks'][index]['subtaskName']}" class="edit-subtask-input" id="subtaskInput${index}" onkeypress="callOnEnterPress(event, 'editSubtaskBtn')">
         <div class="edit-icons">
             <img src="assets/img/addTask_delete.svg" alt="" onclick="deleteSubtask(${index})" >
             <div class="icon-seperator"></div>

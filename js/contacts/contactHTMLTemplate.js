@@ -100,7 +100,7 @@ function generateContactCardHTML(contact, index) {
 
             <div class="info-box">
                 <span class="bold">Phone</span>
-                <span>${contact['phone']}</span>
+                <span>${contact['phone'] == undefined ? 'not specified' : contact['phone']}</span>
             </div>
         </div>
         <div class="menu-contact-options">
