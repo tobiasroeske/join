@@ -13,56 +13,57 @@
 
 <body onload="init()">
     <header>
-        <div class="logo logo-container" id="logoContainer">
-            <img src="./assets/img/j-icon.svg" alt="icon">
+        <div class="logo" id="logoContainer">
+            <img class="join-icon" src="./assets/img/j-icon.svg" alt="icon">
         </div>
-        <div class="sign_up">
-            <p>Not a Join user?</p>
-            <button class="sign_up_button"><a href="signup.html">Sign up</a></button>
+        <div class="sign-up">
+            <p class="sign-up-p">Not a Join user?</p>
+            <button class="sign-up-button"><a href="signup.html">Sign up</a></button>
         </div>
     </header>
 
     <main>
         <div class="signup-content">
-            <div class="sign-up-field">
+            <div class="log-in-field">
                 <div class="log_in_headline_container">
                     <h1 class="log_in_headline">Log in</h1>
                 </div>
                 <div class="sign-up-container">
                     <form onsubmit="login(); return false;" class="login-form">
-                        
-                            <div class="input-box">
-                                <input required id="email" class="input-field" type="email" placeholder="Email">
-                                <img class="field_img" src="./assets/img/mail.svg" style="cursor: pointer;">
+                        <div class="input-box">
+                            <input required id="email" class="input-field" type="email" placeholder="Email">
+                            <img class="field_img" src="./assets/img/mail.svg" style="cursor: pointer;">
+                        </div>
+                        <div class="input-box">
+                            <input onclick="showPassword()" onblur="resetPasswordVisibility()" required id="password" class="input-field" type="password"
+                                placeholder="Password">
+                            <img onclick="togglePasswordVisibility()" class="field_img" id="lock" src="./assets/img/lock.svg" style="cursor: pointer;">
+                            <p id="wrong-password" class="wrong-text hide">Email or password wrong, ups! Try again
+                            </p>
+                        </div>
+                        <div class="remember">
+                            <input type="checkbox">
+                            <label>Remember me</label>
+                        </div>
+                        <div class="buttons">
+                            <div class="log-in-button">
+                                <button type="submit">Log in</button>
                             </div>
-                            <div class="input-box">
-                                <input onclick="showPassword()" onblur="resetPasswordVisibility()" required id="password" class="input-field" type="password"
-                                    placeholder="Password">
-                                <img onclick="togglePasswordVisibility()" class="field_img" id="lock" src="./assets/img/lock.svg" style="cursor: pointer;">
-                                <p id="wrong-password" class="wrong-text hide">Email or password wrong, ups! Try again
-                                </p>
+                            <div class="guest-button">
+                                <button><a href="#">Guest Log in</a></button>
                             </div>
-                            <div class="remember">
-                                <input type="checkbox">
-                                <label>Remember me</label>
-                            </div>
-                            <div class="buttons">
-                                <div class="log-in-button">
-                                    <button type="submit">Log in</button>
-                                </div>
-                                <div class="guest-button">
-                                    <button><a href="#">Guest Log in</a></button>
-                                </div>
-                            </div>
-                        
-
+                        </div>
                     </form>
                 </div>
 
             </div>
             </form>
+            <div class="sign-up-for-mobile">
+                <p>Not a Join user?</p>
+                <button class="sign-up-button"><a href="signup.html">Sign up</a></button>
+            </div>
         </div>
-
+        
     </main>
     <footer>
         <div class="privacy-legal">

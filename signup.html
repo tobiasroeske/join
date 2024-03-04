@@ -15,7 +15,7 @@
 
     <header>
         <div class="logo">
-            <img src="./assets/img/j-icon.svg" alt="icon">
+            <img class="join-icon" src="./assets/img/j-icon.svg" alt="icon">
         </div>
     </header>
 
@@ -30,36 +30,37 @@
                         <a href="login.html"><img src="./assets/img/Vector.svg" alt="arrow-left"></a>
                     </div>
                     <div class="log_in_headline_container">
-                        <h1 class="log_in_headline">Sign Up</h1>
+                        <h1 class="log_in_headline sign-up-headline">Sign Up</h1>
                     </div>
                 </div>
 
                 <div class="sign-up-container">
                     <form onsubmit="register(); return false;" class="form">
-                    <div class="input-box">
-                        <input required id="userName" class="input-field" type="text" placeholder="Name">
-                        <img class="field_img" src="./assets/img/person.svg" style="cursor: pointer;">
-                    </div>
-                    <div class="input-box">
-                        <input required id="email" class="input-field" type="email" placeholder="Email">
-                        <img class="field_img" src="./assets/img/mail.svg" style="cursor: pointer;">
-                    </div>
-                    <div class="input-box">
-                        <input required id="password" class="input-field" type="password" placeholder="Password">
-                        <img class="field_img" src="./assets/img/lock.svg" style="cursor: pointer;">
-                    </div>
-                    <div class="input-box password-box-red">
-                        <input required id="confirmPassword" class="input-field" type="password" placeholder="Password">
-                        <img class="field_img" src="./assets/img/lock.svg" style="cursor: pointer;">
-                    </div>
-                    <p id="wrongPasswordText" class="wrong-text hide">password must be same!</p>
-                    <div class="accept">
-                        <input id="checkbox" type="checkbox" onclick="acceptPolicy()">
-                        <label>I accept the <a class="accept-checkbox" href="privacyPolicy.html">Privacy Policy</a></label>
-                    </div>
-                    <div class="sign-up-button">
-                        <button id="sign-up-btn" disabled>Sign up</button>
-                    </div>
+                        <div class="input-box">
+                            <input required id="userName" class="input-field" type="text" placeholder="Name">
+                            <img class="field_img" src="./assets/img/person.svg" style="cursor: pointer;">
+                        </div>
+                        <div class="input-box">
+                            <input required id="email" class="input-field" type="email" placeholder="Email">
+                            <img class="field_img" src="./assets/img/mail.svg" style="cursor: pointer;">
+                        </div>
+                        <div class="input-box">
+                            <input required id="password" class="input-field" type="password" placeholder="Password">
+                            <img class="field_img" src="./assets/img/lock.svg" style="cursor: pointer;">
+                        </div>
+                        <div class="input-box password-box-red">
+                            <input required id="confirmPassword" class="input-field" type="password" placeholder="Password">
+                            <img class="field_img" src="./assets/img/lock.svg" style="cursor: pointer;">
+                        </div>
+                        <p id="wrongPasswordText" class="wrong-text hide">password must be same!</p>
+                        <div class="accept">
+                            <input id="checkbox" type="checkbox" onclick="acceptPolicy()">
+                            <label>I accept the <a class="accept-checkbox" href="privacyPolicy.html">Privacy Policy</a></label>
+                        </div>
+                        <div class="sign-up-button">
+                            <button id="sign-up-btn" disabled>Sign up</button>
+                        </div>
+                    </form>
                 </div>
                 
             </div>

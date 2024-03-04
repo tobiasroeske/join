@@ -15,13 +15,6 @@ body {
   height: 100vh;
 }
 
-main {
-  display: flex;
-  justify-content: center;
-  flex: 1;
-  align-items: flex-start;
-}
-
 a {
   text-decoration: none;
   color: #ffffff;
@@ -41,13 +34,7 @@ button {
   border: unset;
 }
 
-.signup-content {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.sign_up {
+.sign-up {
   display: flex;
   align-items: center;
   width: 400px;
@@ -55,7 +42,7 @@ button {
   gap: 35px;
 }
 
-.sign_up button {
+.sign-up-button {
   width: 91px;
   height: 49px;
   border-radius: 8px;
@@ -65,14 +52,28 @@ button {
   color: #ffffff;
 }
 
-.sign_up button:hover {
+.sign-up-button:hover {
   background-color: #29abe2;
 }
 
-.sign_up p {
+.sign-up-p {
   font-weight: 400px;
   font-size: 20px;
   line-height: 24px;
+}
+
+main {
+  display: flex;
+  justify-content: center;
+  flex: 1;
+  align-items: flex-start;
+}
+
+.signup-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 }
 
 form {
@@ -89,15 +90,18 @@ form {
     gap: 32px;
 }
 
-.log_in_field {
-  width: 652px;
-  height: 493px;
+.log-in-field {
+  width: 600px;
+  padding: 48px 88px;
   border: 1px solid lightgray;
   border-radius: 40px;
   background-color: #ffffff;
   box-shadow: 1px 1px 14px lightgray;
   display: flex;
   flex-direction: column;
+  gap: 32px;
+  position: relative;
+  overflow: hidden;
 }
 
 .log_in_headline {
@@ -229,6 +233,10 @@ form {
   margin-top: 8px;
 }
 
+.sign-up-for-mobile {
+  display: none;
+}
+
 /*=============****sign up****========================*/
 .signup-successful {
   border-radius: 10px;
@@ -252,7 +260,6 @@ form {
 .sign-up-field {
   width: 600px;
   padding: 48px 88px;
-  /* height: 630px; */
   border: 1px solid lightgray;
   border-radius: 40px;
   background-color: #ffffff;
@@ -282,6 +289,17 @@ form {
   font-family: 400px;
   line-height: 19.2px;
 }
+.arrow-svg {
+  position: absolute;
+  top: 40px;
+  left: 64px;
+}
+
+.hide {
+  display: none;
+}
+
+
 
 /*=============footer for log in and sign up========================*/
 
@@ -310,12 +328,103 @@ footer {
   color: #29abe2;
 }
 
-.arrow-svg {
-  position: absolute;
-  top: 40px;
-  left: 64px;
+
+
+/*=========responsive===============*/
+
+@media (max-width: 960px) {
+  .sign-up {
+   display: none;
+    
+  }
+
+  .sign-up-for-mobile {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 400px;
+    gap: 35px;
+    margin-top: 70px;
+  }
+
+  .join-icon {
+    height: 78px;
+    width: 64px;
+    
+  }
+
+  header {
+    padding: 20px 0 20px 20px;
+  }
 }
 
-.hide {
-  display: none;
+@media (max-width: 640px) {
+  header {
+    padding: 20px 0 20px 20px;
+  }
+  .sign-up-for-mobile {
+    margin-top: 30px;
+  }
+
+  .log-in-field,
+  .sign-up-field {
+    width: 500px;
+    padding: 20px 20px;
+  }
+
+  .buttons {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+
+}
+
+@media (max-width: 530px) {
+  .sign-up-field,
+  .log-in-field {
+    width: 430px;
+    padding: 40px 20px;
+  }
+
+  .log_in_headline {
+    font-size: 45px;
+    line-height: 50px;
+  }
+
+  .arrow-svg {
+    top: 30px;
+    left: 34px;
+  }
+}
+
+@media (max-width: 452px) {
+  .sign-up-field,
+  .log-in-field {
+    width: 350px;
+  }
+
+}
+
+@media (max-width: 365px) {
+  .sign-up-field,
+  .log-in-field {
+    width: 310px;
+    padding: 40px 20px;
+  }
+}
+
+
+/*====MAX-HEIGHT=====*/
+@media (max-height: 830px) {
+  .join-icon {
+    height: 78px;
+    width: 64px;
+  }
+
+  header {
+    padding: 20px 0 20px 40px;
+  }
 }
