@@ -72,6 +72,11 @@ function moveToContainer(category) {
   currentDraggedElement['currentColumn'] = category;
   renderAllTasks();
 }
+function showDropzone(event) {
+  let dropzone = event.currentTarget.querySelector('.drop-zone');
+  dropzone.classList.add('expanded');
+}
+
 function resetDropzone(event) {
   let dropzone = event.currentTarget.querySelector('.drop-zone');
   dropzone.classList.remove('expanded');
@@ -82,10 +87,7 @@ function expandDropzone(event) {
   event.target.classList.add('expanded');
 }
 
-function showDropzone(event) {
-  let dropzone = event.currentTarget.querySelector('.drop-zone');
-  dropzone.classList.add('expanded');
-}
+
 
 function hideDropzone(event) {
   let dropzone = event.currentTarget.querySelector('.drop-zone');

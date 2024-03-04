@@ -65,7 +65,7 @@
                     </div>
 
                     
-                    <div class="board-content" ondragover="allowDrop(event)" ondrop="moveToContainer('toDo'); event.preventDefault();" ondragenter="showDropzone(event)" ondragleave="hideDropzone(event)">
+                    <div class="board-content" ondragover="allowDrop(event)" ondrop="moveToContainer('toDo'); resetDropzone(event); event.preventDefault();" ondragenter="showDropzone(event)" ondragleave="hideDropzone(event)">
                         <div class="headlines-board">
                             <h2>To do</h2>
                             <img src="./assets/img/board-plus-button.png" alt="" class="board-plus" onclick="openAddTaskPopup('toDo')">
@@ -79,7 +79,7 @@
                         </div>
                     </div>
                     
-                    <div class="board-content" ondragover="allowDrop(event)" ondrop="moveToContainer('inProgress'); event.preventDefault();" ondragenter="showDropzone(event)" ondragleave="hideDropzone(event)">
+                    <div class="board-content" ondragover="allowDrop(event)" ondrop="moveToContainer('inProgress'); resetDropzone(event); event.preventDefault();" ondragenter="showDropzone(event)" ondragleave="hideDropzone(event)">
                         <div class="headlines-board">
                             <h2>In Progress</h2>
                             <img src="./assets/img/board-plus-button.png" alt="" class="board-plus" onclick="openAddTaskPopup('inProgress')">
@@ -93,7 +93,7 @@
                         </div>
                     </div>
                     
-                    <div class="board-content" ondragover="allowDrop(event)" ondrop="moveToContainer('awaitFeedback'); event.preventDefault();" ondragenter="showDropzone(event)" ondragleave="hideDropzone(event)">
+                    <div class="board-content" ondragover="allowDrop(event)" ondrop="moveToContainer('awaitFeedback'); resetDropzone(event); event.preventDefault();" ondragenter="showDropzone(event)" ondragleave="hideDropzone(event)">
                         <div class="headlines-board">
                             <h2>Await Feedback</h2>
                             <img src="./assets/img/board-plus-button.png" alt="" class="board-plus" onclick="openAddTaskPopup('awaitFeedback')">
@@ -107,7 +107,7 @@
                         </div>
                     </div>
                     
-                    <div class="board-content" ondragover="allowDrop(event)" ondrop="moveToContainer('done'); event.preventDefault();" ondragenter="showDropzone(event)" ondragleave="hideDropzone(event)">
+                    <div class="board-content" ondragover="allowDrop(event)" ondrop="moveToContainer('done'); event.preventDefault(); resetDropzone(event);" ondragenter="showDropzone(event)" ondragleave="hideDropzone(event)">
                         <div class="headlines-board">
                             <h2>Done</h2>
                             <img src="./assets/img/board-plus-button.png" alt="" class="board-plus" onclick="openAddTaskPopup('done')">
