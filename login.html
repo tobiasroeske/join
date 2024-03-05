@@ -38,12 +38,11 @@
                             <input onclick="showPassword()" onblur="resetPasswordVisibility()" required id="password" class="input-field" type="password"
                                 placeholder="Password">
                             <img onclick="togglePasswordVisibility()" class="field_img" id="lock" src="./assets/img/lock.svg" style="cursor: pointer;">
-                            <p id="wrong-password" class="wrong-text hide">Email or password wrong, ups! Try again
-                            </p>
+                            <p id="wrong-password" class="wrong-text hide">Email or password wrong, ups! Try again</p>
                         </div>
                         <div class="remember">
-                            <input type="checkbox">
-                            <label>Remember me</label>
+                            <input type="checkbox" id="rememberMeCheckbox">
+                            <label for="rememberMeCheckbox">Remember me</label>
                         </div>
                         <div class="buttons">
                             <div class="log-in-button">

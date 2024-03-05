@@ -80,5 +80,38 @@ function togglePasswordVisibility() {
     }
 }
 
+/*========RememberMe=============*/
+
+/**/
+function rememberMe() {
+    let rememberCheckbox = document.getElementById('rememberMeCheckbox');
+    if (rememberCheckbox.checked) {
+        localStorage.setItem('rememberedEmail', document.getElementById('email').value);
+        localStorage.setItem('rememberedPassword', document.getElementById('password').value);
+    } else {
+        localStorage.removeItem('rememberedEmail');
+        localStorage.removeItem('rememberedPassword');
+    }
+}
+
+function autoFillForm() {
+    let rememberedEmail = localStorage.getItem('rememberedEmail');
+    let rememberedPassword = localStorage.getItem('rememberedPassword');
+    if (rememberedEmail && rememberedPassword) {
+        document.getElementById('email').value = rememberedEmail;
+        document.getElementById('password').value = rememberedPassword;
+        document.getElementById('rememberMeCheckbox').checked = true;
+    }
+}
+
+window.onload = function() {
+    /* Load the user array first*/
+    init(); 
+    autoFillForm(); // Füllen Sie dann das Formular aus
+}
+
+document.querySelector('.login-form').addEventListener('submit', function() {
+    rememberMe();
+});
 
 
