@@ -267,15 +267,6 @@ function closePopupInTaskEditor(id) {
   document.getElementById(id).classList.add('d-none');
 }
 
-// function renderContactsTaskPopup(task) {
-//   let html = '';
-//   for (let i = 0; i < task['assignedContacts'].length; i++) {
-//     const contact = task['assignedContacts'][i];
-//     html += generatePopupContactsHTML(contact);
-//   }
-//   return html;
-// }
-
 function capitalizeFirstLetter(string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
 }
@@ -312,7 +303,6 @@ function closeTaskPopup() {
 function startDragging(index) {
   let task = tasks[index];
   currentDraggedElement = task;
-  console.log(currentDraggedElement);
 }
 
 function allowDrop(ev) {
@@ -325,27 +315,30 @@ async function moveToContainer(category) {
   renderAllTasks();
 }
 
-function showDropzone(event) {
-  let dropzone = event.currentTarget.querySelector('.drop-zone');
-  dropzone.classList.add('expanded');
+function highlightDropZone(id) {
+  document.getElementById(id).classList.add('drop-zone');
 }
 
-function resetDropzone(event) {
-  let dropzone = event.currentTarget.querySelector('.drop-zone');
-  dropzone.classList.remove('expanded');
+function toggleCardRotation(id) {
+  document.getElementById(id).classList.toggle('rotate')
 }
 
-function expandDropzone(event) {
-  event.preventDefault();
-  event.target.classList.add('expanded');
+function zoomOnDrag(id) {
+  document.getElementById(id).classList.toggle('drop-zone-expanded');
 }
 
-function hideDropzone(event) {
-  let dropzone = event.currentTarget.querySelector('.drop-zone');
-  let relatedTarget = event.relatedTarget;
+function removeHighlightDropZone(id) {
+  document.getElementById(id).classList.remove('drop-zone');
+}
 
-  if (relatedTarget && !dropzone.contains(relatedTarget) && event.type !== 'drop') {
-    dropzone.classList.remove('expanded');
-  }
+function showMoveToPopup(id) {
+  document.getElementById(id).classList.remove('d-none');
+}
+
+async function moveToColumn(index, column) {
+  let task = tasks[index];
+  task['currentColumn'] = column;
+  // await setItem('tasks', JSON.stringify(tasks));
+  renderAllTasks();
 }
 
