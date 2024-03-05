@@ -266,15 +266,17 @@ form {
   width: 280px;
   position: absolute;
   top: 150%;
-  left: 25%;
+  /*left: 25%;*/
   z-index: 50;
+  display: flex;
+  justify-content: center;
   transition: all 0.125s ease;
 }
 
 .signup-succesful-animation {
-  top: 44%;
-  top: 80px;
-  left: 80px;
+  top: 50%;
+  /* top: 80px; */
+  /*left: 80px;*/
 }
 
 .sign-up-field {
@@ -286,6 +288,7 @@ form {
   box-shadow: 0px 0px 14px 3px rgba(0,0,0,0.04);
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 32px;
   position: relative;
   overflow: hidden;
@@ -451,6 +454,12 @@ footer {
     width: 350px;
   }
 
+}
+
+@media (max-width:400px) {
+  .sign-up-for-mobile {
+    width: 98%;
+  }
 }
 
 @media (max-width: 365px) {

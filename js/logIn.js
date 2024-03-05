@@ -2,6 +2,11 @@ let currentUser;
 
 
 async function init() {
+    load();
+    autoFillForm();
+}
+
+async function load() {
     try {
         /*Loading user data from memory*/
         await loadUsers();
@@ -104,14 +109,14 @@ function autoFillForm() {
     }
 }
 
-window.onload = function() {
-    /* Load the user array first*/
-    init(); 
-    autoFillForm(); // Füllen Sie dann das Formular aus
-}
+// window.onload = function() {
+//     /* Load the user array first*/
+//     init(); 
+//     autoFillForm(); // Füllen Sie dann das Formular aus
+// }
 
-document.querySelector('.login-form').addEventListener('submit', function() {
-    rememberMe();
-});
+// document.querySelector('.login-form').addEventListener('submit', function() {
+//     rememberMe();
+// });
 
 

@@ -24,7 +24,9 @@ async function register() {
             password: password.value,
             name: userName.value,
             color: 'black',
-            loggedIn : false
+            loggedIn : false,
+            tasks: [],
+            contacts: []
         });
         await setItem('users', JSON.stringify(users)); // key = 'users', value
         pipeToLogin();
@@ -63,7 +65,7 @@ function matchPass() {
 function acceptPolicy() {
     let acceptCheckbox = document.getElementById('checkbox');
     let signUpButton = document.getElementById('sign-up-btn');
-    acceptCheckbox = true ? signUpButton.disabled = false : signUpButton.disabled = true;
+    acceptCheckbox.checked ? signUpButton.disabled = false : signUpButton.disabled = true;
 }
 
 function startSignupAnimation() {

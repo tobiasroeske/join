@@ -5,9 +5,19 @@ function generateTasksHTML(task, index) {
               <div id="taskUserStory" class="task-${task['category'].replace(' ', '')}">${task['category']}</div>
               <div id="taskTitle" class="task-title">${task['title']}</div>
               <div id="taskDescription" class="task-description">${task['description']}</div>
-              <div class="w3-light-grey w3-round-xlarge progressbar">
-                  <div class="w3-container w3-blue w3-round-xlarge progressbar" id="taskProgress"></div> 
+              <div class="progress-container">
+                <div class="custom-progress" id="progress">
+                  <div class="custom-progress-bar" id="progressBar">
+
+                  </div>
+                </div>
+                <div id="subtaskAmount">
+                  5/7 Subtasks
+                </div>
               </div>
+              <!-- <div class="w3-light-grey w3-round-xlarge progressbar">
+                  <div class="w3-container w3-blue w3-round-xlarge progressbar" id="taskProgress"></div> 
+              </div> -->
               <div class="assigned-and-prio">
                   <div id="assignedTo${index}" class="assigned-to"> </div>
                   <div id="taskPriority" class="task-priority">
