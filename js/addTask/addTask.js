@@ -77,6 +77,7 @@ function resetCurrentTask() {
 function pipeToBoard() {
     document.getElementById('createTaskBtn').disabled = true;
     document.getElementById('taskAdded').classList.remove('d-none');
+    document.getElementById('taskAddedPopup').classList.remove('d-none')
     setTimeout(() => startAnimation('taskAdded', 'task-added-animation'), 125);
     setTimeout(() => window.open('board.html', '_self'), 1500);
 }

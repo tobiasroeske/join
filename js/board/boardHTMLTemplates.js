@@ -5,14 +5,14 @@ function generateTasksHTML(task, index) {
               <div id="taskUserStory" class="task-${task['category'].replace(' ', '')}">${task['category']}</div>
               <div id="taskTitle" class="task-title">${task['title']}</div>
               <div id="taskDescription" class="task-description">${task['description']}</div>
-              <div class="progress-container">
-                <div class="custom-progress" id="progress">
-                  <div class="custom-progress-bar" id="progressBar">
+              <div class="progress-container d-none" id="progress${index}">
+                <div class="custom-progress">
+                  <div class="custom-progress-bar" id="progressBar${index}">
 
                   </div>
                 </div>
-                <div id="subtaskAmount">
-                  5/7 Subtasks
+                <div>
+                  <span id="doneSubtasks${index}"></span>/<span id="subtaskAmount${index}"></span> Subtasks
                 </div>
               </div>
               <!-- <div class="w3-light-grey w3-round-xlarge progressbar">
@@ -151,7 +151,7 @@ function generataeSubtaskPopupHTML(subtask, index) {
     return /*html*/`
     <div>
       <input type="checkbox" id="subtaskList${index}" onclick="markSubtaskAsDone(${index})">
-      <label for="subtask${index}" id="subtaskLabel${index}">${subtask['subtaskName']}</label>
+      <label for="subtaskList${index}" id="subtaskLabel${index}">${subtask['subtaskName']}</label>
     </div>
   `;
 }

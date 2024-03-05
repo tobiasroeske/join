@@ -128,6 +128,7 @@ h2 {
 .board-content {
   display: flex;
   flex-direction: column;
+  position: relative;
 }
 
 .board-noTasks {
@@ -208,6 +209,28 @@ h2 {
 
 .task-worker {
   border-radius: 50px;
+}
+
+.progress-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.custom-progress {
+  width: 50%;
+  height: 10px;
+  background-color: #eeeeee;
+  border-radius: 4px;
+  position: relative;
+}
+
+.custom-progress-bar {
+  position: absolute;
+  background-color: #29abe2;
+  border-radius: 4px;
+  height: 10px;
+  width: 0;
 }
 
 .progressbar {
@@ -373,8 +396,8 @@ h2 {
 }
 
 .drop-zone {
-  position: fixed;
-display: flex;
+  position: absolute;
+  display: flex;
   width: 258px;
   height: 400px;
   background-color: rgba(156, 156, 158, 0.3);

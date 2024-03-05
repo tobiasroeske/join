@@ -26,6 +26,7 @@ function renderTaskColumn(column) {
     if (currentTask['currentColumn'] == column) {
       tasksContainer.innerHTML += generateTasksHTML(currentTask, i);
       renderSelectedContacts(`assignedTo${i}`);
+      showSubtaskStatus(i)
     }
   }
   checkIfTasksExist(column);
@@ -57,56 +58,41 @@ function renderAllTasks() {
   renderTaskColumn('done');
 }
 
-/* Drag and drop funktionen*/
-function startDragging(index) {
-  let task = tasks[index];
-  currentDraggedElement = task;
-  console.log(currentDraggedElement);
+/**
+ * Toggles the addTaskPopup and starts the slide in animation
+ */
+async function openAddTaskPopup(column) {
+  await includeHTML();
+  renderContacts();
+  document.getElementById('popup').classList.toggle('d-none');
+  setTimeout(() => startAnimation('addTaskPopup', 'popup-show'), 125);
+  currentTask['currentColumn'] = column;
 }
 
-function allowDrop(ev) {
-  ev.preventDefault();
-}
-
-async function moveToContainer(category) {
-  currentDraggedElement['currentColumn'] = category;
+/**
+ * creates a new Task and saves it in the currentTask variable
+ * then sends the tasks array to the remote storage
+ * in the end resets the popup
+ */
+async function newTask() {
+  getTaskData();
+  tasks.push(currentTask);
   await setItem('tasks', JSON.stringify(tasks));
   renderAllTasks();
+  resetPopup();
 }
 
-function showDropzone(event) {
-  let dropzone = event.currentTarget.querySelector('.drop-zone');
-  dropzone.classList.add('expanded');
-}
-
-function resetDropzone(event) {
-  let dropzone = event.currentTarget.querySelector('.drop-zone');
-  dropzone.classList.remove('expanded');
-}
-
-function expandDropzone(event) {
-  event.preventDefault();
-  event.target.classList.add('expanded');
-}
-
-function hideDropzone(event) {
-  let dropzone = event.currentTarget.querySelector('.drop-zone');
-  let relatedTarget = event.relatedTarget;
-
-  if (relatedTarget && !dropzone.contains(relatedTarget) && event.type !== 'drop') {
-    dropzone.classList.remove('expanded');
-  }
-}
-
-/* full contact name*/
-
-function renderFullContacts(id) {
-  let container = document.getElementById(id);
-  container.innerHTML = '';
-  for (let i = 0; i < currentTask['assignedContacts'].length; i++) {
-    const contact = currentTask['assignedContacts'][i];
-    container.innerHTML += generatePopupContactsHTML(contact);
-  }
+/**
+ * resets the form starts the slide animation and closes after a delay the popup
+ */
+function resetPopup() {
+  resetAddTask()
+  document.getElementById('taskAdded').classList.add('flex');
+  startAnimation('taskAdded', 'task-added-animation')
+  setTimeout(() => {
+    slideOutPopup();
+    startAnimation('taskAdded', 'task-added-animation');
+  }, 1500);
 }
 
 /**
@@ -135,11 +121,90 @@ function renderTaskPopup(index) {
   let popupContent = document.getElementById('popupContent');
   popupContent.innerHTML = generateTaskPopupHTML(currentTask, index);
   renderSelectedContacts('assignedContactsInPopup');
+}
+
+function renderFullContacts(id) {
+  let container = document.getElementById(id);
+  container.innerHTML = '';
+  for (let i = 0; i < currentTask['assignedContacts'].length; i++) {
+    const contact = currentTask['assignedContacts'][i];
+    container.innerHTML += generatePopupContactsHTML(contact);
+  }
+}
+
+function checkIfDone() {
+  for (let i = 0; i < currentTask['subtasks'].length; i++) {
+    const subtask = currentTask['subtasks'][i];
+    if (subtask['done']) {
+      document.getElementById(`subtaskList${i}`).checked = true;
+      document.getElementById(`subtaskLabel${i}`).classList.add('line-through');
+    } else {
+      document.getElementById(`subtaskLabel${i}`).classList.remove('line-through');
+    }
+  }
+}
+
+/**
+ * Checks depending on the current task how many subtasks exist and creates
+ * html code to display it in the task popup
+ * 
+ * @param {number} index the index of the current task 
+ * @returns the html code
+ */
+function getSubtasks(index) {
+  let html = '';
+  let task = tasks[index];
+  for (let i = 0; i < task['subtasks'].length; i++) {
+    const subtask = task['subtasks'][i];
+    html += generataeSubtaskPopupHTML(subtask, i)
+  }
+  return html;
+}
+
+function markSubtaskAsDone(index) {
+  subtasks = currentTask['subtasks'];
+  if (!subtasks[index]['done']) {
+    subtasks[index]['done'] = true;
+    document.getElementById(`subtaskLabel${index}`).classList.add('line-through');
+  } else {
+    subtasks[index]['done'] = false;
+    document.getElementById(`subtaskLabel${index}`).classList.remove('line-through');
+  }
+}
+
+function showSubtaskStatus(index) {
+  let task = tasks[index];
+  if (task['subtasks'].length != 0) {
+    document.getElementById(`progress${index}`).classList.remove('d-none');
+    let done = [];
+    task['subtasks'].forEach(subtask => {
+      if (subtask['done']) {
+        done.push(subtask);
+      }
+    });
+    updateProgressBar(index, done);
+    document.getElementById(`doneSubtasks${index}`).innerHTML = done.length;
+    document.getElementById(`subtaskAmount${index}`).innerHTML = task['subtasks'].length;
+  } else {
+    document.getElementById(`progress${index}`).classList.add('d-none');
+  }
   
 }
 
-function capitalizeFirstLetter(string) {
-  return string.charAt(0).toUpperCase() + string.slice(1);
+function updateProgressBar(index, doneSubtasks) {
+  let progressbar = document.getElementById(`progressBar${index}`);
+  let task = tasks[index];
+  let width = (doneSubtasks.length / task['subtasks'].length) * 100;
+  progressbar.style.width = `${width}%`;
+  if (width == 100) {
+    progressbar.style.backgroundColor = '#7AE229'
+  }
+}
+
+async function updateTasks(index) {
+  tasks.splice(index, 1, currentTask);
+  await setItem('tasks', JSON.stringify(tasks));
+  renderAllTasks();
 }
 
 function deleteTask(index) {
@@ -198,98 +263,21 @@ function editTask(index) {
   renderAllTasks();
 }
 
-function renderContactsTaskPopup(task) {
-  let html = '';
-  for (let i = 0; i < task['assignedContacts'].length; i++) {
-    const contact = task['assignedContacts'][i];
-    html += generatePopupContactsHTML(contact);
-  }
-  return html;
+function closePopupInTaskEditor(id) {
+  document.getElementById(id).classList.add('d-none');
 }
 
-/**
- * Checks depending on the current task how many subtasks exist and creates
- * html code to display it in the task popup
- * 
- * @param {number} index the index of the current task 
- * @returns the html code
- */
-function getSubtasks(index) {
-  let html = '';
-  let task = tasks[index];
-  for (let i = 0; i < task['subtasks'].length; i++) {
-    const subtask = task['subtasks'][i];
-    html += generataeSubtaskPopupHTML(subtask, i)
-  }
-  
-  return html;
-}
+// function renderContactsTaskPopup(task) {
+//   let html = '';
+//   for (let i = 0; i < task['assignedContacts'].length; i++) {
+//     const contact = task['assignedContacts'][i];
+//     html += generatePopupContactsHTML(contact);
+//   }
+//   return html;
+// }
 
-function checkIfDone() {
-  for (let i = 0; i < currentTask['subtasks'].length; i++) {
-    const subtask = currentTask['subtasks'][i];
-    if (subtask['done']) {
-      document.getElementById(`subtaskList${i}`).checked = true;
-      document.getElementById(`subtaskLabel${i}`).classList.add('line-through');
-    } else {
-      document.getElementById(`subtaskLabel${i}`).classList.remove('line-through');
-    }
-  }
-}
-
-
-function markSubtaskAsDone(index) {
-  subtasks = currentTask['subtasks'];
-  if (!subtasks[index]['done']) {
-    subtasks[index]['done'] = true;
-    document.getElementById(`subtaskLabel${index}`).classList.add('line-through');
-  } else {
-    subtasks[index]['done'] = false;
-    document.getElementById(`subtaskLabel${index}`).classList.remove('line-through');
-  }
-}
-
-async function updateTasks(index) {
-  tasks.splice(index, 1, currentTask);
-  await setItem('tasks', JSON.stringify(tasks));
-  renderAllTasks();
-}
-
-/**
- * creates a new Task and saves it in the currentTask variable
- * then sends the tasks array to the remote storage
- * in the end resets the popup
- */
-async function newTask() {
-  getTaskData();
-  tasks.push(currentTask);
-  await setItem('tasks', JSON.stringify(tasks));
-  renderAllTasks();
-  resetPopup();
-}
-
-/**
- * resets the form starts the slide animation and closes after a delay the popup
- */
-function resetPopup() {
-  resetAddTask()
-  document.getElementById('taskAdded').classList.add('flex');
-  startAnimation('taskAdded', 'task-added-animation')
-  setTimeout(() => {
-    slideOutPopup();
-    startAnimation('taskAdded', 'task-added-animation');
-  }, 1500);
-}
-
-/**
- * Toggles the addTaskPopup and starts the slide in animation
- */
-async function openAddTaskPopup(column) {
-  await includeHTML();
-  renderContacts();
-  document.getElementById('popup').classList.toggle('d-none');
-  setTimeout(() => startAnimation('addTaskPopup', 'popup-show'), 125);
-  currentTask['currentColumn'] = column;
+function capitalizeFirstLetter(string) {
+  return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
 /**
@@ -298,10 +286,6 @@ async function openAddTaskPopup(column) {
 function slideOutPopup() {
   setTimeout(() => document.getElementById('popup').classList.toggle('d-none'), 125);
   startAnimation('addTaskPopup', 'popup-show')
-}
-
-function closePopupInTaskEditor(id) {
-  document.getElementById(id).classList.add('d-none');
 }
 
 /**
@@ -324,5 +308,44 @@ function closeTaskPopup() {
   startAnimation('popupContent', 'popup-show')
 }
 
+/* Drag and drop funktionen*/
+function startDragging(index) {
+  let task = tasks[index];
+  currentDraggedElement = task;
+  console.log(currentDraggedElement);
+}
 
+function allowDrop(ev) {
+  ev.preventDefault();
+}
+
+async function moveToContainer(category) {
+  currentDraggedElement['currentColumn'] = category;
+  await setItem('tasks', JSON.stringify(tasks));
+  renderAllTasks();
+}
+
+function showDropzone(event) {
+  let dropzone = event.currentTarget.querySelector('.drop-zone');
+  dropzone.classList.add('expanded');
+}
+
+function resetDropzone(event) {
+  let dropzone = event.currentTarget.querySelector('.drop-zone');
+  dropzone.classList.remove('expanded');
+}
+
+function expandDropzone(event) {
+  event.preventDefault();
+  event.target.classList.add('expanded');
+}
+
+function hideDropzone(event) {
+  let dropzone = event.currentTarget.querySelector('.drop-zone');
+  let relatedTarget = event.relatedTarget;
+
+  if (relatedTarget && !dropzone.contains(relatedTarget) && event.type !== 'drop') {
+    dropzone.classList.remove('expanded');
+  }
+}
 
