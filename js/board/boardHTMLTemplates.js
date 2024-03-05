@@ -1,6 +1,18 @@
 function generateTasksHTML(task, index) {
   return /*html*/`
-      <div class="task-design" id="card-${index}" draggable="true" ondragstart="startDragging(${index})">
+      <div class="task-design" id="card-${index}" draggable="true" ondragstart="startDragging(${index})" ontouchmove="showMoveToPopup('moveToPopup${index}')">
+          <div class="move-to-popup d-none" id="moveToPopup${index}">
+            <div class="move-to-top">
+              <span>Move to: </span>
+              <img src="assets/img/board_close_mobile.svg" alt="" onclick="closePopupInTaskEditor('moveToPopup${index}')">
+            </div>
+            <ul class="styled-list">
+              <li onclick="moveToColumn(${index}, 'toDo')">Todo</li>
+              <li onclick="moveToColumn(${index}, 'inProgress')">In Progress</li>
+              <li onclick="moveToColumn(${index}, 'awaitFeedback')">Await Feedback</li>
+              <li onclick="moveToColumn(${index}, 'done')">Done</li>
+            </ul>
+          </div>
           <div onclick="openTaskPopup(${index})">
               <div id="taskUserStory" class="task-${task['category'].replace(' ', '')}">${task['category']}</div>
               <div id="taskTitle" class="task-title">${task['title']}</div>
@@ -109,23 +121,25 @@ function generateTaskPopupHTML(task, index) {
       <div class="task-${task['category'].replace(' ', '')}">${task['category']}</span>  </div>
       <div><img src="assets/img/contacts_close.svg" alt="" class="icon" onclick="closeTaskPopup(); updateTasks(${index})"></div>
     </div>
-    <h1 class="page-heading3">${task['title']}</h1>
-    <div class="description-popup"><span>${task['description']}</span></div>
-    <div class="popup-date">
-      <span>Due Date: </span>
-      <div class="popup-date2">   <span>${task['dueDate']}</span> </div>
-    </div>
-    <div class="priority-popup">
-      <span>Priority: </span>
-      <div class="priority-popup2"> <span>${capitalizeFirstLetter(task['currentPriority'][0])} <img src="${task['currentPriority'][1]}" alt=""></span> </div>
-    </div>
-    <div class="popup-assignedto">
-      Assigned To:
-     <div class="popup-assignedto2" id="assignedContactsInPopup"></div>
-    </div>
-    <div class="popup-subtasks">
-      Subtasks:
-     <div class="popup-subtasks2" id="subtask${index}">${getSubtasks(index)}</div>
+    <div class="flex-1">
+      <h1 class="page-heading3">${task['title']}</h1>
+      <div class="description-popup"><span>${task['description']}</span></div>
+      <div class="popup-date">
+        <span>Due Date: </span>
+        <div class="popup-date2">   <span>${task['dueDate']}</span> </div>
+      </div>
+      <div class="priority-popup">
+        <span>Priority: </span>
+        <div class="priority-popup2"> <span>${capitalizeFirstLetter(task['currentPriority'][0])} <img src="${task['currentPriority'][1]}" alt=""></span> </div>
+      </div>
+      <div class="popup-assignedto">
+        Assigned To:
+      <div class="popup-assignedto2" id="assignedContactsInPopup"></div>
+      </div>
+      <div class="popup-subtasks">
+        Subtasks:
+      <div class="popup-subtasks2" id="subtask${index}">${getSubtasks(index)}</div>
+      </div>
     </div>
     <div class="edit-and-delete">   
       <div class="popup-delete" onclick="deleteTask(${index})">

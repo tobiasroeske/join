@@ -21,6 +21,11 @@ button {
   background-color: white;
   offset: none;
 }
+
+.rightside {
+  height: 100vh;
+}
+
 .orange {
   background-color: #ff7a00;
 }
@@ -521,6 +526,8 @@ textarea {
 }
 
 @media (max-width: 900px) {
+  
+  
   .form-top {
     flex-direction: column;
   }
@@ -528,6 +535,7 @@ textarea {
   .add-task {
     padding: 64px 0;
     width: 75%;
+    height: fit-content;
   }
 
   .form {
