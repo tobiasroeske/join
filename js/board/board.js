@@ -314,7 +314,6 @@ function filterTasks() {
 function startDragging(index) {
   let task = currentUser['tasks'][index];
   currentDraggedElement = task;
-  console.log(currentDraggedElement);
 }
 
 function allowDrop(ev) {
@@ -323,8 +322,8 @@ function allowDrop(ev) {
 
 async function moveToContainer(category) {
   currentDraggedElement['currentColumn'] = category;
-  await setItem('tasks', JSON.stringify(tasks));
-  renderAllTasks(tasks);
+  await setItem('currentUser', JSON.stringify(currentUser));
+  renderAllTasks(currentUser['tasks']);
 }
 
 function highlightDropZone(id) {
@@ -350,7 +349,7 @@ function showMoveToPopup(id) {
 async function moveToColumn(index, column) {
   let task = currentUser['tasks'][index];
   task['currentColumn'] = column;
-  // await setItem('tasks', JSON.stringify(tasks));
+  await setItem('currentUser', JSON.stringify(currentUser));
   renderAllTasks(currentUser['tasks']);
 }
 
