@@ -1,4 +1,4 @@
-let currentUser;
+
 let tasks = [];
 let todos = [];
 let inProgress = [];
@@ -16,17 +16,10 @@ async function init() {
     displayGreetingScreen();
 }
 
-async function load() {
-    try {
-        currentUser = JSON.parse(await getItem('currentUser'));
-        tasks = JSON.parse(await getItem('tasks'));
-    } catch (error) {
-        console.error('Loading error:' + error);
-    }
-}
+
 
 function sortTasks() {
-    tasks.forEach(task => {
+    currentUser['tasks'].forEach(task => {
         if (task['currentColumn'] == 'toDo') {
             todos.push(task);
         } else if (task['currentColumn'] == 'inProgress') {
@@ -54,9 +47,11 @@ function displayTasks() {
 
 function displayDueDate() {
     sortDueDates();
-    let nearestDueDate = new Date(tasks[0]['dueDate']);
-    let formatedDate = changeDateFormat(nearestDueDate);
-    document.getElementById('dueDate').innerHTML = formatedDate;
+    if (currentUser['tasks'].length > 0) {
+        let nearestDueDate = new Date(currentUser['tasks'][0]['dueDate']);
+        let formatedDate = changeDateFormat(nearestDueDate);
+        document.getElementById('dueDate').innerHTML = formatedDate;
+    }
 }
 
 function changeDateFormat(date) {
@@ -68,7 +63,7 @@ function changeDateFormat(date) {
 }
 
 function sortDueDates() {
-    tasks.sort((a, b) => new Date(a['dueDate']) - new Date(b['dueDate']));
+    currentUser['tasks'].sort((a, b) => new Date(a['dueDate']) - new Date(b['dueDate']));
 }
 
 function checkHour() {

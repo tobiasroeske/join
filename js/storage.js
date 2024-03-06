@@ -1,4 +1,7 @@
 const STORAGE_TOKEN = 'BIBQMWMDY19NJ5KHLZZHSPZ7CLE62T2J4AEWY50R';
+// const STORAGE_TOKEN = 'I7VBHPMWR0WUC9CDZN6MA48WYVZZZ9EFGGW53GTN';
+
+
 const STORAGE_URL = 'https://remote-storage.developerakademie.org/item';
 
 
@@ -15,4 +18,15 @@ async function getItem(key) {
             return res.data.value;
         } throw `Could not find data with key "${key}"`;
     })
+}
+
+function saveGuestToLocalStorage() {
+    localStorage.setItem('guest', JSON.stringify(guest));
+}
+
+function loadGuestFromLocalStorage() {
+    let guestAsText = JSON.parse(localStorage.getItem('guest'));
+    if (guestAsText) {
+        guest = guestAsText;
+    }
 }

@@ -54,6 +54,13 @@ button {
   transition: opacity 1.5s ease-in-out;
 }
 
+.guest-login {
+  cursor: pointer;
+  font-size: 21px;
+  font-weight: 700;
+  color: #2a3647;
+}
+
 .logo-popup-mobile {
   display: flex;
   align-items: center;
@@ -296,7 +303,7 @@ form {
   gap: 10px;
   background-color: #2a3647;
   color: #ffffff;
-  font-weight: 700px;
+  font-weight: 700;
   font-size: 21px;
   line-height: 25.2px;
 }
