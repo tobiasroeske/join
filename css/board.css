@@ -406,7 +406,7 @@ h2 {
   display: flex;
   width: 258px;
   background-color: rgba(156, 156, 158, 0.3);
-  border: 3px dashed #2a3647; 
+  border: 1px dashed #2a3647; 
   border-radius: 20px;
   transform: scale(1.1);
 }

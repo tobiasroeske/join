@@ -78,7 +78,7 @@ async function newTask() {
   getTaskData();
   tasks.push(currentTask);
   await setItem('tasks', JSON.stringify(tasks));
-  renderAllTasks();
+  renderAllTasks(tasks);
   resetPopup();
 }
 
@@ -204,14 +204,14 @@ function updateProgressBar(index, doneSubtasks) {
 async function updateTasks(index) {
   tasks.splice(index, 1, currentTask);
   await setItem('tasks', JSON.stringify(tasks));
-  renderAllTasks();
+  renderAllTasks(tasks);
 }
 
 function deleteTask(index) {
   let task = tasks[index];
   tasks.splice(index, 1);
   closeTaskPopup();
-  renderAllTasks();
+  renderAllTasks(tasks);
 }
 
 function openTaskEditor(index) {
@@ -260,7 +260,7 @@ function editTask(index) {
   tasks.splice(index, 1, currentTask);
   resetCurrentTask();
   closeTaskPopup();
-  renderAllTasks();
+  renderAllTasks(tasks);
 }
 
 function closePopupInTaskEditor(id) {
@@ -324,7 +324,7 @@ function allowDrop(ev) {
 async function moveToContainer(category) {
   currentDraggedElement['currentColumn'] = category;
   await setItem('tasks', JSON.stringify(tasks));
-  renderAllTasks();
+  renderAllTasks(tasks);
 }
 
 function highlightDropZone(id) {
@@ -351,6 +351,6 @@ async function moveToColumn(index, column) {
   let task = tasks[index];
   task['currentColumn'] = column;
   // await setItem('tasks', JSON.stringify(tasks));
-  renderAllTasks();
+  renderAllTasks(tasks);
 }
 
