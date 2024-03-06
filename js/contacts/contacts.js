@@ -10,6 +10,7 @@ async function init() {
     await load()
     getFirstLetters();
     renderContactList();
+    await saveProfileContact();
 }
 
 /**
@@ -25,7 +26,9 @@ async function load() {
 }
 
 async function saveProfileContact() {
-    if (contacts.indexOf(currentUser) == -1) {
+    let contactsStringified = contacts.map(contact => JSON.stringify(contact));
+    let currentUserStringified = JSON.stringify(currentUser);
+    if (contactsStringified.indexOf(currentUserStringified) == - 1) {
         contacts.push(currentUser);
         await setItem('contacts', JSON.stringify(contacts));
     }

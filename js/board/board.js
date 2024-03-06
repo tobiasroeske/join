@@ -8,7 +8,7 @@ async function init() {
   await includeHTML();
   await load();
   renderContacts();
-  renderAllTasks();
+  renderAllTasks(tasks);
 }
 
 /**
@@ -18,11 +18,11 @@ async function init() {
  * 
  * @param {string} column name of the column, can be 'toDo', 'inProgress', 'awaitFeedback', 'done'
  */
-function renderTaskColumn(column) {
+function renderTaskColumn(column, array) {
   let tasksContainer = document.getElementById(`tasks-${column}`);
   tasksContainer.innerHTML = '';
-  for (let i = 0; i < tasks.length; i++) {
-    currentTask = tasks[i];
+  for (let i = 0; i < array.length; i++) {
+    currentTask = array[i];
     if (currentTask['currentColumn'] == column) {
       tasksContainer.innerHTML += generateTasksHTML(currentTask, i);
       renderSelectedContacts(`assignedTo${i}`);
@@ -51,11 +51,11 @@ function checkIfTasksExist(column) {
 /**
  * renders all columns
  */
-function renderAllTasks() {
-  renderTaskColumn('toDo')
-  renderTaskColumn('inProgress')
-  renderTaskColumn('awaitFeedback');
-  renderTaskColumn('done');
+function renderAllTasks(array) {
+  renderTaskColumn('toDo', array)
+  renderTaskColumn('inProgress', array)
+  renderTaskColumn('awaitFeedback', array);
+  renderTaskColumn('done', array);
 }
 
 /**
@@ -297,6 +297,18 @@ function startAnimation(id, className) {
 function closeTaskPopup() {
   setTimeout(() => document.getElementById('secondPopup').classList.toggle('d-none'), 125);
   startAnimation('popupContent', 'popup-show')
+}
+
+function filterTasks() {
+  let searchValue = document.getElementById('searchInput').value.toLowerCase();
+  let matchingTasks = [];
+  tasks.forEach(task => {
+    let match = task['title'].toLowerCase().includes(searchValue);
+    if (match) {
+      matchingTasks.push(task);
+    } 
+  });
+  renderAllTasks(matchingTasks);
 }
 
 /* Drag and drop funktionen*/
