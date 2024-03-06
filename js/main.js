@@ -61,12 +61,13 @@ function toggleProfileOptions() {
 }
 
 
-function navigateTo(page) {
-    updateUsers();
+async function navigateTo(page) {
+    await updateUsers();
     window.location.href = page;
 }
 
-function updateUsers() {
+
+async function updateUsers() {
     if (currentUser['name'] == 'Guest') {
         guest = currentUser;
         saveGuestToLocalStorage();
@@ -74,12 +75,14 @@ function updateUsers() {
         for (let i = 0; i < users.length; i++) {
             const user = users[i];
             if (user['name'] == currentUser['name']) {
+                currentUser['loggedIn'] = false;
                 users.splice(i, 1, currentUser);
             }
         }
     }
-
-    setItem('users', JSON.stringify(users));
+    currentUser = {};
+    await setItem('currentUser', JSON.stringify(currentUser));
+    await setItem('users', JSON.stringify(users));
 }
 
 /**
