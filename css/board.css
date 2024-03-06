@@ -44,6 +44,7 @@ h2 {
   gap: 30px;
   margin-right: 140px;
   height: 40px;
+  padding: 10px 0px 0px 0px;
 }
 
 .img-search-board {
@@ -81,6 +82,7 @@ h2 {
   justify-content: center;
   gap: 8px;
   padding: 8px 16px;
+  height: 55px;
 }
 
 .addTaskButton:hover {
@@ -405,7 +407,7 @@ h2 {
 .drop-zone {
   display: flex;
   width: 258px;
-  background-color: rgba(202, 202, 206, 0.39);
+  background-color: rgba(225, 225, 228, 0.281);
   border: 2px dashed #2a3647; 
   border-radius: 20px;
   transform: scale(1.1);

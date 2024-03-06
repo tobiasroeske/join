@@ -4,7 +4,7 @@
   font-size: 16px;
   padding-top: 88px;
   max-height: calc(100vh - 88px);
-  width: 85%;
+  width: 90%;
 }
 
 .LegalNoticeSetup {
@@ -13,7 +13,7 @@
   line-height: 180%;
   padding-top: 88px;
   max-height: calc(100vh - 88px);
-  width: 85%;
+  width: 90%;
 }
 
 .helpSite {
@@ -22,7 +22,7 @@
   line-height: 150%;
   padding-top: 88px;
   max-height: calc(100vh - 88px);
-  width: 85%;
+  width: 90%;
   position: relative;
 }
 
