@@ -12,7 +12,7 @@
 </head>
 
 <body onload="init()">
-
+   
     <div class="logo-popup d-none" id="logoPopup">
         <img class="join-logo-greeting" src="./assets/img/j-icon.svg" alt="icon" id="logoGreeting">
     </div>
@@ -20,68 +20,72 @@
     <div class="logo-popup-mobile d-none" id="logoPopupMobile">
         <img class="join-logo-greeting-mobile" src="./assets/img/login_join_logo_dark.svg" alt="icon" id="logoGreetingMobile">
     </div>
-    <header>
-        <div class="logo" id="logoContainer">
-            <img class="join-icon" src="./assets/img/j-icon.svg" alt="icon">
-        </div>
-        <div class="sign-up">
-            <p class="sign-up-p">Not a Join user?</p>
-            <button class="sign-up-button"><a href="signup.html">Sign up</a></button>
-        </div>
-    </header>
 
-    <main>
-        <div class="signup-content">
-            <div class="log-in-field">
-                <div class="log_in_headline_container">
-                    <h1 class="log_in_headline">Log in</h1>
-                </div>
-                <div class="sign-up-container">
-                    <form onsubmit="login(); rememberMe(); return false;" class="login-form">
-                        <div class="input-box">
-                            <input required id="email" class="input-field" type="email" placeholder="Email">
-                            <img class="field_img" src="./assets/img/mail.svg" style="cursor: pointer;">
-                        </div>
-                        <div class="input-box">
-                            <input onclick="showPassword()" onblur="resetPasswordVisibility()" required id="password" class="input-field" type="password"
-                                placeholder="Password">
-                            <img onclick="togglePasswordVisibility()" class="field_img" id="lock" src="./assets/img/lock.svg" style="cursor: pointer;">
-                            <p id="wrong-password" class="wrong-text hide">Email or password wrong, ups! Try again</p>
-                        </div>
-                        <div class="remember">
-                            <input type="checkbox" id="rememberMeCheckbox">
-                            <label for="rememberMeCheckbox">Remember me</label>
-                        </div>
-                        <div class="buttons">
-                            <div class="log-in-button">
-                                <button type="submit">Log in</button>
-                            </div>
-                            <div class="guest-button">
-                                <button><a href="#">Guest Log in</a></button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-
+    <div id="mainContent" class="d-none">
+        <header>
+            <div class="logo" id="logoContainer">
+                <img class="join-icon" src="./assets/img/j-icon.svg" alt="icon">
             </div>
-            </form>
-            <div class="sign-up-for-mobile">
-                <p>Not a Join user?</p>
+            <div class="sign-up">
+                <p class="sign-up-p">Not a Join user?</p>
                 <button class="sign-up-button"><a href="signup.html">Sign up</a></button>
             </div>
-        </div>
-        
-    </main>
-    <footer>
-        <div class="privacy-legal">
-            <div>
-                <a href="privacyPolicy.html">Privacy Policy</a>
+        </header>
+    
+        <main>
+            <div class="signup-content">
+                <div class="log-in-field">
+                    <div class="log_in_headline_container">
+                        <h1 class="log_in_headline">Log in</h1>
+                    </div>
+                    <div class="sign-up-container">
+                        <form onsubmit="login(); rememberMe(); return false;" class="login-form">
+                            <div class="input-box">
+                                <input required id="email" class="input-field" type="email" placeholder="Email">
+                                <img class="field_img" src="./assets/img/mail.svg" style="cursor: pointer;">
+                            </div>
+                            <div class="input-box">
+                                <input onclick="showPassword()" onblur="resetPasswordVisibility()" required id="password" class="input-field" type="password"
+                                    placeholder="Password">
+                                <img onclick="togglePasswordVisibility()" class="field_img" id="lock" src="./assets/img/lock.svg" style="cursor: pointer;">
+                                <p id="wrong-password" class="wrong-text hide">Email or password wrong, ups! Try again</p>
+                            </div>
+                            <div class="remember">
+                                <input type="checkbox" id="rememberMeCheckbox">
+                                <label for="rememberMeCheckbox">Remember me</label>
+                            </div>
+                            <div class="buttons">
+                                <div class="log-in-button">
+                                    <button type="submit">Log in</button>
+                                </div>
+                                <div class="guest-button">
+                                    <button><a href="#">Guest Log in</a></button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+    
+                </div>
+                </form>
+                <div class="sign-up-for-mobile">
+                    <p>Not a Join user?</p>
+                    <button class="sign-up-button"><a href="signup.html">Sign up</a></button>
+                </div>
             </div>
-            <div>
-                <a href="legalNotice.html">Legal notice</a>
+            
+        </main>
+        <footer>
+            <div class="privacy-legal">
+                <div>
+                    <a href="privacyPolicy.html">Privacy Policy</a>
+                </div>
+                <div>
+                    <a href="legalNotice.html">Legal notice</a>
+                </div>
             </div>
-        </div>
-    </footer>
+        </footer>
+    </div>
+    
     <script src="./js/storage.js"></script>
     <script src="./js/signUp.js"></script>
     <script src="./js/logIn.js"></script>

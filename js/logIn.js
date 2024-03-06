@@ -13,8 +13,8 @@ function startGreetingAnimation() {
     setTimeout(() => {
         document.getElementById('logoPopup').classList.add('logo-popup-animation');
         document.getElementById('logoGreeting').classList.add('join-logo-greeting-animation');
+        document.getElementById('mainContent').classList.remove('d-none');
         },125);
-    
     setTimeout(() => document.getElementById('logoPopup').classList.add('d-none'), 1500);
     } else {
         startMobileGreetingAnimation();
@@ -26,8 +26,8 @@ function startMobileGreetingAnimation() {
     setTimeout(() => {
         document.getElementById('logoPopupMobile').classList.add('logo-popup-mobile-animation');
         document.getElementById('logoGreetingMobile').classList.add('join-logo-greeting-mobile-animation');
+        document.getElementById('mainContent').classList.remove('d-none');
         },125);
-    
     setTimeout(() => document.getElementById('logoPopupMobile').classList.add('d-none'), 1500);
 }
 
