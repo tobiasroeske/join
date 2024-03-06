@@ -1,5 +1,3 @@
-let currentUser;
-
 
 async function init() {
     startGreetingAnimation();
@@ -29,16 +27,6 @@ function startMobileGreetingAnimation() {
         document.getElementById('mainContent').classList.remove('d-none');
         },125);
     setTimeout(() => document.getElementById('logoPopupMobile').classList.add('d-none'), 1500);
-}
-
-async function load() {
-    try {
-        /*Loading user data from memory*/
-        await loadUsers();
-    } catch (error) {
-        console.error('Error initializing:', error);
-        /*Error handling if loading fails*/
-    }
 }
 
 async function login() {

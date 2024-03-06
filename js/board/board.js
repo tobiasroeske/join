@@ -8,7 +8,7 @@ async function init() {
   await includeHTML();
   await load();
   renderContacts();
-  renderAllTasks(tasks);
+  renderAllTasks(currentUser['tasks']);
 }
 
 /**
@@ -76,9 +76,9 @@ async function openAddTaskPopup(column) {
  */
 async function newTask() {
   getTaskData();
-  tasks.push(currentTask);
-  await setItem('tasks', JSON.stringify(tasks));
-  renderAllTasks(tasks);
+  currentUser['tasks'].push(currentTask);
+  await setItem('currentUser', JSON.stringify(currentUser));
+  renderAllTasks(currentUser['tasks']);
   resetPopup();
 }
 
@@ -117,7 +117,7 @@ function openTaskPopup(index) {
  * @param {number} index the index of the current task 
  */
 function renderTaskPopup(index) {
-  currentTask = tasks[index];
+  currentTask = currentUser['tasks'][index];
   let popupContent = document.getElementById('popupContent');
   popupContent.innerHTML = generateTaskPopupHTML(currentTask, index);
   renderSelectedContacts('assignedContactsInPopup');
@@ -153,7 +153,7 @@ function checkIfDone() {
  */
 function getSubtasks(index) {
   let html = '';
-  let task = tasks[index];
+  let task = currentUser['tasks'][index];
   for (let i = 0; i < task['subtasks'].length; i++) {
     const subtask = task['subtasks'][i];
     html += generataeSubtaskPopupHTML(subtask, i)
@@ -173,7 +173,7 @@ function markSubtaskAsDone(index) {
 }
 
 function showSubtaskStatus(index) {
-  let task = tasks[index];
+  let task = currentUser['tasks'][index];
   if (task['subtasks'].length != 0) {
     document.getElementById(`progress${index}`).classList.remove('d-none');
     let done = [];
@@ -193,7 +193,7 @@ function showSubtaskStatus(index) {
 
 function updateProgressBar(index, doneSubtasks) {
   let progressbar = document.getElementById(`progressBar${index}`);
-  let task = tasks[index];
+  let task = currentUser['tasks'][index];
   let width = (doneSubtasks.length / task['subtasks'].length) * 100;
   progressbar.style.width = `${width}%`;
   if (width == 100) {
@@ -202,16 +202,15 @@ function updateProgressBar(index, doneSubtasks) {
 }
 
 async function updateTasks(index) {
-  tasks.splice(index, 1, currentTask);
-  await setItem('tasks', JSON.stringify(tasks));
-  renderAllTasks(tasks);
+  currentUser['tasks'].splice(index, 1, currentTask);
+  await setItem('currentUser', JSON.stringify(currentUser));
+  renderAllTasks(currentUser['tasks']);
 }
 
 function deleteTask(index) {
-  let task = tasks[index];
-  tasks.splice(index, 1);
+  currentUser['tasks'].splice(index, 1);
   closeTaskPopup();
-  renderAllTasks(tasks);
+  renderAllTasks(currentUser['tasks']);
 }
 
 function openTaskEditor(index) {
@@ -257,10 +256,10 @@ function highlightSelectedContacts() {
 
 function editTask(index) {
   getTaskData();
-  tasks.splice(index, 1, currentTask);
+  currentUser['tasks'].splice(index, 1, currentTask);
   resetCurrentTask();
   closeTaskPopup();
-  renderAllTasks(tasks);
+  renderAllTasks(currentUser['tasks']);
 }
 
 function closePopupInTaskEditor(id) {
@@ -302,7 +301,7 @@ function closeTaskPopup() {
 function filterTasks() {
   let searchValue = document.getElementById('searchInput').value.toLowerCase();
   let matchingTasks = [];
-  tasks.forEach(task => {
+  currentUser['tasks'].forEach(task => {
     let match = task['title'].toLowerCase().includes(searchValue);
     if (match) {
       matchingTasks.push(task);
@@ -313,8 +312,9 @@ function filterTasks() {
 
 /* Drag and drop funktionen*/
 function startDragging(index) {
-  let task = tasks[index];
+  let task = currentUser['tasks'][index];
   currentDraggedElement = task;
+  console.log(currentDraggedElement);
 }
 
 function allowDrop(ev) {
@@ -348,9 +348,9 @@ function showMoveToPopup(id) {
 }
 
 async function moveToColumn(index, column) {
-  let task = tasks[index];
+  let task = currentUser['tasks'][index];
   task['currentColumn'] = column;
   // await setItem('tasks', JSON.stringify(tasks));
-  renderAllTasks(tasks);
+  renderAllTasks(currentUser['tasks']);
 }
 

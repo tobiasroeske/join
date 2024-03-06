@@ -17,28 +17,19 @@ async function initAddTask() {
     renderContacts();
 }
 
-async function load() {
-    try {
-        contacts = JSON.parse(await getItem('contacts'));
-        tasks = JSON.parse(await getItem('tasks'));
-    } catch (error) {
-        console.error('Loading error:' + error);
-    }
-}
-
 function renderContacts() {
     let contactList = document.getElementById('contactList');
     contactList.innerHTML = '';
-    for (let i = 0; i < contacts.length; i++) {
-        const contact = contacts[i];
+    for (let i = 0; i < currentUser['contacts'].length; i++) {
+        const contact = currentUser['contacts'][i];
         contactList.innerHTML += generateContactListHTML(contact, i);
     }
 }
 
 async function addTask() {
     getTaskData();
-    tasks.push(currentTask);
-    await setItem('tasks', JSON.stringify(tasks));
+    currentUser['tasks'].push(currentTask);
+    await setItem('currentUser', JSON.stringify(currentUser));
     resetAddTask();
     pipeToBoard();
 }
@@ -127,12 +118,12 @@ function selectContact(id, index) {
 }
 
 function addContactToList(index) {
-    currentTask['assignedContacts'].push(contacts[index]);
+    currentTask['assignedContacts'].push(currentUser['contacts'][index]);
     renderSelectedContacts('selectedContacts')
 }
 
 function removeContactFromList(index) {
-    let contact = contacts[index];
+    let contact = currentUser['contacts'][index];
     let newIndex = currentTask['assignedContacts'].indexOf(contact);
     currentTask['assignedContacts'].splice(newIndex, 1);
     renderSelectedContacts('selectedContacts');

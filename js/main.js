@@ -1,3 +1,6 @@
+let currentUser;
+let users = []
+
 async function includeHTML() {
     let includeElements = document.querySelectorAll('[w3-include-html]');
     for (let i = 0; i < includeElements.length; i++) {
@@ -11,6 +14,15 @@ async function includeHTML() {
         }
     }
     changeClassToActive();
+}
+
+async function load() {
+    try {
+        currentUser = JSON.parse(await getItem('currentUser'));
+        users = JSON.parse(await getItem('users'));
+    } catch (error) {
+        console.error('Loading error:' + error);
+    }
 }
 
 function changeClassToActive() {
@@ -40,6 +52,16 @@ function toggleProfileOptions() {
 
 
 function navigateTo(page) {
+    updateUsers();
     window.location.href = page;
 }
 
+function updateUsers() {
+    for (let i = 0; i < users.length; i++) {
+        const user = users[i];
+        if (user['name'] == currentUser['name']) {
+            users.splice(i, 1, currentUser);
+        }
+    }
+    setItem('users', JSON.stringify(users));
+}

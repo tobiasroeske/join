@@ -1,16 +1,7 @@
-let users = [];
 
 async function init() {
-    loadUsers();
+    await load();
     //acceptPolicy();
-}
-
-async function loadUsers() {
-    try {
-        users = JSON.parse(await getItem('users'));
-    } catch (e) {
-        console.error('Loading error:', e);
-    }
 }
 
 async function register() {

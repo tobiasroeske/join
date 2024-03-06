@@ -1,7 +1,6 @@
-let contacts = [];
+
 let colors = ['orange', 'purple', 'pink', 'yellow', 'green', 'darkblue', 'violet', 'red'];
 let firstLetters = [];
-let currentUser;
 
 /**
  * initiates onload and renders the contact list
@@ -10,19 +9,7 @@ async function init() {
     await load()
     getFirstLetters();
     renderContactList();
-    await saveProfileContact();
-}
-
-/**
- * loads the contacts from the remote storage and saves them to the contacts array
- */
-async function load() {
-    try {
-        contacts = JSON.parse(await getItem('contacts'));
-        currentUser = JSON.parse(await getItem('currentUser'));
-    } catch (error) {
-        console.error('Loading error:', error);
-    }
+    // await saveProfileContact();
 }
 
 async function saveProfileContact() {
@@ -66,8 +53,8 @@ async function addNewContact() {
         color: getRandomColor(),
         initials: getInitials(nameInput.value)
     }
-    contacts.push(contact);
-    await setItem('contacts', JSON.stringify(contacts));
+    currentUser['contacts'].push(contact);
+    await setItem('currentUser', JSON.stringify(currentUser));
     init();
     upadteContactContainer(contact);
 }
@@ -93,8 +80,8 @@ function upadteContactContainer(contact) {
 function getIndexOfContact(contact) {
     let index;
     sortContactsByName();
-    for (let i = 0; i < contacts.length; i++) {
-        const contactName = contacts[i]['name'];
+    for (let i = 0; i < currentUser['contacts'].length; i++) {
+        const contactName = currentUser['contacts'][i]['name'];
         if (contactName == contact['name']) {
             index = i
         }
@@ -121,8 +108,8 @@ function startContactCreatedAnimation() {
  */
 function renderContactBoxes(firstLetter) {
     let html = '';
-    for (let i = 0; i < contacts.length; i++) {
-        const contact = contacts[i];
+    for (let i = 0; i < currentUser['contacts'].length; i++) {
+        const contact = currentUser['contacts'][i];
 
         if (contact['name'].toLocaleUpperCase().charAt(0) == firstLetter) {
             html += generateContactBoxHTML(contact, i);
@@ -141,7 +128,7 @@ async function renderContact(index) {
     resetContactContainer();
     checkScreenSize();
     let contactCard = document.getElementById('contactCard');
-    let contact = contacts[index];
+    let contact = currentUser['contacts'][index];
     contactCard.innerHTML = generateContactCardHTML(contact, index);
     setTimeout(() => contactCard.classList.add('contact-card-animation'), 125);
 }
@@ -173,8 +160,8 @@ function startSlideInAnimation(id, className) {
  * @param {number} index index of the current contact in the contacts array
  */
 async function deleteContact(index) {
-    contacts.splice(index, 1);
-    await setItem('contacts', JSON.stringify(contacts));
+    currentUser['contacts'].splice(index, 1);
+    await setItem('currentUser', JSON.stringify(currentUser));
     document.getElementById('contactCard').innerHTML = '';
     init();
 }
@@ -187,7 +174,7 @@ async function deleteContact(index) {
  */
 function renderContactEditor(index) {
     let popup = document.getElementById('popup');
-    let contact = contacts[index];
+    let contact = currentUser['contacts'][index];
     popup.innerHTML = generateContactEditorHTML(contact, index);
     togglePopup('popup');
     setTimeout(() => startSlideInAnimation('editContact', 'new-contact-animation'), 125);
@@ -214,11 +201,11 @@ async function editContact(index) {
     let name = document.getElementById('nameInput');
     let email = document.getElementById('emailInput');
     let phone = document.getElementById('phoneInput');
-    contacts[index]['name'] = name.value;
-    contacts[index]['email'] = email.value;
-    contacts[index]['phone'] = phone.value;
+    currentUser['contacts'][index]['name'] = name.value;
+    currentUser['contacts'][index]['email'] = email.value;
+    currentUser['contacts'][index]['phone'] = phone.value;
     togglePopup('popup');
-    updateContacts(index, 'contacts', JSON.stringify(contacts))
+    updateContacts(index, 'currentUser', JSON.stringify(currentUser))
     renderContact(index);
 }
 
@@ -243,7 +230,7 @@ async function updateContacts(index, key, value) {
 function getFirstLetters() {
     firstLetters = [];
     sortContactsByName();
-    contacts.forEach(contact => {
+    currentUser['contacts'].forEach(contact => {
         let firstLetter = contact.name.charAt(0).toUpperCase();
         if (!firstLetters.includes(firstLetter)) {
             firstLetters.push(firstLetter);
@@ -296,7 +283,7 @@ function getRandomColor() {
  * @returns the sorted array, which can be used to render the contact list,
  */
 function sortContactsByName() {
-    return contacts.sort((a, b) => {
+    return currentUser['contacts'].sort((a, b) => {
         let nameA = a.name.toUpperCase();
         let nameB = b.name.toLocaleUpperCase();
         if (nameA < nameB) {
