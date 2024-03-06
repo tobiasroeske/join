@@ -334,10 +334,6 @@ function toggleCardRotation(id) {
   document.getElementById(id).classList.toggle('rotate')
 }
 
-function zoomOnDrag(id) {
-  document.getElementById(id).classList.toggle('drop-zone-expanded');
-}
-
 function removeHighlightDropZone(id) {
   document.getElementById(id).classList.remove('drop-zone');
 }

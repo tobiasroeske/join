@@ -17,7 +17,7 @@ async function register() {
             color: 'black',
             loggedIn : false,
             tasks: [],
-            contacts: []
+            contacts: [{name: userName.value, color: 'black', initials: getInitials(userName.value), email: email.value, phone: ''}]
         });
         await setItem('users', JSON.stringify(users)); // key = 'users', value
         pipeToLogin();

@@ -239,19 +239,6 @@ function getFirstLetters() {
 }
 
 /**
- * gets the first letter of the name and the surname and puts them together
- * 
- * @param {string} name the name of the current contact
- * @returns a string with the initials of the name of the contact
- */
-function getInitials(name) {
-    let words = name.split(' ');
-    let initials = words.map(word => word.charAt(0)).toString().replace(',', '');
-    initials = initials.toUpperCase()
-    return initials;
-}
-
-/**
  * takes a string and creates an array with each word as elements
  * takes from each word the first letter and capitalizes it, deletes the small first letter and rebuilds the word
  *
