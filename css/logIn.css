@@ -14,7 +14,6 @@ body {
   justify-content: space-between;
   height: 100vh;
   background: rgba(246, 247, 248, 1);
-
 }
 
 a {
@@ -34,6 +33,84 @@ header {
 
 button {
   border: unset;
+}
+
+.d-none {
+  display: none !important;
+}
+
+.logo-popup {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: #F6F7F8;
+  z-index: 500;
+  opacity: 1;
+  transition: opacity 1.5s ease-in-out;
+}
+
+.logo-popup-mobile {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: #2a3647;
+  z-index: 500;
+  opacity: 1;
+  transition: opacity 1.5s ease-in-out;
+}
+
+.join-logo-greeting-mobile {
+  position: absolute;
+  width: 100.3px;
+  height: 121.97px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: all 1.5s ease;
+}
+
+.join-logo-greeting-mobile-animation {
+  width: 64px;
+  height: 78px;
+  top: 20px;
+  left: 20px;
+  transform: translate(0, 0);
+}
+
+.join-logo-greeting {
+  position: absolute;
+  width: 274px;
+  height: 334px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: all 1.5s ease;
+}
+
+.join-logo-greeting-animation {
+  width: 100.03px;
+  height: 121.97px;
+  top: 80px;
+  left: 77px;
+  transform: translate(0, 0);
+}
+
+.logo-popup-mobile-animation {
+  opacity: 0;
+}
+
+.logo-popup-animation {
+  opacity: 0;
 }
 
 .sign-up {

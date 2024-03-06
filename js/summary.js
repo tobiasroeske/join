@@ -6,6 +6,7 @@ let awaitingFeedback = [];
 let done = [];
 let urgent = [];
 async function init() {
+    toggleLoadingScreen();
     await includeHTML()
     await load();
     sortTasks();
@@ -96,12 +97,21 @@ function displayGreetingScreen() {
         toggleClass('contentRight', 'd-flex');
         toggleClass('headline', 'd-none');
         toggleClass('summary', 'centered');
+        toggleClass('loadingPopup', 'd-none');
         setTimeout(() => {
+            toggleClass('loadingPopup', 'd-none');
             toggleClass('contentLeft', 'd-none');
             toggleClass('contentRight', 'd-flex');
             toggleClass('headline', 'd-none');
             toggleClass('summary', 'centered');
+            toggleClass('loadingPopup', 'd-none');
         },1800)
+    }
+}
+
+function toggleLoadingScreen() {
+    if (window.innerWidth >= 1050) {
+        toggleClass('loadingPopup', 'd-none');
     }
 }
 

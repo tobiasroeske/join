@@ -1,3 +1,7 @@
+.rightside {
+    position: relative;
+}
+
 .summary {
     width: 100%;
     padding: 80px 64px;
@@ -5,6 +9,29 @@
     flex-direction: column;
     gap:32px;
 }
+
+.loading-popup {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #eeeeee;
+    z-index: 100;
+}
+
+.custom-loader {
+    width:100px;
+    height:100px;
+    border-radius:50%;
+    background:conic-gradient(#0000 10%,#2A3647);
+    -webkit-mask:radial-gradient(farthest-side,#0000 calc(100% - 16px),#000 0);
+    animation:s3 1s infinite linear;
+  }
+  @keyframes s3 {to{transform: rotate(1turn)}}
 
 .centered {
     align-items: center !important;
