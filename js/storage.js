@@ -16,3 +16,14 @@ async function getItem(key) {
         } throw `Could not find data with key "${key}"`;
     })
 }
+
+function saveGuestToLocalStorage() {
+    localStorage.setItem('guest', JSON.stringify(guest));
+}
+
+function loadGuestFromLocalStorage() {
+    let guestAsText = JSON.parse(localStorage.getItem('guest'));
+    if (guestAsText) {
+        guest = guestAsText;
+    }
+}

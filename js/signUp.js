@@ -1,16 +1,7 @@
-let users = [];
 
 async function init() {
-    loadUsers();
+    await load();
     //acceptPolicy();
-}
-
-async function loadUsers() {
-    try {
-        users = JSON.parse(await getItem('users'));
-    } catch (e) {
-        console.error('Loading error:', e);
-    }
 }
 
 async function register() {
@@ -26,7 +17,7 @@ async function register() {
             color: 'black',
             loggedIn : false,
             tasks: [],
-            contacts: []
+            contacts: [{name: userName.value, color: 'black', initials: getInitials(userName.value), email: email.value, phone: ''}]
         });
         await setItem('users', JSON.stringify(users)); // key = 'users', value
         pipeToLogin();
