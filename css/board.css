@@ -405,10 +405,11 @@ h2 {
 .drop-zone {
   display: flex;
   width: 258px;
-  background-color: rgba(156, 156, 158, 0.3);
-  border: 1px dashed #2a3647; 
+  background-color: rgba(202, 202, 206, 0.39);
+  border: 2px dashed #2a3647; 
   border-radius: 20px;
   transform: scale(1.1);
+padding: 10px;
 }
 
 .drop-zone-expanded {
