@@ -421,7 +421,9 @@ footer {
   display: flex;
   justify-content: center;
   gap: 20px;
+  margin-top: 50px;
 }
+
 
 .privacy-legal a {
   color: #a8a8a8;

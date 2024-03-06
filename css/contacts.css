@@ -334,12 +334,21 @@ button {
 }
 
 .close-icon {
-  width: 24px;
-  height: 24px;
+  width: 26px;
+  height: 26px;
   position: absolute;
-  top: 32px;
-  right: 32px;
+  top: 50px;
+  right: 50px;
+  padding: 5px; 
 }
+
+.close-icon:hover {
+  cursor: pointer;
+  background-color: rgba(216, 214, 214, 0.623);
+  border-radius: 20px;
+  transform: scale(1.1);
+}
+
 
 input,
 select,
