@@ -146,7 +146,6 @@ button {
   border: 3px solid #2a3647;
 }
 
-
 .profile-btn:hover {
   background-color: rgba(212, 208, 208, 0.425);
 }
@@ -200,7 +199,7 @@ button {
 }
 
 .d-none {
-  display: none;
+  display: none !important;
 }
 
 .mobile-menu {
@@ -242,31 +241,33 @@ button {
 
 .profile-options-container {
   position: absolute;
-  top: 80px; 
-  right: 40px;
+  top: 88px;
+  right: 16px;
   display: flex;
-border-radius: 20px;
+  flex-direction: column;
+  border-radius: 20px;
+  border-top-right-radius: 0;
   color: lightgrey;
   background-color: #2a3647;
- font-size: 14px;
+  font-size: 14px;
   padding: 10px;
   box-shadow: 2px 2px 2px 2px;
- filter: drop-shadow(10px 1px 10px 10px);
+  filter: drop-shadow(10px 1px 10px 10px);
 }
 
 .profile-option {
   padding: 7px 10px 7px 10px;
 }
 
-.profile-option2{
+.profile-option2 {
   padding: 7px 10px 7px 10px;
 }
-.profile-option:hover{
+.profile-option:hover {
   cursor: pointer;
   background-color: #3e4f66;
   border-radius: 10px;
 }
-.profile-option2:hover{
+.profile-option2:hover {
   cursor: pointer;
   background-color: #3e4f66;
   border-radius: 10px;
@@ -316,6 +317,9 @@ border-radius: 20px;
     width: 48px;
   }
 
+  .header {
+    height: 88px;
+  }
 }
 
 @media (max-width: 620px) {

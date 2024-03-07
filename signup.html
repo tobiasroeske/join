@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="css/logIn.css">
     <link rel="stylesheet" href="css/fonts.css">
     <script src="js/main.js"></script>
+    <script src="./js/storage.js"></script>
+    <script src="./js/signUp.js"></script>
 </head>
 
 <body onload="init()">
@@ -52,7 +54,7 @@
                             <input required id="confirmPassword" class="input-field" type="password" placeholder="Password">
                             <img class="field_img" src="./assets/img/lock.svg" style="cursor: pointer;">
                         </div>
-                        <p id="wrongPasswordText" class="wrong-text hide">password must be same!</p>
+                        <p id="wrongPasswordText" class="wrong-text hide">Password must be the same!</p>
                         <div class="accept">
                             <input id="checkbox" type="checkbox" onclick="acceptPolicy()">
                             <label>I accept the <a class="accept-checkbox" href="privacyPolicy.html">Privacy Policy</a></label>
@@ -76,8 +78,6 @@
             </div>
         </div>
     </footer>
-    <script src="./js/storage.js"></script>
-    <script src="./js/signUp.js"></script>
 </body>
 
 </html>

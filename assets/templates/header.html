@@ -1,14 +1,14 @@
 <header class="header">
     <img src="assets/img/join_logo_mobile.svg" alt="join logo" class="join-logo-mobile">
     <h2 class="special-h2">Kanban Project Management Tool</h2>
-    <div class="header-right">
+    <div class="header-right" id="headerRight">
         <a href="help.html"><img src="assets/img/header_question_mark.svg" alt="question mark icon" class="question-mark-icon"></a>
-        <button class="profile-btn" onclick="toggleProfileOptions()" id="profile"></button>
+        <button class="profile-btn" onclick="toggleProfileOptions(); stopCurrentAction(event)" id="profile"></button>
     </div>
-    <div id="profileOptions" class="profile-options-container" style="display: none;">
-        <div class="profile-option" onclick="navigateTo('legalNotice.html')">Legal Notice</div>
-        <div class="profile-option" onclick="navigateTo('privacyPolicy.html')">Privacy Policy</div>
-        <div class="profile-option2" onclick="navigateTo('login.html')">Logout</div>
+    <div id="profileOptions" class="profile-options-container d-none">
+        <div class="profile-option" onclick="goToPage('legalNotice.html')">Legal Notice</div>
+        <div class="profile-option" onclick="goToPage('privacyPolicy.html')">Privacy Policy</div>
+        <div class="profile-option2" onclick="logout()">Logout</div>
     </div>
     
 </header>

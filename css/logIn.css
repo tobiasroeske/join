@@ -333,7 +333,10 @@ form {
   background-color: #2a3647;
 }
 
-.guest-button button {
+.guest-button div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   height: 55px;
   border-radius: 8px;
   padding: 0px 16px 0px 16px;
@@ -346,7 +349,7 @@ form {
   color: #2a3647;
 }
 
-.guest-button button:hover {
+.guest-button div:hover {
   border: 2px solid #29abe2;
   color: #29abe2;
   box-shadow: 3px 3px 3px 3px lightgrey;

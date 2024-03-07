@@ -5,6 +5,12 @@ let inProgress = [];
 let awaitingFeedback = [];
 let done = [];
 let urgent = [];
+
+/**
+ * displays the loading screen until the data is laoded
+ * sorts the task by column and priority, display the closes due date,
+ * creates the creeting message depending on the time of the day and greets the user
+ */
 async function init() {
     toggleLoadingScreen();
     await includeHTML()
@@ -16,8 +22,10 @@ async function init() {
     displayGreetingScreen();
 }
 
-
-
+/**
+ * sorts the task depending on its column and priority and pushes them in the
+ * right array
+ */
 function sortTasks() {
     currentUser['tasks'].forEach(task => {
         if (task['currentColumn'] == 'toDo') {
@@ -35,6 +43,9 @@ function sortTasks() {
     })
 }
 
+/**
+ * displays the tasks by its arryays length
+ */
 function displayTasks() {
     document.getElementById('tasksTodo').innerHTML = todos.length;
     document.getElementById('tasksDone').innerHTML = done.length;
@@ -45,6 +56,10 @@ function displayTasks() {
     document.getElementById('userName').innerHTML = currentUser['name'];
 }
 
+/**
+ * checks if there are any tasks and if so creates a new date from the stringified dueDate of the task
+ * then formates the date in the english format and displays it
+ */
 function displayDueDate() {
     sortDueDates();
     if (currentUser['tasks'].length > 0) {
@@ -54,6 +69,12 @@ function displayDueDate() {
     }
 }
 
+/**
+ * changes the format to the english version
+ * 
+ * @param {date} date 
+ * @returns 
+ */
 function changeDateFormat(date) {
     let month = date.toLocaleString('en-GB', {month: 'long'});
     let day = date.getDay();
@@ -62,16 +83,27 @@ function changeDateFormat(date) {
     return formatedDate;
 }
 
+/**
+ * geht the task with the due date closest to the current date
+ */
 function sortDueDates() {
     currentUser['tasks'].sort((a, b) => new Date(a['dueDate']) - new Date(b['dueDate']));
 }
 
+/**
+ * checks the current hour of the day
+ * 
+ * @returns the currnt hour
+ */
 function checkHour() {
     let currentDate = new Date();
     let currentHour = currentDate.getHours();
     return currentHour;
 }
 
+/**
+ * creates a greeting message depending on the hour of the day
+ */
 function getGreetingMessage() {
     let currentHour = checkHour();
     let greeting = document.getElementById('greeting');
@@ -86,6 +118,9 @@ function getGreetingMessage() {
     }
 }
 
+/**
+ * displays the greeting animation depending on the screen width
+ */
 function displayGreetingScreen() {
     if (window.innerWidth < 1050) {
         toggleClass('contentLeft', 'd-none');
@@ -104,12 +139,21 @@ function displayGreetingScreen() {
     }
 }
 
+/**
+ * if the screen size is greater than 1050px it toggles the display of the loading screen
+ */
 function toggleLoadingScreen() {
     if (window.innerWidth >= 1050) {
         toggleClass('loadingPopup', 'd-none');
     }
 }
 
+/**
+ * changes the classname of a specific element
+ * 
+ * @param {string} id id of the element
+ * @param {*string} className 
+ */
 function toggleClass(id, className) {
     document.getElementById(id).classList.toggle(className);
 }

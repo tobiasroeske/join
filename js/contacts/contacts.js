@@ -12,6 +12,11 @@ async function init() {
     // await saveProfileContact();
 }
 
+/**
+ * stringifies all contacts and saves them in new array, stringifies the currentUser object
+ * checks if the currentUser already exists in the contact list and if not, it pushes the currentUser to the contactList,
+ * so the users profile is also in the list
+ */
 async function saveProfileContact() {
     let contactsStringified = contacts.map(contact => JSON.stringify(contact));
     let currentUserStringified = JSON.stringify(currentUser);
@@ -313,7 +318,7 @@ function togglePopup(id) {
  * @param {string} animationId the element on which the animation starts on
  * @param {string} popupId the element which gets the class d-none 
  */
-function closePopup(animationId, popupId) {
+function closePopupAndStartAnimation(animationId, popupId) {
     startSlideInAnimation(animationId, 'new-contact-animation');
     setTimeout(() => document.getElementById(popupId).classList.add('d-none'), 125);
 }

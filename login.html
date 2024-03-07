@@ -9,6 +9,9 @@
     <link rel="stylesheet" href="css/logIn.css">
     <link rel="stylesheet" href="css/fonts.css">
     <script src="js/main.js"></script>
+    <script src="./js/storage.js"></script>
+    <script src="./js/signUp.js"></script>
+    <script src="./js/logIn.js"></script>
 </head>
 
 <body onload="init()">
@@ -48,8 +51,9 @@
                                 <input onclick="showPassword()" onblur="resetPasswordVisibility()" required id="password" class="input-field" type="password"
                                     placeholder="Password">
                                 <img onclick="togglePasswordVisibility()" class="field_img" id="lock" src="./assets/img/lock.svg" style="cursor: pointer;">
-                                <p id="wrong-password" class="wrong-text hide">Email or password wrong, ups! Try again</p>
                             </div>
+                            <p id="wrong-password" class="wrong-text hide">Email or password wrong, ups! Try again</p>
+                            
                             <div class="remember">
                                 <input type="checkbox"  id="rememberMeCheckbox">
                                 <label for="rememberMeCheckbox">Remember me</label>
@@ -59,7 +63,7 @@
                                     <button type="submit">Log in</button>
                                 </div>
                                 <div class="guest-button">
-                                    <button class="guest-login" onclick="guestLogin()">Guest Log in</button>
+                                    <div class="guest-login" onclick="guestLogin()">Guest Log in</div>
                                 </div>
                             </div>
                         </form>
@@ -85,10 +89,6 @@
             </div>
         </footer>
     </div>
-    
-    <script src="./js/storage.js"></script>
-    <script src="./js/signUp.js"></script>
-    <script src="./js/logIn.js"></script>
 </body>
 
 </html>

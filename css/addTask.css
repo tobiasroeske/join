@@ -310,7 +310,6 @@ textarea {
 }
 
 .submit-btn {
-  cursor: pointer;
   display: flex;
   border: unset;
   border-radius: 10px;
@@ -320,6 +319,7 @@ textarea {
 }
 
 .clear-btn {
+  cursor: pointer;
   background-color: #f6f7f8;
   border: 1px solid #2a3647;
 }
@@ -340,9 +340,9 @@ textarea {
     brightness(93%) contrast(90%);
 }
 
-.add-btn:hover {
+.hover-active:hover {
+  cursor: pointer;
   background-color: #29abe2;
-  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.15);
 }
 
 .red-required {

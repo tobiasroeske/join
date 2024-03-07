@@ -1,4 +1,7 @@
-
+/**
+ * starts the greeting animation, loads the data from the server, also loads the guest from the local storage 
+ * and if the remember me checkbos is checked autofills the form
+ */
 async function init() {
     startGreetingAnimation();
     await load();
@@ -6,6 +9,10 @@ async function init() {
     autoFillForm();
 }
 
+/**
+ * if the window is greater than 960px it starts the animation for the greeting animation of the desktop version
+ * if it is smaller it starts the one for the mobile version
+ */
 function startGreetingAnimation() {
     if (window.innerWidth >= 960) {
         document.getElementById('logoPopup').classList.remove('d-none');
@@ -20,13 +27,9 @@ function startGreetingAnimation() {
     }
 }
 
-function guestLogin() {
-    guest['loggedIn'] = true;
-    currentUser = guest;
-    setItem('currentUser', JSON.stringify(currentUser));
-    window.open('summary.html', '_self');
-}
-
+/**
+ * starts the mobile greeting animation
+ */
 function startMobileGreetingAnimation() {
     document.getElementById('logoPopupMobile').classList.remove('d-none');
     setTimeout(() => {
@@ -37,6 +40,12 @@ function startMobileGreetingAnimation() {
     setTimeout(() => document.getElementById('logoPopupMobile').classList.add('d-none'), 1500);
 }
 
+/**
+ * checks which user has the typed in email and sets this user as currentUser
+ * if the password and the user password are strict equal it sets the loggedIn status of 
+ * currentUser to true and saves currentUser on the server, then pipes to the summary page
+ * if the password is not correct it desplays the wrong password message
+ */
 async function login() {
     let email = document.getElementById('email').value;
     let password = document.getElementById('password').value;
@@ -51,19 +60,24 @@ async function login() {
     }
 }
 
+/**
+ * display the "wrong password" sentence
+ */
 function showWrongPassword() {
     document.getElementById('wrong-password').classList.remove('hide');
 }
 
-function showPasswordVisibility() {
-
-}
-
+/**
+ * changes the img to show the password
+ */
 function showPassword() {
     let img = document.getElementById('lock');
     img.src = './assets/img/visibility_off.png';
 }
 
+/**
+ * resets the password visability, if the input is empty
+ */
 function resetPasswordVisibility() {
     let img = document.getElementById('lock');
     let passwordInput = document.getElementById('password');
@@ -73,6 +87,9 @@ function resetPasswordVisibility() {
     }
 }
 
+/**
+ * toggles the icon to show or hide the password
+ */
 function togglePasswordVisibility() {
     let img = document.getElementById('lock');
     let passwordInput = document.getElementById('password');
@@ -86,9 +103,21 @@ function togglePasswordVisibility() {
     }
 }
 
-/*========RememberMe=============*/
+/**
+ * sets the loggedIn status to true and sets currentUser as guest and saves it to the server
+ * then pipes to summary
+ */
+async function guestLogin() {
+    guest['loggedIn'] = true;
+    currentUser = guest;
+    await setItem('currentUser', JSON.stringify(currentUser));
+    window.open('summary.html', '_self');
+}
 
-/**/
+/**
+ * checks if the remember me checkbox is checked in if so sends the email and password to the local storage
+ * if it is not checked it removes the item from the local storage
+ */
 function rememberMe() {
     let rememberCheckbox = document.getElementById('rememberMeCheckbox');
     if (rememberCheckbox.checked) {
@@ -100,6 +129,9 @@ function rememberMe() {
     }
 }
 
+/**
+ * if the items are saved to the local storage it loads them and puts the value as value of the inputs
+ */
 function autoFillForm() {
     let rememberedEmail = localStorage.getItem('rememberedEmail');
     let rememberedPassword = localStorage.getItem('rememberedPassword');
@@ -109,7 +141,3 @@ function autoFillForm() {
         document.getElementById('rememberMeCheckbox').checked = true;
     }
 }
-
-
-
-

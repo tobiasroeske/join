@@ -49,7 +49,9 @@ function checkIfTasksExist(column) {
 }
 
 /**
- * renders all columns
+ * renders all tasks in the right column
+ * 
+ * @param {array} array the the array which shall be used for rendering
  */
 function renderAllTasks(array) {
   renderTaskColumn('toDo', array)
@@ -59,7 +61,11 @@ function renderAllTasks(array) {
 }
 
 /**
- * Toggles the addTaskPopup and starts the slide in animation
+ * loads the addTask template, put the initials on the profile button,
+ * then renders the contacts needed for the add Task Popup,
+ * starts the slide in animation for the popup
+ * 
+ * @param {string} column sets the property of currentColumn of the new Task 
  */
 async function openAddTaskPopup(column) {
   await includeHTML();
@@ -78,8 +84,7 @@ async function openAddTaskPopup(column) {
 async function newTask() {
   getTaskData();
   currentUser['tasks'].push(currentTask);
-  document.getElementById('createTaskBtn').disabled = true;
-  document.getElementById('createTaskBtn').style.cursor = 'default';
+  disableButton();
   await setItem('currentUser', JSON.stringify(currentUser));
   renderAllTasks(currentUser['tasks']);
   resetPopup();
@@ -126,6 +131,11 @@ function renderTaskPopup(index) {
   renderSelectedContacts('assignedContactsInPopup');
 }
 
+/**
+ * renders the contacts (name and initials) to the desired container
+ * 
+ * @param {string} id the id of the container in which the contacts should be rendered
+ */
 function renderFullContacts(id) {
   let container = document.getElementById(id);
   container.innerHTML = '';
@@ -135,6 +145,10 @@ function renderFullContacts(id) {
   }
 }
 
+/**
+ * checks if subtask is done and depending on the outcome checks the checkbox and crosses
+ * the subtasks value by changing its class to line-through
+ */
 function checkIfDone() {
   for (let i = 0; i < currentTask['subtasks'].length; i++) {
     const subtask = currentTask['subtasks'][i];
@@ -164,6 +178,11 @@ function getSubtasks(index) {
   return html;
 }
 
+/**
+ * changes the property of the subtasks from done to false and the other way around
+ * 
+ * @param {number} index index of the subtask in the subtask array of currentTask
+ */
 function markSubtaskAsDone(index) {
   subtasks = currentTask['subtasks'];
   if (!subtasks[index]['done']) {
@@ -175,6 +194,13 @@ function markSubtaskAsDone(index) {
   }
 }
 
+/**
+ * checks if subtasks exist and if so displays the progressbar
+ * each subtask with done set to true gets pushed to the done array
+ * then updates the progressbar and gives out the amount of all subtasks and also of the done ones
+ * 
+ * @param {number} index index of the task of tasks array of currentUser
+ */
 function showSubtaskStatus(index) {
   let task = currentUser['tasks'][index];
   if (task['subtasks'].length != 0) {
@@ -191,9 +217,16 @@ function showSubtaskStatus(index) {
   } else {
     document.getElementById(`progress${index}`).classList.add('d-none');
   }
-  
+
 }
 
+/**
+ * calculates how much percent of subtasks are done and sets the result as width of the progressbar
+ * if all subtasks are done it changes the color of the bar to green
+ * 
+ * @param {number} index index of the task of tasks array of currentUser
+ * @param {array} doneSubtasks array with done subtasks
+ */
 function updateProgressBar(index, doneSubtasks) {
   let progressbar = document.getElementById(`progressBar${index}`);
   let task = currentUser['tasks'][index];
@@ -204,12 +237,23 @@ function updateProgressBar(index, doneSubtasks) {
   }
 }
 
+/**
+ * exchanges the edited subtask in the subtasks array
+ * 
+ * @param {number} index index of the task of tasks array of currentUser
+ */
 async function updateTasks(index) {
   currentUser['tasks'].splice(index, 1, currentTask);
   await setItem('currentUser', JSON.stringify(currentUser));
   renderAllTasks(currentUser['tasks']);
 }
 
+/**
+ * deletes the task from the tasks array and saves the new currentUser Object on the server
+ * then renders all tasks
+ * 
+ * @param {number} index index of the task of tasks array of currentUser
+ */
 function deleteTask(index) {
   currentUser['tasks'].splice(index, 1);
   closeTaskPopup();
@@ -217,6 +261,11 @@ function deleteTask(index) {
   renderAllTasks(currentUser['tasks']);
 }
 
+/**
+ * opens the task editor in the popup and renders the task data 
+ * 
+ * @param {number} index index of the task of tasks array of currentUser
+ */
 function openTaskEditor(index) {
   let popupContainer = document.getElementById('popupContent');
   document.getElementById('addTaskForm').innerHTML = '';
@@ -224,6 +273,10 @@ function openTaskEditor(index) {
   renderTaskData();
 }
 
+/**
+ * renders the contacts, highlights the selected contacts, also renders them, renders the subtasks and gets the tasks 
+ * priority
+ */
 function renderTaskData() {
   renderContacts();
   highlightSelectedContacts();
@@ -232,6 +285,10 @@ function renderTaskData() {
   getPriority();
 }
 
+/**
+ * saves all elements with the class prio-btns to the node list prioBtns, then gets the priority of the currentTask
+ * then removes all active classes from the buttons and gives only the button with the matching priority the active class
+ */
 function getPriority() {
   let prioBtns = document.querySelectorAll('.prio-btn');
   let priority = currentTask['currentPriority'][0];
@@ -244,13 +301,21 @@ function getPriority() {
   });
 };
 
+/**
+ * gets all li items within the contactList, then removes from all contacts the active class
+ * then makes the nodeList into an array object, so the indexOf method works, then gets the index 
+ * of the index of this contact in the new array
+ * then stringifies the contact and also the assigend contact and checks if they are the same
+ * if so, the li item gets the active class and the checkbox gets checked
+ * 
+ */
 function highlightSelectedContacts() {
-  const contactList = document.getElementById('contactList');
-  const allContacts = contactList.querySelectorAll('li');
+  let contactList = document.getElementById('contactList');
+  let allContacts = contactList.querySelectorAll('li');
   allContacts.forEach(contact => {
     contact.classList.remove('active-contact');
-    const index = Array.from(contactList.children).indexOf(contact);
-    const assigned = currentTask['assignedContacts'].find(assignedContact => JSON.stringify(assignedContact) === JSON.stringify(contacts[index]));
+    let index = Array.from(contactList.children).indexOf(contact);
+    let assigned = currentTask['assignedContacts'].find(assignedContact => JSON.stringify(assignedContact) === JSON.stringify(contacts[index]));
     if (assigned) {
       contact.classList.add('active-contact');
       contact.querySelector('input').checked = true;
@@ -258,6 +323,12 @@ function highlightSelectedContacts() {
   });
 }
 
+/**
+ * gets the data from all the inputs and exchanges the task in the currentUser task array
+ * then resets the editor, closes the popup and renders all tasks
+ * 
+ * @param {number} index index of the task of tasks array of currentUser
+ */
 function editTask(index) {
   getTaskData();
   currentUser['tasks'].splice(index, 1, currentTask);
@@ -266,6 +337,11 @@ function editTask(index) {
   renderAllTasks(currentUser['tasks']);
 }
 
+/**
+ * closes the popup
+ * 
+ * @param {string} id id of the task editor popup
+ */
 function closePopupInTaskEditor(id) {
   document.getElementById(id).classList.add('d-none');
 }
@@ -275,7 +351,7 @@ function capitalizeFirstLetter(string) {
 }
 
 /**
- * closes the addTaskPopup 
+ * closes the addTaskPopup  and starts the slide animation
  */
 function slideOutPopup() {
   setTimeout(() => document.getElementById('popup').classList.toggle('d-none'), 125);
@@ -302,6 +378,11 @@ function closeTaskPopup() {
   startAnimation('popupContent', 'popup-show')
 }
 
+/**
+ * gets the value of the search input and puts it to lowercase, then checks if the value 
+ * matches the title of the tasks of currentUser and if so pushes the task to the matchingTasks array
+ * then renders all tasks new
+ */
 function filterTasks() {
   let searchValue = document.getElementById('searchInput').value.toLowerCase();
   let matchingTasks = [];
@@ -309,43 +390,75 @@ function filterTasks() {
     let match = task['title'].toLowerCase().includes(searchValue);
     if (match) {
       matchingTasks.push(task);
-    } 
+    }
   });
   renderAllTasks(matchingTasks);
 }
 
-/* Drag and drop funktionen*/
+/**
+ * sets the currentTask as currentDraggedElement
+ * 
+ * @param {number} index index of the task of tasks array of currentUser
+ */
 function startDragging(index) {
   let task = currentUser['tasks'][index];
   currentDraggedElement = task;
 }
 
+/**
+ * allows to drop elements in the container
+ * 
+ * @param {event} ev drop event
+ */
 function allowDrop(ev) {
   ev.preventDefault();
 }
 
-async function moveToContainer(category) {
-  currentDraggedElement['currentColumn'] = category;
+/**
+ * changes the column to the desired column and saves the new tasks in currentUser and on the server
+ * 
+ * @param {string} column the name of the column in which it shall be rendered
+ */
+async function moveToContainer(column) {
+  currentDraggedElement['currentColumn'] = column;
   await setItem('currentUser', JSON.stringify(currentUser));
   renderAllTasks(currentUser['tasks']);
 }
 
+/**
+ * gives the element the class drop zone and highlights the zone
+ * 
+ * @param {string} id id of the dropzone
+ */
 function highlightDropZone(id) {
   document.getElementById(id).classList.add('drop-zone');
 }
 
-function toggleCardRotation(id) {
-  document.getElementById(id).classList.toggle('rotate')
-}
-
+/**
+ * removes the drop zone class from the element
+ * 
+ * @param {string} id id of the dropzone
+ */
 function removeHighlightDropZone(id) {
   document.getElementById(id).classList.remove('drop-zone');
 }
 
+/**
+ * removes the display none property of the move to popup
+ * 
+ * @param {string} id ID of the Move to Element
+ */
 function showMoveToPopup(id) {
   document.getElementById(id).classList.remove('d-none');
 }
 
+/**
+ * changes the column of the selected task to the desired one, then saves the new value to the server and 
+ * renders all tasks
+ * 
+ * @param {number} index index of the task of the tasks array in currentUser
+ * @param {string} column 
+ */
 async function moveToColumn(index, column) {
   let task = currentUser['tasks'][index];
   task['currentColumn'] = column;
