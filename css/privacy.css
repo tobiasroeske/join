@@ -33,12 +33,12 @@
   position: fixed;
   right: 64px;
   top: 172px;
-  transition: transform 0.125s ease;
+ padding: 5px;
 }
 
 .back-arrow-icon:hover {
-  background-color: #eeeeee;
-  transform: scale(1.2);
+  background-color: #dad9d98e;
+  border-radius: 20px;
 }
 
 h1,

@@ -56,8 +56,16 @@ function matchPass() {
 function acceptPolicy() {
     let acceptCheckbox = document.getElementById('checkbox');
     let signUpButton = document.getElementById('sign-up-btn');
-    acceptCheckbox.checked ? signUpButton.disabled = false : signUpButton.disabled = true;
+    
+    if (acceptCheckbox.checked) {
+        signUpButton.classList.add('hover-active');
+        signUpButton.disabled = false;
+    } else {
+        signUpButton.classList.remove('hover-active');
+        signUpButton.disabled = true;
+    }
 }
+
 
 function startSignupAnimation() {
     document.getElementById('signupSuccessful').classList.add('signup-succesful-animation');

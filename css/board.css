@@ -6,8 +6,8 @@ h2 {
 .main-board {
   display: flex;
   flex-direction: column;
-  width: 100%;
-  margin-left: 100px;
+  width: 90%;
+  
   height: fit-content;
 }
 .board {

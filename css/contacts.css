@@ -103,13 +103,15 @@ button {
   background-color: #2a3647;
   border-radius: 10px;
   border: 1px;
-  padding: 12px 0;
+  padding: 12px 12px;
   gap: 16px;
   color: white;
   align-items: center;
   justify-content: center;
   font-size: 21px;
   font-weight: 700;
+  width:300px;
+  
 }
 
 .add-contact-btn:hover {
@@ -483,7 +485,16 @@ textarea {
   position: absolute;
   top: 48px;
   right: 32px;
+  padding: 5px;
 }
+
+.back-arrow:hover {
+  
+  cursor: pointer;
+  background-color: #bdbdbd79;
+  border-radius: 20px;
+}
+
 
 .menu-contact-options {
   display: none;
@@ -669,6 +680,7 @@ textarea {
 
   .add-contact-btn {
     display: none;
+    
   }
 
   .contact-card {

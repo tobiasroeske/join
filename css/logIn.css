@@ -129,7 +129,7 @@ button {
 }
 
 #sign-up-btn {
-  cursor: pointer;
+  
   width: 126px;
   border-radius: 8px;
   gap: 10px;
@@ -142,9 +142,10 @@ button {
   height: 55px;
 }
 
-#sign-up-btn:hover {
+#sign-up-btn.hover-active:hover {
   background-color: #29abe2;
   box-shadow: 3px 3px 3px 3px lightgray;
+  cursor: pointer;
 }
 
 
@@ -238,12 +239,22 @@ form {
   position: relative;
   height: 3px;
 }
+.back-to-login{
+  padding: 5px;
+}
+.back-to-login:hover{
+  background-color: #cecece81;
+  border-radius: 20px;
+}
+
+
 
 .input_container,
 .sign-up-container {
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 100%;
 }
 
 .input-box {
@@ -336,7 +347,9 @@ form {
 }
 
 .guest-button button:hover {
-  border: 3px solid #29abe2;
+  border: 2px solid #29abe2;
+  color: #29abe2;
+  box-shadow: 3px 3px 3px 3px lightgrey;
 }
 
 .guest-button a:hover {
