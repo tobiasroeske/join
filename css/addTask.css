@@ -58,6 +58,10 @@ button {
   background-color: #ff4646;
 }
 
+.black {
+  background-color: #2a3647;
+}
+
 .flex {
   display: flex !important;
 }

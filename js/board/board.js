@@ -63,6 +63,7 @@ function renderAllTasks(array) {
  */
 async function openAddTaskPopup(column) {
   await includeHTML();
+  setInitials();
   renderContacts();
   document.getElementById('popup').classList.toggle('d-none');
   setTimeout(() => startAnimation('addTaskPopup', 'popup-show'), 125);
@@ -77,6 +78,8 @@ async function openAddTaskPopup(column) {
 async function newTask() {
   getTaskData();
   currentUser['tasks'].push(currentTask);
+  document.getElementById('createTaskBtn').disabled = true;
+  document.getElementById('createTaskBtn').style.cursor = 'default';
   await setItem('currentUser', JSON.stringify(currentUser));
   renderAllTasks(currentUser['tasks']);
   resetPopup();
@@ -210,6 +213,7 @@ async function updateTasks(index) {
 function deleteTask(index) {
   currentUser['tasks'].splice(index, 1);
   closeTaskPopup();
+  setItem('currentUser', JSON.stringify(currentUser));
   renderAllTasks(currentUser['tasks']);
 }
 
