@@ -2,11 +2,14 @@
 let currentDraggedElement = {};
 /**
  * loads the html template for the addTask popup 
- * then loads the contacts and the tasks from the remote storage
+ * then resets the currentUser and loads the data, then checks if the currentUser is loggedin,
+ * then renders contacts and all tasks
  */
 async function init() {
   await includeHTML();
+  resetCurrentUser();
   await load();
+  checkIfLoggedIn();
   renderContacts();
   renderAllTasks(currentUser['tasks']);
 }

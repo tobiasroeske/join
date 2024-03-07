@@ -12,12 +12,15 @@ let currentTask = {
 };
 
 /**
+ * resets the currentUser
  * loads the header and sidebar, then loads the currentUser and Users from the server
- * then renders the contacts in the contactList
+ * then checks if it is logged in, then renders the contacts in the contactList
  */
 async function initAddTask() {
+    resetCurrentUser();
     await includeHTML();
     await load();
+    checkIfLoggedIn();
     renderContacts();
 }
 

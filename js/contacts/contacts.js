@@ -3,10 +3,13 @@ let colors = ['orange', 'purple', 'pink', 'yellow', 'green', 'darkblue', 'violet
 let firstLetters = [];
 
 /**
- * initiates onload and renders the contact list
+ * resets the currentUser, loads the data from the server, checks if the user is logged in, 
+ * then gets the first letters for the initials and renders the contactList
  */
 async function init() {
+    resetCurrentUser();
     await load()
+    checkIfLoggedIn();
     getFirstLetters();
     renderContactList();
     // await saveProfileContact();

@@ -7,14 +7,17 @@ let done = [];
 let urgent = [];
 
 /**
- * displays the loading screen until the data is laoded
+ * resets the current user displays the loading screen until the data is laoded,
+ * checks if the user is logged in, then
  * sorts the task by column and priority, display the closes due date,
  * creates the creeting message depending on the time of the day and greets the user
  */
 async function init() {
+    resetCurrentUser();
     toggleLoadingScreen();
     await includeHTML()
     await load();
+    checkIfLoggedIn();
     sortTasks();
     displayTasks();
     displayDueDate();

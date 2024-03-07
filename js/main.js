@@ -43,6 +43,21 @@ async function load() {
 }
 
 /**
+ * resets the currentUser obejct so it can be checked if logged in
+ */
+function resetCurrentUser() {
+    currentUser = {
+        color: 'black',
+        contacts: [],
+        email: '',
+        loggedIn: false,
+        name: '',
+        password: '',
+        tasks: []
+    }
+}
+
+/**
  * checks which pathname the current Page has and then gives the nav link the active-nav class in case
  * the links href includes the current Page
  */
@@ -108,7 +123,7 @@ function goToPage(page) {
  */
 async function logout() {
     await updateUsers();
-    window.open('login.html');
+    window.open('login.html', '_self');
 }
 
 /**
@@ -129,7 +144,7 @@ async function updateUsers() {
             }
         }
     }
-    currentUser = {};
+    resetCurrentUser();
     await setItem('currentUser', JSON.stringify(currentUser));
     await setItem('users', JSON.stringify(users));
 }
@@ -154,6 +169,15 @@ function setInitials() {
     let profile = document.getElementById('profile');
     if (profile != null) {
         profile.innerHTML = getInitials(currentUser['name']);
+    }
+}
+
+/**
+ * checks if currentUser is loggedIn
+ */
+function checkIfLoggedIn() {
+    if (!currentUser['loggedIn']) {
+        window.open('login.html', '_self');
     }
 }
 
