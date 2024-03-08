@@ -80,7 +80,7 @@ function displayDueDate() {
  */
 function changeDateFormat(date) {
     let month = date.toLocaleString('en-GB', {month: 'long'});
-    let day = date.getDay();
+    let day = date.getDate();
     let year = date.getFullYear();
     let formatedDate = `${month} ${day}, ${year}`;
     return formatedDate;

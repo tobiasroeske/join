@@ -1,5 +1,6 @@
 let currentUser;
 let users = []
+let today;
 let guest = {
     color: 'black',
     contacts: [{ name: 'Guest', color: 'black', initials: 'G', email: '', phone: '' }],
@@ -195,4 +196,14 @@ function checkIfLoggedIn() {
     if (!currentUser['loggedIn']) {
         window.open('login.html', '_self');
     }
+}
+
+function getCurrentDate() {
+    let today = new Date();
+    let year = today.getFullYear();
+    let month = ('0' + (today.getMonth() + 1)).slice(-2); // Month is 0-indexed
+    let day = ('0' + today.getDate()).slice(-2); // Day of the month
+
+    let formattedDate = `${year}-${month}-${day}`;
+    return formattedDate;
 }

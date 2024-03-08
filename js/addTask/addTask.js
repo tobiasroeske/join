@@ -22,6 +22,7 @@ async function initAddTask() {
     await load();
     checkIfLoggedIn();
     renderContacts();
+    renderTodaysDate();
 }
 
 /**
@@ -394,5 +395,11 @@ function generateSubtaskHTML(subtask, index) {
         </div>
     </div>
 `;
+}
+
+function renderTodaysDate() {
+    let date = getCurrentDate();
+    let dateInput = document.getElementById('dateInput');
+    dateInput.setAttribute('min', date);
 }
 

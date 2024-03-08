@@ -13,17 +13,17 @@ function generateNewContactEditorHTML() {
                 <form onsubmit="addNewContact(); return false;" class="contact-form">
                     <div class="input-container">
                         <div class="input-field">
-                            <input type="text" name="" id="nameInput" placeholder="Name" class="special-input">
+                            <input required type="text" name="" id="nameInput" placeholder="Name" class="special-input">
                             <img src="assets/img/contacts_person.svg" alt="">
                         </div>
                     </div>
 
                     <div class="input-field">
-                        <input type="email" name="" id="emailInput" placeholder="Email" class="special-input">
+                        <input required type="email" name="" id="emailInput" placeholder="Email" class="special-input">
                         <img src="assets/img/contacts_call.svg" alt="">
                     </div>
                     <div class="input-field">
-                        <input type="tel" name="" id="phoneInput" placeholder="Phone" class="special-input">
+                        <input required type="number" name="" id="phoneInput" placeholder="Phone" class="special-input">
                         <img src="assets/img/contacts_call.svg" alt="">
                     </div>
                     <div class="contact-submit-field">
@@ -52,17 +52,17 @@ function generateContactEditorHTML(contact, index) {
                 <form onsubmit="editContact(${index}); return false;" class="contact-form">
                     <div class="input-container">
                         <div class="input-field">
-                            <input type="text" name="" id="nameInput" placeholder="Name" class="special-input" value="${contact['name']}">
+                            <input required type="text" name="" id="nameInput" placeholder="Name" class="special-input" value="${contact['name']}">
                             <img src="assets/img/contacts_person.svg" alt="">
                         </div>
                     </div>
 
                     <div class="input-field">
-                        <input type="email" name="" id="emailInput" placeholder="Email" class="special-input" value="${contact['email']}">
+                        <input required type="email" name="" id="emailInput" placeholder="Email" class="special-input" value="${contact['email']}">
                         <img src="assets/img/contacts_call.svg" alt="">
                     </div>
                     <div class="input-field">
-                        <input type="tel" name="" id="phoneInput" placeholder="Phone" class="special-input" value="${contact['phone']}">
+                        <input required type="tel" name="" id="phoneInput" placeholder="Phone" class="special-input" value="${contact['phone']}">
                         <img src="assets/img/contacts_call.svg" alt="">
                     </div>
                     <div class="contact-submit-field">

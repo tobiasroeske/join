@@ -54,6 +54,7 @@ button {
   flex-direction: column;
   align-items: center;
   max-width: 456px;
+  min-width: 380px;
   width: 40%;
   background-color: white;
   box-shadow: 4px 0px 6px 0px #00000014;
@@ -667,6 +668,7 @@ textarea {
 @media (max-width: 850px) {
   .contact-content {
     display: none;
+    padding: 48px 40px;
   }
 
   .contact-leftside {
@@ -704,10 +706,6 @@ textarea {
     height: 3px;
     background-color: #29abe2;
     margin-top: 16px;
-  }
-
-  .contact-content {
-    padding: 80px 64px;
   }
 
   .back-arrow {
@@ -846,6 +844,13 @@ textarea {
   .mobile-add-contact {
     bottom: 32px;
     right: 32px;
+  }
+}
+
+@media (max-height: 850px) {
+  .contact-content {
+    padding: 32px 40px;
+    gap: 8px;
   }
 }
 

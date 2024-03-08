@@ -74,6 +74,7 @@ async function openAddTaskPopup(column) {
   await includeHTML();
   setInitials();
   renderContacts();
+  renderTodaysDate();
   document.getElementById('popup').classList.toggle('d-none');
   setTimeout(() => startAnimation('addTaskPopup', 'popup-show'), 125);
   currentTask['currentColumn'] = column;
