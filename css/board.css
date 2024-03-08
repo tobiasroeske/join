@@ -96,10 +96,6 @@ h2 {
   color: #2a3647;
 }
 
-.board-mainpage {
-  width: 100%;
-}
-
 .page-heading2 {
   font-size: 61px;
   font-weight: 700;
@@ -111,6 +107,7 @@ h2 {
   flex-direction: row;
   width: 90%;
   flex-wrap: wrap;
+  gap: 24px;
 }
 
 .headlines-board {
@@ -788,5 +785,26 @@ h2 {
 @media (max-width: 570px) {
   .rightside {
     scrollbar-width: none;
+  }
+}
+
+@media (max-height: 800px) {
+  .add-task {
+    overflow: auto;
+  }
+
+  /* Track */
+  .add-task::-webkit-scrollbar-track {
+    all: unset;
+  }
+
+  /* Handle */
+  .add-task::-webkit-scrollbar-thumb {
+    all: unset;
+  }
+
+  /* Handle on hover */
+  .add-task::-webkit-scrollbar-thumb:hover {
+    all: unset;
   }
 }

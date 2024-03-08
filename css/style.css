@@ -257,10 +257,12 @@ button {
 
 .profile-option {
   padding: 7px 10px 7px 10px;
+  color: lightgrey;
 }
 
 .profile-option2 {
   padding: 7px 10px 7px 10px;
+  color: lightgray;
 }
 .profile-option:hover {
   cursor: pointer;

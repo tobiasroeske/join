@@ -46,7 +46,7 @@ async function addTask() {
     getTaskData();
     currentUser['tasks'].push(currentTask);
     disableButton();
-    await setItem('currentUser', JSON.stringify(currentUser));
+    await saveCurrentUser();
     resetAddTask();
     pipeToBoard();
 }

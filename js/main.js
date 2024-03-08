@@ -42,6 +42,23 @@ async function load() {
     }
 }
 
+async function loadJustUsers() {
+    try {
+        users = JSON.parse(await getItem('users'));
+    } catch (error) {
+        console.error('Loading error:' + error);
+    }
+}
+
+async function saveCurrentUser() {
+    await setItem('currentUser', JSON.stringify(currentUser));
+}
+
+async function updateCurrentUserAndLeave(page) {
+    await saveCurrentUser();
+    goToPage(page);
+}
+
 /**
  * resets the currentUser obejct so it can be checked if logged in
  */
@@ -122,6 +139,7 @@ function goToPage(page) {
  * updates the users and pipes to the login page
  */
 async function logout() {
+    currentUser['loggedIn'] = false;
     await updateUsers();
     window.open('login.html', '_self');
 }
@@ -136,16 +154,14 @@ async function updateUsers() {
         guest = currentUser;
         saveGuestToLocalStorage();
     } else {
+        await loadJustUsers();
         for (let i = 0; i < users.length; i++) {
             const user = users[i];
-            if (user['name'] == currentUser['name']) {
-                currentUser['loggedIn'] = false;
+            if (user['email'] === currentUser['email']) {
                 users.splice(i, 1, currentUser);
             }
         }
     }
-    resetCurrentUser();
-    await setItem('currentUser', JSON.stringify(currentUser));
     await setItem('users', JSON.stringify(users));
 }
 
@@ -180,4 +196,3 @@ function checkIfLoggedIn() {
         window.open('login.html', '_self');
     }
 }
-

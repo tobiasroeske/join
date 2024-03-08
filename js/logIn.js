@@ -3,6 +3,8 @@
  * and if the remember me checkbos is checked autofills the form
  */
 async function init() {
+    resetCurrentUser();
+    await saveCurrentUser();
     startGreetingAnimation();
     await load();
     loadGuestFromLocalStorage();
