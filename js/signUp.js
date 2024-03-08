@@ -2,6 +2,8 @@
  * loads the data from the server
  */
 async function init() {
+    resetCurrentUser();
+    await saveCurrentUser();
     await load();
 }
 

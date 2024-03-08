@@ -88,7 +88,7 @@ async function newTask() {
   getTaskData();
   currentUser['tasks'].push(currentTask);
   disableButton();
-  await setItem('currentUser', JSON.stringify(currentUser));
+  await updateUsers();
   renderAllTasks(currentUser['tasks']);
   resetPopup();
 }
@@ -247,7 +247,7 @@ function updateProgressBar(index, doneSubtasks) {
  */
 async function updateTasks(index) {
   currentUser['tasks'].splice(index, 1, currentTask);
-  await setItem('currentUser', JSON.stringify(currentUser));
+  await updateUsers();
   renderAllTasks(currentUser['tasks']);
 }
 
@@ -257,10 +257,10 @@ async function updateTasks(index) {
  * 
  * @param {number} index index of the task of tasks array of currentUser
  */
-function deleteTask(index) {
+async function deleteTask(index) {
   currentUser['tasks'].splice(index, 1);
   closeTaskPopup();
-  setItem('currentUser', JSON.stringify(currentUser));
+  await updateUsers();
   renderAllTasks(currentUser['tasks']);
 }
 
@@ -424,7 +424,7 @@ function allowDrop(ev) {
  */
 async function moveToContainer(column) {
   currentDraggedElement['currentColumn'] = column;
-  await setItem('currentUser', JSON.stringify(currentUser));
+  await updateUsers();
   renderAllTasks(currentUser['tasks']);
 }
 
@@ -465,7 +465,7 @@ function showMoveToPopup(id) {
 async function moveToColumn(index, column) {
   let task = currentUser['tasks'][index];
   task['currentColumn'] = column;
-  await setItem('currentUser', JSON.stringify(currentUser));
+  updateUsers();
   renderAllTasks(currentUser['tasks']);
 }
 
