@@ -311,6 +311,7 @@
         width: 80%;
         gap: 24px;
         padding: 48px 64px;
+        height: fit-content;
     }
 }
 
