@@ -3,22 +3,15 @@ let colors = ['orange', 'purple', 'pink', 'yellow', 'green', 'darkblue', 'violet
 let firstLetters = [];
 
 /**
- * initiates onload and renders the contact list
+ * resets the currentUser, loads the data from the server, checks if the user is logged in, 
+ * then gets the first letters for the initials and renders the contactList
  */
 async function init() {
+    resetCurrentUser();
     await load()
+    checkIfLoggedIn();
     getFirstLetters();
     renderContactList();
-    // await saveProfileContact();
-}
-
-async function saveProfileContact() {
-    let contactsStringified = contacts.map(contact => JSON.stringify(contact));
-    let currentUserStringified = JSON.stringify(currentUser);
-    if (contactsStringified.indexOf(currentUserStringified) == - 1) {
-        contacts.push(currentUser);
-        await setItem('contacts', JSON.stringify(contacts));
-    }
 }
 
 /**
@@ -54,9 +47,10 @@ async function addNewContact() {
         initials: getInitials(nameInput.value)
     }
     currentUser['contacts'].push(contact);
-    await setItem('currentUser', JSON.stringify(currentUser));
-    init();
-    upadteContactContainer(contact);
+    await updateUsers();
+    getFirstLetters();
+    renderContactList();
+    updateContactContainer(contact);
 }
 
 /**
@@ -64,7 +58,7 @@ async function addNewContact() {
  * 
  * @param {object} contact one contact object from the contacts array
  */
-function upadteContactContainer(contact) {
+function updateContactContainer(contact) {
     let index = getIndexOfContact(contact);
     renderContact(index);
     togglePopup('popup');
@@ -161,9 +155,10 @@ function startSlideInAnimation(id, className) {
  */
 async function deleteContact(index) {
     currentUser['contacts'].splice(index, 1);
-    await setItem('currentUser', JSON.stringify(currentUser));
+    await updateUsers();
     document.getElementById('contactCard').innerHTML = '';
-    init();
+    getFirstLetters();
+    renderContactList();
 }
 
 /**
@@ -205,7 +200,7 @@ async function editContact(index) {
     currentUser['contacts'][index]['email'] = email.value;
     currentUser['contacts'][index]['phone'] = phone.value;
     togglePopup('popup');
-    updateContacts(index, 'currentUser', JSON.stringify(currentUser))
+    updateContacts(index, 'users', JSON.stringify(users))
     renderContact(index);
 }
 
@@ -220,7 +215,8 @@ async function editContact(index) {
 async function updateContacts(index, key, value) {
     renderContact(index);
     await setItem(key, value);
-    init();
+    getFirstLetters();
+    renderContactList();
 }
 
 /**
@@ -270,7 +266,7 @@ function getRandomColor() {
  * @returns the sorted array, which can be used to render the contact list,
  */
 function sortContactsByName() {
-    return currentUser['contacts'].sort((a, b) => {
+    currentUser['contacts'].sort((a, b) => {
         let nameA = a.name.toUpperCase();
         let nameB = b.name.toLocaleUpperCase();
         if (nameA < nameB) {
@@ -313,7 +309,7 @@ function togglePopup(id) {
  * @param {string} animationId the element on which the animation starts on
  * @param {string} popupId the element which gets the class d-none 
  */
-function closePopup(animationId, popupId) {
+function closePopupAndStartAnimation(animationId, popupId) {
     startSlideInAnimation(animationId, 'new-contact-animation');
     setTimeout(() => document.getElementById(popupId).classList.add('d-none'), 125);
 }
