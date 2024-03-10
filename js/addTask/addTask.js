@@ -84,6 +84,28 @@ function resetAddTask() {
     document.getElementById('dateInput').value = ''
     document.getElementById('categoryInput').value = ''
     resetCurrentTask();
+    resetAssignedContacts();
+    resetSubtasks();
+    resetPriority();
+}
+
+function resetAssignedContacts() {
+    renderSelectedContacts('selectedContacts');
+    let contactList = document.getElementById('contactList');
+    contactList.innerHTML = '';
+    renderContacts();
+    closePopup('contactsPopup');
+}
+
+function resetSubtasks() {
+    document.getElementById('subtasks').innerHTML = '';
+    closePopup('subtasks');
+}
+
+function resetPriority() {
+    let allBtns = document.querySelectorAll('.prio-btn');
+    allBtns.forEach(btn => btn.classList.remove('urgent-btn', 'medium-btn', 'low-btn'));
+    document.getElementById('mediumBtn').classList.add('medium-btn');
 }
 
 /**
@@ -205,14 +227,26 @@ function addContactToList(index) {
  * @param {index} index index of contact in the contacts array
  */
 function removeContactFromList(index) {
-    let contact = currentUser['contacts'][index];
-    let newIndex = currentTask['assignedContacts'].indexOf(contact);
-    currentTask['assignedContacts'].splice(newIndex, 1);
+    let contact = JSON.stringify(currentUser['contacts'][index]);
+    let newIndex;
+    for (let i = 0; i < currentTask['assignedContacts'].length; i++) {
+        const assignedContact = currentTask['assignedContacts'][i];
+        let assignedContactAsString = JSON.stringify(assignedContact);
+        if (assignedContactAsString == contact) {
+            currentTask['assignedContacts'].splice(i, 1);
+        }
+    }
     renderSelectedContacts('selectedContacts');
+    // let newIndex = JSON.stringify(currentTask['assignedContacts']).indexOf(contact);
+    // currentTask['assignedContacts'].splice(newIndex, 1);
+    // renderSelectedContacts('selectedContacts');
+    // renderExtraContacts('extraContactsPopup-1');
 }
 
 /**
  * renders the selected contacts in the container beneath the inputfield
+ * if the number of contacts is greater than 4 it renders an extra icon for the additional contacts
+ * 
  * 
  * @param {string} id id of the selected contacts container
  */
@@ -221,10 +255,41 @@ function renderSelectedContacts(id) {
     selecetedContactsContainer.innerHTML = '';
     for (let i = 0; i < currentTask['assignedContacts'].length; i++) {
         const contact = currentTask['assignedContacts'][i];
-        selecetedContactsContainer.innerHTML += /*html*/`
+        if (i < 4) {
+            selecetedContactsContainer.innerHTML += /*html*/`<div class="initials ${contact['color']}">${contact['initials']}</div>`;
+        }
+        let moreThanFourContacts = i >= 4 && i == currentTask['assignedContacts'].length - 1;
+        if (moreThanFourContacts) {
+            let extraContacts = currentTask['assignedContacts'].length - 4;
+            let index = getIndexOfTask();
+            selecetedContactsContainer.innerHTML += generateExtraContactPopupHTML(extraContacts, index);
+        }
+    }
+}
+
+/**
+ * 
+ * @returns the index of currentTask in the currentUsers tasks array and 
+ */
+function getIndexOfTask() {
+    let index = currentUser['tasks'].indexOf(currentTask);
+    return index;
+}
+
+/**
+ * renders the html code for the additional contacts
+ * 
+ * @returns the html code
+ */
+function renderExtraContacts() {
+    let html = ''
+    for (let i = 4; i < currentTask['assignedContacts'].length; i++) {
+        const contact = currentTask['assignedContacts'][i];
+        html += /*html*/`
             <div class="initials ${contact['color']}">${contact['initials']}</div>
         `
     }
+    return html;
 }
 
 /**
@@ -340,66 +405,10 @@ function callOnEnterPress(event, id) {
 }
 
 /**
- * generates the the html of each contact for the contacts list
- * 
- * @param {object} contact one of the contact objects from the contacts array
- * @param {number} i the index of the the contact
- * @returns 
+ * checks todays date and puts this date as minimum attribut in the due date input field
  */
-function generateContactListHTML(contact, i) {
-    return /*html*/`
-    <li class="list-item" id="contact${i}" onclick="stopCurrentAction(event); selectContact('contact${i}', ${i})">
-        <div class="flex gap-8 align-items-center">
-            <div class="initials ${contact['color']}">${contact['initials']}</div>
-            <span>${contact['name']}</span>
-        </div>
-        <input type="checkbox" id="contact${i}">
-    </li>
-`;
-}
-
-/**
- * generates the html code for the subtask editor
- * 
- * @param {number} index index of the subtask in the subtasks array
- * @returns 
- */
-function generateSubTaskEditorHTML(index) {
-    return /*html*/`
-    <div class="subtask-input-field">
-        <input type="text" value="${currentTask['subtasks'][index]['subtaskName']}" class="edit-subtask-input" id="subtaskInput${index}" onkeypress="callOnEnterPress(event, 'editSubtaskBtn')">
-        <div class="edit-icons">
-            <img src="assets/img/addTask_delete.svg" alt="" onclick="deleteSubtask(${index})" >
-            <div class="icon-seperator"></div>
-            <img src="assets/img/addTask_check.svg" alt="" onclick="editSubtask(${index})" id="editSubtaskBtn">
-        </div>
-    </div>
-`;
-}
-
-/**
- * generates the subtask list beneath the subtask input
- * 
- * @param {string} subtask the text of the subtask
- * @param {number} index the index of the subtask in the array
- * @returns 
- */
-function generateSubtaskHTML(subtask, index) {
-    return /*html*/`
-    <div class="subtask-list-item" id="subtask${index}" ondblclick="openSubtaskEditor(${index})">
-        <li>${subtask}</li>
-        <div class="edit-icons">
-            <img src="assets/img/addTask_edit.svg" alt="" onclick="openSubtaskEditor(${index})">
-            <div class="icon-seperator"></div>
-            <img src="assets/img/addTask_delete.svg" alt="" onclick="deleteSubtask(${index})">
-        </div>
-    </div>
-`;
-}
-
 function renderTodaysDate() {
     let date = getCurrentDate();
     let dateInput = document.getElementById('dateInput');
     dateInput.setAttribute('min', date);
 }
-

@@ -29,6 +29,7 @@ function renderTaskColumn(column, array) {
     if (currentTask['currentColumn'] == column) {
       tasksContainer.innerHTML += generateTasksHTML(currentTask, i);
       renderSelectedContacts(`assignedTo${i}`);
+      renderExtraContacts(`extraContactsPopup${i}`);
       showSubtaskStatus(i)
     }
   }
@@ -319,7 +320,7 @@ function highlightSelectedContacts() {
   allContacts.forEach(contact => {
     contact.classList.remove('active-contact');
     let index = Array.from(contactList.children).indexOf(contact);
-    let assigned = currentTask['assignedContacts'].find(assignedContact => JSON.stringify(assignedContact) === JSON.stringify(contacts[index]));
+    let assigned = currentTask['assignedContacts'].find(assignedContact => JSON.stringify(assignedContact) === JSON.stringify(currentUser['contacts'][index]));
     if (assigned) {
       contact.classList.add('active-contact');
       contact.querySelector('input').checked = true;

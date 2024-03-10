@@ -27,9 +27,6 @@ function generateTasksHTML(task, index) {
                   <span id="doneSubtasks${index}"></span>/<span id="subtaskAmount${index}"></span> Subtasks
                 </div>
               </div>
-              <!-- <div class="w3-light-grey w3-round-xlarge progressbar">
-                  <div class="w3-container w3-blue w3-round-xlarge progressbar" id="taskProgress"></div> 
-              </div> -->
               <div class="assigned-and-prio">
                   <div id="assignedTo${index}" class="assigned-to"> </div>
                   <div id="taskPriority" class="task-priority">

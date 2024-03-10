@@ -23,7 +23,7 @@ function generateNewContactEditorHTML() {
                         <img src="assets/img/contacts_call.svg" alt="">
                     </div>
                     <div class="input-field">
-                        <input required type="number" name="" id="phoneInput" placeholder="Phone" class="special-input">
+                        <input required type="tel" pattern="[0-9]{1,15}" name="phoneInput" id="phoneInput" placeholder="Phone" class="special-input">
                         <img src="assets/img/contacts_call.svg" alt="">
                     </div>
                     <div class="contact-submit-field">
@@ -62,7 +62,7 @@ function generateContactEditorHTML(contact, index) {
                         <img src="assets/img/contacts_call.svg" alt="">
                     </div>
                     <div class="input-field">
-                        <input required type="tel" name="" id="phoneInput" placeholder="Phone" class="special-input" value="${contact['phone']}">
+                        <input required type="tel" pattern="[0-9]{1,15}" name="" id="phoneInput" placeholder="Phone" class="special-input" value="${contact['phone']}">
                         <img src="assets/img/contacts_call.svg" alt="">
                     </div>
                     <div class="contact-submit-field">

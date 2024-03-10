@@ -11,9 +11,9 @@
             <textarea name="description" id="descriptionTextarea" cols="30" rows="10" placeholder="Enter a Description"
                 class="textarea"></textarea>
         </div>
-        <div class="input-container" onclick="togglePopup('contactsPopup'); stopCurrentAction(event)">
+        <div class="input-container">
             <label for="assignedContacts">Assigned to</label>
-            <div class="input-field category-input">
+            <div class="input-field category-input" onclick="togglePopup('contactsPopup'); stopCurrentAction(event)">
                 <input type="text" id="assignedContacts" placeholder="Select Contacts to assign" class="special-input">
                 <img src="assets/img/drop_down_array_icon.svg" alt="" class="icon input-icon">
             </div>
@@ -22,9 +22,13 @@
 
                 </ul>
             </div>
-            <div class="flex gap-8" id="selectedContacts">
-
+            <div>
+                <!-- <div class="extra-contacts-popup-addTask d-none" id="extraContactsPopup-1"></div> -->
+                <div class="flex gap-8" id="selectedContacts">
+                
+                </div>
             </div>
+           
         </div>
     </div>
 
@@ -55,7 +59,7 @@
         <div class="input-container">
             <label for="categoryInput">Category<span class="red-required">*</span></label>
             <div class="input-field category-input" onclick="togglePopup('categoryPopup'); stopCurrentAction(event)">
-                <input required type="text" id="categoryInput" placeholder="Select task category" class="special-input">
+                <input required type="text" pattern="^(Technical Task|User Story)$" id="categoryInput" placeholder="Select task category" class="special-input">
                 <img src="assets/img/drop_down_array_icon.svg" alt="" class="icon input-icon">
             </div>
             <div class="category-popup d-none" id="categoryPopup">

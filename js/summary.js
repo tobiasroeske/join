@@ -53,7 +53,7 @@ function displayTasks() {
     document.getElementById('tasksTodo').innerHTML = todos.length;
     document.getElementById('tasksDone').innerHTML = done.length;
     document.getElementById('tasksUrgent').innerHTML = urgent.length;
-    document.getElementById('allTasks').innerHTML = tasks.length;
+    document.getElementById('allTasks').innerHTML = currentUser['tasks'].length;
     document.getElementById('tasksInProgress').innerHTML = inProgress.length;
     document.getElementById('tasksAwaitingFeedback').innerHTML = awaitingFeedback.length;
     document.getElementById('userName').innerHTML = currentUser['name'];
