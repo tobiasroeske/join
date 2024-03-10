@@ -65,7 +65,7 @@ function generateSubtaskHTML(subtask, index) {
  */
 function generateExtraContactPopupHTML(contacts, index) {
     return /*html*/`
-    <div class="initials black hover-active" onclick="togglePopup('extraContactsPopup${index}'); stopCurrentAction(event)">
+    <div class="initials black hover-active" onmouseover="togglePopup('extraContactsPopup${index}'); stopCurrentAction(event)" onmouseout="togglePopup('extraContactsPopup${index}'); stopCurrentAction(event)">
         +${contacts}
         <div class="extra-contacts-popup-addTask d-none" id="extraContactsPopup${index}">
             ${renderExtraContacts()}

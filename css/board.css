@@ -159,6 +159,7 @@ h2 {
 }
 
 .task-design {
+  cursor: pointer;
   visibility: visible;
   display: flex;
   flex-direction: column;
