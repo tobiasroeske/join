@@ -1,6 +1,3 @@
-.rightside {
-  height: fit-content;
-}
 
 .PrivacySetup {
   display: flex;
@@ -77,5 +74,11 @@ b {
 @media (max-width: 1050px) {
   .rightside {
     margin-bottom: 88px;
+    height: fit-content;
+  }
+
+  .back-arrow-icon {
+    position: absolute;
+    top: 128px;
   }
 }
