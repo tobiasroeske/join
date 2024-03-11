@@ -34,9 +34,11 @@ async function includeHTML() {
  * loads the data from the server
  */
 async function load() {
+    loadCurrentUser();
     try {
-        currentUser = JSON.parse(await getItem('currentUser'));
+        // currentUser = JSON.parse(await getItem('currentUser'));
         users = JSON.parse(await getItem('users'));
+        
         setInitials();
     } catch (error) {
         console.error('Loading error:' + error);
@@ -51,12 +53,19 @@ async function loadJustUsers() {
     }
 }
 
-async function saveCurrentUser() {
-    await setItem('currentUser', JSON.stringify(currentUser));
+function saveCurrentUser() {
+    localStorage.setItem('currentUser', JSON.stringify(currentUser));
+}
+
+function loadCurrentUser() {
+    let currentUserAsString = JSON.parse(localStorage.getItem('currentUser'));
+    if (currentUserAsString) {
+        currentUser = currentUserAsString;
+    }
 }
 
 async function updateCurrentUserAndLeave(page) {
-    await saveCurrentUser();
+    saveCurrentUser();
     goToPage(page);
 }
 

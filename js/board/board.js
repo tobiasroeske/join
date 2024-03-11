@@ -334,9 +334,10 @@ function highlightSelectedContacts() {
  * 
  * @param {number} index index of the task of tasks array of currentUser
  */
-function editTask(index) {
+async function editTask(index) {
   getTaskData();
   currentUser['tasks'].splice(index, 1, currentTask);
+  await updateUsers();
   resetCurrentTask();
   closeTaskPopup();
   renderAllTasks(currentUser['tasks']);

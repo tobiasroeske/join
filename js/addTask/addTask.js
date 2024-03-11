@@ -47,7 +47,8 @@ async function addTask() {
     getTaskData();
     currentUser['tasks'].push(currentTask);
     disableButton();
-    await saveCurrentUser();
+    saveCurrentUser();
+    await updateUsers();
     resetAddTask();
     pipeToBoard();
 }
@@ -228,7 +229,6 @@ function addContactToList(index) {
  */
 function removeContactFromList(index) {
     let contact = JSON.stringify(currentUser['contacts'][index]);
-    let newIndex;
     for (let i = 0; i < currentTask['assignedContacts'].length; i++) {
         const assignedContact = currentTask['assignedContacts'][i];
         let assignedContactAsString = JSON.stringify(assignedContact);
@@ -237,10 +237,6 @@ function removeContactFromList(index) {
         }
     }
     renderSelectedContacts('selectedContacts');
-    // let newIndex = JSON.stringify(currentTask['assignedContacts']).indexOf(contact);
-    // currentTask['assignedContacts'].splice(newIndex, 1);
-    // renderSelectedContacts('selectedContacts');
-    // renderExtraContacts('extraContactsPopup-1');
 }
 
 /**

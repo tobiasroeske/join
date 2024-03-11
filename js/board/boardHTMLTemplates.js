@@ -105,7 +105,7 @@ function generateTaskEditorHTML(task, index) {
             </ul>
           </div>
           <div class="flex-end">
-            <button class="submit-btn add-btn">Ok <img src="assets/img/check_icon.svg" alt=""></button>
+            <button class="submit-btn add-btn hover-active">Ok <img src="assets/img/check_icon.svg" alt=""></button>
           </div>
       </form>
     </div>
