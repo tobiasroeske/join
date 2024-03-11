@@ -47,6 +47,7 @@ async function addNewContact() {
         initials: getInitials(nameInput.value)
     }
     currentUser['contacts'].push(contact);
+    saveCurrentUser();
     await updateUsers();
     getFirstLetters();
     renderContactList();
@@ -155,6 +156,7 @@ function startSlideInAnimation(id, className) {
  */
 async function deleteContact(index) {
     currentUser['contacts'].splice(index, 1);
+    saveCurrentUser();
     await updateUsers();
     document.getElementById('contactCard').innerHTML = '';
     getFirstLetters();
@@ -200,6 +202,7 @@ async function editContact(index) {
     currentUser['contacts'][index]['email'] = email.value;
     currentUser['contacts'][index]['phone'] = phone.value;
     togglePopup('popup');
+    saveCurrentUser();
     updateContacts(index, 'users', JSON.stringify(users))
     renderContact(index);
 }
