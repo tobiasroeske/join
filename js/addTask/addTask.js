@@ -407,4 +407,6 @@ function renderTodaysDate() {
     let date = getCurrentDate();
     let dateInput = document.getElementById('dateInput');
     dateInput.setAttribute('min', date);
+    dateInput.setAttribute('max', '2100-12-31'); 
 }
+
