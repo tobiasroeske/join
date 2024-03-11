@@ -89,6 +89,7 @@ async function openAddTaskPopup(column) {
 async function newTask() {
   getTaskData();
   currentUser['tasks'].push(currentTask);
+  saveCurrentUser();
   disableButton();
   await updateUsers();
   renderAllTasks(currentUser['tasks']);
@@ -261,6 +262,7 @@ async function updateTasks(index) {
  */
 async function deleteTask(index) {
   currentUser['tasks'].splice(index, 1);
+  saveCurrentUser();
   closeTaskPopup();
   await updateUsers();
   renderAllTasks(currentUser['tasks']);
@@ -337,6 +339,7 @@ function highlightSelectedContacts() {
 async function editTask(index) {
   getTaskData();
   currentUser['tasks'].splice(index, 1, currentTask);
+  saveCurrentUser();
   await updateUsers();
   resetCurrentTask();
   closeTaskPopup();
@@ -427,6 +430,7 @@ function allowDrop(ev) {
  */
 async function moveToContainer(column) {
   currentDraggedElement['currentColumn'] = column;
+  saveCurrentUser();
   await updateUsers();
   renderAllTasks(currentUser['tasks']);
 }
@@ -468,6 +472,7 @@ function showMoveToPopup(id) {
 async function moveToColumn(index, column) {
   let task = currentUser['tasks'][index];
   task['currentColumn'] = column;
+  saveCurrentUser();
   updateUsers();
   renderAllTasks(currentUser['tasks']);
 }
