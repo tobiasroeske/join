@@ -115,10 +115,17 @@ function togglePasswordVisibility() {
  * sets the loggedIn status to true and sets currentUser as guest and saves it to the server
  * then pipes to summary
  */
+// async function guestLogin() {
+//     let testGuest = findTestGuest();
+//     testGuest['loggedIn'] = true;
+//     currentUser = testGuest;
+//     saveCurrentUser();
+//     window.open('summary.html', '_self');
+// }
+
 async function guestLogin() {
-    let testGuest = findTestGuest();
-    testGuest['loggedIn'] = true;
-    currentUser = testGuest;
+    guest['loggedIn'] = true;
+    currentUser = guest;
     saveCurrentUser();
     window.open('summary.html', '_self');
 }
