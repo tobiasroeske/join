@@ -424,10 +424,7 @@ function startDragging(index) {
 function allowDrop(ev) {
   ev.preventDefault();
   ev.stopPropagation(); 
-
- 
 }
-
 /**
  * changes the column to the desired column and saves the new tasks in currentUser and on the server
  * 

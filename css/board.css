@@ -409,7 +409,7 @@ h2 {
   display: flex;
   
   background-color: rgba(225, 225, 228, 0.281);
-  border: 3px dashed #2a3647; 
+  border: 2px dashed #2a3647; 
   border-radius: 20px;
   transform: scale(1.1);
 padding: 10px;
