@@ -4,7 +4,7 @@
  */
 async function init() {
     resetCurrentUser();
-    await saveCurrentUser();
+    saveCurrentUser();
     startGreetingAnimation();
     await load();
     loadGuestFromLocalStorage();
@@ -60,7 +60,8 @@ async function login() {
     currentUser = user;
     if (user && user.password === password) {
         currentUser['loggedIn'] = true;
-        await setItem('currentUser', JSON.stringify(currentUser));
+        // await setItem('currentUser', JSON.stringify(currentUser));
+        saveCurrentUser();
         window.location.href = 'summary.html';
     } else {
         showWrongPassword();
@@ -117,7 +118,7 @@ function togglePasswordVisibility() {
 async function guestLogin() {
     guest['loggedIn'] = true;
     currentUser = guest;
-    await setItem('currentUser', JSON.stringify(currentUser));
+    saveCurrentUser();
     window.open('summary.html', '_self');
 }
 
