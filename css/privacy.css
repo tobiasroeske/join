@@ -1,9 +1,13 @@
+.rightside {
+  height: fit-content;
+}
+
 .PrivacySetup {
   display: flex;
   flex-direction: column;
   font-size: 16px;
   padding-top: 88px;
-  max-height: calc(100vh - 88px);
+  
   width: 90%;
 }
 
@@ -12,8 +16,8 @@
   flex-direction: column;
   line-height: 180%;
   padding-top: 88px;
-  max-height: calc(100vh - 88px);
   width: 90%;
+  height: fit-content;
 }
 
 .helpSite {
@@ -48,6 +52,7 @@ h2 {
 
 h1 {
   font-size: 40px;
+  word-wrap: break-word;
 }
 p,
 li {
@@ -69,4 +74,8 @@ b {
   background-color: #485e7c;
 }
 
-
+@media (max-width: 1050px) {
+  .rightside {
+    margin-bottom: 88px;
+  }
+}
