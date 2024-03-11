@@ -8,6 +8,14 @@
   width: 90%;
 }
 
+.sidebar {
+  justify-content: flex-end;
+}
+
+.sidebar-top {
+  display: none;
+}
+
 .LegalNoticeSetup {
   display: flex;
   flex-direction: column;
@@ -80,5 +88,9 @@ b {
   .back-arrow-icon {
     position: absolute;
     top: 128px;
+  }
+
+  .mobile-menu {
+    display: none;
   }
 }
