@@ -398,7 +398,8 @@ function filterTasks() {
   currentUser['tasks'].forEach(task => {
     let matchTitle = task['title'].toLowerCase().includes(searchValue);
     let matchPriority = task['currentPriority'][0].toLowerCase().includes(searchValue);
-    if (matchTitle || matchPriority) {
+    let matchDescription = task['description'].toLowerCase().includes(searchValue);
+    if (matchTitle || matchPriority || matchDescription) {
       matchingTasks.push(task);
     }
   });

@@ -4,7 +4,7 @@
     <div class="form-side">
         <div class="input-container">
             <label for="titleInput">Title<span class="red-required">*</span></label>
-            <input type="text" name="title" id="titleInput" class="input" required placeholder="Enter a title">
+            <input autocomplete="off" type="text" name="title" id="titleInput" class="input" required placeholder="Enter a title">
         </div>
         <div class="input-container">
             <label for="descriptionTextarea">Description</label>
@@ -14,7 +14,7 @@
         <div class="input-container">
             <label for="assignedContacts">Assigned to</label>
             <div class="input-field category-input" onclick="togglePopup('contactsPopup'); stopCurrentAction(event)">
-                <input type="text" id="assignedContacts" placeholder="Select Contacts to assign" class="special-input">
+                <input autocomplete="off" type="text" id="assignedContacts" placeholder="Select Contacts to assign" class="special-input">
                 <img src="assets/img/drop_down_array_icon.svg" alt="" class="icon input-icon">
             </div>
             <div class="category-popup d-none" id="contactsPopup">
@@ -37,7 +37,7 @@
     <div class="form-side">
         <div class="input-container">
             <label for="dateInput">Due date<span class="red-required">*</span></label>
-            <input type="date" name="dueDate" id="dateInput" placeholder="dd/mm/yyyy" class="input date-input" required>
+            <input autocomplete="off" type="date" name="dueDate" id="dateInput" placeholder="dd/mm/yyyy" class="input date-input" required>
         </div>
         <div class="input-container">
             <span>Prio</span>
@@ -59,7 +59,7 @@
         <div class="input-container">
             <label for="categoryInput">Category<span class="red-required">*</span></label>
             <div class="input-field category-input" onclick="togglePopup('categoryPopup'); stopCurrentAction(event)">
-                <input required type="text" pattern="^(Technical Task|User Story)$" id="categoryInput" placeholder="Select task category" class="special-input">
+                <input autocomplete="off" required type="text" pattern="^(Technical Task|User Story)$" id="categoryInput" placeholder="Select task category" class="special-input">
                 <img src="assets/img/drop_down_array_icon.svg" alt="" class="icon input-icon">
             </div>
             <div class="category-popup d-none" id="categoryPopup">
@@ -74,7 +74,7 @@
         <div class="input-container" id="subtaskInputField">
             <label for="subtaskInput">Subtasks</label>
             <div class="input-field" onclick="toggleSubtaskInput(); stopCurrentAction(event)">
-                <input type="text" class="special-input subtask-input" name="subtasks" id="subtaskInput"
+                <input autocomplete="off" type="text" class="special-input subtask-input" name="subtasks" id="subtaskInput"
                     placeholder="Add new subtask" onkeypress="callOnEnterPress(event, 'addSubtaskBtn')">
                 <img src="assets/img/addTask_add.svg" alt="" class="icon special-input-icon" id="addSubtaskIcon">
                 <div class="input-icon-box d-none" id="editSubtaskIcons">
@@ -101,3 +101,4 @@
                 alt=""></button>
     </div>
 </div>
+

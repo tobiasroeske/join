@@ -116,12 +116,22 @@ function togglePasswordVisibility() {
  * then pipes to summary
  */
 async function guestLogin() {
-    guest['loggedIn'] = true;
-    currentUser = guest;
+    let testGuest = findTestGuest();
+    testGuest['loggedIn'] = true;
+    currentUser = testGuest;
     saveCurrentUser();
     window.open('summary.html', '_self');
 }
 
+/**
+ * Just for testing purpose
+ * 
+ * @returns testGuest Object
+ */
+function findTestGuest() {
+    let testGuest = users.find(user => user['name'] == 'Test Guest');
+    return testGuest;
+}
 /**
  * checks if the remember me checkbox is checked in if so sends the email and password to the local storage
  * if it is not checked it removes the item from the local storage
