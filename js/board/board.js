@@ -413,6 +413,7 @@ function filterTasks() {
 function startDragging(index) {
   let task = currentUser['tasks'][index];
   currentDraggedElement = task;
+ 
 }
 
 /**
@@ -422,6 +423,7 @@ function startDragging(index) {
  */
 function allowDrop(ev) {
   ev.preventDefault();
+  ev.stopPropagation(); 
 }
 
 /**
