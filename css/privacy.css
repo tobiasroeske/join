@@ -9,10 +9,10 @@
 }
 
 .sidebar {
-  justify-content: flex-end;
+  justify-content: space-between;
 }
 
-.sidebar-top {
+.sidebar-nav {
   display: none;
 }
 
