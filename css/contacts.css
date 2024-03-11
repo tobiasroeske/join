@@ -562,8 +562,8 @@ textarea {
 
 .mobile-add-contact {
   display: none;
-  position: absolute;
-  bottom: 32px;
+  position: fixed;
+  bottom: 112px;
   right: 32px;
   z-index: 50;
 }
@@ -720,7 +720,7 @@ textarea {
 
   .mobile-add-contact {
     display: flex;
-    bottom: 48px;
+    bottom: 112px;
     right: 48px;
   }
   
@@ -842,7 +842,7 @@ textarea {
   }
 
   .mobile-add-contact {
-    bottom: 32px;
+    bottom: 112px;
     right: 32px;
   }
 }
