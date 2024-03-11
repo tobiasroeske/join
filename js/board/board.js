@@ -419,11 +419,13 @@ function startDragging(index) {
 /**
  * allows to drop elements in the container
  * 
- * @param {event} ev drop event
+  * @param {event} ev drop event
  */
 function allowDrop(ev) {
   ev.preventDefault();
   ev.stopPropagation(); 
+
+ 
 }
 
 /**
