@@ -3,7 +3,7 @@ let users = []
 let today;
 let guest = {
     color: 'black',
-    contacts: [{ name: 'Guest', color: 'black', initials: 'G', email: '', phone: '' }],
+    contacts: [{ name: 'Guest Profile', color: 'black', initials: 'GP', email: '', phone: '' }],
     email: '',
     loggedIn: false,
     name: 'Guest',
