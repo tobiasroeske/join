@@ -1,0 +1,25 @@
+<header class="header">
+    <img src="assets/img/join_logo_mobile.svg" alt="join logo" class="join-logo-mobile">
+    <h2 class="special-h2">Kanban Project Management Tool</h2>
+    <div class="header-right" id="headerRight">
+        <a href="help.html"><img src="assets/img/header_question_mark.svg" alt="question mark icon" class="question-mark-icon"></a>
+        <button class="profile-btn" onclick="toggleProfileOptions(); stopCurrentAction(event)" id="profile"></button>
+    </div>
+    <div id="profileOptions" class="profile-options-container d-none">
+        <a href="legalNotice.html" target="_blank" class="profile-option">Legal Notice</a>
+        <a href="privacyPolicy.html'" target="_blank" class="profile-option">Privacy Policy</a>
+        <div class="profile-option2" onclick="logout()">Logout</div>
+    </div>
+    
+</header>
+
+<nav class="mobile-menu">
+    <a href="summary.html" class="nav-link-mobile"><img src="assets/img/sidebar_icon_summary.svg" alt="summary icon"
+            class="sidebar-icon-mobile"><span>Summary</span></a>
+    <a href="addTask.html" class="nav-link-mobile"><img src="assets/img/sidebar_icon_add_task.svg" alt="add task icon"
+            class="sidebar-icon-mobile"><span>Add Task</span></a>
+    <a href="board.html" class="nav-link-mobile"><img src="assets/img/sidebar_icon_board.svg" alt="board icon"
+            class="sidebar-icon-mobile"><span>Board</span></a>
+    <a href="contacts.html" class="nav-link-mobile"><img src="assets/img/sidebar_icon_contacts.svg" alt="contacts icon"
+            class="sidebar-icon-mobile"><span>Contacts</span></a>
+</nav>

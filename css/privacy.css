@@ -1,0 +1,96 @@
+
+.PrivacySetup {
+  display: flex;
+  flex-direction: column;
+  font-size: 16px;
+  padding-top: 88px;
+  
+  width: 90%;
+}
+
+.sidebar {
+  justify-content: space-between;
+}
+
+.sidebar-nav {
+  display: none;
+}
+
+.LegalNoticeSetup {
+  display: flex;
+  flex-direction: column;
+  line-height: 180%;
+  padding-top: 88px;
+  width: 90%;
+  height: fit-content;
+}
+
+.helpSite {
+  display: flex;
+  flex-direction: column;
+  line-height: 150%;
+  padding-top: 88px;
+  max-height: calc(100vh - 88px);
+  width: 90%;
+  position: relative;
+}
+
+.back-arrow-icon {
+  cursor: pointer;
+  width: 32px;
+  height: 32px;
+  position: fixed;
+  right: 64px;
+  top: 172px;
+ padding: 5px;
+}
+
+.back-arrow-icon:hover {
+  background-color: #dad9d98e;
+  border-radius: 20px;
+}
+
+h1,
+h2 {
+  margin-bottom: 10px;
+}
+
+h1 {
+  font-size: 40px;
+  word-wrap: break-word;
+}
+p,
+li {
+  margin-bottom: 10px;
+}
+b {
+  color: rgb(115, 227, 235);
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  position: absolute;
+}
+::-webkit-scrollbar-thumb {
+  background-color: #2a3647;
+  border-radius: 10px;
+}
+::-webkit-scrollbar-track {
+  background-color: #485e7c;
+}
+
+@media (max-width: 1050px) {
+  .rightside {
+    margin-bottom: 88px;
+    height: fit-content;
+  }
+
+  .back-arrow-icon {
+    position: absolute;
+    top: 128px;
+  }
+
+  .mobile-menu {
+    display: none;
+  }
+}

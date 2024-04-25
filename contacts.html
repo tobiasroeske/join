@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join | Contacts</title>
+    <link rel="icon" type="image" href="./assets/img/favicon-join.png">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/fonts.css">
+    <link rel="stylesheet" href="css/contacts.css">
+    <script src="js/main.js"></script>
+    <script src="js/storage.js"></script>
+    <script src="js/contacts/contactHTMLTemplate.js"></script>
+    <script src="js/contacts/contacts.js"></script>
+</head>
+
+<body onload="includeHTML(); init()" onclick="closePopup('profileOptions')">
+
+    <!-- Header Section -->
+    <header w3-include-html="assets/templates/header.html"></header>
+    <main class="main">
+
+        <!-- Sidebar -->
+        <div class="sidebar" w3-include-html="assets/templates/sidebar.html"></div>
+
+        <!-- Rightside of the main container-->
+
+        <div class="rightside">
+            <!-- Page content goes here -->
+            <div class="popup d-none" id="popup">
+                
+                <!--Popups open here -->
+
+            </div>
+            
+            <div class="contacts-container">
+
+                <div class="contact-leftside" id="contactLeftside">
+                    <div class="mobile-icon mobile-add-contact" onclick="renderAddNewContactEditor()">
+                        <img src="assets/img/contact_person_add.svg" alt="">
+                    </div>
+                    <div class="contact-list">
+                        <button class="add-contact-btn" onclick="renderAddNewContactEditor()">Add new contact <img
+                                src="assets/img/contacts_person_add.svg" alt="add contact icon"></button>
+                        <div class="contacts" id="contacts">
+                            <div class="contact-box">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="contact-content" id="contactContent" onclick="closeContactOptionsPopup()">
+                    <div class="heading-container">
+                        <h1 class="page-heading">Contacts</h1>
+                        <div class="seperator-heading"></div>
+                        <span class="subheading">Better with a team</span>
+                    </div>
+                    <button class="back-btn" id="backBtn" onclick="closeContact()"><img src="assets/img/contact_back_arrow.svg" alt="" class="back-arrow"></button>
+
+                    <div class="contact-card" id="contactCard">
+
+                    </div>
+                    <div class="contact-created" id="contactCreated">
+                        Contact created successfully<img src="assets/img/check_icon.svg" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>

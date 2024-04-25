@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join | Sign Up</title>
+    <link rel="icon" type="image" href="./assets/img/favicon-join.png">
+    <link rel="stylesheet" href="css/logIn.css">
+    <link rel="stylesheet" href="css/fonts.css">
+    <script src="js/main.js"></script>
+    <script src="./js/storage.js"></script>
+    <script src="./js/signUp.js"></script>
+</head>
+
+<body onload="init()">
+
+    <header>
+        <div class="logo">
+            <img class="join-icon" src="./assets/img/j-icon.svg" alt="icon">
+        </div>
+    </header>
+
+    <main>
+
+
+        <div class="signup-content">
+            <div class="sign-up-field">
+                <div class="signup-successful" id="signupSuccessful">You signed Up successfully</div>
+                <div class="arrow-headline">
+                    <div class="arrow-svg">
+                        <a href="login.html"><img src="./assets/img/Vector.svg" class="back-to-login" alt="arrow-left"></a>
+                    </div>
+                    <div class="log_in_headline_container">
+                        <h1 class="log_in_headline sign-up-headline">Sign Up</h1>
+                    </div>
+                </div>
+
+                <div class="sign-up-container">
+                    <form onsubmit="register(); return false;" class="form">
+                        <div class="input-box">
+                            <input required id="userName" class="input-field" type="text" placeholder="Name">
+                            <img class="field_img" src="./assets/img/person.png" style="cursor: pointer;">
+                        </div>
+                        <div class="input-box">
+                            <input required id="email" class="input-field" type="email" placeholder="Email">
+                            <img class="field_img" src="./assets/img/mail.svg" style="cursor: pointer;">
+                        </div>
+                        <div class="input-box">
+                            <input required id="password" class="input-field" type="password" placeholder="Password">
+                            <img class="field_img" src="./assets/img/lock.svg" style="cursor: pointer;">
+                        </div>
+                        <div class="input-box password-box-red">
+                            <input required id="confirmPassword" class="input-field" type="password" placeholder="Password">
+                            <img class="field_img" src="./assets/img/lock.svg" style="cursor: pointer;">
+                        </div>
+                        <p id="wrongPasswordText" class="wrong-text hide">Password must be the same!</p>
+                        <div class="accept">
+                            <input id="checkbox" type="checkbox" onclick="acceptPolicy()">
+                            <label>I accept the <a class="accept-checkbox" href="privacyPolicy.html">Privacy Policy</a></label>
+                        </div>
+                        
+                            <button id="sign-up-btn" disabled>Sign up</button>
+                        
+                    </form>
+                </div>
+                
+            </div>
+
+    </main>
+    <footer>
+        <div class="privacy-legal">
+            <div>
+                <a href="privacyPolicy.html">Privacy Policy</a>
+            </div>
+            <div>
+                <a href="legalNotice.html">Legal notice</a>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>

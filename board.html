@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join | Board</title>
+    <link rel="icon" type="image" href="./assets/img/favicon-join.png">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/fonts.css">
+    <link rel="stylesheet" href="css/addTask.css">
+    <link rel="stylesheet" href="css/board.css">
+    <script src="js/main.js"></script>
+    <script src="js/storage.js"></script>
+    <script src="js/addTask/addTask.HTMLTemplates.js"></script>
+    <script src="js/addTask/addTask.js"></script>
+    <script src="js/board/boardHTMLTemplates.js"></script>
+    <script src="js/board/board.js"></script>
+
+</head>
+
+<body onload="init()" onclick="closePopup('profileOptions')">
+
+    <!-- Header Section -->
+    <header w3-include-html="assets/templates/header.html"></header>
+    <main class="main">
+
+        <!-- Sidebar -->
+        <div class="sidebar" w3-include-html="assets/templates/sidebar.html"></div>
+
+        <!-- Rightside of the main container-->
+
+        <div class="rightside">
+            <!-- Page content goes here -->
+            <div class="main-board">
+                <div class="board">
+                    <div class="board-header">
+                        <h1 class="page-heading2">Board</h1>
+                        <div class="add-task-btn-mobile" onclick="openAddTaskPopup('toDo')">
+                            <img src="assets/img/board_addTask_Mobile.svg" alt="">
+                        </div>
+                    </div>
+                    
+                    <div class="search-area">
+                        
+                            <div class="input-field search-field">
+                                <input type="text" id="searchInput" placeholder="Search task ..." class="special-input search-input" oninput="filterTasks()">
+                                <img src="assets/img/board2search.png" alt="" class="search-field-icon" onclick="filterTasks()">
+                            </div>
+                        
+                        <!--onclick funktion zum öffnen-->
+                        <button class="addTaskButton" onclick="openAddTaskPopup('toDo')">Add Task <img
+                                src="./assets/img/board-addtask.png" alt="iconadd" class="addTaskIcon"></button>
+                    </div>
+                </div>
+
+                <div class="board-mainpage">
+                    <div class="popup d-none" id="popup">
+                        <div class="task-added" id="taskAdded">Task added to board <img
+                                src="assets/img/sidebar_icon_board.svg" alt=""></div>
+                        <div class="add-task-popup" id="addTaskPopup">
+                            <div class="add-task" onclick="closeAllPopupsInAddTask()">
+
+                                <button class="popup-close" onclick="slideOutPopup()" id="popupClose"><img
+                                        src="./assets/img/close-board.png" alt="" class="close-popup-img"></button>
+
+                                <h1 class="page-heading">Add Task</h1>
+                                <form onsubmit="newTask(); return false;" class="form"
+                                    w3-include-html="assets/templates/addTaskHTMLTemplate.html" id="addTaskForm">
+
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="board-content" ondragover="allowDrop(event); highlightDropZone('boardContentTodo')"
+                        ondrop="moveToContainer('toDo'); removeHighlightDropZone('boardContentTodo')" ondragleave="removeHighlightDropZone('boardContentTodo')"
+                        id="boardContentTodo">
+                        <div class="headlines-board">
+                            <h2>To do</h2>
+                            <img src="./assets/img/board-plus-button.png" alt="" class="board-plus"
+                                onclick="openAddTaskPopup('toDo')">
+                        </div>
+                        <div class="board-noTasks" id="toDo">No Tasks To Do</div>
+                        <div class="tasks-container" id="tasks-toDo">
+
+                        </div>
+                        
+                    </div>
+
+                    <div class="board-content" ondragover="allowDrop(event); highlightDropZone('boardContentInProgress')"
+                        ondrop="moveToContainer('inProgress'); removeHighlightDropZone('boardContentInProgress')" ondragleave="removeHighlightDropZone('boardContentInProgress')"
+                        id="boardContentInProgress">
+                        <div class="headlines-board">
+                            <h2>In Progress</h2>
+                            <img src="./assets/img/board-plus-button.png" alt="" class="board-plus"
+                                onclick="openAddTaskPopup('inProgress')">
+                        </div>
+                        <div class="board-noTasks" id="inProgress">No Tasks in Progress</div>
+                        <div class="tasks-container" id="tasks-inProgress">
+
+                        </div>
+                        
+                    </div>
+
+                    <div class="board-content" ondragover="allowDrop(event); highlightDropZone('boardContentAwaitFeedback')"
+                        ondrop="moveToContainer('awaitFeedback'); removeHighlightDropZone('boardContentAwaitFeedback')" ondragleave="removeHighlightDropZone('boardContentAwaitFeedback')" 
+                        id="boardContentAwaitFeedback">
+                        <div class="headlines-board">
+                            <h2>Await Feedback</h2>
+                            <img src="./assets/img/board-plus-button.png" alt="" class="board-plus"
+                                onclick="openAddTaskPopup('awaitFeedback')">
+                        </div>
+                        <div class="board-noTasks" id="awaitFeedback">No Tasks in Await Feedback</div>
+                        <div class="tasks-container" id="tasks-awaitFeedback">
+
+                        </div>
+                        
+                    </div>
+
+                    <div class="board-content" ondragover="allowDrop(event); highlightDropZone('boardContentDone')"
+                        ondrop="moveToContainer('done'); removeHighlightDropZone('boardContentDone')" ondragleave="removeHighlightDropZone('boardContentDone')"
+                        id="boardContentDone">
+                        <div class="headlines-board">
+                            <h2>Done</h2>
+                            <img src="./assets/img/board-plus-button.png" alt="" class="board-plus"
+                                onclick="openAddTaskPopup('done')">
+                        </div>
+                        <div class="board-noTasks" id="done">No Tasks in Done</div>
+                        <div class="tasks-container" id="tasks-done">
+
+                        </div>
+                       
+                    </div>
+
+
+
+
+                </div>
+            </div>
+        </div>
+
+
+        <div id="secondPopup" class="popup2 d-none">
+            <div class="popup2-content" id="popupContent">
+                <span class="popup2-close" onclick="closeSecondPopup()"> <img src="./assets/img/close-board.png"
+                        class="close-popup-img2" alt=""></span>
+            </div>
+
+        </div>
+
+    </main>
+</body>
+
+</html>

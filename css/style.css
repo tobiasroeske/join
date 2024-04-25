@@ -1,0 +1,368 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "inter";
+}
+
+body {
+  max-width: 1920px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+button {
+  border: unset;
+  background-color: white;
+  offset: none;
+}
+
+.flex {
+  display: flex !important;
+}
+
+.flex-column {
+  flex-direction: column !important;
+}
+
+.justify-content-space-between {
+  justify-content: space-between;
+}
+
+.gap-8 {
+  gap: 8px !important;
+}
+
+.align-items-center {
+  align-items: center;
+}
+
+.bold {
+  font-weight: 700 !important;
+}
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  width: 232px;
+  height: 100vh; /* In Figma steht 1024, ist aber bei meiner Auflösung zu groß */
+  background-color: #2a3647;
+  justify-content: space-between;
+  align-items: center;
+  padding: 64px 0 64px 0;
+  z-index: 99;
+}
+
+.sidebar-top {
+  display: flex;
+  flex-direction: column;
+  gap: 128px;
+  align-items: center;
+  width: 100%;
+}
+
+.sidebar-logo {
+  width: 100.03px;
+  height: 121.97px;
+  color: white;
+}
+
+.sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 100%;
+}
+
+.nav-link {
+  color: #cdcdcd;
+  display: flex;
+  gap: 8px;
+  padding: 8px 56px;
+  align-items: center;
+}
+
+.nav-link:hover {
+  background-color: #2a3d59;
+}
+
+.sidebar-icon {
+  width: 30px;
+}
+
+.sidebar-bottom {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: center;
+  width: 100%;
+}
+
+.help-link {
+  color: #a8a8a8;
+  padding: 8px;
+}
+
+.help-link:hover {
+  color: white;
+  filter: drop-shadow(1px 1px 8px rgba(0, 0, 0, 0.6));
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  /* Steht so auf Figma 
+    max-width: 1440px; */
+  padding: 20px 40px 20px 348px;
+  box-shadow: 0px 4px 4px 0px #0000001a;
+  align-items: center;
+  background-color: white;
+  z-index: 9;
+  position: absolute;
+  max-width: 1920px;
+  width: 100%;
+}
+
+.special-h2 {
+  font-size: 24px;
+  font-weight: 400;
+}
+
+.profile-btn {
+  cursor: pointer;
+  width: 48px;
+  height: 48px;
+  padding: 10px;
+  border-radius: 559px;
+  background-color: white;
+  color: #29abe2;
+  font-size: 14px;
+  font-weight: 700;
+  border: 3px solid #2a3647;
+}
+
+.profile-btn:hover {
+  background-color: rgba(212, 208, 208, 0.425);
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.question-mark-icon {
+  cursor: pointer;
+  width: 20px;
+  height: auto;
+  transition: transform 0.125s ease;
+}
+
+.question-mark-icon:hover {
+  transform: scale(1.2);
+  filter: brightness(0) saturate(100%) invert(16%) sepia(16%) saturate(1380%)
+    hue-rotate(175deg) brightness(91%) contrast(84%);
+}
+
+.main {
+  display: flex;
+  background-color: #f6f7f8;
+}
+
+.rightside {
+  display: flex;
+  flex: 1;
+  padding-top: 88px;
+  justify-content: center;
+  overflow: auto;
+  height: 100vh;
+}
+
+.active-nav {
+  background-color: #091931;
+  color: white;
+}
+
+.active-img {
+  filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(7500%)
+    hue-rotate(123deg) brightness(101%) contrast(104%);
+}
+
+.page-heading {
+  font-size: 61px;
+  font-weight: 700;
+}
+
+.d-none {
+  display: none !important;
+}
+
+.mobile-menu {
+  display: none;
+  justify-content: space-between;
+  background-color: #2a3647;
+  padding: 0 24px;
+  box-shadow: 0px 0px 4px 0px #0000001a;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 20;
+}
+
+.nav-link-mobile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 20px;
+  gap: 4px;
+  border-radius: 8px;
+  padding: 15px 0;
+  color: #cdcdcd;
+}
+
+.sidebar-icon-mobile {
+  width: 32px;
+}
+
+.active-nav {
+  background-color: #091931;
+  color: white;
+}
+
+.join-logo-mobile {
+  display: none;
+}
+
+.profile-options-container {
+  position: absolute;
+  top: 88px;
+  right: 16px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 20px;
+  border-top-right-radius: 0;
+  color: lightgrey;
+  background-color: #2a3647;
+  font-size: 14px;
+  padding: 10px;
+  box-shadow: 2px 2px 2px 2px;
+  filter: drop-shadow(10px 1px 10px 10px);
+}
+
+.profile-option {
+  padding: 7px 10px 7px 10px;
+  color: lightgrey;
+}
+
+.profile-option2 {
+  padding: 7px 10px 7px 10px;
+  color: lightgray;
+}
+.profile-option:hover {
+  cursor: pointer;
+  background-color: #3e4f66;
+  border-radius: 10px;
+}
+.profile-option2:hover {
+  cursor: pointer;
+  background-color: #3e4f66;
+  border-radius: 10px;
+}
+::-webkit-scrollbar {
+  width: 10px;
+  position: absolute;
+}
+::-webkit-scrollbar-thumb {
+  background-color: #2a3647;
+  border-radius: 10px;
+}
+::-webkit-scrollbar-track {
+  background-color: #485e7c;
+}
+
+@media (max-width: 1050px) {
+  .mobile-menu {
+    display: flex;
+  }
+
+  .header {
+    padding: 20px 40px;
+  }
+
+  .sidebar {
+    display: none;
+  }
+
+  .rightside {
+    padding-bottom: 80px;
+  }
+
+  .active-nav {
+    border-radius: 16px;
+    padding: 16px 8px;
+  }
+}
+
+@media (max-width: 715px) {
+  .special-h2 {
+    display: none !important;
+  }
+
+  .join-logo-mobile {
+    display: flex !important;
+    width: 48px;
+  }
+
+  .header {
+    height: 88px;
+  }
+}
+
+@media (max-width: 620px) {
+  .join-logo-mobile {
+    width: 40px;
+  }
+
+  .mobile-menu {
+    padding: 0 16px;
+  }
+
+  .nav-link-mobile {
+    padding: 15px 0;
+    font-size: 14px;
+  }
+
+  .active-nav {
+    padding: 16px 8px;
+  }
+}
+
+@media (max-width: 568px) {
+  .join-logo-mobile {
+    width: 32px;
+  }
+
+  .header {
+    padding: 20px 18px;
+  }
+
+  .question-mark-icon {
+    display: none;
+  }
+
+  .profile-btn {
+    width: 40px;
+    height: 40px;
+    padding: 0;
+  }
+
+  .page-heading {
+    font-size: 47px;
+  }
+}

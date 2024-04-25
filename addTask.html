@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join | Add Task</title>
+    <link rel="icon" type="image" href="./assets/img/favicon-join.png">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/fonts.css">
+    <link rel="stylesheet" href="css/addTask.css">
+    <script src="js/main.js"></script>
+    <script src="js/storage.js"></script>
+    <script src="js/addTask/addTask.HTMLTemplates.js"></script>
+    <script src="js/addTask/addTask.js"></script>
+</head>
+
+<body onload="initAddTask()" onclick="closePopup('profileOptions')">
+
+    <!-- Header Section -->
+    <header w3-include-html="assets/templates/header.html"></header>
+    <main class="main">
+
+        <!-- Sidebar -->
+        <div class="sidebar" w3-include-html="assets/templates/sidebar.html"></div>
+
+        <!-- Rightside of the main container-->
+
+        <div class="rightside">
+            <div class="task-added-popup d-none" id="taskAddedPopup">
+                <div class="task-added" id="taskAdded">Task added to board <img src="assets/img/sidebar_icon_board.svg" alt=""></div>
+            </div>
+            <div class="add-task"
+                onclick="closeAllPopupsInAddTask()">
+
+                <button class="popup-close d-none" onclick="closePopup()" id="popupClose"><img
+                        src="./assets/img/close-board.png" alt="" class="close-popup-img"></button>
+
+                <h1 class="page-heading">Add Task</h1>
+                <form onsubmit="addTask(); return false;" class="form" w3-include-html="assets/templates/addTaskHTMLTemplate.html">
+                    
+                </form>
+            </div>
+        </div>
+    </main>
+
+</body>
+
+</html>

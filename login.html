@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join | Login</title>
+    <link rel="icon" type="image/" href="#">
+    <link rel="stylesheet" href="css/logIn.css">
+    <link rel="stylesheet" href="css/fonts.css">
+    <script src="js/main.js"></script>
+    <script src="./js/storage.js"></script>
+    <script src="./js/signUp.js"></script>
+    <script src="./js/logIn.js"></script>
+</head>
+
+<body onload="init()">
+   
+    <div class="logo-popup d-none" id="logoPopup">
+        <img class="join-logo-greeting" src="./assets/img/j-icon.svg" alt="icon" id="logoGreeting">
+    </div>
+
+    <div class="logo-popup-mobile d-none" id="logoPopupMobile">
+        <img class="join-logo-greeting-mobile" src="./assets/img/login_join_logo_dark.svg" alt="icon" id="logoGreetingMobile">
+    </div>
+
+    <div id="mainContent" class="d-none">
+        <header>
+            <div class="logo" id="logoContainer">
+                <img class="join-icon" src="./assets/img/j-icon.svg" alt="icon">
+            </div>
+            <div class="sign-up">
+                <p class="sign-up-p">Not a Join user?</p>
+                <button class="sign-up-button"><a href="signup.html">Sign up</a></button>
+            </div>
+        </header>
+    
+        <main>
+            <div class="signup-content">
+                <div class="log-in-field">
+                    <div class="log_in_headline_container">
+                        <h1 class="log_in_headline">Log in</h1>
+                    </div>
+                    <div class="sign-up-container">
+                        <form onsubmit="login(); rememberMe(); return false;" class="login-form">
+                            <div class="input-box">
+                                <input required id="email" class="input-field" type="email" placeholder="Email">
+                                <img class="field_img" src="./assets/img/mail.svg" style="cursor: pointer;">
+                            </div>
+                            <div class="input-box">
+                                <input onclick="showPassword()" onblur="resetPasswordVisibility()" required id="password" class="input-field" type="password"
+                                    placeholder="Password">
+                                <img onclick="togglePasswordVisibility()" class="field_img" id="lock" src="./assets/img/lock.svg" style="cursor: pointer;">
+                            </div>
+                            <p id="wrong-password" class="wrong-text hide">Email or password wrong, ups! Try again</p>
+                            
+                            <div class="remember">
+                                <input type="checkbox"  id="rememberMeCheckbox">
+                                <label for="rememberMeCheckbox">Remember me</label>
+                            </div>
+                            <div class="buttons">
+                                <div class="log-in-button">
+                                    <button type="submit">Log in</button>
+                                </div>
+                                <div class="guest-button">
+                                    <div class="guest-login" onclick="guestLogin()">Guest Log in</div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+    
+                </div>
+                </form>
+                <div class="sign-up-for-mobile">
+                    <p>Not a Join user?</p>
+                    <button class="sign-up-button"><a href="signup.html">Sign up</a></button>
+                </div>
+            </div>
+            
+        </main>
+        <footer>
+            <div class="privacy-legal">
+                <div>
+                    <a href="privacyPolicy.html" target="_blank">Privacy Policy</a>
+                </div>
+                <div>
+                    <a href="legalNotice.html" target="_blank">Legal notice</a>
+                </div>
+            </div>
+        </footer>
+    </div>
+</body>
+
+</html>

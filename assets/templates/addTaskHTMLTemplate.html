@@ -1,0 +1,104 @@
+<div></div>
+
+<div class="form-top">
+    <div class="form-side">
+        <div class="input-container">
+            <label for="titleInput">Title<span class="red-required">*</span></label>
+            <input autocomplete="off" type="text" name="title" id="titleInput" class="input" required placeholder="Enter a title">
+        </div>
+        <div class="input-container">
+            <label for="descriptionTextarea">Description</label>
+            <textarea name="description" id="descriptionTextarea" cols="30" rows="10" placeholder="Enter a Description"
+                class="textarea"></textarea>
+        </div>
+        <div class="input-container">
+            <label for="assignedContacts">Assigned to</label>
+            <div class="input-field category-input" onclick="togglePopup('contactsPopup'); stopCurrentAction(event)">
+                <input autocomplete="off" type="text" id="assignedContacts" placeholder="Select Contacts to assign" class="special-input">
+                <img src="assets/img/drop_down_array_icon.svg" alt="" class="icon input-icon">
+            </div>
+            <div class="category-popup d-none" id="contactsPopup">
+                <ul class="styled-list" id="contactList">
+
+                </ul>
+            </div>
+            <div>
+                <!-- <div class="extra-contacts-popup-addTask d-none" id="extraContactsPopup-1"></div> -->
+                <div class="flex gap-8" id="selectedContacts">
+                
+                </div>
+            </div>
+           
+        </div>
+    </div>
+
+    <div class="seperator"></div>
+
+    <div class="form-side">
+        <div class="input-container">
+            <label for="dateInput">Due date<span class="red-required">*</span></label>
+            <input autocomplete="off" type="date" name="dueDate" id="dateInput" placeholder="dd/mm/yyyy" class="input date-input" required>
+        </div>
+        <div class="input-container">
+            <span>Prio</span>
+            <div class="prio-buttons">
+                <div class="prio-btn" id="urgentBtn"
+                    onclick="selectPriority('urgentBtn', 'urgent-btn'); addPriorityToTask('urgent', 'urgentBtn')">Urgent
+                    <img src="assets/img/prio_high_icon.svg" alt="high priority icon" class="prio-icon">
+                </div>
+                <div class="prio-btn medium-btn" id="mediumBtn"
+                    onclick="selectPriority('mediumBtn', 'medium-btn'); addPriorityToTask('medium', 'mediumBtn')">Medium
+                    <img src="assets/img/addTask_medium_orange.svg" alt="medium priority icon" class="medium-icon"
+                        class="prio-icon">
+                </div>
+                <div class="prio-btn" id="lowBtn"
+                    onclick="selectPriority('lowBtn', 'low-btn'); addPriorityToTask('low', 'lowBtn')">Low <img
+                        src="assets/img/prio_low_icon.svg" alt="low priority icon" class="prio-icon"></div>
+            </div>
+        </div>
+        <div class="input-container">
+            <label for="categoryInput">Category<span class="red-required">*</span></label>
+            <div class="input-field category-input" onclick="togglePopup('categoryPopup'); stopCurrentAction(event)">
+                <input autocomplete="off" required type="text" pattern="^(Technical Task|User Story)$" id="categoryInput" placeholder="Select task category" class="special-input">
+                <img src="assets/img/drop_down_array_icon.svg" alt="" class="icon input-icon">
+            </div>
+            <div class="category-popup d-none" id="categoryPopup">
+                <ul class="styled-list">
+                    <li class="category-list-item" id="categoryTechnical" onclick="addCategory('categoryTechnical')">
+                        Technical Task</li>
+                    <li class="category-list-item" id="categoryUserStory" onclick="addCategory('categoryUserStory')">
+                        User Story</li>
+                </ul>
+            </div>
+        </div>
+        <div class="input-container" id="subtaskInputField">
+            <label for="subtaskInput">Subtasks</label>
+            <div class="input-field" onclick="toggleSubtaskInput(); stopCurrentAction(event)">
+                <input autocomplete="off" type="text" class="special-input subtask-input" name="subtasks" id="subtaskInput"
+                    placeholder="Add new subtask" onkeypress="callOnEnterPress(event, 'addSubtaskBtn')">
+                <img src="assets/img/addTask_add.svg" alt="" class="icon special-input-icon" id="addSubtaskIcon">
+                <div class="input-icon-box d-none" id="editSubtaskIcons">
+                    <img src="assets/img/addTask_close.svg" alt="" class="edit-icon"
+                        onclick="clearInput('subtaskInput'); stopCurrentAction(event)">
+                    <img src="assets/img/addTask_check.svg" alt="" class="edit-icon"
+                        onclick="addSubtask(); stopCurrentAction(event)" id="addSubtaskBtn">
+                </div>
+            </div>
+        </div>
+        <div>
+            <ul id="subtasks" class="subtasks d-none">
+
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="form-bottom">
+    <span><span class="red-required">*</span>This field is requiered</span>
+    <div class="submit-container">
+        <div class="submit-btn clear-btn" onclick="resetAddTask()">Clear <img src="assets/img/clear_icon.svg" alt="">
+        </div>
+        <button class="submit-btn add-btn hover-active" id="createTaskBtn">Create Task <img src="assets/img/check_icon.svg"
+                alt=""></button>
+    </div>
+</div>
+

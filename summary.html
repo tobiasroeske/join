@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join | Summary</title>
+    <link rel="icon" type="image" href="./assets/img/favicon-join.png">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/fonts.css">
+    <link rel="stylesheet" href="css/summary.css">
+    <script src="js/main.js"></script>
+    <script src="js/storage.js"></script>
+    <script src="js/summary.js"></script>
+</head>
+
+<body onload="init()" onclick="closePopup('profileOptions')">
+
+    <!-- Header Section -->
+    <header w3-include-html="assets/templates/header.html"></header>
+    <main class="main">
+
+        <!-- Sidebar -->
+        <div class="sidebar" w3-include-html="assets/templates/sidebar.html"></div>
+
+        <!-- Rightside of the main container-->
+
+        <div class="rightside">
+            <div class="loading-popup" id="loadingPopup">
+                <div class="custom-loader"></div>
+            </div>
+            <!-- Page content goes here -->
+            <div class="summary" id="summary">
+                <div class="summary-headline" id="headline">
+                    <h1 class="page-heading">Join 360</h1>
+                    <div class="summary-seperator"></div>
+                    <h2 class="special-subheading">Key Metrics at a Glance</h2>
+                </div>
+                <div class="summary-content">
+                    <div class="content-left" id="contentLeft">
+                        <div class="row">
+                            <a href="board.html" class="todo">
+                                <div class="summary-symbol">
+                                    <img src="assets/img/summary_edit_white.svg" alt="" class="summary-icon">
+                                </div>
+                                <div class="summary-text">
+                                    <span class="number" id="tasksTodo"></span>
+                                    <span class="summary-text">To-do</span>
+                                </div>
+                            </a>
+                            <a href="board.html" class="done">
+                                <div class="summary-symbol">
+                                    <img src="assets/img/summary_check_white.svg" alt="" class="summary-icon">
+                                </div>
+                                <div class="summary-text">
+                                    <span class="number" id="tasksDone"></span>
+                                    <span class="summary-text">Done</span>
+                                </div>
+                            </a>
+                        </div>
+
+                        <div class="full-row">
+                            <a href="board.html" class="summary-urgent">
+                                <div class="summary-priority">
+                                    <img src="assets/img/summary_high.svg" alt="" class="summary-icon-priority">
+                                </div>
+                                <div class="summary-text">
+                                    <span class="number" id="tasksUrgent"></span>
+                                    <span class="summary-text">Urgent</span>
+                                </div>
+                            </a>
+                            <div class="row-seperator">
+
+                            </div>
+                            <a href="board.html" class="deadline">
+                                <span class="deadline-date" id="dueDate"></span>
+                                <span class="deadline-text">Upcoming Deadline</span>
+                            </a>
+                        </div>
+
+                        <div class="row">
+                            <a href="board.html" class="task-box">
+                                <div class="summary-text">
+                                    <span class="number" id="allTasks"></span>
+                                    <span class="summary-text">Tasks in <br>Board</span>
+                                </div>
+                            </a>
+                            <a href="board.html" class="task-box">
+                                <div class="summary-text">
+                                    <span class="number" id="tasksInProgress"></span>
+                                    <span class="summary-text">Tasks In<br>Progress</span>
+                                </div>
+                            </a>
+                            <a href="board.html" class="task-box">
+                                <div class="summary-text">
+                                    <span class="number" id="tasksAwaitingFeedback"></span>
+                                    <span class="summary-text">Awaiting <br>Feedback</span>
+                                </div>
+                            </a>
+
+                        </div>
+                    </div>
+
+                    <div class="content-right" id="contentRight">
+                        <span class="greeting" id="greeting"></span>
+                        <span class="user-name" id="userName"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>
