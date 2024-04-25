@@ -136,7 +136,8 @@ async function guestLogin() {
 }
 
 /**
- * Just for testing purpose
+ * Just for testing purpose 
+ * sets the currentUser to the predefined Test Guest 
  * 
  * @returns testGuest Object
  */
