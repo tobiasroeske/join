@@ -10,8 +10,6 @@ async function init() {
     await load();
     loadGuestFromLocalStorage();
     autoFillForm();
-    //await getItemFromFirebase('/user');
-    //await setItemToFirebase('/user', {'name': 'tony', 'id': 'ssdasda'})
 }
 
 /**
