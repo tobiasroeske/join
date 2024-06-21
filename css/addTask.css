@@ -569,6 +569,14 @@ textarea {
   .add-task {
     padding: 56px 0;
   }
+
+  .medium-icon, .prio-icon {
+    width: 12px;
+  }
+
+  .prio-btn {
+    font-size: 16px;
+  }
 }
 
 @media (max-width: 900px) {

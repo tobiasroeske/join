@@ -10,6 +10,7 @@ h2 {
 
   height: fit-content;
 }
+
 .board {
   display: flex;
   justify-content: space-between;
@@ -38,6 +39,7 @@ h2 {
   padding-right: 20px;
   height: 40px;
 }
+
 .search-area {
   display: flex;
   align-items: center;
@@ -53,8 +55,7 @@ h2 {
 
 .img-search-board:hover {
   cursor: pointer;
-  filter: invert(52%) sepia(72%) saturate(2702%) hue-rotate(159deg)
-    brightness(92%) contrast(101%);
+  filter: invert(52%) sepia(72%) saturate(2702%) hue-rotate(159deg) brightness(92%) contrast(101%);
   transform: scale(1.1);
 }
 
@@ -139,7 +140,8 @@ h2 {
 }
 
 .board-noTasks {
-  display: flex; /* display nonen beim adden */
+  display: flex;
+  /* display nonen beim adden */
   background-color: rgba(223, 221, 221, 0.26);
   border: 2px dotted #b6b6b6;
   color: #918e8e;
@@ -244,11 +246,13 @@ h2 {
   height: 8px;
   width: 120px;
 }
+
 .progress-and-subtasks {
   display: flex;
   justify-content: space-between;
   vertical-align: middle;
 }
+
 .subtasks {
   font-size: 14px;
   font-weight: 400;
@@ -263,6 +267,7 @@ h2 {
 .assigned-to {
   display: flex;
 }
+
 .assigned-to div {
   margin-right: -12px;
 }
@@ -429,9 +434,11 @@ h2 {
   color: #3e4e64;
   font-size: 18px;
 }
+
 .popup-date2 {
   color: black;
 }
+
 .description-popup {
   font-weight: 400;
   font-size: 18px;
@@ -445,6 +452,7 @@ h2 {
   color: #3e4e64;
   font-size: 18px;
 }
+
 .priority-popup2 {
   color: black;
 }
@@ -466,11 +474,13 @@ h2 {
   color: #3e4e64;
   font-size: 18px;
 }
+
 .popup-assignedto2 {
   font-size: 15px;
   color: black;
   margin-left: 20px;
 }
+
 .popup-subtasks {
   font-size: 18px;
   display: flex;
@@ -490,7 +500,17 @@ h2 {
   align-items: center;
 }
 
-.popup-subtasks2:hover {
+.subtask-box {
+  cursor: pointer;
+  padding: 2px 6px;
+  border-radius: 12px;
+}
+
+.subtask-box>label {
+  cursor: pointer;
+}
+
+.subtask-box:hover {
   background-color: rgb(224, 224, 224);
 }
 
@@ -560,15 +580,13 @@ top: -15px;
 .popup-delete:hover {
   cursor: pointer;
   font-weight: 500;
-  filter: invert(65%) sepia(42%) saturate(3270%) hue-rotate(165deg)
-    brightness(93%) contrast(90%);
+  filter: invert(65%) sepia(42%) saturate(3270%) hue-rotate(165deg) brightness(93%) contrast(90%);
 }
 
 .popup-edit:hover {
   cursor: pointer;
   font-weight: 500;
-  filter: invert(65%) sepia(42%) saturate(3270%) hue-rotate(165deg)
-    brightness(93%) contrast(90%);
+  filter: invert(65%) sepia(42%) saturate(3270%) hue-rotate(165deg) brightness(93%) contrast(90%);
 }
 
 .edit-task {
@@ -684,6 +702,19 @@ top: -15px;
   padding-right: 21px;
 }
 
+.wiggle {
+  animation: wiggle .325s ease-in-out infinite;
+}
+
+@keyframes wiggle {
+  from {
+    transform: rotate(2deg);
+  }
+  to {
+    transform: rotate(-2deg);
+  }
+}
+
 @media only screen and (max-width: 1100px) {
   .board-mainpage {
     display: flex;
@@ -699,6 +730,7 @@ top: -15px;
     text-align: center;
     margin-top: 20px;
   }
+
   .search-area {
     margin-top: 20px;
     display: flex;
@@ -847,8 +879,29 @@ top: -15px;
     display: flex;
   }
 }
+
 @media (max-width: 570px) {
   .rightside {
     scrollbar-width: none;
+  }
+}
+
+@media (max-height: 775px) {
+  .add-task {
+    padding: 0;
+  }
+
+  .form {
+    height: auto;
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
+    overflow: auto;
+    padding-bottom: 12px;
+  }
+
+  .form::-webkit-scrollbar {
+    display: none;
   }
 }

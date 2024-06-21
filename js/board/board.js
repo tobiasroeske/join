@@ -1,5 +1,7 @@
 
 let currentDraggedElement = {};
+let timer;
+let touchDuration = 500;
 /**
  * loads the html template for the addTask popup 
  * then resets the currentUser and loads the data, then checks if the currentUser is loggedin,
@@ -145,9 +147,11 @@ function renderTaskPopup(index) {
 function renderFullContacts(id) {
   let container = document.getElementById(id);
   container.innerHTML = '';
-  for (let i = 0; i < currentTask['assignedContacts'].length; i++) {
-    const contact = currentTask['assignedContacts'][i];
-    container.innerHTML += generatePopupContactsHTML(contact);
+  if (currentTask['assignedContacts']) {
+    for (let i = 0; i < currentTask['assignedContacts'].length; i++) {
+      const contact = currentTask['assignedContacts'][i];
+      container.innerHTML += generatePopupContactsHTML(contact);
+    }
   }
 }
 
@@ -322,10 +326,12 @@ function highlightSelectedContacts() {
   allContacts.forEach(contact => {
     contact.classList.remove('active-contact');
     let index = Array.from(contactList.children).indexOf(contact);
-    let assigned = currentTask['assignedContacts'].find(assignedContact => JSON.stringify(assignedContact) === JSON.stringify(currentUser['contacts'][index]));
-    if (assigned) {
-      contact.classList.add('active-contact');
-      contact.querySelector('input').checked = true;
+    if (currentTask['assignedContacts']) {
+      let assigned = currentTask['assignedContacts'].find(assignedContact => JSON.stringify(assignedContact) === JSON.stringify(currentUser['contacts'][index]));
+      if (assigned) {
+        contact.classList.add('active-contact');
+        contact.querySelector('input').checked = true;
+      }
     }
   });
 }
@@ -406,6 +412,28 @@ function filterTasks() {
   renderAllTasks(matchingTasks);
 }
 
+function touchStart(index) {
+  timer = setTimeout(() => {
+    hideContextMenu(index);
+    showMoveToPopup(`moveToPopup${index}`)
+  }, touchDuration);
+}
+
+function hideContextMenu(index) {
+  document.getElementById(`card-${index}`).addEventListener('contextmenu', (event) => {
+      event.preventDefault();
+      event.stopPropagation();
+      return false;
+  });
+}
+
+function touchEnd() {
+  if (timer) {
+    clearTimeout(timer);
+  }
+}
+
+
 /**
  * sets the currentTask as currentDraggedElement
  * 
@@ -414,7 +442,6 @@ function filterTasks() {
 function startDragging(index) {
   let task = currentUser['tasks'][index];
   currentDraggedElement = task;
- 
 }
 
 /**

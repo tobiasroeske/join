@@ -1,6 +1,6 @@
 function generateTasksHTML(task, index) {
   return /*html*/`
-      <div class="task-design" id="card-${index}" draggable="true" ondragstart="startDragging(${index})" ontouchmove="showMoveToPopup('moveToPopup${index}')">
+      <div class="task-design" id="card-${index}" draggable="true" ondragstart="startDragging(${index})" ontouchstart="touchStart(${index})" ontouchend="touchEnd()">
           <div class="move-to-popup d-none" id="moveToPopup${index}">
             <div class="move-to-top">
               <span>Move to: </span>
@@ -160,7 +160,7 @@ function generatePopupContactsHTML(contact) {
 
 function generataeSubtaskPopupHTML(subtask, index) {
     return /*html*/`
-    <div>
+    <div class="subtask-box">
       <input type="checkbox" id="subtaskList${index}" onclick="markSubtaskAsDone(${index})">
       <label for="subtaskList${index}" id="subtaskLabel${index}">${subtask['subtaskName']}</label>
     </div>

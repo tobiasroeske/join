@@ -323,6 +323,10 @@
         gap: 16px;
     }
 
+    .summary {
+        align-items: center;
+    }
+
     .summary-seperator {
         display: none;
     }
@@ -495,5 +499,21 @@
 
     .deadline-text {
         font-size: 12px;
+    }
+}
+
+@media (max-height: 860px) {
+    .summary {
+        padding: 40px 64px;
+    }
+}
+
+@media (max-height: 815px) {
+    .summary {
+        gap: 18px;
+    }
+
+    .content-left {
+        gap: 18px;
     }
 }

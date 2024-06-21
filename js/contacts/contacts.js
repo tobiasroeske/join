@@ -35,7 +35,8 @@ function renderContactList() {
  * gets the information from the input fields and adds a new contact to the contacts array
  * then it reloads the contact list and updateds the contact container
  */
-async function addNewContact() {
+async function addNewContact(event) {
+    event.stopPropagation()
     let nameInput = document.getElementById('nameInput');
     let emailInput = document.getElementById('emailInput');
     let phoneInput = document.getElementById('phoneInput');
@@ -194,7 +195,8 @@ function renderAddNewContactEditor() {
  * 
  * @param {number} index index of the current contact in the contacts array
  */
-async function editContact(index) {
+async function editContact(index, event) {
+    event.stopPropagation()
     let name = document.getElementById('nameInput');
     let email = document.getElementById('emailInput');
     let phone = document.getElementById('phoneInput');

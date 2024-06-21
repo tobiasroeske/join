@@ -229,13 +229,16 @@ function addContactToList(index) {
  */
 function removeContactFromList(index) {
     let contact = JSON.stringify(currentUser['contacts'][index]);
-    for (let i = 0; i < currentTask['assignedContacts'].length; i++) {
-        const assignedContact = currentTask['assignedContacts'][i];
-        let assignedContactAsString = JSON.stringify(assignedContact);
-        if (assignedContactAsString == contact) {
-            currentTask['assignedContacts'].splice(i, 1);
+    if (currentTask['assignedContacts']) {
+        for (let i = 0; i < currentTask['assignedContacts'].length; i++) {
+            const assignedContact = currentTask['assignedContacts'][i];
+            let assignedContactAsString = JSON.stringify(assignedContact);
+            if (assignedContactAsString == contact) {
+                currentTask['assignedContacts'].splice(i, 1);
+            }
         }
     }
+    
     renderSelectedContacts('selectedContacts');
 }
 
@@ -249,18 +252,21 @@ function removeContactFromList(index) {
 function renderSelectedContacts(id) {
     let selecetedContactsContainer = document.getElementById(id);
     selecetedContactsContainer.innerHTML = '';
-    for (let i = 0; i < currentTask['assignedContacts'].length; i++) {
-        const contact = currentTask['assignedContacts'][i];
-        if (i < 4) {
-            selecetedContactsContainer.innerHTML += /*html*/`<div class="initials ${contact['color']}">${contact['initials']}</div>`;
-        }
-        let moreThanFourContacts = i >= 4 && i == currentTask['assignedContacts'].length - 1;
-        if (moreThanFourContacts) {
-            let extraContacts = currentTask['assignedContacts'].length - 4;
-            let index = getIndexOfTask();
-            selecetedContactsContainer.innerHTML += generateExtraContactPopupHTML(extraContacts, index);
+    if (currentTask['assignedContacts']) {
+        for (let i = 0; i < currentTask['assignedContacts'].length; i++) {
+            const contact = currentTask['assignedContacts'][i];
+            if (i < 4) {
+                selecetedContactsContainer.innerHTML += /*html*/`<div class="initials ${contact['color']}">${contact['initials']}</div>`;
+            }
+            let moreThanFourContacts = i >= 4 && i == currentTask['assignedContacts'].length - 1;
+            if (moreThanFourContacts) {
+                let extraContacts = currentTask['assignedContacts'].length - 4;
+                let index = getIndexOfTask();
+                selecetedContactsContainer.innerHTML += generateExtraContactPopupHTML(extraContacts, index);
+            }
         }
     }
+
 }
 
 /**
@@ -278,14 +284,16 @@ function getIndexOfTask() {
  * @returns the html code
  */
 function renderExtraContacts() {
-    let html = ''
-    for (let i = 4; i < currentTask['assignedContacts'].length; i++) {
-        const contact = currentTask['assignedContacts'][i];
-        html += /*html*/`
-            <div class="initials ${contact['color']}">${contact['initials']}</div>
-        `
+    let html = '';
+    if (currentTask['assignedContacts']) {
+        for (let i = 4; i < currentTask['assignedContacts'].length; i++) {
+            const contact = currentTask['assignedContacts'][i];
+            html += /*html*/`
+                <div class="initials ${contact['color']}">${contact['initials']}</div>
+            `
+        }
+        return html;
     }
-    return html;
 }
 
 /**
@@ -294,12 +302,15 @@ function renderExtraContacts() {
  */
 function renderSubtasks() {
     let subtaskContainer = document.getElementById('subtasks');
-    currentTask['subtasks'].length == 0 ? subtaskContainer.classList.add('d-none') : subtaskContainer.classList.remove('d-none');
-    subtaskContainer.innerHTML = '';
-    for (let i = 0; i < currentTask['subtasks'].length; i++) {
-        const subtask = currentTask['subtasks'][i]['subtaskName'];
-        subtaskContainer.innerHTML += generateSubtaskHTML(subtask, i);
+    if (currentTask['subtasks']) {
+        currentTask['subtasks'].length == 0 ? subtaskContainer.classList.add('d-none') : subtaskContainer.classList.remove('d-none');
+        subtaskContainer.innerHTML = '';
+        for (let i = 0; i < currentTask['subtasks'].length; i++) {
+            const subtask = currentTask['subtasks'][i]['subtaskName'];
+            subtaskContainer.innerHTML += generateSubtaskHTML(subtask, i);
+        }
     }
+    
 }
 
 /**
@@ -407,6 +418,6 @@ function renderTodaysDate() {
     let date = getCurrentDate();
     let dateInput = document.getElementById('dateInput');
     dateInput.setAttribute('min', date);
-    dateInput.setAttribute('max', '2100-12-31'); 
+    dateInput.setAttribute('max', '2100-12-31');
 }
 

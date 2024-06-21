@@ -30,20 +30,23 @@ async function init() {
  * right array
  */
 function sortTasks() {
-    currentUser['tasks'].forEach(task => {
-        if (task['currentColumn'] == 'toDo') {
-            todos.push(task);
-        } else if (task['currentColumn'] == 'inProgress') {
-            inProgress.push(task);
-        } else if (task['currentColumn'] == 'awaitFeedback') {
-            awaitingFeedback.push(task);
-        } else if (task['currentColumn'] == 'done') {
-            done.push(task);
-        }
-        if (task['currentPriority'][0] == 'urgent') {
-            urgent.push(task);
-        }
-    })
+    if (currentUser.tasks) {
+        currentUser['tasks'].forEach(task => {
+            if (task['currentColumn'] == 'toDo') {
+                todos.push(task);
+            } else if (task['currentColumn'] == 'inProgress') {
+                inProgress.push(task);
+            } else if (task['currentColumn'] == 'awaitFeedback') {
+                awaitingFeedback.push(task);
+            } else if (task['currentColumn'] == 'done') {
+                done.push(task);
+            }
+            if (task['currentPriority'][0] == 'urgent') {
+                urgent.push(task);
+            }
+        })
+    }
+    
 }
 
 /**

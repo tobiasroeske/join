@@ -18,7 +18,7 @@ async function includeHTML() {
     let includeElements = document.querySelectorAll('[w3-include-html]');
     for (let i = 0; i < includeElements.length; i++) {
         const element = includeElements[i];
-        file = element.getAttribute("w3-include-html"); // "includes/header.html"
+        file = element.getAttribute("w3-include-html");
         let resp = await fetch(file);
         if (resp.ok) {
             element.innerHTML = await resp.text();
@@ -36,9 +36,8 @@ async function includeHTML() {
 async function load() {
     loadCurrentUser();
     try {
-        // currentUser = JSON.parse(await getItem('currentUser'));
-        users = JSON.parse(await getItem('users'));
-        
+        users = await getUsersArray();
+        console.log(users);
         setInitials();
     } catch (error) {
         console.error('Loading error:' + error);
@@ -160,19 +159,14 @@ async function logout() {
  * users array and saves users and currentUser to the server
  */
 async function updateUsers() {
-    if (currentUser['name'] == 'Guest') {
+    if (currentUser.name == 'Guest') {
         guest = currentUser;
         saveGuestToLocalStorage();
     } else {
-        await loadJustUsers();
-        for (let i = 0; i < users.length; i++) {
-            const user = users[i];
-            if (user['email'] === currentUser['email']) {
-                users.splice(i, 1, currentUser);
-            }
-        }
+        saveCurrentUser();
+        await updateSingleUser(currentUser.id, currentUser);
+        await load();
     }
-    await setItem('users', JSON.stringify(users));
 }
 
 /**
@@ -216,3 +210,4 @@ function getCurrentDate() {
     let formattedDate = `${year}-${month}-${day}`;
     return formattedDate;
 }
+

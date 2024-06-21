@@ -10,7 +10,7 @@ function generateNewContactEditorHTML() {
                 <img src="assets/img/contacts_close.svg" alt="close icon" class="icon close-icon"
                     onclick="closePopupAndStartAnimation('newContact', 'popup')">
                 <img src="assets/img/contact_contact_img.svg" alt="" class="contact-img">
-                <form onsubmit="addNewContact(); return false;" class="contact-form">
+                <form onsubmit="addNewContact(event); return false;" class="contact-form">
                     <div class="input-container">
                         <div class="input-field">
                             <input required type="text" name="" id="nameInput" placeholder="Name" class="special-input">
@@ -49,7 +49,7 @@ function generateContactEditorHTML(contact, index) {
                 <img src="assets/img/contacts_close.svg" alt="close icon" class="icon close-icon"
                     onclick="closePopupAndStartAnimation('editContact', 'popup')">
                 <div class="name-initials ${contact['color']}">${getInitials(contact['name'])}</div>
-                <form onsubmit="editContact(${index}); return false;" class="contact-form">
+                <form onsubmit="editContact(${index}, event); return false;" class="contact-form">
                     <div class="input-container">
                         <div class="input-field">
                             <input required type="text" name="" id="nameInput" placeholder="Name" class="special-input" value="${contact['name']}">

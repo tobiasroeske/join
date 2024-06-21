@@ -1,3 +1,4 @@
+const GUEST_ID = '-O-pjLwaYwAY68FHPEvL'
 /**
  * starts the greeting animation, loads the data from the server, also loads the guest from the local storage 
  * and if the remember me checkbos is checked autofills the form
@@ -9,6 +10,8 @@ async function init() {
     await load();
     loadGuestFromLocalStorage();
     autoFillForm();
+    //await getItemFromFirebase('/user');
+    //await setItemToFirebase('/user', {'name': 'tony', 'id': 'ssdasda'})
 }
 
 /**
@@ -142,7 +145,7 @@ async function guestLogin() {
  * @returns testGuest Object
  */
 function findTestGuest() {
-    let testGuest = users.find(user => user['name'] == 'Test Guest');
+    let testGuest = users.find(user => user['id'] == GUEST_ID);
     return testGuest;
 }
 /**

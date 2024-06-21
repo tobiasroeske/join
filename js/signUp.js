@@ -17,21 +17,31 @@ async function register() {
     let email = document.getElementById('email');
 
     if (checkIfPasswordsAreEqual()) {
-        users.push({
+        let newUser = {
             email: email.value,
             password: password.value,
             name: userName.value,
             color: 'black',
-            loggedIn : false,
+            loggedIn: false,
             tasks: [],
-            contacts: [{name: userName.value, color: 'black', initials: getInitials(userName.value), email: email.value, phone: ''}]
-        });
-        await setItem('users', JSON.stringify(users)); // key = 'users', value
+            contacts: [{ name: userName.value, color: 'black', initials: getInitials(userName.value), email: email.value, phone: '' }]
+        }
+
+        await setItem('users', newUser);
+        // users.push({
+        //     email: email.value,
+        //     password: password.value,
+        //     name: userName.value,
+        //     color: 'black',
+        //     loggedIn : false,
+        //     tasks: [],
+        //     contacts: [{name: userName.value, color: 'black', initials: getInitials(userName.value), email: email.value, phone: ''}]
+        // });
+        // await setItem('users', JSON.stringify(users)); // key = 'users', value
         pipeToLogin();
     }
-
-
 }
+
 
 /**
  * starts the signup animation, resets the form and after a short delay pipes to the login page
@@ -78,7 +88,7 @@ function checkIfPasswordsAreEqual() {
 function acceptPolicy() {
     let acceptCheckbox = document.getElementById('checkbox');
     let signUpButton = document.getElementById('sign-up-btn');
-    
+
     if (acceptCheckbox.checked) {
         signUpButton.classList.add('hover-active');
         signUpButton.disabled = false;
