@@ -45,7 +45,7 @@ async function getUsersArray() {
     let allUserKeys = Object.keys(allUsers);
     allUserKeys.forEach((u, i) => {
         let user = allUsers[allUserKeys[i]];
-        user = setTaskObject(user)
+        user = setTaskObject(user);
         user.id = u;
         
         users.push(user)
