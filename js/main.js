@@ -1,6 +1,7 @@
 let currentUser;
 let users = []
 let today;
+const GUEST_ID = '-O-pjLwaYwAY68FHPEvL'
 let guest = {
     color: 'black',
     contacts: [{ name: 'Guest Profile', color: 'black', initials: 'GP', email: '', phone: '' }],
@@ -159,9 +160,10 @@ async function logout() {
  * users array and saves users and currentUser to the server
  */
 async function updateUsers() {
-    if (currentUser.name == 'Guest') {
+    if (currentUser.id == GUEST_ID) {
         guest = currentUser;
         saveGuestToLocalStorage();
+        await updateSingleUser(guest.id, guest);
     } else {
         saveCurrentUser();
         await updateSingleUser(currentUser.id, currentUser);

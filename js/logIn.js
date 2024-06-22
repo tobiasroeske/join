@@ -1,4 +1,4 @@
-const GUEST_ID = '-O-pjLwaYwAY68FHPEvL'
+
 /**
  * starts the greeting animation, loads the data from the server, also loads the guest from the local storage 
  * and if the remember me checkbos is checked autofills the form
