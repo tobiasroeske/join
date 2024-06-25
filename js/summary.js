@@ -72,6 +72,11 @@ function displayDueDate() {
         let nearestDueDate = new Date(currentUser['tasks'][0]['dueDate']);
         let formatedDate = changeDateFormat(nearestDueDate);
         document.getElementById('dueDate').innerHTML = formatedDate;
+    } else {
+        let dueDate = document.getElementById('dueDate');
+        document.getElementById('upcomingDeadline').innerHTML = '';
+        dueDate.innerHTML = `So far no tasks created`;
+        dueDate.style.textAlign = 'center';
     }
 }
 
